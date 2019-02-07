@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="generator" content="Hugo 0.54.0" />
+	
+	<title>Takeoff - Personal site of Tane Piper</title>
+
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link href="http://tinynodes.xyz//css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://tinynodes.xyz//css/strange-case.css" rel="stylesheet">
+	
+
+	
+	
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4 col-md-3 col-lg-3 sidebar">
+
+			
+	<div class="sidebar-content">
+
+		<a href="http://tinynodes.xyz/"><h1>Tinynodes</h1></a>
+		<p>Personal site of Tane Piper</p>
+
+		
+
+		<ul class="sidebar-menus">
+			
+		</ul>
+
+		<div class="sidebar-recent hidden-xs">
+			<p>Recent Posts:</p>
+			<ul>
+				
+				<li><a href="http://tinynodes.xyz/blog/moving-from-medium/">Moving From Medium</a></li>
+				
+				<li><a href="http://tinynodes.xyz/blog/typescript-any-interface/">Typescript: Building up your types using a functional approach</a></li>
+				
+				<li><a href="http://tinynodes.xyz/blog/dialog-dark-patterns/">Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</a></li>
+				
+				<li><a href="http://tinynodes.xyz/takeoff/takeoff-support-for-blueprints/">Adding support for &#39;Blueprints&#39; in Takeoff</a></li>
+				
+				<li><a href="http://tinynodes.xyz/takeoff/takeoff-a-rapid-development-environment/">Takeoff: A Rapid Development Environment</a></li>
+				
+			</ul>
+		</div>
+
+		
+
+		<p class="copyright">&copy; 2019. All rights reserved. </p>
+		<p class="attr">Powered by <a href="http://gohugo.io">Hugo</a> &amp; <a href="https://github.com/ExchangeRate-API/strange-case">Strange Case</a> (inspired by <a href="https://github.com/poole/hyde">Hyde</a>).</p>
+
+	</div>
+
+
+			</div>
+			<div class="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-3 col-lg-5 col-lg-offset-3 content">
+
+				
+				<div class="post">
+
+					<div class="post-heading">
+						<h1><a href="http://tinynodes.xyz/takeoff/takeoff-support-for-blueprints/">Adding support for &#39;Blueprints&#39; in Takeoff</a></h1>
+						<span>Sep 27, 2017</span>
+					</div>
+
+					<p><img src="http://tinynodes.xyz/takeoff/images/02_takeoff.jpg" alt="A picture of a blueprint of the first plane" /></p>
+
+<p><small>The 1903 Wright Flyer is a small, fabric covered piece of engineering that will live on as one of the most important achievements of mankind in the 20th century, and probably in all of our recorded history. The original plane was restored after its last flight, which had resulted in a crash-landing, and is now on permanent display at the National Air and Space Museum in Washington D.C.</small></p>
+
+<p>Today I have released the first feature release of Takeoff (which now has a new home on Github under it’s own organisation).</p>
+
+<p>When I first released it, it shipped with an opinionated default and was pretty hard coded to this fact, however I’ve managed to decouple parts of this in a way that open up support for blueprints.</p>
+
+<p>Blueprints are pretty simple, they are a git repository that contains a package.json, a docker folder that contains a compose file and all the docker environment files, and an env folder that contains all the runtime assets.</p>
+
+<p>When you install a clean takeoff environment, this repository will be cloned to the correct location to build the environment.</p>
+
+<p>At the moment there are still two parts to fix to full support more but as I’ve only released one this isn’t so much of an issue. Support for this will be done in an upcoming point release. [However, you can easily change the docker-compose-build.js file to point to another repository if it follows the same layout].</p>
+
+<p>Please excuse that documentation links are also broken and will be fixed shortly too.</p>
+
+<p>Release 1.2 will come with a new CLI tool that will provide a better experience for creating build tasks for your projects, as well as creating new blueprints and environments.</p>
+
+<p>Going forward I want to open up the availability of more blueprints and move more functionality to the CLI tool. I also want to stabilise support across Linux, OSX and Windows.</p>
+
+<p>If you find any issues, or have any suggestions please feel free to leave an issue on Github.</p>
+
+
+				</div>
+				
+				<div class="post">
+
+					<div class="post-heading">
+						<h1><a href="http://tinynodes.xyz/takeoff/takeoff-a-rapid-development-environment/">Takeoff: A Rapid Development Environment</a></h1>
+						<span>Sep 5, 2017</span>
+					</div>
+
+					<p><img src="http://tinynodes.xyz/takeoff/images/01_takeoff.jpg" alt="A picture of a plane" /></p>
+
+<p>A common complaint I hear about hack days, and development in general is that there is far too much up front investment in boilerplate infrastructure.</p>
+
+<p>To get a simple React app running you need to spend half the day just getting webpack and babel working, and then you need to work on your API and have to pick a framework.</p>
+
+<p>This is where Takeoff comes in. It’s a development environment designed for rapid prototyping. To do this it has some opinions.</p>
+
+<p>It’s created using docker containers, and there are some simple npm commands that out of the box give you:</p>
+
+<ul>
+<li><p>A Hapi-powered API that uses nodemon to hot reload on any changes. You can simply add a plugin to a whitelist configuration and once the server restarts your API endpoints are available. Also provided is a user creation and authentication component that provides a JSON Web Token for the front end, so you don’t have to build one.</p></li>
+
+<li><p>A React app that comes packed with React Router v4, Redux and hot reloading. Any changes you make are immediately reflected in the front end. The app is set up to allow you to easily add components, and again out of the box there are login/logout components, and a user component that uses scopes and the API middleware provided.</p></li>
+
+<li><p>A Postgres database, out of the box with simple configuration. The Hapi app uses Sequelize to connect, and you can create migrations and models (again in the documentation). This can easily be replaced with MySQL, SQLite or even a different adaptor such as CouchDB.
+A Ngnix server that proxies it all. This means your frontend app is available on <a href="http://localhost">http://localhost</a> and the API server on <a href="http://localhost/api">http://localhost/api</a>. You can configure this to add other services upstream.</p></li>
+
+<li><p>All of these are behind two commands, npm run build:dev and npm run up:dev. When you build the image you can then start it using the up command. The repository has some documentation to get you going, and more will be added.</p></li>
+</ul>
+
+<p>The core focus of Takeoff is to have a working project by the end of the day, and for that is makes some choices.</p>
+
+<p>It was inspired by the article Dockerize your app and keep hot-reloading and aims to provide some out-of-the-box tools to make the rapid development part simpler.</p>
+
+<p>One area I’d like to improve is providing more out of the box adaptors, such as different database types. But if you have any better ideas, or would like to contribute to helping improve rapid development please feel free to open an issue.</p>
+
+
+				</div>
+				
+
+				<div class="text-center">
+					
+
+				</div>
+
+			</div>
+			<div class="col-sm-1 col-md-3 col-md-4">
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="http://tinynodes.xyz//js/bootstrap.min.js"></script>
+
+</body>
+</html>

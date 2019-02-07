@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="generator" content="Hugo 0.54.0" />
+	
+	<title>Typescript: Building up your types using a functional approach - Personal site of Tane Piper</title>
+
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link href="http://tinynodes.xyz//css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://tinynodes.xyz//css/strange-case.css" rel="stylesheet">
+	
+
+	
+	
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4 col-md-3 col-lg-3 sidebar">
+
+			
+	<div class="sidebar-content">
+
+		<a href="http://tinynodes.xyz/"><h1>Tinynodes</h1></a>
+		<p>Personal site of Tane Piper</p>
+
+		
+
+		<ul class="sidebar-menus">
+			
+		</ul>
+
+		<div class="sidebar-recent hidden-xs">
+			<p>Recent Posts:</p>
+			<ul>
+				
+				<li><a href="http://tinynodes.xyz/blog/moving-from-medium/">Moving From Medium</a></li>
+				
+				<li><a href="http://tinynodes.xyz/blog/typescript-any-interface/">Typescript: Building up your types using a functional approach</a></li>
+				
+				<li><a href="http://tinynodes.xyz/blog/dialog-dark-patterns/">Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</a></li>
+				
+				<li><a href="http://tinynodes.xyz/takeoff/takeoff-support-for-blueprints/">Adding support for &#39;Blueprints&#39; in Takeoff</a></li>
+				
+				<li><a href="http://tinynodes.xyz/takeoff/takeoff-a-rapid-development-environment/">Takeoff: A Rapid Development Environment</a></li>
+				
+			</ul>
+		</div>
+
+		
+
+		<p class="copyright">&copy; 2019. All rights reserved. </p>
+		<p class="attr">Powered by <a href="http://gohugo.io">Hugo</a> &amp; <a href="https://github.com/ExchangeRate-API/strange-case">Strange Case</a> (inspired by <a href="https://github.com/poole/hyde">Hyde</a>).</p>
+
+	</div>
+
+
+			</div>
+			<div class="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-3 col-lg-5 col-lg-offset-3 content">
+
+				<div class="post">
+
+					<div class="post-heading">
+						<h1>Typescript: Building up your types using a functional approach</h1>
+						<span class="post-date"><a href="http://tinynodes.xyz/blog/typescript-any-interface/"># May 7, 2018</a></span>
+					</div>
+
+					<p>In a previous Medium post I wrote about what I called &ldquo;any types&rdquo;, where in Typescript instead of using an <code>any</code> you created a named type that would act as a dictionary. There was an example of a model converting method that used these types to provide safer code.</p>
+
+<p>In this post I want to provide some better use cases for this based on some real world use cases I&rsquo;ve encountered. The example itself contrived to provide a wide range of cases you might find in building up an interface</p>
+
+<p>In the previous example I had a model convertor, below is a newer version that is more functional in its style - it still takes an existing model from a older format we have and converts it to something closer to what can be used in an HTML element., finally we use a properties key to put values we may want to use later, filtering out keys we already are using from the model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">convertModelToElement</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">model.key</span>,
+    <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">model.label</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">mode</span>.<span style="color:#a6e22e">name</span>,
+    <span style="color:#a6e22e">attributes</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">model.type</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;unknown&#39;</span>
+      <span style="color:#66d9ef">class</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">styles</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39; &#39;</span>),
+      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">model.value</span>,
+    }
+    <span style="color:#a6e22e">properties</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">isContainer</span>: <span style="color:#66d9ef">model.type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;container&#39;</span>,
+      ...Object.<span style="color:#a6e22e">entries</span>(<span style="color:#a6e22e">model</span>).<span style="color:#a6e22e">filter</span>([<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span>] <span style="color:#f92672">=&gt;</span> [
+        <span style="color:#e6db74">&#39;key&#39;</span>, <span style="color:#e6db74">&#39;label&#39;</span>,
+        <span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;type&#39;</span>,
+        <span style="color:#e6db74">&#39;styles&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>,
+        <span style="color:#e6db74">&#39;properties&#39;</span>, <span style="color:#e6db74">&#39;children&#39;</span>
+      ].<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">key</span>) <span style="color:#f92672">?</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>)
+      .<span style="color:#a6e22e">reduce</span>(([<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span>]<span style="color:#f92672">:</span> [<span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">any</span>], <span style="color:#a6e22e">obj</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {...<span style="color:#a6e22e">obj</span>, [<span style="color:#a6e22e">key</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">value</span>})
+    },
+    <span style="color:#a6e22e">children</span>: <span style="color:#66d9ef">model.children.map</span>((<span style="color:#a6e22e">child</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">convertModel</span>(<span style="color:#a6e22e">child</span>)),
+  }
+};</code></pre></div>
+<p>The code isn’t very descriptive in some ways, at least where Typescript is concerned. Instead of using this any, we can create an interface that allows the code to be more descriptive while still giving flexibility during development.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">OldModel</span> {
+  [<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>;
+}
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">NewModel</span> {
+  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#a6e22e">properties</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">isValid</span>: <span style="color:#66d9ef">boolean</span>;
+    [<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>;
+  };
+  <span style="color:#a6e22e">children</span>: <span style="color:#66d9ef">NewModel</span>[];
+  [<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>;
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">convertModel</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">OldModel</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">NewModel</span> <span style="color:#f92672">=&gt;</span> ({
+  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">model.key</span>,
+  <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">model.label</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">mode</span>.<span style="color:#a6e22e">name</span>,
+  <span style="color:#a6e22e">properties</span><span style="color:#f92672">:</span> {
+    ...<span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">properties</span>,
+    <span style="color:#a6e22e">isValid</span>: <span style="color:#66d9ef">model.value</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>,
+  },
+  <span style="color:#a6e22e">children</span>: <span style="color:#66d9ef">model.children.map</span>((<span style="color:#a6e22e">child</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">convertModel</span>(<span style="color:#a6e22e">child</span>)),
+});</code></pre></div>
+
+				</div>
+
+			</div>
+			<div class="col-sm-1 col-md-3 col-md-4">
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="http://tinynodes.xyz//js/bootstrap.min.js"></script>
+
+</body>
+</html>

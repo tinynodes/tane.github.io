@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://tinynodes.xyz/blog/moving-from-medium/</loc>
+    <lastmod>2019-02-06T22:02:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/blog/typescript-any-interface/</loc>
+    <lastmod>2018-05-07T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/blog/dialog-dark-patterns/</loc>
+    <lastmod>2018-01-31T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/takeoff/takeoff-support-for-blueprints/</loc>
+    <lastmod>2017-09-27T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/takeoff/takeoff-a-rapid-development-environment/</loc>
+    <lastmod>2017-09-05T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/archive/i-made-a-huge-mistake/</loc>
+    <lastmod>2013-05-25T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/archive/i-could-have-been-a-contender/</loc>
+    <lastmod>2013-05-21T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/archive/finding-my-workflow/</loc>
+    <lastmod>2013-05-20T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/archive/no-one-expects/</loc>
+    <lastmod>2013-02-27T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/archive/</loc>
+    <lastmod>2013-05-25T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/blog/</loc>
+    <lastmod>2019-02-06T22:02:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/tags/takeoff/</loc>
+    <lastmod>2017-09-27T23:59:59+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/takeoff/</loc>
+    <lastmod>2017-09-27T23:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tinynodes.xyz/</loc>
+    <lastmod>2019-02-06T22:02:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

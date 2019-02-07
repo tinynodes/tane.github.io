@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archive Posts on Tinynodes</title>
+    <link>http://tinynodes.xyz/archive/</link>
+    <description>Recent content in Archive Posts on Tinynodes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sat, 25 May 2013 23:59:59 +0100</lastBuildDate>
+    
+	<atom:link href="http://tinynodes.xyz/archive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Archive: I Made a Huge Mistake</title>
+      <link>http://tinynodes.xyz/archive/i-made-a-huge-mistake/</link>
+      <pubDate>Sat, 25 May 2013 23:59:59 +0100</pubDate>
+      
+      <guid>http://tinynodes.xyz/archive/i-made-a-huge-mistake/</guid>
+      <description>My year of hell through burnout, sickness and the looming threat of unemployment  My original version of this post was several years ago but much of it still applies today. Developer burnout can be hard, and some people don’t fully recover from it.
+I still feel to this day what happened had a big impact on me - luckily I managed to turn things around for myself with employment but as a developer I still feel the knock-on effects to this day.</description>
+    </item>
+    
+    <item>
+      <title>Archive: I Could Have Been a Contender</title>
+      <link>http://tinynodes.xyz/archive/i-could-have-been-a-contender/</link>
+      <pubDate>Tue, 21 May 2013 23:59:59 +0100</pubDate>
+      
+      <guid>http://tinynodes.xyz/archive/i-could-have-been-a-contender/</guid>
+      <description>How lack of ambition killed my competitor to GitHub What follows is a tale of sadness and procrastination and what could have been had I been a better developer. Or maybe it would have been nothing - but I like to dream that maybe in some alternative universe what happened below didn’t go down the same way.
+Today, GitHub is one of the most popular destinations on the web for developers - in fact I don’t know any developer who doesn’t have GitHub account.</description>
+    </item>
+    
+    <item>
+      <title>Archive: Finding My Workflow</title>
+      <link>http://tinynodes.xyz/archive/finding-my-workflow/</link>
+      <pubDate>Mon, 20 May 2013 23:59:59 +0100</pubDate>
+      
+      <guid>http://tinynodes.xyz/archive/finding-my-workflow/</guid>
+      <description>My journey through procrastination and laziness I’ve always found one of the hardest thing for me to achieve has been to focus on the job at hand. I’ve been a professional developer for over 10 years and I look at other developers - online and my peers - and see that somehow they manage to plan effectively their time and resources to successfully complete all the tasks at hand.</description>
+    </item>
+    
+    <item>
+      <title>Archive: No One Expects the Spanish Inquisition - or How Users Will Behave</title>
+      <link>http://tinynodes.xyz/archive/no-one-expects/</link>
+      <pubDate>Wed, 27 Feb 2013 23:59:59 +0100</pubDate>
+      
+      <guid>http://tinynodes.xyz/archive/no-one-expects/</guid>
+      <description>At FreeAgent one of the goals of our Customer Experience team has been to improve the quality of content on our Knowledge Base.
+From humble beginnings it has grown into sprawling, organic collection of documents containing over 250 pages of content. Over the years has built up to cover everything from setting up FreeAgent, to telling you about the tasks you can carry out to run your business and even stubs of support responses on how certain tasks might be (or not be) carried out.</description>
+    </item>
+    
+  </channel>
+</rss>

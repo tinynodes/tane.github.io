@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="generator" content="Hugo 0.54.0" />
+	
+	<title>Adding support for &#39;Blueprints&#39; in Takeoff - Personal site of Tane Piper</title>
+
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link href="http://tinynodes.xyz//css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://tinynodes.xyz//css/strange-case.css" rel="stylesheet">
+	
+
+	
+	
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4 col-md-3 col-lg-3 sidebar">
+
+			
+	<div class="sidebar-content">
+
+		<a href="http://tinynodes.xyz/"><h1>Tinynodes</h1></a>
+		<p>Personal site of Tane Piper</p>
+
+		
+
+		<ul class="sidebar-menus">
+			
+		</ul>
+
+		<div class="sidebar-recent hidden-xs">
+			<p>Recent Posts:</p>
+			<ul>
+				
+				<li><a href="http://tinynodes.xyz/blog/moving-from-medium/">Moving From Medium</a></li>
+				
+				<li><a href="http://tinynodes.xyz/blog/typescript-any-interface/">Typescript: Building up your types using a functional approach</a></li>
+				
+				<li><a href="http://tinynodes.xyz/blog/dialog-dark-patterns/">Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</a></li>
+				
+				<li><a href="http://tinynodes.xyz/takeoff/takeoff-support-for-blueprints/">Adding support for &#39;Blueprints&#39; in Takeoff</a></li>
+				
+				<li><a href="http://tinynodes.xyz/takeoff/takeoff-a-rapid-development-environment/">Takeoff: A Rapid Development Environment</a></li>
+				
+			</ul>
+		</div>
+
+		
+
+		<p class="copyright">&copy; 2019. All rights reserved. </p>
+		<p class="attr">Powered by <a href="http://gohugo.io">Hugo</a> &amp; <a href="https://github.com/ExchangeRate-API/strange-case">Strange Case</a> (inspired by <a href="https://github.com/poole/hyde">Hyde</a>).</p>
+
+	</div>
+
+
+			</div>
+			<div class="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-3 col-lg-5 col-lg-offset-3 content">
+
+				<div class="post">
+
+					<div class="post-heading">
+						<h1>Adding support for &#39;Blueprints&#39; in Takeoff</h1>
+						<span class="post-date"><a href="http://tinynodes.xyz/takeoff/takeoff-support-for-blueprints/"># Sep 27, 2017</a></span>
+					</div>
+
+					<p><img src="http://tinynodes.xyz/takeoff/images/02_takeoff.jpg" alt="A picture of a blueprint of the first plane" /></p>
+
+<p><small>The 1903 Wright Flyer is a small, fabric covered piece of engineering that will live on as one of the most important achievements of mankind in the 20th century, and probably in all of our recorded history. The original plane was restored after its last flight, which had resulted in a crash-landing, and is now on permanent display at the National Air and Space Museum in Washington D.C.</small></p>
+
+<p>Today I have released the first feature release of Takeoff (which now has a new home on Github under it’s own organisation).</p>
+
+<p>When I first released it, it shipped with an opinionated default and was pretty hard coded to this fact, however I’ve managed to decouple parts of this in a way that open up support for blueprints.</p>
+
+<p>Blueprints are pretty simple, they are a git repository that contains a package.json, a docker folder that contains a compose file and all the docker environment files, and an env folder that contains all the runtime assets.</p>
+
+<p>When you install a clean takeoff environment, this repository will be cloned to the correct location to build the environment.</p>
+
+<p>At the moment there are still two parts to fix to full support more but as I’ve only released one this isn’t so much of an issue. Support for this will be done in an upcoming point release. [However, you can easily change the docker-compose-build.js file to point to another repository if it follows the same layout].</p>
+
+<p>Please excuse that documentation links are also broken and will be fixed shortly too.</p>
+
+<p>Release 1.2 will come with a new CLI tool that will provide a better experience for creating build tasks for your projects, as well as creating new blueprints and environments.</p>
+
+<p>Going forward I want to open up the availability of more blueprints and move more functionality to the CLI tool. I also want to stabilise support across Linux, OSX and Windows.</p>
+
+<p>If you find any issues, or have any suggestions please feel free to leave an issue on Github.</p>
+
+
+				</div>
+
+			</div>
+			<div class="col-sm-1 col-md-3 col-md-4">
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="http://tinynodes.xyz//js/bootstrap.min.js"></script>
+
+</body>
+</html>
