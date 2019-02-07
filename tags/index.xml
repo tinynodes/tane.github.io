@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Tinynodes</title>
-    <link>http://tinynodes.xyz/tags/</link>
+    <link>https://tinynodes.github.io/tags/</link>
     <description>Recent content in Tags on Tinynodes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     
-	<atom:link href="http://tinynodes.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinynodes.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Takeoff</title>
-      <link>http://tinynodes.xyz/tags/takeoff/</link>
+      <link>https://tinynodes.github.io/tags/takeoff/</link>
       <pubDate>Wed, 27 Sep 2017 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/tags/takeoff/</guid>
+      <guid>https://tinynodes.github.io/tags/takeoff/</guid>
       <description></description>
     </item>
     

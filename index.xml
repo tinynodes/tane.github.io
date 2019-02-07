@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tinynodes</title>
-    <link>http://tinynodes.xyz/</link>
+    <link>https://tinynodes.github.io/</link>
     <description>Recent content on Tinynodes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Wed, 06 Feb 2019 22:02:36 +0100</lastBuildDate>
     
-	<atom:link href="http://tinynodes.xyz/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinynodes.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Moving From Medium</title>
-      <link>http://tinynodes.xyz/blog/moving-from-medium/</link>
+      <link>https://tinynodes.github.io/blog/moving-from-medium/</link>
       <pubDate>Wed, 06 Feb 2019 22:02:36 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/blog/moving-from-medium/</guid>
+      <guid>https://tinynodes.github.io/blog/moving-from-medium/</guid>
       <description>Welcome to Tinynodes, a new collection of development articles and republishing of previous articles.</description>
     </item>
     
     <item>
       <title>Typescript: Building up your types using a functional approach</title>
-      <link>http://tinynodes.xyz/blog/typescript-any-interface/</link>
+      <link>https://tinynodes.github.io/blog/typescript-any-interface/</link>
       <pubDate>Mon, 07 May 2018 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/blog/typescript-any-interface/</guid>
+      <guid>https://tinynodes.github.io/blog/typescript-any-interface/</guid>
       <description>In a previous Medium post I wrote about what I called &amp;ldquo;any types&amp;rdquo;, where in Typescript instead of using an any you created a named type that would act as a dictionary. There was an example of a model converting method that used these types to provide safer code.
 In this post I want to provide some better use cases for this based on some real world use cases I&amp;rsquo;ve encountered.</description>
     </item>
     
     <item>
       <title>Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</title>
-      <link>http://tinynodes.xyz/blog/dialog-dark-patterns/</link>
+      <link>https://tinynodes.github.io/blog/dialog-dark-patterns/</link>
       <pubDate>Wed, 31 Jan 2018 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/blog/dialog-dark-patterns/</guid>
+      <guid>https://tinynodes.github.io/blog/dialog-dark-patterns/</guid>
       <description>Recently I was introduced to the &amp;lt;dialog&amp;gt; tag and thought it was an interesting use of a web component pattern, but immediately I questioned the API and indeed after some minor digging, there really are some glaring issues regarding their use in terms of security, and as a major annoyance.
 The Hacks I’ve put them together in a Codepen and there are 4 main hacks:
  Adding a listener over a close button to make it nearly impossible for the user to close it.</description>
@@ -43,20 +43,20 @@ The Hacks I’ve put them together in a Codepen and there are 4 main hacks:
     
     <item>
       <title>Adding support for &#39;Blueprints&#39; in Takeoff</title>
-      <link>http://tinynodes.xyz/takeoff/takeoff-support-for-blueprints/</link>
+      <link>https://tinynodes.github.io/takeoff/takeoff-support-for-blueprints/</link>
       <pubDate>Wed, 27 Sep 2017 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/takeoff/takeoff-support-for-blueprints/</guid>
+      <guid>https://tinynodes.github.io/takeoff/takeoff-support-for-blueprints/</guid>
       <description>The 1903 Wright Flyer is a small, fabric covered piece of engineering that will live on as one of the most important achievements of mankind in the 20th century, and probably in all of our recorded history. The original plane was restored after its last flight, which had resulted in a crash-landing, and is now on permanent display at the National Air and Space Museum in Washington D.C.
 Today I have released the first feature release of Takeoff (which now has a new home on Github under it’s own organisation).</description>
     </item>
     
     <item>
       <title>Takeoff: A Rapid Development Environment</title>
-      <link>http://tinynodes.xyz/takeoff/takeoff-a-rapid-development-environment/</link>
+      <link>https://tinynodes.github.io/takeoff/takeoff-a-rapid-development-environment/</link>
       <pubDate>Tue, 05 Sep 2017 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/takeoff/takeoff-a-rapid-development-environment/</guid>
+      <guid>https://tinynodes.github.io/takeoff/takeoff-a-rapid-development-environment/</guid>
       <description>A common complaint I hear about hack days, and development in general is that there is far too much up front investment in boilerplate infrastructure.
 To get a simple React app running you need to spend half the day just getting webpack and babel working, and then you need to work on your API and have to pick a framework.
 This is where Takeoff comes in. It’s a development environment designed for rapid prototyping.</description>
@@ -64,39 +64,39 @@ This is where Takeoff comes in. It’s a development environment designed for ra
     
     <item>
       <title>Archive: I Made a Huge Mistake</title>
-      <link>http://tinynodes.xyz/archive/i-made-a-huge-mistake/</link>
+      <link>https://tinynodes.github.io/archive/i-made-a-huge-mistake/</link>
       <pubDate>Sat, 25 May 2013 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/archive/i-made-a-huge-mistake/</guid>
+      <guid>https://tinynodes.github.io/archive/i-made-a-huge-mistake/</guid>
       <description>My year of hell through burnout, sickness and the looming threat of unemployment  My original version of this post was several years ago but much of it still applies today. Developer burnout can be hard, and some people don’t fully recover from it.
 I still feel to this day what happened had a big impact on me - luckily I managed to turn things around for myself with employment but as a developer I still feel the knock-on effects to this day.</description>
     </item>
     
     <item>
       <title>Archive: I Could Have Been a Contender</title>
-      <link>http://tinynodes.xyz/archive/i-could-have-been-a-contender/</link>
+      <link>https://tinynodes.github.io/archive/i-could-have-been-a-contender/</link>
       <pubDate>Tue, 21 May 2013 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/archive/i-could-have-been-a-contender/</guid>
+      <guid>https://tinynodes.github.io/archive/i-could-have-been-a-contender/</guid>
       <description>How lack of ambition killed my competitor to GitHub What follows is a tale of sadness and procrastination and what could have been had I been a better developer. Or maybe it would have been nothing - but I like to dream that maybe in some alternative universe what happened below didn’t go down the same way.
 Today, GitHub is one of the most popular destinations on the web for developers - in fact I don’t know any developer who doesn’t have GitHub account.</description>
     </item>
     
     <item>
       <title>Archive: Finding My Workflow</title>
-      <link>http://tinynodes.xyz/archive/finding-my-workflow/</link>
+      <link>https://tinynodes.github.io/archive/finding-my-workflow/</link>
       <pubDate>Mon, 20 May 2013 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/archive/finding-my-workflow/</guid>
+      <guid>https://tinynodes.github.io/archive/finding-my-workflow/</guid>
       <description>My journey through procrastination and laziness I’ve always found one of the hardest thing for me to achieve has been to focus on the job at hand. I’ve been a professional developer for over 10 years and I look at other developers - online and my peers - and see that somehow they manage to plan effectively their time and resources to successfully complete all the tasks at hand.</description>
     </item>
     
     <item>
       <title>Archive: No One Expects the Spanish Inquisition - or How Users Will Behave</title>
-      <link>http://tinynodes.xyz/archive/no-one-expects/</link>
+      <link>https://tinynodes.github.io/archive/no-one-expects/</link>
       <pubDate>Wed, 27 Feb 2013 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/archive/no-one-expects/</guid>
+      <guid>https://tinynodes.github.io/archive/no-one-expects/</guid>
       <description>At FreeAgent one of the goals of our Customer Experience team has been to improve the quality of content on our Knowledge Base.
 From humble beginnings it has grown into sprawling, organic collection of documents containing over 250 pages of content. Over the years has built up to cover everything from setting up FreeAgent, to telling you about the tasks you can carry out to run your business and even stubs of support responses on how certain tasks might be (or not be) carried out.</description>
     </item>

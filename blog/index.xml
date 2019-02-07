@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on Tinynodes</title>
-    <link>http://tinynodes.xyz/blog/</link>
+    <link>https://tinynodes.github.io/blog/</link>
     <description>Recent content in Blogs on Tinynodes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Wed, 06 Feb 2019 22:02:36 +0100</lastBuildDate>
     
-	<atom:link href="http://tinynodes.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinynodes.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Moving From Medium</title>
-      <link>http://tinynodes.xyz/blog/moving-from-medium/</link>
+      <link>https://tinynodes.github.io/blog/moving-from-medium/</link>
       <pubDate>Wed, 06 Feb 2019 22:02:36 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/blog/moving-from-medium/</guid>
+      <guid>https://tinynodes.github.io/blog/moving-from-medium/</guid>
       <description>Welcome to Tinynodes, a new collection of development articles and republishing of previous articles.</description>
     </item>
     
     <item>
       <title>Typescript: Building up your types using a functional approach</title>
-      <link>http://tinynodes.xyz/blog/typescript-any-interface/</link>
+      <link>https://tinynodes.github.io/blog/typescript-any-interface/</link>
       <pubDate>Mon, 07 May 2018 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/blog/typescript-any-interface/</guid>
+      <guid>https://tinynodes.github.io/blog/typescript-any-interface/</guid>
       <description>In a previous Medium post I wrote about what I called &amp;ldquo;any types&amp;rdquo;, where in Typescript instead of using an any you created a named type that would act as a dictionary. There was an example of a model converting method that used these types to provide safer code.
 In this post I want to provide some better use cases for this based on some real world use cases I&amp;rsquo;ve encountered.</description>
     </item>
     
     <item>
       <title>Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</title>
-      <link>http://tinynodes.xyz/blog/dialog-dark-patterns/</link>
+      <link>https://tinynodes.github.io/blog/dialog-dark-patterns/</link>
       <pubDate>Wed, 31 Jan 2018 23:59:59 +0100</pubDate>
       
-      <guid>http://tinynodes.xyz/blog/dialog-dark-patterns/</guid>
+      <guid>https://tinynodes.github.io/blog/dialog-dark-patterns/</guid>
       <description>Recently I was introduced to the &amp;lt;dialog&amp;gt; tag and thought it was an interesting use of a web component pattern, but immediately I questioned the API and indeed after some minor digging, there really are some glaring issues regarding their use in terms of security, and as a major annoyance.
 The Hacks I’ve put them together in a Codepen and there are 4 main hacks:
  Adding a listener over a close button to make it nearly impossible for the user to close it.</description>
