@@ -12,34 +12,12 @@
     
     
     <item>
-      <title>Moving From Medium</title>
+      <title>New blog (aka &#39;Hey I&#39;m Moving From Medium&#39;)</title>
       <link>https://tinynodes.github.io/blog/moving-from-medium/</link>
       <pubDate>Wed, 06 Feb 2019 22:02:36 +0100</pubDate>
       
       <guid>https://tinynodes.github.io/blog/moving-from-medium/</guid>
-      <description>Welcome to Tinynodes, a new collection of development articles and republishing of previous articles.
-If you are here just now, this is just a test.</description>
-    </item>
-    
-    <item>
-      <title>Typescript: Building up your types using a functional approach</title>
-      <link>https://tinynodes.github.io/blog/typescript-any-interface/</link>
-      <pubDate>Mon, 07 May 2018 23:59:59 +0100</pubDate>
-      
-      <guid>https://tinynodes.github.io/blog/typescript-any-interface/</guid>
-      <description>In a previous Medium post I wrote about what I called &amp;ldquo;any types&amp;rdquo;, where in Typescript instead of using an any you created a named type that would act as a dictionary. There was an example of a model converting method that used these types to provide safer code.
-In this post I want to provide some better use cases for this based on some real world use cases I&amp;rsquo;ve encountered.</description>
-    </item>
-    
-    <item>
-      <title>Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</title>
-      <link>https://tinynodes.github.io/blog/dialog-dark-patterns/</link>
-      <pubDate>Wed, 31 Jan 2018 23:59:59 +0100</pubDate>
-      
-      <guid>https://tinynodes.github.io/blog/dialog-dark-patterns/</guid>
-      <description>Recently I was introduced to the &amp;lt;dialog&amp;gt; tag and thought it was an interesting use of a web component pattern, but immediately I questioned the API and indeed after some minor digging, there really are some glaring issues regarding their use in terms of security, and as a major annoyance.
-The Hacks I’ve put them together in a Codepen and there are 4 main hacks:
- Adding a listener over a close button to make it nearly impossible for the user to close it.</description>
+      <description>If you are here just now, this is just a test.</description>
     </item>
     
   </channel>

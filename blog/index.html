@@ -35,23 +35,7 @@
     <ul class="menu-list">
       
       <li>
-        <a href="https://tinynodes.github.io/blog/moving-from-medium/">Moving From Medium</a>
-      </li>
-      
-      <li>
-        <a href="https://tinynodes.github.io/blog/typescript-any-interface/">Typescript: Building up your types using a functional approach</a>
-      </li>
-      
-      <li>
-        <a href="https://tinynodes.github.io/blog/dialog-dark-patterns/">Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</a>
-      </li>
-      
-      <li>
-        <a href="https://tinynodes.github.io/takeoff/takeoff-support-for-blueprints/">Adding support for &#39;Blueprints&#39; in Takeoff</a>
-      </li>
-      
-      <li>
-        <a href="https://tinynodes.github.io/takeoff/takeoff-a-rapid-development-environment/">Takeoff: A Rapid Development Environment</a>
+        <a href="https://tinynodes.github.io/blog/moving-from-medium/">New blog (aka &#39;Hey I&#39;m Moving From Medium&#39;)</a>
       </li>
       
     </ul>
@@ -64,7 +48,7 @@
       2019. All rights reserved. 
     </p>
     <p class="attr">
-      Powered by <a href="http://gohugo.io">Hugo</a>.
+      Site built with <a href="http://gohugo.io">Hugo</a>.
     </p>
   </footer>
 </div>
@@ -75,173 +59,14 @@
       <div class="post content">
         <div class="post-heading">
           <h1>
-            <a href="https://tinynodes.github.io/blog/moving-from-medium/">Moving From Medium</a>
+            <a href="https://tinynodes.github.io/blog/moving-from-medium/">New blog (aka &#39;Hey I&#39;m Moving From Medium&#39;)</a>
           </h1>
           <span
             >Feb 6, 2019</span
           >
         </div>
 
-        <p>Welcome to Tinynodes, a new collection of development articles and republishing of previous articles.</p>
-
-<p>If you are here just now, this is just a test.</p>
-
-      </div>
-      
-      <div class="post content">
-        <div class="post-heading">
-          <h1>
-            <a href="https://tinynodes.github.io/blog/typescript-any-interface/">Typescript: Building up your types using a functional approach</a>
-          </h1>
-          <span
-            >May 7, 2018</span
-          >
-        </div>
-
-        <p>In a previous Medium post I wrote about what I called &ldquo;any types&rdquo;, where in Typescript instead of using an <code>any</code> you created a named type that would act as a dictionary. There was an example of a model converting method that used these types to provide safer code.</p>
-
-<p>In this post I want to provide some better use cases for this based on some real world use cases I&rsquo;ve encountered. The example itself contrived to provide a wide range of cases you might find in building up an interface</p>
-
-<p>In the previous example I had a model convertor, below is a newer version that is more functional in its style - it still takes an existing model from a older format we have and converts it to something closer to what can be used in an HTML element., finally we use a properties key to put values we may want to use later, filtering out keys we already are using from the model.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">convertModelToElement</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span> <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">return</span> {
-    <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">model.key</span>,
-    <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">model.label</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">mode</span>.<span style="color:#a6e22e">name</span>,
-    <span style="color:#a6e22e">attributes</span><span style="color:#f92672">:</span> {
-      <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">model.type</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;unknown&#39;</span>
-      <span style="color:#66d9ef">class</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">styles</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39; &#39;</span>),
-      <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">model.value</span>,
-    }
-    <span style="color:#a6e22e">properties</span><span style="color:#f92672">:</span> {
-      <span style="color:#a6e22e">isContainer</span>: <span style="color:#66d9ef">model.type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;container&#39;</span>,
-      ...Object.<span style="color:#a6e22e">entries</span>(<span style="color:#a6e22e">model</span>).<span style="color:#a6e22e">filter</span>([<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span>] <span style="color:#f92672">=&gt;</span> [
-        <span style="color:#e6db74">&#39;key&#39;</span>, <span style="color:#e6db74">&#39;label&#39;</span>,
-        <span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;type&#39;</span>,
-        <span style="color:#e6db74">&#39;styles&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>,
-        <span style="color:#e6db74">&#39;properties&#39;</span>, <span style="color:#e6db74">&#39;children&#39;</span>
-      ].<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">key</span>) <span style="color:#f92672">?</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>)
-      .<span style="color:#a6e22e">reduce</span>(([<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span>]<span style="color:#f92672">:</span> [<span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">any</span>], <span style="color:#a6e22e">obj</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {...<span style="color:#a6e22e">obj</span>, [<span style="color:#a6e22e">key</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">value</span>})
-    },
-    <span style="color:#a6e22e">children</span>: <span style="color:#66d9ef">model.children.map</span>((<span style="color:#a6e22e">child</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">convertModel</span>(<span style="color:#a6e22e">child</span>)),
-  }
-};</code></pre></div>
-<p>The code isn’t very descriptive in some ways, at least where Typescript is concerned. Instead of using this any, we can create an interface that allows the code to be more descriptive while still giving flexibility during development.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">OldModel</span> {
-  [<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>;
-}
-
-<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">NewModel</span> {
-  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>;
-  <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">string</span>;
-  <span style="color:#a6e22e">properties</span><span style="color:#f92672">:</span> {
-    <span style="color:#a6e22e">isValid</span>: <span style="color:#66d9ef">boolean</span>;
-    [<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>;
-  };
-  <span style="color:#a6e22e">children</span>: <span style="color:#66d9ef">NewModel</span>[];
-  [<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>;
-}
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">convertModel</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">OldModel</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">NewModel</span> <span style="color:#f92672">=&gt;</span> ({
-  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">model.key</span>,
-  <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">model.label</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">mode</span>.<span style="color:#a6e22e">name</span>,
-  <span style="color:#a6e22e">properties</span><span style="color:#f92672">:</span> {
-    ...<span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">properties</span>,
-    <span style="color:#a6e22e">isValid</span>: <span style="color:#66d9ef">model.value</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>,
-  },
-  <span style="color:#a6e22e">children</span>: <span style="color:#66d9ef">model.children.map</span>((<span style="color:#a6e22e">child</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">convertModel</span>(<span style="color:#a6e22e">child</span>)),
-});</code></pre></div>
-      </div>
-      
-      <div class="post content">
-        <div class="post-heading">
-          <h1>
-            <a href="https://tinynodes.github.io/blog/dialog-dark-patterns/">Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</a>
-          </h1>
-          <span
-            >Jan 31, 2018</span
-          >
-        </div>
-
-        
-
-<p>Recently I was introduced to the <code>&lt;dialog&gt;</code> tag and thought it was an interesting use of a web component pattern, but immediately I questioned the API and indeed after some minor digging, there really are some glaring issues regarding their use in terms of security, and as a major annoyance.</p>
-
-<h2 id="the-hacks">The Hacks</h2>
-
-<p>I’ve put them together in a Codepen and there are 4 main hacks:</p>
-
-<ul>
-<li>Adding a listener over a close button to make it nearly impossible for the user to close it.</li>
-<li>Having a close button that when pressed closes the modal but also triggers an undesirable path.</li>
-<li>2 Buttons that send you into an loop of death in creating modals.</li>
-<li>Hijacking the Escape (and Tab) button</li>
-</ul>
-
-<p>The whole thing calls itself to get into a loop if you press the right buttons.</p>
-
-<h2 id="overriding-the-dom-for-fun">Overriding the DOM for fun</h2>
-
-<p>One issue is that you pretty much have full control over the DOM element of the dialog. This is good in many ways, but with great power&hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createModal</span>() {
-  <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">button</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#34;button&#34;</span>);
-  <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Close Me&#34;</span>;
-
-  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">moveModal</span>() {
-    <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#34;disabled&#34;</span>, <span style="color:#66d9ef">true</span>);
-    <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;LOL&#39;</span>;
-    <span style="color:#a6e22e">lastX</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newModal</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#a6e22e">lastY</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newModal</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#a6e22e">newModal</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">transform</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`translate(</span><span style="color:#e6db74">${</span>(<span style="color:#a6e22e">lastX</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.5</span>
-        <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
-        <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
-        Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">250</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px, </span><span style="color:#e6db74">${</span>(<span style="color:#a6e22e">lastY</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
-        Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">250</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px)`</span>;
-    <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">removeAttribute</span>(<span style="color:#e6db74">&#34;disabled&#34;</span>);
-  }
-  
-  <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mouseenter&#39;</span>, <span style="color:#a6e22e">moveModal</span>);
-  <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>}
-</code></pre></div>
-<p>With our annoying button, we use this to control the <code>transform</code> style of the modal itself and move it beyond the reach of the user. We add a second button that does close the modal using a call to <code>modal.close()</code> but after that we can trigger any JavaScript we want, such as loading new tabs, running bitcoin miners, searching for aliens, etc.</p>
-
-<h2 id="blocking-the-escape-route">Blocking the Escape Route</h2>
-
-<p>But of course most users might try press the Escape key in hopes that whatever is on the screen will disappear, but we have that particular route covered.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">open</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;.open&#34;</span>);
-
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createModal</span>() {
-  ...
-}
-
-<span style="color:#a6e22e">open</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#a6e22e">createModal</span>);
-
-document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;keyup&#34;</span>, <span style="color:#a6e22e">event</span> =&gt; {
-    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">keyCode</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span>) {
-        <span style="color:#a6e22e">open</span>.<span style="color:#a6e22e">click</span>();
-    }
-});
-</code></pre></div>
-<p>In this case we hijack when we detect the keycode for the Escape key, <code>ASCII 27</code> and we use it to just keep clicking the open button for creating the modal.</p>
-
-<p>However it’s worse than that! As an added bonus pointed out to me if you also check for <code>ASCII 9, 13 and 32</code> as the Tab, Enter and Space characters so you can also punish the user for trying to use the keyboard to close the modal. The code that captures them, and the arrow keys is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// Capture Escape, Enter, Tab, Space and arrow keys
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">eventKeys</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">40</span>];  
-</code></pre></div>
-<h2 id="killing-the-browser">Killing the Browser</h2>
-
-<p>It’s quite easy to create a stack overflow with the dialog by just calling a setInterval on it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleKill1</span>() {
-  <span style="color:#a6e22e">setInterval</span>(<span style="color:#a6e22e">createModal</span>, <span style="color:#ae81ff">1000</span>);
-}
-</code></pre></div>
-<p>Because this is quite easy to create from JavaScript alone, you have to be especially careful of 3rd-party scripts potentially using this to hijack pages using features built into the browser.</p>
-
-<p>I’ve created another codepen with a web component that embeds the dialog in to a shadowroot and provides the global state so you cannot open more than one at a time.</p>
-
-<p>Hopefully you enjoy the demo and this post, and this gives some pause for thought too in how we sometimes implement and use browser features. Users have already been taught bad habits for hitting buttons, especially on OSX these days.</p>
+        <p>If you are here just now, this is just a test.</p>
 
       </div>
       
