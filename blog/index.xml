@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogs on Tinynodes</title>
+    <title>Blogs on tane.dev</title>
     <link>https://tinynodes.github.io/blog/</link>
-    <description>Recent content in Blogs on Tinynodes</description>
+    <description>Recent content in Blogs on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Wed, 06 Feb 2019 22:02:36 +0100</lastBuildDate>
@@ -17,7 +17,9 @@
       <pubDate>Wed, 06 Feb 2019 22:02:36 +0100</pubDate>
       
       <guid>https://tinynodes.github.io/blog/moving-from-medium/</guid>
-      <description>If you are here just now, this is just a test.</description>
+      <description>Today I&amp;rsquo;ve set up my new independent blog tane.dev - it&amp;rsquo;s something to do with my newly owned .dev url but also recently I&amp;rsquo;ve been dissatisfied with the way Medium has dealt with recent changes.
+I am not going to go into this, but plenty of discussion can be found on Twitter.
+Over the course of the next few weeks, I&amp;rsquo;m planning to migrate my content over to this site, which is generated with Hugo and served via GitHub Pages.</description>
     </item>
     
   </channel>

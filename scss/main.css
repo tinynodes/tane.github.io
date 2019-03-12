@@ -1,0 +1,96 @@
+.wrapper {
+  margin: 0 1rem;
+  width: 80%; }
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    width: 1080px; } }
+
+@media screen and (min-width: 480px) {
+  .column.main {
+    flex: 1; } }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%; }
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1; }
+  .column.sidebar {
+    flex: 1; }
+  .column.main {
+    flex: 3;
+    border-left: 1px solid lightgray;
+    padding: 0 1rem; }
+  .column h1 {
+    font-size: 1rem; }
+  .column .post-heading span {
+    font-size: 0.8rem; }
+
+html {
+  --light-background: #faf3f3;
+  --dark-background: #002A32;
+  --text-color-light: #f3f3f3;
+  --text-color-dark: #002A32; }
+
+html, body {
+  font-size: 1rem; }
+
+a {
+  text-decoration: none;
+  color: var(--text-color-dark); }
+
+.sidebar-content h1 {
+  font-size: 2rem; }
+
+.sidebar-content h2, .sidebar-content h3 {
+  font-size: 1rem; }
+
+.sidebar-content ul li {
+  font-size: 0.8rem; }
+
+nav {
+  background-color: var(--dark-background);
+  opacity: 0.9;
+  width: 100%;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom-right-radius: 1em;
+  border-bottom-left-radius: 1em; }
+  nav h1 {
+    display: block;
+    padding: 0 1em;
+    font-weight: 800; }
+    nav h1 a {
+      text-decoration: none;
+      color: var(--text-color-light); }
+
+.nav-list {
+  list-style: none; }
+  .nav-list a {
+    text-decoration: none;
+    display: block;
+    padding: 0 1em;
+    color: var(--text-color-light); }
+
+.flex-navigation-container {
+  display: flex; }
+  .flex-navigation-container .flex-item {
+    flex: 1; }
+  .flex-navigation-container .flex-start {
+    justify-content: flex-start; }
+  .flex-navigation-container .flex-end {
+    justify-content: flex-end; }
+
+body,
+html {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  background: var(--light-background);
+  color: var(--text-color-dark); }
