@@ -42,8 +42,11 @@ html, body {
   font-size: 1rem; }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: var(--text-color-dark); }
+
+.sidebar-content a {
+  text-decoration: none; }
 
 .sidebar-content h1 {
   font-size: 2rem; }
