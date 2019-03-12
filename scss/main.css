@@ -42,6 +42,20 @@
     vertical-align: middle;
     font-weight: 900; }
 
+.text-center {
+  display: flex; }
+
+.pagination {
+  display: flex;
+  flex: 1;
+  margin: 0;
+  padding: 1rem;
+  list-style: none; }
+  .pagination .page-item {
+    flex: 1; }
+    .pagination .page-item a {
+      text-decoration: none; }
+
 html {
   --light-background: #faf3f3;
   --dark-background: #002a32;
@@ -137,6 +151,14 @@ nav {
   line-height: 2rem; }
   .post .post-content .highlight {
     line-height: 1.4rem; }
+
+.post .page-navigation {
+  display: flex;
+  flex-flow: column; }
+  .post .page-navigation .previous {
+    flex: 1; }
+  .post .page-navigation .next {
+    flex: 1; }
 
 body,
 html {
