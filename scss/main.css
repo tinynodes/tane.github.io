@@ -1,5 +1,5 @@
 .wrapper {
-  margin: 0 1rem;
+  margin: 0 1rem 3rem;
   width: 80%; }
 
 @media screen and (min-width: 1280px) {
@@ -30,15 +30,26 @@
   .column h1 {
     font-size: 1rem; }
   .column .post-heading span {
-    font-size: 0.8rem; }
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex: 1; }
+  .column .post-heading span:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f784';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900; }
 
 html {
   --light-background: #faf3f3;
-  --dark-background: #002A32;
+  --dark-background: #002a32;
   --text-color-light: #f3f3f3;
-  --text-color-dark: #002A32; }
+  --text-color-dark: #002a32; }
 
-html, body {
+html,
+body {
   font-size: 1rem; }
 
 a {
@@ -50,12 +61,32 @@ a {
 
 .sidebar-content h1 {
   font-size: 2rem; }
+  .sidebar-content h1 :before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f7ea';
+    display: inline-block;
+    padding-right: 0.7rem;
+    vertical-align: middle;
+    font-weight: 900; }
 
-.sidebar-content h2, .sidebar-content h3 {
+.sidebar-content h2,
+.sidebar-content h3 {
   font-size: 1rem; }
 
-.sidebar-content ul li {
-  font-size: 0.8rem; }
+.sidebar-content ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0; }
+  .sidebar-content ul li {
+    font-size: 0.8rem;
+    margin-bottom: 1rem; }
+    .sidebar-content ul li a:before {
+      font-family: "Font Awesome 5 Pro";
+      content: "\f573";
+      display: inline-block;
+      padding-right: 0.5rem;
+      vertical-align: middle;
+      font-weight: 900; }
 
 nav {
   background-color: var(--dark-background);
@@ -90,6 +121,22 @@ nav {
     justify-content: flex-start; }
   .flex-navigation-container .flex-end {
     justify-content: flex-end; }
+
+.post h1 a {
+  text-decoration: none; }
+
+.post h1:before {
+  font-family: "Font Awesome 5 Pro";
+  content: "\f573";
+  display: inline-block;
+  padding-right: 0.2rem;
+  vertical-align: middle;
+  font-weight: 900; }
+
+.post .post-content {
+  line-height: 2rem; }
+  .post .post-content .highlight {
+    line-height: 1.4rem; }
 
 body,
 html {

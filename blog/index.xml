@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogs on tane.dev</title>
+    <title>Blog Entries on tane.dev</title>
     <link>https://tinynodes.github.io/blog/</link>
-    <description>Recent content in Blogs on tane.dev</description>
+    <description>Recent content in Blog Entries on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Wed, 06 Feb 2019 22:02:36 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 12 Mar 2019 19:40:00 +0100</lastBuildDate>
     
 	<atom:link href="https://tinynodes.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>New blog (aka &#39;Hey I&#39;m Moving From Medium&#39;)</title>
+      <title>New blog (&#39;Hey I&#39;m Moving From Medium&#39;)</title>
       <link>https://tinynodes.github.io/blog/moving-from-medium/</link>
-      <pubDate>Wed, 06 Feb 2019 22:02:36 +0100</pubDate>
+      <pubDate>Tue, 12 Mar 2019 19:40:00 +0100</pubDate>
       
       <guid>https://tinynodes.github.io/blog/moving-from-medium/</guid>
       <description>Today I&amp;rsquo;ve set up my new independent blog tane.dev - it&amp;rsquo;s something to do with my newly owned .dev url but also recently I&amp;rsquo;ve been dissatisfied with the way Medium has dealt with recent changes.
