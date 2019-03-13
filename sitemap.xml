@@ -3,35 +3,35 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://tinynodes.github.io/blog/moving-from-medium/</loc>
+    <loc>https://tane.dev/blog/moving-from-medium/</loc>
     <lastmod>2019-03-12T19:40:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tinynodes.github.io/archive/</loc>
+    <loc>https://tane.dev/archive/</loc>
   </url>
   
   <url>
-    <loc>https://tinynodes.github.io/blog/</loc>
+    <loc>https://tane.dev/blog/</loc>
     <lastmod>2019-03-12T19:40:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tinynodes.github.io/categories/</loc>
+    <loc>https://tane.dev/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tinynodes.github.io/tags/</loc>
+    <loc>https://tane.dev/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tinynodes.github.io/takeoff/</loc>
+    <loc>https://tane.dev/takeoff/</loc>
   </url>
   
   <url>
-    <loc>https://tinynodes.github.io/</loc>
+    <loc>https://tane.dev/</loc>
     <lastmod>2019-03-12T19:40:00+01:00</lastmod>
     <priority>0</priority>
   </url>
