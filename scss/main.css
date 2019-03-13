@@ -2,14 +2,6 @@
   margin: 0 1rem 3rem;
   width: 80%; }
 
-@media screen and (min-width: 1280px) {
-  .wrapper {
-    width: 1080px; } }
-
-@media screen and (min-width: 480px) {
-  .column.main {
-    flex: 1; } }
-
 .row {
   display: flex;
   flex-direction: row;
@@ -26,7 +18,7 @@
   .column.main {
     flex: 3;
     border-left: 1px solid lightgray;
-    padding: 0 1rem; }
+    padding: 1rem 1rem; }
   .column h1 {
     font-size: 1rem; }
   .column .post-heading span {
@@ -56,15 +48,35 @@
     .pagination .page-item a {
       text-decoration: none; }
 
+@media screen and (max-width: 1280px) {
+  .wrapper {
+    width: 1080px; } }
+
+@media screen and (max-width: 960px) {
+  .sidebar-content .menu {
+    display: none; }
+  .row {
+    flex-direction: column; }
+  .column.main {
+    flex: 1; } }
+
 html {
-  --light-background: #faf3f3;
+  --light-background: #fff;
   --dark-background: #002a32;
-  --text-color-light: #f3f3f3;
+  --text-color-light: #fff;
   --text-color-dark: #002a32; }
 
 html,
 body {
   font-size: 1rem; }
+
+body.light {
+  background-color: var(--light-background);
+  color: var(--text-color-dark); }
+
+body.dark {
+  background-color: var(--dark-background);
+  color: var(--text-color-light); }
 
 a {
   text-decoration: underline;
@@ -75,11 +87,12 @@ a {
 
 .sidebar-content h1 {
   font-size: 2rem; }
-  .sidebar-content h1 :before {
+  .sidebar-content h1:before {
     font-family: 'Font Awesome 5 Pro';
     content: '\f7ea';
     display: inline-block;
-    padding-right: 0.7rem;
+    padding: 0 0.5rem 0 0;
+    margin: 0;
     vertical-align: middle;
     font-weight: 900; }
 
@@ -93,14 +106,21 @@ a {
   padding: 0; }
   .sidebar-content ul li {
     font-size: 0.8rem;
-    margin-bottom: 1rem; }
-    .sidebar-content ul li a:before {
+    margin-bottom: 1rem;
+    display: flex; }
+    .sidebar-content ul li:before {
       font-family: "Font Awesome 5 Pro";
       content: "\f573";
       display: inline-block;
-      padding-right: 0.5rem;
+      padding: 0;
+      margin: 0;
       vertical-align: middle;
       font-weight: 900; }
+  .sidebar-content ul a {
+    flex: 1;
+    margin-left: 0.5rem;
+    border-left: 1px solid lightgray;
+    justify-content: right; }
 
 nav {
   background-color: var(--dark-background);
