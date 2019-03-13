@@ -19,8 +19,6 @@
     flex: 3;
     border-left: 1px solid lightgray;
     padding: 1rem 1rem; }
-  .column h1 {
-    font-size: 1rem; }
   .column .post-heading span {
     font-size: 0.8rem;
     margin-bottom: 1rem;
@@ -156,8 +154,16 @@ nav {
   .flex-navigation-container .flex-end {
     justify-content: flex-end; }
 
-.post h1 a {
-  text-decoration: none; }
+.post h1 {
+  font-size: 1.5rem; }
+  .post h1 a {
+    text-decoration: none; }
+
+.post h2 {
+  font-size: 1.3rem; }
+
+.post h3 {
+  font-size: 1rem; }
 
 .post h1:before {
   font-family: "Font Awesome 5 Pro";
