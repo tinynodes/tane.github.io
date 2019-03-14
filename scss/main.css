@@ -11,7 +11,7 @@
 
 .sidebar {
   margin-left: 1rem;
-  padding-right: 1rem; }
+  padding-right: 0rem; }
 
 .column {
   display: flex;
@@ -23,19 +23,7 @@
   .column.main {
     flex: 3;
     border-left: 1px solid lightgray;
-    padding: 1rem 1rem; }
-  .column .post-heading span {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex: 1; }
-  .column .post-heading span:before {
-    font-family: 'Font Awesome 5 Pro';
-    content: '\f784';
-    display: inline-block;
-    padding-right: 0.5rem;
-    vertical-align: middle;
-    font-weight: 900; }
+    padding: 0 1rem 1rem; }
 
 .text-center {
   display: flex; }
@@ -178,10 +166,39 @@ nav {
   vertical-align: middle;
   font-weight: 900; }
 
+.post .highlight pre {
+  border: 0;
+  margin: 0;
+  padding: 1rem 0;
+  border-radius: 0; }
+
+.post .post-heading {
+  margin-top: 1rem;
+  border-top: 1px solid lightgray; }
+  .post .post-heading span {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex: 1; }
+  .post .post-heading span.meta:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f784';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900; }
+  .post .post-heading span.tags:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f02c';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900; }
+
 .post .post-content {
-  line-height: 2rem; }
+  line-height: 1.5rem; }
   .post .post-content .highlight {
-    line-height: 1.4rem; }
+    line-height: 1.3rem; }
 
 .post .page-navigation {
   display: flex;

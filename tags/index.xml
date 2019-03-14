@@ -6,9 +6,46 @@
     <description>Recent content in Tags on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
+    <lastBuildDate>Thu, 14 Mar 2019 20:30:00 +0100</lastBuildDate>
     
 	<atom:link href="https://tane.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular</title>
+      <link>https://tane.dev/tags/angular/</link>
+      <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
+      
+      <guid>https://tane.dev/tags/angular/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://tane.dev/tags/development/</link>
+      <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
+      
+      <guid>https://tane.dev/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tutorial</title>
+      <link>https://tane.dev/tags/tutorial/</link>
+      <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
+      
+      <guid>https://tane.dev/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Typescript</title>
+      <link>https://tane.dev/tags/typescript/</link>
+      <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
+      
+      <guid>https://tane.dev/tags/typescript/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
