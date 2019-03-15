@@ -115,13 +115,15 @@ a {
 
 .btn-dark {
   background-color: var(--dark-background);
-  color: var(--text-color-dark); }
+  color: var(--text-color-dark);
+  border: 1px solid var(--light-background); }
   .btn-dark.selected {
     border: 2px solid #fff; }
 
 .btn-light {
   background-color: var(--light-background);
-  color: var(--text-color-light); }
+  color: var(--text-color-light);
+  border: 1px solid var(--dark-background); }
   .btn-light.selected {
     border: 2px solid #000; }
 
