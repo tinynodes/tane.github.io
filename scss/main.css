@@ -177,6 +177,14 @@ nav {
   .flex-navigation-container .flex-end {
     justify-content: flex-end; }
 
+.service-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 10rem; }
+  .service-buttons a {
+    display: inline-flex;
+    flex: 1; }
+
 .post h1 {
   font-size: 1.5rem; }
   .post h1 a {
