@@ -1,6 +1,5 @@
 .wrapper {
   margin: 0;
-  width: 80%;
   max-width: 1280px; }
 
 .row {
@@ -39,10 +38,6 @@
     .pagination .page-item a {
       text-decoration: none; }
 
-@media screen and (max-width: 1280px) {
-  .wrapper {
-    width: 1080px; } }
-
 @media screen and (max-width: 960px) {
   .sidebar-content .menu {
     display: none; }
@@ -53,9 +48,9 @@
 
 html {
   --light-background: #fff;
-  --dark-background: #002a32;
-  --text-color-light: #fff;
-  --text-color-dark: #002a32; }
+  --text-color-light: #002a32;
+  --dark-background: #212121;
+  --text-color-dark: #fff; }
 
 html,
 body {
@@ -63,15 +58,24 @@ body {
 
 body.light {
   background-color: var(--light-background);
-  color: var(--text-color-dark); }
+  color: var(--text-color-light); }
+  body.light a {
+    color: var(--text-color-light); }
+  body.light code {
+    background-color: lightgray;
+    color: red; }
 
 body.dark {
   background-color: var(--dark-background);
-  color: var(--text-color-light); }
+  color: var(--text-color-dark); }
+  body.dark a {
+    color: var(--text-color-dark); }
+  body.dark code {
+    background-color: dimgray;
+    color: var(--text-color-dark); }
 
 a {
-  text-decoration: underline;
-  color: var(--text-color-dark); }
+  text-decoration: underline; }
 
 .sidebar-content a {
   text-decoration: none; }
@@ -112,6 +116,32 @@ a {
     margin-left: 0.5rem;
     border-left: 1px solid lightgray;
     justify-content: right; }
+
+.btn-circle {
+  border: none;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0.4rem 0.2rem;
+  border-radius: 50%;
+  transition-duration: 0.4s; }
+
+.btn-circle:hover {
+  padding: 0.6rem; }
+
+.btn-dark {
+  background-color: var(--dark-background);
+  color: var(--text-color-dark); }
+  .btn-dark.selected {
+    border: 2px solid #fff; }
+
+.btn-light {
+  background-color: var(--light-background);
+  color: var(--text-color-light); }
+  .btn-light.selected {
+    border: 2px solid #000; }
 
 nav {
   background-color: var(--dark-background);
@@ -171,10 +201,6 @@ nav {
   margin: 0;
   padding: 1rem 0;
   border-radius: 0; }
-
-.post code {
-  background-color: lightgray;
-  color: red; }
 
 .post .highlight code {
   background-color: #272822;
