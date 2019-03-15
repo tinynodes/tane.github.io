@@ -65,7 +65,11 @@
         <h1>
           <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/">Providing injectable features to Angular modules</a>
         </h1>
-        <span class="meta">Posted: Mar 14, 2019 | 1300 words | ~ 7 minutes reading time</span>
+        <span class="meta">Published: Mar 14, 2019 
+            
+              (last updated: Mar 15, 2019)
+            
+            | 1700 words | ~ 8 minutes reading time</span>
         
           <span class="tags">
             
@@ -110,18 +114,22 @@
   <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>) {}
 
   <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">getExample</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">HttpResponse</span><span style="color:#f92672">&gt;</span> {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/api/example&#39;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/api/example&#39;</span>);
   }
 }</code></pre></td></tr></table>
 </div>
 </div>
-<p>Angular&rsquo;s own features can be injected via their class identity, as can any components or services that are registered within a module - but for custom injections, such as external libraries or configurations, we need to create an <code>InjectionToken</code> and use the <code>Inject</code> decorator to provide this, which I&rsquo;ll cover later in this post.</p>
+<p>Angular&rsquo;s own features can be injected via their class identity (e.g. <code>HttpClient</code>).  You can also inject any components, services or pipes that are registered within a module.</p>
+
+<p>Angular also provides a mechanism for custom injections, this means items like configurations or instances of external libraries can be passed into any constructor within your module or any item within the dependency tree.  To do this the library needs to provide an <code>InjectionToken</code> which represents the key in the dependency tree, and use the <code>Inject</code> decorator to provide an instance into a class constructor (this is covered later in this post).</p>
 
 <h2 id="creating-the-service">Creating The Service</h2>
 
-<p>A recent example I worked on was refactoring some code to handle getting a session object from <code>sessionStorage</code>. When working with Angular&rsquo;s <code>ng serve</code> making changes will often result in a refresh, destroying any existing session. This feature allowed session storage to be turned on and keep it between refreshes.</p>
+<p>I recently worked on refactoring some code where in a component it had some code to handle getting a session object from <code>sessionStorage</code>. When working with Angular&rsquo;s <code>ng serve</code> making changes will often result in a refresh, destroying any existing session. This feature allowed session storage to be turned on and keep it between refreshes by allowing the component to check if a value existed in <code>sessionStorage</code> object.</p>
 
-<p>This code originally lived on a component, but using the <a href="https://en.wikipedia.org/wiki/SOLID">SOLID principals</a> I moved this code to a service making it easier to understand, and more testable. The service has one property which is a storage prefix as each instance of the service can serve other different instances of the component.</p>
+<p>Using the principles in <a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a> I moved the code into a service. Having a service do one thing it made the code easier to understand. The unit test for this is also smaller and can cover most of the component.</p>
+
+<p>The service has one additional property which is <code>storagePrefix</code>, used to make each instance of the service unique to it&rsquo;s component.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1
@@ -164,29 +172,24 @@
 }</code></pre></td></tr></table>
 </div>
 </div>
-<p>So far this works well, but we can improve this. The implementation uses <code>sessionStorage</code> but trusts that it exists on the global object, this means we should always expect it to be available. It also limits this service to only use <code>sessionStorage</code>.</p>
+<p>In it&rsquo;s current implementation it&rsquo;s usable, but it has a few issues.  The main one is that it uses <code>sessionStorage</code> but trusts that it exists on the global object, this means we should always expect it to be available, and is a bad practice.  It also limits this service to only use <code>sessionStorage</code> and no other key/value store. It would be better if we could provide it to our service instead.</p>
 
-<p>We also have to set the storagePrefix after the class instance has been initialised, such as in a component&rsquo;s <code>ngOnInit</code>.</p>
+<p>We can also set the storagePrefix via our app configuration and means our component doesn&rsquo;t need to understand this configuration (yet!) so it avoids us having to call the <code>init</code> method within a component&rsquo;s <code>ngOnInit</code>.</p>
 
 <p>By making these injectable, we will not only be able to provide our <code>sessionStorage</code> but we can support any module or
 library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage API</a>. This means we no longer need to rely on the global object and we have more control over what we inject.</p>
 
-<h2 id="making-out-features-injectable">Making out features injectable</h2>
+<p>The powerful feature of dependency injection is the ability to pass instances of other non-angular applications. For example you could pass the instance of a <code>jQuery</code> application and call it&rsquo;s methods from your application (you&rsquo;ll also want to check out <a href="https://angular.io/api/core/NgZone">NgZone</a> when running these, but I&rsquo;ll discuss that in a future post).</p>
 
-<p>Firstly we will create an <code>InjectionToken</code>, a token that is usually constant representation of something we want to provide via dependency injection.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>(<span style="color:#e6db74">&#39;COMPONENT_SERVICE_CONFIG&#39;</span>);</code></pre></td></tr></table>
-</div>
-</div>
-<p>Now we need to define the shape of our configuration we want to be able to pass via this token. What a token injects can be anything from a string to a function, or even a class instance.</p>
+<p>This allows for the transition of applications over time within an organisation, rather than having to replace all applications in one go. It&rsquo;s a good way to safely inject features from third-party libraries and means passing mock versions is easier for tests.</p>
 
-<p>In our case it will be an object, which we define via an interface, here we can decide what we want to provide via injection. In our case above we want to allow the injection of a <code>Storage</code> compatible instance, and also to provide a flexible storagePrefix.</p>
+<h2 id="creating-an-injectable-service-and-module">Creating an injectable service and module</h2>
+
+<h3 id="making-out-features-injectable">Making out features injectable</h3>
+
+<p>First we need to define the interface of the object want to use for the configuration. This interface provides a contract in the <code>forRoot</code> method described below and tells developers what options they can provide to the application</p>
+
+<p>Our configuration will require a <code>storagePrefix</code> as a string - this is need to set the name of the store.  We also pass our <code>Storage</code> instance, but with this we can set a default value in our component</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1
@@ -196,12 +199,25 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ComponentServiceConfig</span> {
-  <span style="color:#a6e22e">storageInterface</span>: <span style="color:#66d9ef">Storage</span>;
   <span style="color:#a6e22e">storagePrefix</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#a6e22e">storageInterface?</span>: <span style="color:#66d9ef">Storage</span>;
 }</code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="making-an-angular-module-configurable">Making an Angular module configurable</h2>
+<p>Next we will create an <code>InjectionToken</code>, a token that is usually constant representation of something we want to provide via dependency injection.  You can use any type of object as your token type, and can even provide a factory method to provide dependencies. Check out the <a href="https://angular.io/api/core/InjectionToken#tree-shakable-injectiontoken">Tree-shakeable Injection Token</a> to see how you can do some advanced use. In our case we will just have the component config object.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">ComponentServiceConfig</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;COMPONENT_SERVICE_CONFIG&#39;</span>);</code></pre></td></tr></table>
+</div>
+</div>
+<p>Now we have the token service we will provide a simple configuration with this token which will be an object, but a token can be used to inject anything from a string to a function, or even a class instance.</p>
+
+<h3 id="making-an-angular-module-configurable">Making an Angular module configurable</h3>
 
 <p>To make the service configurable, it should be provided via a <a href="https://angular.io/guide/ngmodules">NgModule</a> - a regular module might look something like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -234,9 +250,11 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibraryModule</span> {}</code></pre></td></tr></table>
 </div>
 </div>
-<p>To make this module accept a configuration we need to add a method that can return an instance of our module with custom providers. Providers are an important part of Angular&rsquo;s <a href="https://angular.io/guide/dependency-injection">dependency injection</a> as these are the instance of what child components can inject - all will become clear through the code example.</p>
+<p>To make this module accept a configuration we need to add a method that can return an instance of our module with custom providers. Providers are an important part of Angular&rsquo;s <a href="https://angular.io/guide/dependency-injection">dependency injection</a> as these are the instance of what child components can inject - all will hopefully become clear through the code example.</p>
 
-<p>First we will add a static <code>forRoot</code> method. This method allows a module to accept the configuration when added to your application imports, the result of which is to return an instance of that module. The module can then be further used without the <code>forRoot</code> as long as it&rsquo;s configured at the root of the application (see <a href="https://angular.io/api/core/SkipSelf">SkipSelf</a>)</p>
+<p>First we will add a static <code>forRoot</code> method to the class. This method provides a factory function where we can pass a configuration in the application imports.</p>
+
+<p>The factory returns an instance of that module with the provided configuration, and this passed into the items with <code>Inject</code> . The module can then be further used without the <code>forRoot</code> as long as it&rsquo;s configured at the root of the application (see <a href="https://angular.io/api/core/SkipSelf">SkipSelf</a>)</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1
@@ -262,9 +280,23 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">21
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">22
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">31
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">ModuleWithProviders</span>, <span style="color:#a6e22e">Optional</span>, <span style="color:#a6e22e">SkipSelf</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+
+<span style="color:#75715e">// Here we can create a default object
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">defaultConfig</span>: <span style="color:#66d9ef">ComponentServiceConfig</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">storagePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
+  <span style="color:#a6e22e">storageInterface</span>: <span style="color:#66d9ef">sessionStorage</span>; <span style="color:#75715e">// In our default value we will trust the global is there 
+</span><span style="color:#75715e"></span>}
 
 <span style="color:#66d9ef">@NgModule</span>({
   ...
@@ -281,7 +313,9 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
       <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [
         {
           <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">COMPONENT_SERVICE_CONFIG</span>,
-          <span style="color:#a6e22e">useValue</span>: <span style="color:#66d9ef">config</span>,
+          <span style="color:#75715e">// Destructring allows the value of the config to be merged
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// this is a shallow operation so keep the objects simple
+</span><span style="color:#75715e"></span>          <span style="color:#a6e22e">useValue</span><span style="color:#f92672">:</span> { ...<span style="color:#a6e22e">defaultConfig</span>, ...<span style="color:#a6e22e">config</span> },
         },
       ],
     };
@@ -322,7 +356,7 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 }</code></pre></td></tr></table>
 </div>
 </div>
-<p>As the config is set with <code>private</code> in the constructor, TypeScript knows to set this as a property on the class. This is the same as writing the following code and provide a clean shorthand to set up properties.</p>
+<p>As the config is set with <code>private</code> in the constructor, TypeScript knows to set this as a property on the class. This is the same as writing the following code and provides a clean shorthand to set up properties.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1
@@ -343,9 +377,11 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 }</code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="providing-the-features-in-the-app">Providing the features in the app</h2>
+<h3 id="providing-the-features-in-the-app">Providing the features in the app</h3>
 
-<p>Now that we have our configurable module, in our Angular application we can provide our configuration. To show how flexable this is we can provide <code>localStorage</code> instead of <code>sessionStorage</code>, we can also provide our new application prefix:</p>
+<p>Now that we have our configurable module, the Angular application can be provided with a configuration when importing.</p>
+
+<p>As the module now accepts any <code>Storage</code> type, we&rsquo;ll instead provide <code>localStorage</code> for this application, along side the <code>storagePrefix</code>:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1
@@ -380,7 +416,7 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}</code></pre></td></tr></table>
 </div>
 </div>
-<p>As mentioned we don&rsquo;t need to pass just DOM features here, for example we could have an NPM library that provides the same interface, such as <a href="https://www.npmjs.com/package/localstorage-ponyfill">localStorage-ponyfill</a>, it could be used in your application - or you may want to provide it to a <code>TestBed</code> configuration:</p>
+<p>Another example is we could have an NPM library that provides the same interface, such as <a href="https://www.npmjs.com/package/localstorage-ponyfill">localStorage-ponyfill</a>, it could be used in your application - or you may want to provide it to a <code>TestBed</code> configuration:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1
@@ -449,7 +485,7 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 
 <p>Any class with a <code>constructor</code> (provided it&rsquo;s in the same dependency tree) can use <code>Inject</code> with your exported token to access this configuration.</p>
 
-<p>Hopefully you will also find this technique useful to improve the configurable and testable features of your module.</p>
+<p>Hopefully you will also find this technique useful to improve the configurable and testable features of your module.  Feel free to <a href="https://twitter.com/tanepiper">respond on twitter</a> if you spot any typos or errors.</p>
 </div>
       <br />
       <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/">Read Full Article &gt;</a>
@@ -460,7 +496,11 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
         <h1>
           <a href="https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/">New blog (&#39;Hey I&#39;m Moving From Medium&#39;)</a>
         </h1>
-        <span class="meta">Posted: Mar 12, 2019 | 600 words | ~ 3 minutes reading time</span>
+        <span class="meta">Published: Mar 12, 2019 
+            
+              (last updated: Mar 12, 2019)
+            
+            | 600 words | ~ 3 minutes reading time</span>
         
       </div>
       <div class="post-content">
