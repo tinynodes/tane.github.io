@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tane.dev</title>
+    <title>tane.dev - the personal site of developer Tane Piper. on tane.dev</title>
     <link>https://tane.dev/</link>
-    <description>Recent content on tane.dev</description>
+    <description>Recent content in tane.dev - the personal site of developer Tane Piper. on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Thu, 14 Mar 2019 20:30:00 +0100</lastBuildDate>
@@ -30,6 +30,15 @@ Building Angular components, most developers will have already used this to inje
       <guid>https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/</guid>
       <description>Buying a new domain is always a good excuse to do something with it, so of course grabbing my .dev seemed like a perfect idea to set up a new blog. Also recently I&amp;rsquo;ve been dissatisfied with the way Medium has dealt with recent changes (although I&amp;rsquo;m not going to go into all the reasons except to say I&amp;rsquo;d rather own and control all my content).
 The site is Markdown powered,.</description>
+    </item>
+    
+    <item>
+      <title>About this blog</title>
+      <link>https://tane.dev/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tane.dev/about/</guid>
+      <description> Blog Technology </description>
     </item>
     
   </channel>

@@ -14,6 +14,7 @@
 
 .column {
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex-basis: 100%;
   flex: 1; }
@@ -21,8 +22,7 @@
     flex: 1; }
   .column.main {
     flex: 3;
-    border-left: 1px solid lightgray;
-    padding: 0 1rem 1rem; }
+    border-left: 1px solid lightgray; }
 
 .text-center {
   display: flex; }
@@ -45,6 +45,28 @@
     flex-direction: column; }
   .column.main {
     flex: 1; } }
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: inherit; }
+
+.container-fluid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: inherit; }
 
 html {
   --light-background: #fff;
@@ -76,46 +98,6 @@ body.dark {
 
 a {
   text-decoration: underline; }
-
-.sidebar-content a {
-  text-decoration: none; }
-
-.sidebar-content h1 {
-  font-size: 2rem; }
-  .sidebar-content h1:before {
-    font-family: 'Font Awesome 5 Pro';
-    content: '\f7ea';
-    display: inline-block;
-    padding: 0 0.5rem 0 0;
-    margin: 0;
-    vertical-align: middle;
-    font-weight: 900; }
-
-.sidebar-content h2,
-.sidebar-content h3 {
-  font-size: 1rem; }
-
-.sidebar-content ul {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0; }
-  .sidebar-content ul li {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-    display: flex; }
-    .sidebar-content ul li:before {
-      font-family: "Font Awesome 5 Pro";
-      content: "\f573";
-      display: inline-block;
-      padding: 0;
-      margin: 0;
-      vertical-align: middle;
-      font-weight: 900; }
-  .sidebar-content ul a {
-    flex: 1;
-    margin-left: 0.5rem;
-    border-left: 1px solid lightgray;
-    justify-content: right; }
 
 .btn-circle {
   border: none;
@@ -185,70 +167,105 @@ nav {
     display: inline-flex;
     flex: 1; }
 
-.post h1 {
-  font-size: 1.5rem; }
-  .post h1 a {
-    text-decoration: none; }
+.post {
+  padding-left: 1rem; }
+  .post h1 {
+    font-size: 1.5rem; }
+    .post h1 a {
+      text-decoration: none; }
+  .post h2 {
+    font-size: 1.3rem; }
+  .post h3 {
+    font-size: 1rem; }
+  .post h1:before {
+    font-family: "Font Awesome 5 Pro";
+    content: "\f573";
+    display: inline-block;
+    padding-right: 0.2rem;
+    vertical-align: middle;
+    font-weight: 900; }
+  .post .highlight pre {
+    border: 0;
+    margin: 0;
+    padding: 1rem 0;
+    border-radius: 0; }
+  .post .highlight code {
+    background-color: #272822;
+    color: #fff; }
+  .post .post-heading {
+    margin-top: 1rem;
+    border-top: 1px solid lightgray; }
+    .post .post-heading span {
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex: 1; }
+    .post .post-heading span.meta:before {
+      font-family: 'Font Awesome 5 Pro';
+      content: '\f784';
+      display: inline-block;
+      padding-right: 0.5rem;
+      vertical-align: middle;
+      font-weight: 900; }
+    .post .post-heading span.tags:before {
+      font-family: 'Font Awesome 5 Pro';
+      content: '\f02c';
+      display: inline-block;
+      padding-right: 0.5rem;
+      vertical-align: middle;
+      font-weight: 900; }
+  .post .post-content {
+    line-height: 1.5rem; }
+    .post .post-content .highlight {
+      line-height: 1.3rem; }
 
-.post h2 {
-  font-size: 1.3rem; }
+.page-navigation {
+  display: flex;
+  flex-flow: row; }
+  .page-navigation .previous,
+  .page-navigation .next {
+    text-decoration: none;
+    flex: 1; }
 
-.post h3 {
+.sidebar-content a {
+  text-decoration: none; }
+
+.sidebar-content h1 {
+  font-size: 2rem; }
+  .sidebar-content h1:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f7ea';
+    display: inline-block;
+    padding: 0 0.5rem 0 0;
+    margin: 0;
+    vertical-align: middle;
+    font-weight: 900; }
+
+.sidebar-content h2,
+.sidebar-content h3 {
   font-size: 1rem; }
 
-.post h1:before {
-  font-family: "Font Awesome 5 Pro";
-  content: "\f573";
-  display: inline-block;
-  padding-right: 0.2rem;
-  vertical-align: middle;
-  font-weight: 900; }
-
-.post .highlight pre {
-  border: 0;
-  margin: 0;
-  padding: 1rem 0;
-  border-radius: 0; }
-
-.post .highlight code {
-  background-color: #272822;
-  color: #fff; }
-
-.post .post-heading {
-  margin-top: 1rem;
-  border-top: 1px solid lightgray; }
-  .post .post-heading span {
+.sidebar-content ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0; }
+  .sidebar-content ul li {
     font-size: 0.8rem;
     margin-bottom: 1rem;
-    display: flex;
-    flex: 1; }
-  .post .post-heading span.meta:before {
-    font-family: 'Font Awesome 5 Pro';
-    content: '\f784';
-    display: inline-block;
-    padding-right: 0.5rem;
-    vertical-align: middle;
-    font-weight: 900; }
-  .post .post-heading span.tags:before {
-    font-family: 'Font Awesome 5 Pro';
-    content: '\f02c';
-    display: inline-block;
-    padding-right: 0.5rem;
-    vertical-align: middle;
-    font-weight: 900; }
-
-.post .post-content {
-  line-height: 1.5rem; }
-  .post .post-content .highlight {
-    line-height: 1.3rem; }
-
-.post .page-navigation {
-  display: flex;
-  flex-flow: column; }
-  .post .page-navigation .previous {
-    flex: 1; }
-  .post .page-navigation .next {
-    flex: 1; }
+    display: flex; }
+    .sidebar-content ul li:before {
+      font-family: "Font Awesome 5 Pro";
+      content: "\f573";
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+      vertical-align: middle;
+      font-weight: 900; }
+  .sidebar-content ul a {
+    flex: 1;
+    margin-left: 0.5rem;
+    border-left: 1px solid lightgray;
+    justify-content: right; }
 
 body,
 html {
