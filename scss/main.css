@@ -57,7 +57,7 @@
   box-sizing: border-box;
   background-color: inherit; }
 
-.container-fluid {
+.container-left {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -74,9 +74,18 @@ html {
   --dark-background: #212121;
   --text-color-dark: #fff; }
 
-html,
+html {
+  font-size: 100%; }
+
 body {
-  font-size: 1rem; }
+  font-size: 1rem;
+  line-height: 1.6;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  background-color: var(--light-background);
+  color: var(--text-color-dark);
+  padding: 0;
+  margin: 0; }
 
 body.light {
   background-color: var(--light-background);

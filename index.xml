@@ -6,7 +6,7 @@
     <description>Recent content in tane.dev - the personal site of developer Tane Piper. on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Thu, 14 Mar 2019 20:30:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 15 Mar 2019 23:32:08 +0100</lastBuildDate>
     
 	<atom:link href="https://tane.dev/index.xml" rel="self" type="application/rss+xml" />
     
@@ -29,16 +29,18 @@ Building Angular components, most developers will have already used this to inje
       
       <guid>https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/</guid>
       <description>Buying a new domain is always a good excuse to do something with it, so of course grabbing my .dev seemed like a perfect idea to set up a new blog. Also recently I&amp;rsquo;ve been dissatisfied with the way Medium has dealt with recent changes (although I&amp;rsquo;m not going to go into all the reasons except to say I&amp;rsquo;d rather own and control all my content).
-The site is Markdown powered,.</description>
+The site is Markdown powered, generated with Hugo and served via GitHub Pages with a CI deployment.</description>
     </item>
     
     <item>
-      <title>About this blog</title>
+      <title>About this site</title>
       <link>https://tane.dev/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tane.dev/about/</guid>
-      <description> Blog Technology </description>
+      <description>Blog Technology The site is Markdown powered, all articles are written within VS Code with spell checking, but sometimes typos still go in.
+The HTML is generated with Hugo and served via GitHub Pages. The SSL URL is served via Cloudflair
+The site runs on a custom template. It sets one cookie - tane-dev-theme - if you select a theme, otherwise no cookie is set. There are no other tracking cookies set on this site.</description>
     </item>
     
   </channel>
