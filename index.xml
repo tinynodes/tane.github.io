@@ -39,8 +39,9 @@ The site is Markdown powered, generated with Hugo and served via GitHub Pages wi
       
       <guid>https://tane.dev/about/</guid>
       <description>Blog Technology The site is Markdown powered, all articles are written within VS Code (with spell checking, but sometimes typos still get through so please let me know).
-The HTML is generated with Hugo and served via GitHub Pages. The SSL URL is served via Cloudflair
-The site runs on a custom template. It sets one cookie - tane-dev-theme - if you select a theme, otherwise no cookie is set.</description>
+The HTML is generated with Hugo and served via GitHub Pages. The SSL URL is served via Cloudflare.
+The site runs on a custom template I&amp;rsquo;ve built for Hugo. The CSS uses one reset file, then is light flexbox CSS.
+The site sets one cookie - tane-dev-theme - if you select a theme, otherwise no cookie is set.</description>
     </item>
     
   </channel>
