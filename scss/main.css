@@ -112,33 +112,58 @@ body.dark {
 a {
   text-decoration: underline; }
 
-.btn-circle {
-  border: none;
-  padding: 0.5rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 0.4rem 0.2rem;
-  border-radius: 50%;
-  transition-duration: 0.4s; }
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300; }
 
-.btn-circle:hover {
-  padding: 0.6rem; }
+h1 {
+  font-size: 2.0rem;
+  line-height: 1.2;
+  letter-spacing: -.1rem; }
 
-.btn-dark {
-  background-color: var(--dark-background);
-  color: var(--text-color-dark);
-  border: 1px solid var(--light-background); }
-  .btn-dark.selected {
-    border: 2px solid #fff; }
+h2 {
+  font-size: 1.8rem;
+  line-height: 1.25;
+  letter-spacing: -.1rem; }
 
-.btn-light {
-  background-color: var(--light-background);
-  color: var(--text-color-light);
-  border: 1px solid var(--dark-background); }
-  .btn-light.selected {
-    border: 2px solid #000; }
+h3 {
+  font-size: 1.65rem;
+  line-height: 1.3;
+  letter-spacing: -.1rem; }
+
+h4 {
+  font-size: 1.3rem;
+  line-height: 1.35;
+  letter-spacing: -.08rem; }
+
+h5 {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  letter-spacing: -.05rem; }
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0; }
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  h1 {
+    font-size: 3rem; }
+  h2 {
+    font-size: 1.8rem; }
+  h3 {
+    font-size: 1.65rem; }
+  h4 {
+    font-size: 1.3rem; }
+  h5 {
+    font-size: 1.1rem; }
+  h6 {
+    font-size: 1rem; } }
+
+p {
+  margin-top: 0; }
 
 nav {
   background-color: var(--dark-background);
@@ -185,13 +210,9 @@ nav {
 .post {
   padding-left: 1rem; }
   .post h1 {
-    font-size: 1.5rem; }
+    font-size: 2rem; }
     .post h1 a {
       text-decoration: none; }
-  .post h2 {
-    font-size: 1.3rem; }
-  .post h3 {
-    font-size: 1rem; }
   .post h1:before {
     font-family: "Font Awesome 5 Pro";
     content: "\f573";
@@ -199,6 +220,8 @@ nav {
     padding-right: 0.2rem;
     vertical-align: middle;
     font-weight: 900; }
+  .post .highlight {
+    margin-bottom: 1rem; }
   .post .highlight pre {
     border: 0;
     margin: 0;
@@ -215,13 +238,11 @@ nav {
       margin-bottom: 1rem;
       display: flex;
       flex: 1; }
-    .post .post-heading span.meta:before {
-      font-family: 'Font Awesome 5 Pro';
-      content: '\f784';
-      display: inline-block;
-      padding-right: 0.5rem;
-      vertical-align: middle;
-      font-weight: 900; }
+    .post .post-heading .meta {
+      vertical-align: middle; }
+      .post .post-heading .meta .far {
+        position: relative;
+        top: 4px; }
     .post .post-heading span.tags:before {
       font-family: 'Font Awesome 5 Pro';
       content: '\f02c';
@@ -245,20 +266,14 @@ nav {
 .sidebar-content a {
   text-decoration: none; }
 
-.sidebar-content h1 {
-  font-size: 2rem; }
-  .sidebar-content h1:before {
-    font-family: 'Font Awesome 5 Pro';
-    content: '\f7ea';
-    display: inline-block;
-    padding: 0 0.5rem 0 0;
-    margin: 0;
-    vertical-align: middle;
-    font-weight: 900; }
-
-.sidebar-content h2,
-.sidebar-content h3 {
-  font-size: 1rem; }
+.sidebar-content h1:before {
+  font-family: 'Font Awesome 5 Pro';
+  content: '\f7ea';
+  display: inline-block;
+  padding: 0 0.5rem 0 0;
+  margin: 0;
+  vertical-align: middle;
+  font-weight: 900; }
 
 .sidebar-content ul {
   list-style: none;
@@ -295,6 +310,34 @@ nav {
     width: 100%;
     height: 100%;
     border-radius: 49.9%; }
+
+.btn-circle {
+  border: none;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0.4rem 0.2rem;
+  border-radius: 50%;
+  transition-duration: 0.4s; }
+
+.btn-circle:hover {
+  padding: 0.6rem; }
+
+.btn-dark {
+  background-color: var(--dark-background);
+  color: var(--text-color-dark);
+  border: 1px solid var(--light-background); }
+  .btn-dark.selected {
+    border: 2px solid #fff; }
+
+.btn-light {
+  background-color: var(--light-background);
+  color: var(--text-color-light);
+  border: 1px solid var(--dark-background); }
+  .btn-light.selected {
+    border: 2px solid #000; }
 
 body,
 html {
