@@ -32,12 +32,16 @@
   buttonLight.addEventListener('click', () => {
     document.documentElement.className = 'light';
     bodyElement.className = 'light'
+    buttonDark.classList.remove('selected')
+    buttonLight.classList.add('selected')
     setCookie(THEME_COOKIE_NAME, 'light');
   });
 
   buttonDark.addEventListener('click', () => {
     document.documentElement.className = 'dark';
     bodyElement.className = 'dark'
+    buttonLight.classList.remove('selected')
+    buttonDark.classList.add('selected')
     setCookie(THEME_COOKIE_NAME, 'dark');
   });
 
@@ -45,6 +49,11 @@
   if (cookieVal) {
     document.documentElement.className = cookieVal;
     bodyElement.classList = cookieVal
+    if (cookieVal === 'light') {
+      buttonLight.classList.add('selected');
+    } else if (cookieVal === 'dark') {
+      buttonDark.classList.add('selected')
+    }
   }
 
 })();

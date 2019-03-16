@@ -216,13 +216,6 @@ nav {
     font-size: 2rem; }
     .post h1 a {
       text-decoration: none; }
-  .post h1:before {
-    font-family: "Font Awesome 5 Pro";
-    content: "\f573";
-    display: inline-block;
-    padding-right: 0.2rem;
-    vertical-align: middle;
-    font-weight: 900; }
   .post .highlight {
     margin-bottom: 1rem; }
   .post .highlight pre {
@@ -269,6 +262,9 @@ nav {
   .post-navigation .next {
     text-align: right;
     padding: 0 1rem 0 0; }
+
+.sidebar-content .subtitle a {
+  text-decoration: underline; }
 
 .sidebar-content a {
   text-decoration: none; }
@@ -318,6 +314,17 @@ nav {
     height: 100%;
     border-radius: 49.9%; }
 
+.theme-buttoms {
+  display: flex;
+  flex-direction: row; }
+
+.theme-selector-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  font-size: 0.7rem; }
+
 .btn-circle {
   border: none;
   padding: 0.5rem;
@@ -325,30 +332,29 @@ nav {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 0.4rem 0.2rem;
+  margin: 0 0.2rem;
   border-radius: 50%;
-  transition-duration: 0.4s; }
+  transition-duration: 0.4s;
+  vertical-align: middle;
+  opacity: 0.5; }
+  .btn-circle.selected {
+    opacity: 1; }
 
 .btn-circle:hover {
-  padding: 0.6rem; }
+  padding: 0.6rem;
+  opacity: 1; }
 
 .btn-dark {
   background-color: var(--dark-background);
   color: var(--text-color-dark);
   border: 1px solid var(--light-background); }
-  .btn-dark.selected {
-    border: 2px solid #fff; }
 
 .btn-light {
   background-color: var(--light-background);
   color: var(--text-color-light);
   border: 1px solid var(--dark-background); }
-  .btn-light.selected {
-    border: 2px solid #000; }
 
-body,
-html {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  background: var(--light-background);
-  color: var(--text-color-dark); }
+footer {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem; }
