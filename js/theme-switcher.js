@@ -30,17 +30,20 @@
   const bodyElement = document.body;
 
   buttonLight.addEventListener('click', () => {
+    document.documentElement.className = 'light';
     bodyElement.className = 'light'
     setCookie(THEME_COOKIE_NAME, 'light');
   });
 
   buttonDark.addEventListener('click', () => {
+    document.documentElement.className = 'dark';
     bodyElement.className = 'dark'
     setCookie(THEME_COOKIE_NAME, 'dark');
   });
 
   let cookieVal = getCookie(THEME_COOKIE_NAME);
   if (cookieVal) {
+    document.documentElement.className = cookieVal;
     bodyElement.classList = cookieVal
   }
 

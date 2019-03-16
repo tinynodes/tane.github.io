@@ -72,10 +72,12 @@ html {
   --light-background: #fff;
   --text-color-light: #002a32;
   --dark-background: #212121;
-  --text-color-dark: #fff; }
-
-html {
+  --text-color-dark: #fff;
   font-size: 100%; }
+  html.light {
+    background-color: var(--light-background); }
+  html.dark {
+    background-color: var(--dark-background); }
 
 body {
   font-size: 1rem;
@@ -85,7 +87,9 @@ body {
   background-color: var(--light-background);
   color: var(--text-color-dark);
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  width: 100%;
+  height: 100%; }
 
 body.light {
   background-color: var(--light-background);
