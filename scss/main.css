@@ -165,6 +165,9 @@ h6 {
 p {
   margin-top: 0; }
 
+.flex-item {
+  flex: 1; }
+
 nav {
   background-color: var(--dark-background);
   opacity: 0.9;
@@ -255,13 +258,17 @@ nav {
     .post .post-content .highlight {
       line-height: 1.3rem; }
 
-.page-navigation {
+.post-navigation {
   display: flex;
   flex-flow: row; }
-  .page-navigation .previous,
-  .page-navigation .next {
+  .post-navigation .previous,
+  .post-navigation .next {
     text-decoration: none;
-    flex: 1; }
+    flex: 1;
+    padding: 0 0 0 1rem; }
+  .post-navigation .next {
+    text-align: right;
+    padding: 0 1rem 0 0; }
 
 .sidebar-content a {
   text-decoration: none; }
