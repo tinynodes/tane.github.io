@@ -318,7 +318,8 @@ nav {
   display: flex;
   flex-direction: row; }
 
-.theme-selector-label {
+.button-group-label {
+  flex: 0.5;
   display: inline-block;
   vertical-align: middle;
   margin: 0;
