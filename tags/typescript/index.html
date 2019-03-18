@@ -32,8 +32,8 @@
 <div class="row">
   <div class="column sidebar">
     <div class="sidebar-content">
-  <h1 class="site-title flex-item flex-start"><a href="https://tane.dev" title="Click here to go back to the home page">tane.dev</a></h1>
-  <h2 class="flex-item subtitle">[ <i class="far fa-head-side-brain"></i> ideas <sup>&amp; stuff</sup> ]</h2>
+  <h1 class="site-title flex-item flex-start" title="The title of the site tane.dev - click it to go back to the homepage" aria-label="The title of the site tane.dev - click it to go back to the homepage"><a href="https://tane.dev" title="Click here to go back to the home page">tane.dev</a></h1>
+  <h2 class="flex-item subtitle" title="The subtitle of the site, is has a brain in it which makes the assumption the author has one" aria-label="The subtitle of the site, is has a brain in it which makes the assumption the author has one">[ <i class="far fa-head-side-brain"></i> ideas <sup>&amp; stuff</sup> ]</h2>
 
   
 
@@ -42,7 +42,7 @@
       
     </ul>
 
-    <h3 class="menu-label"><i class="far fa-keyboard"></i> Recent Posts:</h3>
+    <h3 class="menu-label" title="A recent list of posts I've somehow managed to write down"><i class="far fa-keyboard"></i> Recent Posts:</h3>
     <ul class="menu-list">
       
       <li>
@@ -78,7 +78,7 @@
     
 
     
-    <a href="mailto:spam@tane.dev"><i class="far fa-mailbox"></i> Email to the void</a>
+    <a href="mailto:spam@tane.dev" title="I promise I check this from time to time" aria-label="I promise I check this from time to time"><i class="far fa-mailbox"></i> Email to the void</a>
     
   </div>
   <div class="flex-item meta">
@@ -91,7 +91,7 @@
 
   </div>
   <main class="column main">
-    
+    <h2 class="taxonomy-title" title="The taxonomy of this page is Typescript" aria-label="The taxonomy of this page is Typescript">Typescript</h2>
     
     <div class="post content">
   <div class="post-heading">
@@ -99,13 +99,17 @@
       <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/">Providing injectable features to Angular modules</a>
     </h1>
     
-      <span class="meta">
-  <i class="far fa-calendar-edit"></i>&nbsp;Published: Mar 14, 2019
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Mar 14, 2019</span>
   
-  (last updated: Mar 16, 2019)
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Mar 16, 2019)</span>
   
-  |&nbsp;<i class="far fa-pencil"></i>&nbsp;1700 words&nbsp;<i class="far fa-clock"></i>&nbsp;8 minutes reading time
-</span>
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>1700 words</span>
+  &nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>8 minutes reading time</span>
+</div>
+
+
+  
 
       
   <span class="tags">
@@ -529,59 +533,6 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </div>
 
     
-    <div class="post content">
-  <div class="post-heading">
-    <h1>
-      <a href="https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/">New blog (&#39;Hey I&#39;m Moving From Medium&#39;)</a>
-    </h1>
-    
-      <span class="meta">
-  <i class="far fa-calendar-edit"></i>&nbsp;Published: Mar 12, 2019
-  
-  |&nbsp;<i class="far fa-pencil"></i>&nbsp;600 words&nbsp;<i class="far fa-clock"></i>&nbsp;3 minutes reading time
-</span>
-
-      
-
-    
-  </div>
-  <div class="post-content">
-
-<p>Buying a new domain is always a good excuse to do something with it, so of course grabbing my <code>.dev</code> seemed like a perfect idea
-to set up a new blog.  Also recently I&rsquo;ve been dissatisfied with the way <a href="https://medium.com">Medium</a> has dealt with recent changes
-(although I&rsquo;m not going to go into all the reasons except to say I&rsquo;d rather own and control all my content).</p>
-
-<p>The site is Markdown powered, generated with <a href="https://gohugo.io/">Hugo</a> and served via <a href="https://github.com">GitHub</a> Pages with a CI deployment.
-I plan to keep the blog light and tracking free as possible (but I would like to know if anyone is reading at some point).</p>
-
-<p>Over the course of the next few weeks, I&rsquo;m planning to migrate some of existing content over to this site, mostly by updating some
-of the content - although there are some previous life posts I might just leave. Below are a set of links to some of that existing content.</p>
-
-<p>Hopefully though those links you as a reader would see value in what I will be writing here; I&rsquo;ve been writing software
-across various stacks for over 10 years and have gained a lot of experience in building many types of applications.</p>
-
-<p>I&rsquo;ve also had a lot of life experience and have also talked about burnout and depression. I&rsquo;ve also recently been diagnosed with
-ADHD at the age of 37 and I am about to begin treatment for it in a foreign country.  I&rsquo;ve living in The Netherlands for just over two years,
-mostly due to the catastrophe that is the Brexit.</p>
-
-<p>These topics might come up, but I will be mostly trying to focus on development topics.  My current focus is on Typescript
-both on the server side, and client side with Angular, RxJS and other frameworks.</p>
-
-<h2 id="blog-posts-on-medium">Blog Posts on Medium</h2>
-
-<ul>
-<li><a href="https://medium.com/this-happened-to-me/i-made-a-huge-mistake-86b9d27f9962">I made a huge mistake</a> - A story about me taking on too much work and not communicating enough. My first real burnout story.</li>
-<li><a href="https://medium.com/@tanepiper/takeoff-a-rapid-development-environment-designed-for-hack-days-9a45ae891366">Takeoff: A rapid development environment designed for hack days</a> - In this post I announced <a href="https://takeoff.sh">Takeoff</a> (and subsequent updates <a href="https://medium.com/@tanepiper/takeoff-1-1-support-for-blueprints-83e6606ec11">1</a>, <a href="https://medium.com/@tanepiper/hacking-in-minutes-with-takeoff-6193aed52e3f">2</a>, <a href="https://medium.com/@tanepiper/takeoff-v2-making-rapid-development-even-easier-with-typescript-and-docker-15786c53b685">3</a>) a tool I&rsquo;ve developed for prototyping application easily using docker compose and local source files.</li>
-<li><a href="https://medium.com/@tanepiper/i-could-have-been-a-contender-7c5fb37213d3">I could have been a contender</a> - Projects I&rsquo;ve abandoned, with my recent ADHD diagnosis these posts provide an insight into how it affects me.</li>
-<li><a href="https://medium.com/@tanepiper/music-markup-web-components-for-web-audio-774c26e3cd71">Music Markup - Web Components for Web Audio</a> - Webcomponents! WebAudio! This post has it all, and with them I create a compostable keyboard using <a href="https://stenciljs.com/">StencilJS</a> to create reusable web components</li>
-<li><a href="https://medium.com/@tanepiper/dark-patterns-with-the-html-5-2-dialog-tag-and-chrome-for-fun-and-profit-249ce092d200">Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</a> - Using and abusing the inbuilt <code>dialog</code> tag in HTML5 to crash the users browser very easily, with some proposed solutions on how it could be fixed.</li>
-<li><a href="https://medium.com/dailyjs/refactoring-an-old-and-broken-library-to-using-async-await-with-tdd-90157de268a2">Refactoring an old and broken library to using async/await with TDD</a> - I refactored one of my nodejs modules and wrote a blog post on the process of publishing different versions of a node module using a CI pipeline.</li>
-<li><a href="https://medium.com/@tanepiper/typescript-tip-dont-use-naked-any-create-an-any-interface-instead-730bdd2fc224">Typescript tip: Don&rsquo;t use “naked any”, create an “any interface” instead</a> - A Typescript tip for making types on the fly to handle situations where you don&rsquo;t know the shape of the data.</li>
-</ul>
-</div>
-</div>
-
-    
     <div class="text-center">
       
 
@@ -591,3 +542,19 @@ both on the server side, and client side with Angular, RxJS and other frameworks
 </div>
 </html>
 
+
+<style>
+  .taxonomy-title {
+    padding-left: 1rem;
+
+  }
+
+  .taxonomy-title:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f02c';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900;
+  }
+</style>

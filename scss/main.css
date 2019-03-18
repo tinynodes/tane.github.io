@@ -229,16 +229,11 @@ nav {
   .post .post-heading {
     margin-top: 1rem;
     border-top: 1px solid lightgray; }
-    .post .post-heading span {
+    .post .post-heading .meta, .post .post-heading .tags {
       font-size: 0.8rem;
-      margin-bottom: 1rem;
-      display: flex;
-      flex: 1; }
-    .post .post-heading .meta {
       vertical-align: middle; }
-      .post .post-heading .meta .far {
-        position: relative;
-        top: 4px; }
+      .post .post-heading .meta i, .post .post-heading .tags i {
+        margin-right: 0.4rem; }
     .post .post-heading span.tags:before {
       font-family: 'Font Awesome 5 Pro';
       content: '\f02c';
@@ -247,7 +242,8 @@ nav {
       vertical-align: middle;
       font-weight: 900; }
   .post .post-content {
-    line-height: 1.5rem; }
+    line-height: 1.5rem;
+    margin-top: 1rem; }
     .post .post-content .highlight {
       line-height: 1.3rem; }
 
