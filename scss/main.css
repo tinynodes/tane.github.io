@@ -234,7 +234,14 @@ nav {
       vertical-align: middle; }
       .post .post-heading .meta i, .post .post-heading .tags i {
         margin-right: 0.4rem; }
-    .post .post-heading span.tags:before {
+    .post .post-heading .tags {
+      display: flex;
+      justify-content: flex-start; }
+      .post .post-heading .tags a {
+        max-width: 120px;
+        text-align: left;
+        text-decoration-style: dotted; }
+    .post .post-heading .tags:before {
       font-family: 'Font Awesome 5 Pro';
       content: '\f02c';
       display: inline-block;
