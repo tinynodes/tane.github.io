@@ -93,7 +93,7 @@
   <main class="column main">
     <h2 class="taxonomy-title" title="The taxonomy of this page is Tutorial" aria-label="The taxonomy of this page is Tutorial">Tutorial</h2>
     
-    <div class="post content">
+    <div class="post">
   <div class="post-heading">
     <h1>
       <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/">Providing injectable features to Angular modules</a>
@@ -109,7 +109,7 @@
 </div>
 
       
-  <div class="tags" title="Tags, tags, tags and more tags" aria-label="Tags, tags, tags and more tags">
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
     
     <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
     
@@ -225,7 +225,7 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 
 <h2 id="creating-an-injectable-service-and-module">Creating an injectable service and module</h2>
 
-<h3 id="making-out-features-injectable">Making out features injectable</h3>
+<h3 id="making-features-injectable">Making features injectable</h3>
 
 <p>First we need to define the interface of the object want to use for the configuration. This interface provides a contract in the <code>forRoot</code> method described below and tells developers what options they can provide to the application</p>
 
@@ -257,7 +257,7 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </div>
 <p>Now we have the token service we will provide a simple configuration with this token which will be an object, but a token can be used to inject anything from a string to a function, or even a class instance.</p>
 
-<h3 id="making-an-angular-module-configurable">Making an Angular module configurable</h3>
+<h3 id="making-the-angular-module-configurable">Making the Angular module configurable</h3>
 
 <p>To make the service configurable, it should be provided via a <a href="https://angular.io/guide/ngmodules">NgModule</a> - a regular module might look something like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
