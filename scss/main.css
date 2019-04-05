@@ -266,6 +266,10 @@ nav {
     text-align: right;
     padding: 0 1rem 0 0; }
 
+#commento {
+  border-top: 2px solid #002a32;
+  padding-top: 20px; }
+
 .sidebar-content .subtitle a {
   text-decoration: underline; }
 
