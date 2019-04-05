@@ -229,10 +229,10 @@ nav {
   .post .post-heading {
     margin-top: 1rem;
     border-top: 1px solid lightgray; }
-    .post .post-heading .meta, .post .post-heading .tags {
+    .post .post-heading .meta, .post .post-heading .tags, .post .post-heading .comments-link {
       font-size: 0.8rem;
       vertical-align: middle; }
-      .post .post-heading .meta i, .post .post-heading .tags i {
+      .post .post-heading .meta i, .post .post-heading .tags i, .post .post-heading .comments-link i {
         margin-right: 0.4rem; }
     .post .post-heading .tags {
       display: flex;
