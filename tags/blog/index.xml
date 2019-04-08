@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on tane.dev</title>
@@ -6,10 +5,23 @@
     <description>Recent content in Blog on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
+    <copyright>This work is copyright Tane Piper</copyright>
     <lastBuildDate>Tue, 12 Mar 2019 19:40:00 +0100</lastBuildDate>
     
-	<atom:link href="https://tane.dev/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://tane.dev/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    
+    <item>
+      <title>Providing injectable features to Angular modules</title>
+      <link>https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/</link>
+      <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
+      
+      <guid>https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/</guid>
+      <description>Working with Angular and Typescript; as I have refactored and re-written components I&amp;rsquo;ve been learning to take advantage of one of the more powerful features - dependency injection.
+Building Angular components, most developers will have already used this to inject features like the HTTP client or the FormBuilder to be used in a component. A common service example might look like this:
+1 2 3 4 5 6 7 8 9 10 11 12  import { Injectable } from &amp;#39;@angular/core&amp;#39;; import { HttpClient, HttpResponse } from &amp;#39;@angular/common/http&amp;#39;; import { Observable } from &amp;#39;rxjs&amp;#39;; @Injectable() export class RequestService { constructor(private readonly http: HttpClient) {} public getExample(): Observable&amp;lt;HttpResponse&amp;gt; { return this.</description>
+    </item>
     
     <item>
       <title>New blog (&#39;Hey I&#39;m Moving From Medium&#39;)</title>
