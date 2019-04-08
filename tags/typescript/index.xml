@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Typescript on tane.dev</title>
+    <title>TypeScript on tane.dev</title>
     <link>https://tane.dev/tags/typescript/</link>
-    <description>Recent content in Typescript on tane.dev</description>
+    <description>Recent content in TypeScript on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Thu, 14 Mar 2019 20:30:00 +0100</lastBuildDate>

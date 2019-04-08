@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>Blog</title>
-      <link>https://tane.dev/tags/blog/</link>
-      <pubDate>Tue, 12 Mar 2019 19:40:00 +0100</pubDate>
-      
-      <guid>https://tane.dev/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Development</title>
       <link>https://tane.dev/tags/development/</link>
       <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
@@ -48,11 +39,20 @@
     </item>
     
     <item>
-      <title>Typescript</title>
+      <title>TypeScript</title>
       <link>https://tane.dev/tags/typescript/</link>
       <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
       
       <guid>https://tane.dev/tags/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>https://tane.dev/tags/blog/</link>
+      <pubDate>Tue, 12 Mar 2019 19:40:00 +0100</pubDate>
+      
+      <guid>https://tane.dev/tags/blog/</guid>
       <description></description>
     </item>
     
