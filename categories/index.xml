@@ -5,6 +5,8 @@
     <description>Recent content in Categories on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
+    <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
+    <webMaster>spam@tane.dev (Tane Piper)</webMaster>
     <copyright>This work is copyright Tane Piper</copyright>
     
         <atom:link href="https://tane.dev/categories/index.xml" rel="self" type="application/rss+xml" />
@@ -15,7 +17,7 @@
       <title>Providing injectable features to Angular modules</title>
       <link>https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/</link>
       <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
-      
+      <author>spam@tane.dev (Tane Piper)</author>
       <guid>https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/</guid>
       <description>Working with Angular and Typescript; as I have refactored and re-written components I&amp;rsquo;ve been learning to take advantage of one of the more powerful features - dependency injection.
 Building Angular components, most developers will have already used this to inject features like the HTTP client or the FormBuilder to be used in a component. A common service example might look like this:
@@ -26,7 +28,7 @@ Building Angular components, most developers will have already used this to inje
       <title>New blog (&#39;Hey I&#39;m Moving From Medium&#39;)</title>
       <link>https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/</link>
       <pubDate>Tue, 12 Mar 2019 19:40:00 +0100</pubDate>
-      
+      <author>spam@tane.dev (Tane Piper)</author>
       <guid>https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/</guid>
       <description>Buying a new domain is always a good excuse to do something with it, so of course grabbing my .dev seemed like a perfect idea to set up a new blog. Also recently I&amp;rsquo;ve been dissatisfied with the way Medium has dealt with recent changes (although I&amp;rsquo;m not going to go into all the reasons except to say I&amp;rsquo;d rather own and control all my content).
 The site is Markdown powered, generated with Hugo and served via GitHub Pages with a CI deployment.</description>
