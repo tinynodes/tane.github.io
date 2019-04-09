@@ -307,6 +307,10 @@ nav {
     border-left: 1px solid lightgray;
     justify-content: right; }
 
+.feed {
+  font-size: 0.8rem;
+  margin-bottom: 1rem; }
+
 .profile-wrapper {
   width: 100px;
   height: 100px;
