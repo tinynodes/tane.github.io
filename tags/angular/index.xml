@@ -8,11 +8,24 @@
     <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
     <webMaster>spam@tane.dev (Tane Piper)</webMaster>
     <copyright>This work is copyright Tane Piper</copyright>
-    <lastBuildDate>Thu, 14 Mar 2019 20:30:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 10 May 2019 15:00:00 +0100</lastBuildDate>
     
         <atom:link href="https://tane.dev/tags/angular/index.xml" rel="self" type="application/rss+xml" />
     
     
+    
+    <item>
+      <title>Ngx-EditorJS library for Angular</title>
+      <link>https://tane.dev/2019/05/ngx-editorjs-library-for-angular/</link>
+      <pubDate>Fri, 10 May 2019 15:00:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <guid>https://tane.dev/2019/05/ngx-editorjs-library-for-angular/</guid>
+      <description>Today I have published my first full Angular module - @tinynode/ngx-editorjs.
+The module is a set of features for Angular (7+) to create and control EditorJS instances.
+A demo application is available to see the editor in action, and the source is also available in the @tinynodes monorepo.
+Included Features The library exports several features once the NgxEditorJSModule has been included in your project.
+NgxEditorJSDirective This is the main directive which can be used on any element with the [ngxEditorJS] selector and and id attribute.</description>
+    </item>
     
     <item>
       <title>Providing injectable features to Angular modules</title>
