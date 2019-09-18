@@ -129,7 +129,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.58.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2019-09-18 12:40</div>
+    <div><i class="far fa-business-time"></i> Last modified 2019-09-18 13:56</div>
   </div>
 </footer>
 
@@ -230,15 +230,15 @@ duplication of types across different domains to maintain both your types and va
 <p>A much simpler way to maintain both types and validation within a project is to use a single source of truth.
 The main option for this is <a href="https://json-schema.org">JSON Schema</a>.</p>
 
-<p>A JSON Schema file allows you to define the a type using a JSON file, using a specification defined by the selected
+<p>A JSON Schema file allows you to define types using a JSON file, using a specification defined by the selected
 draft (at the time of writing it&rsquo;s <a href="http://json-schema.org/specification.html">number 7</a>).</p>
 
-<p>This file can be used to generate types for design time coding using CLI tools, and can be used for data validation at
+<p>This file can be used to generate types for design-time coding using CLI tools and can be used for data validation at
 runtime using another library that can consume a schema to generate a validation method.</p>
 
 <h3 id="schema-example">Schema Example</h3>
 
-<p>For this demo I&rsquo;ve created a simple schema object defining a customer within a system. The customers properties are:</p>
+<p>For this demo, I&rsquo;ve created a simple schema object defining a customer within a system. The customers&rsquo; properties are:</p>
 
 <ul>
 <li><code>ID</code></li>
@@ -340,7 +340,7 @@ string additional properties to be added.</p>
 </div>
 </div>
 <p>The first tool we will run this through is the imaginatively titled <a href="https://www.npmjs.com/package/json-schema-to-typescript"><code>json-schema-to-typescript</code></a>!
-This project will take valid schema file and generate a file containing the types.  From the example above the output is:</p>
+This project will take a valid schema file and generate a file containing the types.  From the example above the output is:</p>
 
 <blockquote>
 <p><code>json2ts -i customer.json -o customer.d.ts --style.singleQuote</code></p>
@@ -414,7 +414,7 @@ with validation. It is possible to create types for these fields and reference t
 <a href="https://json-schema.org/understanding-json-schema/structuring.html">complex schema</a>.</p>
 
 <p>This type can now be imported into other types, and the <code>json-schema-to-typescript</code> will do this when you use
-complex references.  For example if we define an entire customer order type it might look like this:</p>
+complex references.  For example, if we define an entire customer order type it might look like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -441,9 +441,9 @@ complex references.  For example if we define an entire customer order type it m
 }</code></pre></td></tr></table>
 </div>
 </div>
-<p>Also all the properties have been added to the required array. When creating a new customer, if the data does not contain
+<p>Also, all the properties have been added to the required array. When creating a new customer, if the data does not contain
 an ID, you can use the <code>Partial</code> type to accept an incomplete object - if you expect your API to give back a full object
-you can return a <code>CustomerRecord</code>.  You can also used <code>Required</code> where you need ensure all fields are passed.</p>
+you can return a <code>CustomerRecord</code>.  You can also use <code>Required</code> where you need to ensure all fields are passed.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -478,18 +478,18 @@ you can return a <code>CustomerRecord</code>.  You can also used <code>Required<
 </div>
 <h2 id="validating-with-the-schema">Validating with the Schema</h2>
 
-<p>Now you have types, it makes development of your application easier - but we still need to validate that the data
+<p>Now you have types, it makes the development of your application easier - but we still need to validate that the data
 entered is correct.</p>
 
-<p>One way is to use the same schema on the server side, using your languages JSON Schema validator, but in
-this example I&rsquo;ll use <a href="https://github.com/epoberezkin/ajv">ajv</a> - a javascript library that allows a schema
+<p>One way is to use the same schema on the server-side, using your languages JSON Schema validator, but in
+this example, I&rsquo;ll use <a href="https://github.com/epoberezkin/ajv">ajv</a> - a javascript library that allows a schema
 to be loaded and data validated against it. The documentation is quite complete on using it in a JavaScript environment
-so I won&rsquo;t repeat it too much here, but instead I&rsquo;ll build an Angular module that can be provided as a schema
+so I won&rsquo;t repeat it too much here, but instead, I&rsquo;ll build an Angular module that can be provided as a schema
 validation service.</p>
 
-<p>First we&rsquo;ll create the Angular module, in to which we inject the AJV class and allow the user to provide
-a configuration, the service is provided below. This allows the module to be imported with a configuration,
-and a service that is injectable through your application.</p>
+<p>First, we&rsquo;ll create the Angular module, in to which we inject the AJV class and allow the user to provide
+a configuration, the service is provided below. This allows the module to be imported with a configuration and a service
+that is injectable through your application.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -656,7 +656,7 @@ service shared within the same application.</p>
 validate a data object against it.  The service could be used alongside a form, any methods on a service or checking the
 result of one API before passing to another API.</p>
 
-<p>A simple example of how it could be used in a form components (the example is shortened, most likely you would load your
+<p>A simple example of how it could be used in a form component (the example is shortened, most likely you would load your
 schemas from another service) or how you could validate the parameters passed to a method:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
