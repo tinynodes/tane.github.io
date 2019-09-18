@@ -18,11 +18,6 @@
   </url>
   
   <url>
-    <loc>https://tane.dev/2019/09/json-schema-with-angular-and-typescript/</loc>
-    <lastmod>2019-09-18T12:05:22+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://tane.dev/tags/schema-json/</loc>
     <lastmod>2019-09-18T12:05:22+02:00</lastmod>
   </url>
@@ -44,6 +39,11 @@
   
   <url>
     <loc>https://tane.dev/tags/typescript/</loc>
+    <lastmod>2019-09-18T12:05:22+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/2019/09/validating-data-with-json-schema-angular-and-typescript/</loc>
     <lastmod>2019-09-18T12:05:22+02:00</lastmod>
   </url>
   
