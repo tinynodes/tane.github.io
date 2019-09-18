@@ -129,7 +129,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.58.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2019-09-18 13:56</div>
+    <div><i class="far fa-business-time"></i> Last modified 2019-09-18 14:02</div>
   </div>
 </footer>
 
@@ -213,15 +213,15 @@
 <p>One common question I see with a lot of new TypeScript developers is how to handle runtime validation of data, using
 the types they have built.</p>
 
-<p>The issue is that the web platform, as yet, does not support types. Typescript itself is a higher-level
+<p>The issue is web platform, as yet, does not support types. Typescript itself is a higher-level
 language built on top of JavaScript and uses a compiler to create compatible code for the web, node or other JS
 platforms - this means that types are only available at design time.</p>
 
-<p>Most developers have a method or form in their code where they want to validate that the data being passed in is
+<p>Most developers have a method or form in their code where they want to validate data being passed in is
 correct before sending it to another API. This works for hard coded data in Typescript, but not dynamic data from sources
 such as a form or API source</p>
 
-<p>The good news is that the problem itself has been solved and there are several solutions for TypeScript such as
+<p>The good news is the problem itself has been solved and there are several solutions for TypeScript such as
 <a href="https://github.com/gcanti/io-ts">io-ts</a> or <a href="https://github.com/hapijs/joi">joi</a> but I find these solutions to encourage
 duplication of types across different domains to maintain both your types and validation objects.</p>
 
@@ -478,7 +478,7 @@ you can return a <code>CustomerRecord</code>.  You can also use <code>Required</
 </div>
 <h2 id="validating-with-the-schema">Validating with the Schema</h2>
 
-<p>Now you have types, it makes the development of your application easier - but we still need to validate that the data
+<p>Now you have types, it makes the development of your application easier - but we still need to validate data
 entered is correct.</p>
 
 <p>One way is to use the same schema on the server-side, using your languages JSON Schema validator, but in

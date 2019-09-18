@@ -20,7 +20,7 @@
       <author>spam@tane.dev (Tane Piper)</author>
       <guid>https://tane.dev/2019/09/validating-data-with-json-schema-angular-and-typescript/</guid>
       <description>One common question I see with a lot of new TypeScript developers is how to handle runtime validation of data, using the types they have built.
-The issue is that the web platform, as yet, does not support types. Typescript itself is a higher-level language built on top of JavaScript and uses a compiler to create compatible code for the web, node or other JS platforms - this means that types are only available at design time.</description>
+The issue is web platform, as yet, does not support types. Typescript itself is a higher-level language built on top of JavaScript and uses a compiler to create compatible code for the web, node or other JS platforms - this means that types are only available at design time.</description>
     </item>
     
     <item>
