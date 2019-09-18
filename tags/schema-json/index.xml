@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Development on tane.dev</title>
-    <link>https://tane.dev/tags/development/</link>
-    <description>Recent content in Development on tane.dev</description>
+    <title>Schema JSON on tane.dev</title>
+    <link>https://tane.dev/tags/schema-json/</link>
+    <description>Recent content in Schema JSON on tane.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
@@ -10,7 +10,7 @@
     <copyright>This work is copyright Tane Piper</copyright>
     <lastBuildDate>Wed, 18 Sep 2019 11:00:00 +0100</lastBuildDate>
     
-        <atom:link href="https://tane.dev/tags/development/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://tane.dev/tags/schema-json/index.xml" rel="self" type="application/rss+xml" />
     
     
     

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.2" />
   
   <title>Blog Entries - Ideas and stuff</title>
 
@@ -16,7 +16,7 @@
 
 
 
-<link rel="stylesheet" href="https://tane.dev/css/bundle.min.50b59a35e7a7aa2f0f7a7d95575d4319b399dc0dbd1be7f887940c87a14e6acf6b4b1d9bf48fec54e8bc22a3e87e622d0bc7515caa176f65f1c80dd84ef5cc7f.css" integrity="sha512-ULWaNeenqi8Pen2VV11DGbOZ3A29G&#43;f4h5QMh6FOas9rSx2b9I/sVOi8IqPofmItC8dRXKoXb2XxyA3YTvXMfw==" />
+<link rel="stylesheet" href="https://tane.dev/css/bundle.min.a3e9629bf6601b2b3159e442160a8ea1de3a2b35c856b4688fffb4b1746e7a2410a9dfc848c9de05963b09c6ab0c817eed5a448a421ce38ab6e5de96f8ee8611.css" integrity="sha512-o&#43;lim/ZgGysxWeRCFgqOod46KzXIVrRoj/&#43;0sXRueiQQqd/ISMneBZY7CcarDIF&#43;7VpEikIc44q25d6W&#43;O6GEQ==" />
 
 
   <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/blog/index.xml" title="tane.dev" />
@@ -58,7 +58,7 @@
     <ul class="previous-posts">
       
       <li>
-        <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
+        <a href="https://tane.dev/2019/09/json-schema-with-angular-and-typescript/">JSON Schema with Angular and TypeScript</a> 
 
 
 
@@ -69,12 +69,23 @@
       </li>
       
       <li>
+        <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
+
+
+
+
+  <span>Published 4 months ago.</span>
+
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/">Providing injectable features to Angular modules</a> 
 
 
 
 
-  <span>Published 1 month ago.</span>
+  <span>Published 6 months ago.</span>
 
 
       </li>
@@ -85,7 +96,7 @@
 
 
 
-  <span>Published 1 month ago.</span>
+  <span>Published 6 months ago.</span>
 
 
       </li>
@@ -117,8 +128,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.55.5 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2019-05-10 17:13</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.58.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2019-09-18 12:05</div>
   </div>
 </footer>
 
@@ -146,6 +157,622 @@
   </div>
   <main class="column main">
     
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2019/09/json-schema-with-angular-and-typescript/">JSON Schema with Angular and TypeScript</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Sep 18, 2019</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Sep 18, 2019)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1900 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 9 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/development">Development</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/json">JSON</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/schema-json">Schema JSON</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2019/09/json-schema-with-angular-and-typescript/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content">
+
+<p>One common question I see with a lot of new TypeScript developers is how to handle runtime validation of data, using
+the types they have built.</p>
+
+<p>The issue is that the web platform, as yet, does not support types. Typescript itself is a higher-level
+language built on top of JavaScript and uses a compiler to create compatible code for the web, node or other JS
+platforms - this means that types are only available at design time.</p>
+
+<p>Most developers have a method or form in their code where they want to validate that the data being passed in is
+correct before sending it to another API. This works for hard coded data in Typescript, but not dynamic data from sources
+such as a form or API source</p>
+
+<p>The good news is that the problem itself has been solved and there are several solutions for TypeScript such as
+<a href="https://github.com/gcanti/io-ts">io-ts</a> or <a href="https://github.com/hapijs/joi">joi</a> but I find these solutions to encourage
+duplication of types across different domains to maintain both your types and validation objects.</p>
+
+<h2 id="introducing-json-schema">Introducing JSON Schema</h2>
+
+<p>A much simpler way to maintain both types and validation within a project is to use a single source of truth.
+The main option for this is <a href="https://json-schema.org">JSON Schema</a>.</p>
+
+<p>A JSON Schema file allows you to define the a type using a JSON file, using a specification defined by the selected
+draft (at the time of writing it&rsquo;s <a href="http://json-schema.org/specification.html">number 7</a>).</p>
+
+<p>This file can be used to generate types for design time coding using CLI tools, and can be used for data validation at
+runtime using another library that can consume a schema to generate a validation method.</p>
+
+<h3 id="schema-example">Schema Example</h3>
+
+<p>For this demo I&rsquo;ve created a simple schema object defining a customer within a system. The customers properties are:</p>
+
+<ul>
+<li><code>ID</code></li>
+<li><code>firstName</code></li>
+<li><code>lastName</code></li>
+<li><code>dateOfBirth</code></li>
+<li><code>email</code></li>
+</ul>
+
+<p>In this example we set <code>&quot;additionalProperties&quot;: false</code> to keep the example simple, but it&rsquo;s a very flexible option!</p>
+
+<p>If set to true or not included, the outputted types will include an indexable type with a <code>[key: string]: any</code>
+at the end of the type properties.</p>
+
+<p>You can also pass it properties such as <code>&quot;additionalProperties&quot;: { &quot;type&quot;: &quot;string&quot; }</code> which will allow only
+string additional properties to be added.</p>
+
+<p>By setting to false - only the properties defined will be available on the type, which I&rsquo;ll do for this example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;$id&#34;</span>: <span style="color:#e6db74">&#34;https://tane.dev/customer.json&#34;</span>,
+  <span style="color:#f92672">&#34;$schema&#34;</span>: <span style="color:#e6db74">&#34;http://json-schema.org/draft-07/schema#&#34;</span>,
+  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Customer Record&#34;</span>,
+  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+  <span style="color:#f92672">&#34;properties&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The Customers ID in our system&#34;</span>
+    },
+    <span style="color:#f92672">&#34;firstName&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The customer&#39;s first name.&#34;</span>
+    },
+    <span style="color:#f92672">&#34;lastName&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The customer&#39;s last name.&#34;</span>
+    },
+    <span style="color:#f92672">&#34;email&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;email&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The customers email address&#34;</span>
+    },
+    <span style="color:#f92672">&#34;dateOfBirth&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;date&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The customer&#39;s date of birth.&#34;</span>
+    }
+  },
+  <span style="color:#f92672">&#34;additionalProperties&#34;</span>: <span style="color:#66d9ef">false</span>,
+  <span style="color:#f92672">&#34;required&#34;</span>: [
+    <span style="color:#e6db74">&#34;id&#34;</span>,
+    <span style="color:#e6db74">&#34;firstName&#34;</span>,
+    <span style="color:#e6db74">&#34;lastName&#34;</span>,
+    <span style="color:#e6db74">&#34;dateOfBirth&#34;</span>,
+    <span style="color:#e6db74">&#34;email&#34;</span>
+  ]
+}</code></pre></td></tr></table>
+</div>
+</div>
+<p>The first tool we will run this through is the imaginatively titled <a href="https://www.npmjs.com/package/json-schema-to-typescript"><code>json-schema-to-typescript</code></a>!
+This project will take valid schema file and generate a file containing the types.  From the example above the output is:</p>
+
+<blockquote>
+<p><code>json2ts -i customer.json -o customer.d.ts --style.singleQuote</code></p>
+</blockquote>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">/* tslint:disable */</span>
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * This file was automatically generated by json-schema-to-typescript.
+</span><span style="color:#75715e"> * DO NOT MODIFY IT BY HAND. Instead, modify the source JSONSchema file,
+</span><span style="color:#75715e"> * and run json-schema-to-typescript to regenerate this file.
+</span><span style="color:#75715e"> */</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomerRecord</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The Customers ID in our system
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The customer&#39;s first name.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">firstName</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The customer&#39;s last name.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">lastName</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The customers email address
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The customer&#39;s date of birth.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">dateOfBirth</span>: <span style="color:#66d9ef">string</span>;
+}</code></pre></td></tr></table>
+</div>
+</div>
+<p>One thing to note is that <code>email</code> and <code>dateOfBirth</code> are string in our type, the <code>format</code> is only used
+with validation. If is possible to create types for these fields and reference them using a more
+<a href="https://json-schema.org/understanding-json-schema/structuring.html">complex schema</a>.</p>
+
+<p>This type can now be imported into other types, and the <code>json-schema-to-typescript</code> will do this when you use
+complex references.  For example if we define an entire customer order type it might look like this:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OrderItem</span>, <span style="color:#a6e22e">Checkout</span>, <span style="color:#a6e22e">Address</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./shop-front&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomerOrder</span> {
+  <span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">CustomerRecord</span>;
+  <span style="color:#a6e22e">deliveryAddress</span>: <span style="color:#66d9ef">Address</span>;
+  <span style="color:#a6e22e">billingAddress</span>: <span style="color:#66d9ef">Address</span>;
+  <span style="color:#a6e22e">items</span>: <span style="color:#66d9ef">OrderItem</span>[]
+  <span style="color:#a6e22e">checkout</span>: <span style="color:#66d9ef">Checkout</span>
+}</code></pre></td></tr></table>
+</div>
+</div>
+<p>Also all the properties have been added to the required array. When creating a new customer, if the data does not contain
+an ID, you can use the <code>Partial</code> type to accept an incomplete object - if you expect your API to give back a full object
+you can return a <code>CustomerRecord</code>.  You can also used <code>Required</code> where you need ensure all fields are passed.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerClass</span> {
+  <span style="color:#75715e">// Return a API request with a customers object
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">addCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Partial</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">customer</span>);
+  }
+  
+  <span style="color:#75715e">// Return a API request with a customers object
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">updateCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Required</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">customer</span>);
+  }
+}</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="validating-with-the-schema">Validating with the Schema</h2>
+
+<p>Now you have types, it makes development of your application easier - but we still need to validate that the data
+entered is correct.</p>
+
+<p>One way is to use the same schema on the server side, using your languages JSON Schema validator, but in
+this example I&rsquo;ll use <a href="https://github.com/epoberezkin/ajv">ajv</a> - a javascript library that allows a schema
+to be loaded and data validated against it. The documentation is quite complete on using it in a JavaScript environment
+so I won&rsquo;t repeat it too much here, but instead I&rsquo;ll build an Angular module that can be provided as a schema
+validation service.</p>
+
+<p>First we&rsquo;ll create the Angular module, in to which we inject the AJV class and allow the user to provide
+a configuration, the service is provided below. This allows the module to be imported with a configuration,
+and a service that is injectable through your application.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClientModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">JSONSchemaService</span>, <span style="color:#a6e22e">AJV_INSTANCE</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./json-schema.service&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">ajv</span>, { <span style="color:#a6e22e">Ajv</span>, <span style="color:#a6e22e">Options</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_CLASS</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Ajv</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;The AJV Class Instance&#39;</span>);
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Ajv</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;The AJV Class config&#39;</span>);
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createAjvInstance</span>(<span style="color:#a6e22e">AjvClass</span>: <span style="color:#66d9ef">any</span>, <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">Options</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AjvClass</span>(<span style="color:#a6e22e">config</span>);
+}
+
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#66d9ef">import</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">HttpClientModule</span>],
+  <span style="color:#a6e22e">provides</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">JSONSchemaService</span>,
+    { <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">AJV_CLASS</span>, <span style="color:#a6e22e">useValue</span>: <span style="color:#66d9ef">ajv</span> },
+    { <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">AJV_CONFIG</span>, <span style="color:#a6e22e">useValue</span><span style="color:#f92672">:</span> {} },
+    {
+      <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">AJV_INSTANCE</span>,
+      <span style="color:#a6e22e">useFactory</span>: <span style="color:#66d9ef">createAjvInstance</span>,
+      <span style="color:#a6e22e">deps</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AJV_CLASS</span>, <span style="color:#a6e22e">AJV_CONFIG</span>]
+   }
+  ]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JSONSchemaModule</span> {}</code></pre></td></tr></table>
+</div>
+</div>
+<p>Now we create a service - within this service it will access to the <code>Ajv</code> class that allows the service to be provided
+with schemas via an Angular HTTP call. The parsed schema is assigned a name and can be used through the app
+using dependency injection - this service is a good use case of a root service too, which create a Singleton of the
+service shared within the same application.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">Inject</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Ajv</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_INSTANCE</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Ajv</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;The AJV Class Instance&#39;</span>);
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * The response of a validation result
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ValidateResult</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * If the result is valid or not
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">isValid</span>: <span style="color:#66d9ef">boolean</span>;
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Error text from the validator
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">errorsText</span>: <span style="color:#66d9ef">string</span>;
+}
+
+
+<span style="color:#66d9ef">@Injectable</span>({
+    <span style="color:#a6e22e">provideIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JSONSchemaService</span> {
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>, <span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">AJV_INSTANCE</span>) <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">ajv</span>: <span style="color:#66d9ef">Ajv</span>) {}
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Fetches the Schema and adds it to the validator schema set
+</span><span style="color:#75715e">   * @param name The name of the schema, this will be used as the key to store it
+</span><span style="color:#75715e">   * @param urlPath The URL path of the schema to load
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">loadSchema</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">urlPath</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">urlPath</span>).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">result</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ajv</span>.<span style="color:#a6e22e">addSchema</span>(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">name</span>));
+  }
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Validate data against a schema
+</span><span style="color:#75715e">   * @param name The name of the schema to validate
+</span><span style="color:#75715e">   * @param data The data to validate
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">validateData</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ValidateResult</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isValid</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ajv</span>.<span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">data</span>) <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">boolean</span>;
+    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">isValid</span>, <span style="color:#a6e22e">errorsText</span>: <span style="color:#66d9ef">this.ajv.errorsText</span>() };
+  }
+}</code></pre></td></tr></table>
+</div>
+</div>
+<p>Now we can use our service to load a JSON schemas into an internal <code>Ajv</code> map, and using the key load the schema to
+validate a data object against it.  The service could be used alongside a form, any methods on a service or checking the
+result of one API before passing to another API.</p>
+
+<p>A simple example of how it could be used in a form components (the example is shortened, most likely you would load your
+schemas from another service) or how you could validate the parameters passed to a method:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;my-form-component&#39;</span>,
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;errors-component *ngIf=&#34;let errors; errors$ | async&#34;&gt;&lt;/errors-component&gt;
+</span><span style="color:#e6db74">    &lt;form [formGroup]=&#34;customerForm&#34; (ngSubmit)=&#34;submit()&#34;&gt;
+</span><span style="color:#e6db74">      &lt;!-- Customer form in here ---&gt;
+</span><span style="color:#e6db74">    &lt;/form&gt;
+</span><span style="color:#e6db74">  `</span> 
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FormComponent</span> {
+  
+  <span style="color:#a6e22e">error$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BehaviorSubject</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+
+  <span style="color:#a6e22e">customerForm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">fb</span>.<span style="color:#a6e22e">group</span>({
+    <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
+    <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
+    <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
+    <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
+    <span style="color:#a6e22e">dateOfBirth</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>]
+  });
+
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">fb</span>: <span style="color:#66d9ef">FormBuilder</span>, <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">schema</span>: <span style="color:#66d9ef">JSONSchemaService</span>, <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">app</span>: <span style="color:#66d9ef">AppService</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">loadSchema</span>(<span style="color:#e6db74">&#39;customer&#39;</span>, <span style="color:#e6db74">&#39;https://tane.dev/customer.json&#39;</span>)
+  }
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * In the submit method, we validate the input of a form - this can be on top of, or instead
+</span><span style="color:#75715e">   * of Angular form validation
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">submit() {</span>
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">validateData</span>(<span style="color:#e6db74">&#39;customer&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">customerForm</span>.<span style="color:#a6e22e">value</span>);
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">isValid</span>) {
+       <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">updateCustomer</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">customerForm</span>.<span style="color:#a6e22e">value</span>);
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">error$</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">errorsText</span>);
+    }
+  }
+ 
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * This custom method can take a type of T (which in this case is an `any`) and validate
+</span><span style="color:#75715e">   * that the data is valid
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">customMethod</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">T</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>(<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">validateData</span>(<span style="color:#e6db74">&#39;customer&#39;</span>, <span style="color:#a6e22e">data</span>);
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">isValid</span>) {
+       <span style="color:#75715e">// Do custom logic
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">error$</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">errorsText</span>);
+    }
+  }
+}</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I hope you&rsquo;ve found this article useful in helping understand how and where Typescript can be used to validate data
+within an application, and JSON Schema to validate dynamic data.</p>
+
+<p>Please feel free to leave feedback of any issues or improvements, but hopefully these examples give a clearer understanding.</p>
+
+<p>For full documentation of JSON Schema, check out the <a href="http://json-schema.org/understanding-json-schema/">Understanding JSON Schema</a>
+pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>oneOf</code> and using <a href="http://json-schema.org/understanding-json-schema/structuring.html#reuse">definitions</a></p>
+</div>
+</div>
+
     
     <div class="post">
   <div class="post-heading">
@@ -758,6 +1385,7 @@ both on the server side, and client side with Angular, RxJS and other frameworks
     
     <div class="text-center">
       
+
 
     </div>
   </main>
