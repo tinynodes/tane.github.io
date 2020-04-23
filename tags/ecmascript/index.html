@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="generator" content="Hugo 0.69.1" />
   
-  <title>Library - Ideas and stuff</title>
+  <title>ECMAScript - Ideas and stuff</title>
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet" />
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous" />
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://tane.dev/css/bundle.min.a3e9629bf6601b2b3159e442160a8ea1de3a2b35c856b4688fffb4b1746e7a2410a9dfc848c9de05963b09c6ab0c817eed5a448a421ce38ab6e5de96f8ee8611.css" integrity="sha512-o&#43;lim/ZgGysxWeRCFgqOod46KzXIVrRoj/&#43;0sXRueiQQqd/ISMneBZY7CcarDIF&#43;7VpEikIc44q25d6W&#43;O6GEQ==" />
 
 
-  <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/tags/library/index.xml" title="tane.dev" />
+  <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/tags/ecmascript/index.xml" title="tane.dev" />
   </head>
 
 
@@ -169,9 +169,9 @@
   <main class="column main">
     <h2
       class="taxonomy-title"
-      title="The taxonomy of this page is Library"
-      aria-label="The taxonomy of this page is Library">
-      Library
+      title="The taxonomy of this page is ECMAScript"
+      aria-label="The taxonomy of this page is ECMAScript">
+      ECMAScript
     </h2>
     
     <div class="post">
@@ -291,83 +291,6 @@ that don&rsquo;t fit into the other packages but still have some usefulness.</p>
 </code></pre></td></tr></table>
 </div>
 </div></div>
-</div>
-
-    
-    <div class="post">
-  <div class="post-heading">
-    <h1>
-      <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a>
-    </h1>
-    
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: May 10, 2019</span>
-  
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: May 10, 2019)</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 300 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 2 minutes reading time</span>
-</div>
-
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
-    
-    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
-    
-  </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/#commento">... comments</a>
-</div>
-
-      
-    
-  </div>
-  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs">NPM</a>.</p>
-<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io">EditorJS</a> instances.</p>
-<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo">demo application</a> is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes"><code>@tinynodes</code> monorepo</a>.</p>
-<h2 id="included-features">Included Features</h2>
-<p>The library exports several features once the <code>NgxEditorJSModule</code> has been included in your project.</p>
-<h4 id="ngxeditorjsdirective">NgxEditorJSDirective</h4>
-<p>This is the main directive which can be used on any element with the <code>[ngxEditorJS]</code> selector and and <code>id</code> attribute.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-editor&#34;</span> <span style="color:#a6e22e">ngxEditorJS</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p>This will handle creating the editor instance via the <code>NgxEditorJSService</code></p>
-<h4 id="ngxeditorjscomponent">NgxEditorJSComponent</h4>
-<p>This component can be used in any Angular component using the <code>&lt;ngx-editorjs&gt;</code> tag. Again this component can take a set of blocks, it also provides a <code>holder</code> input for overriding the ID.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">ngx-editorjs</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">holder</span><span style="color:#960050;background-color:#1e0010">]=&#34;</span><span style="color:#a6e22e">holderProperty</span><span style="color:#960050;background-color:#1e0010">&#34;</span>&gt;&lt;/<span style="color:#f92672">ngx-editorjs</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="ngxeditorjsservice">NgxEditorJSService</h4>
-<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api">EditorJS API</a> - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
-<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md">README.md</a>) on how to do this in a AOT-friendly way.</p>
-<h2 id="next-steps">Next Steps</h2>
-<p>Before release I had to resolve an issue with AOT compiling and injecting EditorJS plugins - this means version <code>1.1.0</code> has already been released - now this is resolved I want support additional feature in the editor, as well as provide unit test coverage and better documentation and demo.</p>
-<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues">GitHub Issues</a> page.</p>
-</div>
 </div>
 
     

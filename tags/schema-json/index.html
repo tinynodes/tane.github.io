@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.69.1" />
   
   <title>Schema JSON - Ideas and stuff</title>
 
@@ -58,7 +58,7 @@
     <ul class="previous-posts">
       
       <li>
-        <a href="https://tane.dev/2019/09/validating-data-with-json-schema-angular-and-typescript/">Validating data with JSON Schema, Angular and TypeScript</a> 
+        <a href="https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/">RxJS Primitives - Operators for mutating and filtering primitives</a> 
 
 
 
@@ -69,12 +69,23 @@
       </li>
       
       <li>
+        <a href="https://tane.dev/2019/09/validating-data-with-json-schema-angular-and-typescript/">Validating data with JSON Schema, Angular and TypeScript</a> 
+
+
+
+
+  <span>Published 7 months ago.</span>
+
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
 
 
 
 
-  <span>Published 4 months ago.</span>
+  <span>Published 11 months ago.</span>
 
 
       </li>
@@ -85,7 +96,7 @@
 
 
 
-  <span>Published 6 months ago.</span>
+  <span>Published 13 months ago.</span>
 
 
       </li>
@@ -96,7 +107,7 @@
 
 
 
-  <span>Published 6 months ago.</span>
+  <span>Published 13 months ago.</span>
 
 
       </li>
@@ -120,7 +131,7 @@
   <footer class="footer">
   <div class="flex-item contact">
     
-    <i class="far fa-copyright"></i>&nbsp;2019 Tane Piper
+    <i class="far fa-copyright"></i>&nbsp;2020 Tane Piper
     
 
     
@@ -128,8 +139,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.58.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2019-09-18 14:02</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.69.1 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2020-04-23 13:13</div>
   </div>
 </footer>
 
@@ -208,38 +219,26 @@
       
     
   </div>
-  <div class="post-content">
-
-<p>One common question I see with a lot of new TypeScript developers is how to handle runtime validation of data, using
+  <div class="post-content"><p>One common question I see with a lot of new TypeScript developers is how to handle runtime validation of data, using
 the types they have built.</p>
-
 <p>The issue is web platform, as yet, does not support types. Typescript itself is a higher-level
 language built on top of JavaScript and uses a compiler to create compatible code for the web, node or other JS
 platforms - this means that types are only available at design time.</p>
-
 <p>Most developers have a method or form in their code where they want to validate data being passed in is
 correct before sending it to another API. This works for hard coded data in Typescript, but not dynamic data from sources
 such as a form or API source</p>
-
 <p>The good news is the problem itself has been solved and there are several solutions for TypeScript such as
 <a href="https://github.com/gcanti/io-ts">io-ts</a> or <a href="https://github.com/hapijs/joi">joi</a> but I find these solutions to encourage
 duplication of types across different domains to maintain both your types and validation objects.</p>
-
 <h2 id="introducing-json-schema">Introducing JSON Schema</h2>
-
 <p>A much simpler way to maintain both types and validation within a project is to use a single source of truth.
 The main option for this is <a href="https://json-schema.org">JSON Schema</a>.</p>
-
 <p>A JSON Schema file allows you to define types using a JSON file, using a specification defined by the selected
 draft (at the time of writing it&rsquo;s <a href="http://json-schema.org/specification.html">number 7</a>).</p>
-
 <p>This file can be used to generate types for design-time coding using CLI tools and can be used for data validation at
 runtime using another library that can consume a schema to generate a validation method.</p>
-
 <h3 id="schema-example">Schema Example</h3>
-
 <p>For this demo, I&rsquo;ve created a simple schema object defining a customer within a system. The customers&rsquo; properties are:</p>
-
 <ul>
 <li><code>ID</code></li>
 <li><code>firstName</code></li>
@@ -247,19 +246,15 @@ runtime using another library that can consume a schema to generate a validation
 <li><code>dateOfBirth</code></li>
 <li><code>email</code></li>
 </ul>
-
 <p>In this example we set <code>&quot;additionalProperties&quot;: false</code> to keep the example simple, but it&rsquo;s a very flexible option!</p>
-
 <p>If set to true or not included, the outputted types will include an indexable type with a <code>[key: string]: any</code>
 at the end of the type properties.</p>
-
 <p>You can also pass it properties such as <code>&quot;additionalProperties&quot;: { &quot;type&quot;: &quot;string&quot; }</code> which will allow only
 string additional properties to be added.</p>
-
 <p>By setting to false - only the properties defined will be available on the type, which I&rsquo;ll do for this example:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -298,7 +293,7 @@ string additional properties to be added.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;$id&#34;</span>: <span style="color:#e6db74">&#34;https://tane.dev/customer.json&#34;</span>,
   <span style="color:#f92672">&#34;$schema&#34;</span>: <span style="color:#e6db74">&#34;http://json-schema.org/draft-07/schema#&#34;</span>,
@@ -336,18 +331,17 @@ string additional properties to be added.</p>
     <span style="color:#e6db74">&#34;dateOfBirth&#34;</span>,
     <span style="color:#e6db74">&#34;email&#34;</span>
   ]
-}</code></pre></td></tr></table>
+}
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>The first tool we will run this through is the imaginatively titled <a href="https://www.npmjs.com/package/json-schema-to-typescript"><code>json-schema-to-typescript</code></a>!
+</div><p>The first tool we will run this through is the imaginatively titled <a href="https://www.npmjs.com/package/json-schema-to-typescript"><code>json-schema-to-typescript</code></a>!
 This project will take a valid schema file and generate a file containing the types.  From the example above the output is:</p>
-
 <blockquote>
 <p><code>json2ts -i customer.json -o customer.d.ts --style.singleQuote</code></p>
 </blockquote>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -377,7 +371,7 @@ This project will take a valid schema file and generate a file containing the ty
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">/* tslint:disable */</span>
 <span style="color:#75715e">/**
 </span><span style="color:#75715e"> * This file was automatically generated by json-schema-to-typescript.
@@ -406,18 +400,17 @@ This project will take a valid schema file and generate a file containing the ty
 </span><span style="color:#75715e">   * The customer&#39;s date of birth.
 </span><span style="color:#75715e">   */</span>
   <span style="color:#a6e22e">dateOfBirth</span>: <span style="color:#66d9ef">string</span>;
-}</code></pre></td></tr></table>
+}
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>One thing to note is that <code>email</code> and <code>dateOfBirth</code> are string in our type, the <code>format</code> is only used
+</div><p>One thing to note is that <code>email</code> and <code>dateOfBirth</code> are string in our type, the <code>format</code> is only used
 with validation. It is possible to create types for these fields and reference them using a more
 <a href="https://json-schema.org/understanding-json-schema/structuring.html">complex schema</a>.</p>
-
 <p>This type can now be imported into other types, and the <code>json-schema-to-typescript</code> will do this when you use
 complex references.  For example, if we define an entire customer order type it might look like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -428,7 +421,7 @@ complex references.  For example, if we define an entire customer order type it 
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
 <span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OrderItem</span>, <span style="color:#a6e22e">Checkout</span>, <span style="color:#a6e22e">Address</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./shop-front&#39;</span>
 
@@ -438,15 +431,15 @@ complex references.  For example, if we define an entire customer order type it 
   <span style="color:#a6e22e">billingAddress</span>: <span style="color:#66d9ef">Address</span>;
   <span style="color:#a6e22e">items</span>: <span style="color:#66d9ef">OrderItem</span>[]
   <span style="color:#a6e22e">checkout</span>: <span style="color:#66d9ef">Checkout</span>
-}</code></pre></td></tr></table>
+}
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Also, all the properties have been added to the required array. When creating a new customer, if the data does not contain
+</div><p>Also, all the properties have been added to the required array. When creating a new customer, if the data does not contain
 an ID, you can use the <code>Partial</code> type to accept an incomplete object - if you expect your API to give back a full object
 you can return a <code>CustomerRecord</code>.  You can also use <code>Required</code> where you need to ensure all fields are passed.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -460,7 +453,7 @@ you can return a <code>CustomerRecord</code>.  You can also use <code>Required</
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerClass</span> {
@@ -473,26 +466,23 @@ you can return a <code>CustomerRecord</code>.  You can also use <code>Required</
 </span><span style="color:#75715e"></span>  <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">updateCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Required</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span> {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">customer</span>);
   }
-}</code></pre></td></tr></table>
+}
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="validating-with-the-schema">Validating with the Schema</h2>
-
+</div><h2 id="validating-with-the-schema">Validating with the Schema</h2>
 <p>Now you have types, it makes the development of your application easier - but we still need to validate data
 entered is correct.</p>
-
 <p>One way is to use the same schema on the server-side, using your languages JSON Schema validator, but in
 this example, I&rsquo;ll use <a href="https://github.com/epoberezkin/ajv">ajv</a> - a javascript library that allows a schema
 to be loaded and data validated against it. The documentation is quite complete on using it in a JavaScript environment
 so I won&rsquo;t repeat it too much here, but instead, I&rsquo;ll build an Angular module that can be provided as a schema
 validation service.</p>
-
 <p>First, we&rsquo;ll create the Angular module, in to which we inject the AJV class and allow the user to provide
 a configuration, the service is provided below. This allows the module to be imported with a configuration and a service
 that is injectable through your application.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -519,7 +509,7 @@ that is injectable through your application.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 <span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClientModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>
 <span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">JSONSchemaService</span>, <span style="color:#a6e22e">AJV_INSTANCE</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./json-schema.service&#39;</span>;
@@ -545,16 +535,16 @@ that is injectable through your application.</p>
    }
   ]
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JSONSchemaModule</span> {}</code></pre></td></tr></table>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JSONSchemaModule</span> {}
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Now we create a service - within this service it will access to the <code>Ajv</code> class that allows the service to be provided
+</div><p>Now we create a service - within this service it will access to the <code>Ajv</code> class that allows the service to be provided
 with schemas via an Angular HTTP call. The parsed schema is assigned a name and can be used through the app
 using dependency injection - this service is a good use case of a root service too, which create a Singleton of the
 service shared within the same application.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -602,7 +592,7 @@ service shared within the same application.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">Inject</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 <span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
 <span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Ajv</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
@@ -649,18 +639,17 @@ service shared within the same application.</p>
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isValid</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ajv</span>.<span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">data</span>) <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">boolean</span>;
     <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">isValid</span>, <span style="color:#a6e22e">errorsText</span>: <span style="color:#66d9ef">this.ajv.errorsText</span>() };
   }
-}</code></pre></td></tr></table>
+}
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Now we can use our service to load a JSON schemas into an internal <code>Ajv</code> map, and using the key load the schema to
+</div><p>Now we can use our service to load a JSON schemas into an internal <code>Ajv</code> map, and using the key load the schema to
 validate a data object against it.  The service could be used alongside a form, any methods on a service or checking the
 result of one API before passing to another API.</p>
-
 <p>A simple example of how it could be used in a form component (the example is shortened, most likely you would load your
 schemas from another service) or how you could validate the parameters passed to a method:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -712,7 +701,7 @@ schemas from another service) or how you could validate the parameters passed to
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@Component</span>({
   <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;my-form-component&#39;</span>,
   <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
@@ -763,16 +752,13 @@ schemas from another service) or how you could validate the parameters passed to
       <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">error$</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">errorsText</span>);
     }
   }
-}</code></pre></td></tr></table>
+}
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="conclusion">Conclusion</h2>
-
+</div><h2 id="conclusion">Conclusion</h2>
 <p>I hope you&rsquo;ve found this article useful in helping understand how and where Typescript can be used to validate data
 within an application, and JSON Schema to validate dynamic data.</p>
-
 <p>Please feel free to leave feedback on any issues or improvements, but hopefully, these examples give a clearer understanding.</p>
-
 <p>For full documentation of JSON Schema, check out the <a href="http://json-schema.org/understanding-json-schema/">Understanding JSON Schema</a>
 pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>oneOf</code> and using <a href="http://json-schema.org/understanding-json-schema/structuring.html#reuse">definitions</a></p>
 </div>

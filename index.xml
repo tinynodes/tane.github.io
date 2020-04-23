@@ -8,11 +8,25 @@
     <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
     <webMaster>spam@tane.dev (Tane Piper)</webMaster>
     <copyright>This work is copyright Tane Piper</copyright>
-    <lastBuildDate>Wed, 18 Sep 2019 11:00:00 +0100</lastBuildDate>
     
         <atom:link href="https://tane.dev/index.xml" rel="self" type="application/rss+xml" />
     
     
+    
+    <item>
+      <title>RxJS Primitives - Operators for mutating and filtering primitives</title>
+      <link>https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/</link>
+      <guid>https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/</guid>
+      <comments>https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/#commento</comments>
+      <pubDate>Thu, 23 Apr 2020 11:30:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <description>Today I&amp;rsquo;ve published a new set of libraries to NPM - RxJS Primitives.
+These are based on some operators I&amp;rsquo;ve collected over the last year, and some additional ones I&amp;rsquo;ve started adding. Most are based around ECMASCript objects such as String, Number and Boolean but also includes some useful utility operators.
+Over the coming weeks I&amp;rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful.</description>
+      
+        <category>TypeScript</category><category>RxJS</category><category>NPM</category><category>Library</category><category>ECMAScript</category>
+      
+    </item>
     
     <item>
       <title>Validating data with JSON Schema, Angular and TypeScript</title>
