@@ -3,17 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://tane.dev/tags/ecmascript/</loc>
-    <lastmod>2020-04-23T13:10:26+02:00</lastmod>
+    <loc>https://tane.dev/tags/github/</loc>
+    <lastmod>2020-05-07T22:15:49+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tane.dev/tags/library/</loc>
-    <lastmod>2020-04-23T13:10:26+02:00</lastmod>
+    <lastmod>2020-05-07T22:15:49+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/monorepo/</loc>
+    <lastmod>2020-05-07T22:15:49+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tane.dev/tags/npm/</loc>
+    <lastmod>2020-05-07T22:15:49+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/nx/</loc>
+    <lastmod>2020-05-07T22:15:49+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/2020/05/publishing-npm-libraries-using-nx-and-github-actions/</loc>
+    <lastmod>2020-05-07T22:15:49+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/</loc>
+    <lastmod>2020-05-07T22:15:49+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/ecmascript/</loc>
     <lastmod>2020-04-23T13:10:26+02:00</lastmod>
   </url>
   
@@ -24,11 +49,6 @@
   
   <url>
     <loc>https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/</loc>
-    <lastmod>2020-04-23T13:10:26+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tane.dev/tags/</loc>
     <lastmod>2020-04-23T13:10:26+02:00</lastmod>
   </url>
   
