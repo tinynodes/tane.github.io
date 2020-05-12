@@ -8,11 +8,22 @@
     <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
     <webMaster>spam@tane.dev (Tane Piper)</webMaster>
     <copyright>This work is copyright Tane Piper</copyright>
-    <lastBuildDate>Thu, 07 May 2020 20:30:00 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2020 08:30:00 +0100</lastBuildDate>
     
         <atom:link href="https://tane.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
+    
+    <item>
+      <title>TypeScript Method Overloading - supporting both arguments lists and arrays</title>
+      <link>https://tane.dev/2020/05/typescript-method-overloading-supporting-both-arguments-lists-and-arrays/</link>
+      <pubDate>Tue, 12 May 2020 08:30:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <guid>https://tane.dev/2020/05/typescript-method-overloading-supporting-both-arguments-lists-and-arrays/</guid>
+      <description>Recently in RxJS Primitives I encountered a situation where one of the methods - concat was initially designed to take an argument list of strings and in the method used rest (...args) parameters, mimicking the signature and passing them to the String.prototype.concat
+ I&amp;rsquo;ve created a StackBlitz Project with the code for each step that can be followed along.
+ I wanted to refactor it to support an array of strings, but found that in the current implementation this is not possible and throws a TypeScript error:</description>
+    </item>
     
     <item>
       <title>Publishing NPM Libraries using NX and Github Actions</title>
@@ -57,17 +68,6 @@ The module is a set of features for Angular (7+) to create and control EditorJS 
 A demo application is available to see the editor in action, and the source is also available in the @tinynodes monorepo.
 Included Features The library exports several features once the NgxEditorJSModule has been included in your project.
 NgxEditorJSDirective This is the main directive which can be used on any element with the [ngxEditorJS] selector and and id attribute.</description>
-    </item>
-    
-    <item>
-      <title>Providing injectable features to Angular modules</title>
-      <link>https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/</link>
-      <pubDate>Thu, 14 Mar 2019 20:30:00 +0100</pubDate>
-      <author>spam@tane.dev (Tane Piper)</author>
-      <guid>https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/</guid>
-      <description>Working with Angular and Typescript; as I have refactored and re-written components I&amp;rsquo;ve been learning to take advantage of one of the more powerful features - dependency injection.
-Building Angular components, most developers will have already used this to inject features like the HTTP client or the FormBuilder to be used in a component. A common service example might look like this:
-1 2 3 4 5 6 7 8 9 10 11 12  import { Injectable } from &amp;#39;@angular/core&amp;#39;; import { HttpClient, HttpResponse } from &amp;#39;@angular/common/http&amp;#39;; import { Observable } from &amp;#39;rxjs&amp;#39;; @Injectable() export class RequestService { constructor(private readonly http: HttpClient) {} public getExample(): Observable&amp;lt;HttpResponse&amp;gt; { return this.</description>
     </item>
     
   </channel>
