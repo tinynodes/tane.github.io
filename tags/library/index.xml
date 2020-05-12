@@ -15,11 +15,11 @@
     
     
     <item>
-      <title>TypeScript Method Overloading - supporting both arguments lists and arrays</title>
-      <link>https://tane.dev/2020/05/typescript-method-overloading-supporting-both-arguments-lists-and-arrays/</link>
+      <title>Polymorphic TypeScript - Function overloading with rest parameters</title>
+      <link>https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/</link>
       <pubDate>Tue, 12 May 2020 08:30:00 +0100</pubDate>
       <author>spam@tane.dev (Tane Piper)</author>
-      <guid>https://tane.dev/2020/05/typescript-method-overloading-supporting-both-arguments-lists-and-arrays/</guid>
+      <guid>https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/</guid>
       <description>Recently in RxJS Primitives I encountered a situation where one of the methods - concat was initially designed to take an argument list of strings and in the method used rest (...args) parameters, mimicking the signature and passing them to the String.prototype.concat
  I&amp;rsquo;ve created a StackBlitz Project with the code for each step that can be followed along.
  I wanted to refactor it to support an array of strings, but found that in the current implementation this is not possible and throws a TypeScript error:</description>
