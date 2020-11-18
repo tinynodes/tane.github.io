@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tane.dev/tags/ecmascript/</loc>
+    <lastmod>2020-11-18T12:31:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/library/</loc>
+    <lastmod>2020-11-18T12:31:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/</loc>
+    <lastmod>2020-11-18T12:31:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/npm/</loc>
+    <lastmod>2020-11-18T12:31:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/rxjs/</loc>
+    <lastmod>2020-11-18T12:31:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/</loc>
+    <lastmod>2020-11-18T12:31:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/</loc>
+    <lastmod>2020-11-18T12:31:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tane.dev/tags/typescript/</loc>
+    <lastmod>2020-11-18T12:31:02+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tane.dev/tags/best-practice/</loc>
     <lastmod>2020-05-12T10:59:00+02:00</lastmod>
   </url>
@@ -23,32 +63,12 @@
   </url>
   
   <url>
-    <loc>https://tane.dev/tags/</loc>
-    <lastmod>2020-05-12T10:59:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tane.dev/tags/typescript/</loc>
-    <lastmod>2020-05-12T10:59:00+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://tane.dev/tags/github/</loc>
     <lastmod>2020-05-07T22:35:21+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tane.dev/tags/library/</loc>
-    <lastmod>2020-05-07T22:35:21+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://tane.dev/tags/monorepo/</loc>
-    <lastmod>2020-05-07T22:35:21+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tane.dev/tags/npm/</loc>
     <lastmod>2020-05-07T22:35:21+02:00</lastmod>
   </url>
   
@@ -60,16 +80,6 @@
   <url>
     <loc>https://tane.dev/2020/05/publishing-npm-libraries-using-nx-and-github-actions/</loc>
     <lastmod>2020-05-07T22:35:21+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tane.dev/tags/ecmascript/</loc>
-    <lastmod>2020-04-23T13:10:26+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tane.dev/tags/rxjs/</loc>
-    <lastmod>2020-04-23T13:10:26+02:00</lastmod>
   </url>
   
   <url>
@@ -149,11 +159,6 @@
   <url>
     <loc>https://tane.dev/takeoff/</loc>
     <lastmod>2019-03-13T11:41:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tane.dev/</loc>
-    <lastmod>2019-04-11T09:46:30+02:00</lastmod>
   </url>
   
 </urlset>

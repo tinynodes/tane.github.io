@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.69.1" />
+  <meta name="generator" content="Hugo 0.78.2" />
   
   <title>tane.dev - Ideas and stuff</title>
 
@@ -59,6 +59,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
+
+
+<span>Published: Nov 18, 2020</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
 
 
@@ -90,14 +98,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
-
-
-<span>Published: May 10, 2019</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -125,8 +125,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.69.1 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2020-05-12 10:59</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.78.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2020-11-18 12:31</div>
   </div>
 </footer>
 
@@ -155,6 +155,83 @@
 
   <main class="column main">
     
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: May 10, 2019</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: May 10, 2019)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 300 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 2 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs">NPM</a>.</p>
+<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io">EditorJS</a> instances.</p>
+<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo">demo application</a> is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes"><code>@tinynodes</code> monorepo</a>.</p>
+<h2 id="included-features">Included Features</h2>
+<p>The library exports several features once the <code>NgxEditorJSModule</code> has been included in your project.</p>
+<h4 id="ngxeditorjsdirective">NgxEditorJSDirective</h4>
+<p>This is the main directive which can be used on any element with the <code>[ngxEditorJS]</code> selector and and <code>id</code> attribute.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-editor&#34;</span> <span style="color:#a6e22e">ngxEditorJS</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>This will handle creating the editor instance via the <code>NgxEditorJSService</code></p>
+<h4 id="ngxeditorjscomponent">NgxEditorJSComponent</h4>
+<p>This component can be used in any Angular component using the <code>&lt;ngx-editorjs&gt;</code> tag. Again this component can take a set of blocks, it also provides a <code>holder</code> input for overriding the ID.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">ngx-editorjs</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">holder</span><span style="color:#960050;background-color:#1e0010">]=&#34;</span><span style="color:#a6e22e">holderProperty</span><span style="color:#960050;background-color:#1e0010">&#34;</span>&gt;&lt;/<span style="color:#f92672">ngx-editorjs</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="ngxeditorjsservice">NgxEditorJSService</h4>
+<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api">EditorJS API</a> - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
+<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md">README.md</a>) on how to do this in a AOT-friendly way.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>Before release I had to resolve an issue with AOT compiling and injecting EditorJS plugins - this means version <code>1.1.0</code> has already been released - now this is resolved I want support additional feature in the editor, as well as provide unit test coverage and better documentation and demo.</p>
+<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues">GitHub Issues</a> page.</p>
+</div>
+</div>
 
     
     <div class="post">
@@ -216,16 +293,16 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span>, <span style="color:#a6e22e">HttpResponse</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span>, <span style="color:#a6e22e">HttpResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
 
 <span style="color:#66d9ef">@Injectable</span>()
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RequestService</span> {
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>) {}
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>) {}
 
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">getExample</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">HttpResponse</span><span style="color:#f92672">&gt;</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/api/example&#39;</span>);
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">getExample</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">HttpResponse</span>&gt; {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">&#39;/api/example&#39;</span>);
   }
 }
 </code></pre></td></tr></table>
@@ -258,7 +335,7 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
 <span style="color:#66d9ef">@Injectable</span>()
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComponentService</span> {
@@ -309,8 +386,8 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">ComponentServiceConfig</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;COMPONENT_SERVICE_CONFIG&#39;</span>);
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>&lt;<span style="color:#f92672">ComponentServiceConfig</span>&gt;(<span style="color:#e6db74">&#39;COMPONENT_SERVICE_CONFIG&#39;</span>);
 </code></pre></td></tr></table>
 </div>
 </div><p>Now we have the token service we will provide a simple configuration with this token which will be an object, but a token can be used to inject anything from a string to a function, or even a class instance.</p>
@@ -332,9 +409,9 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CommonModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CommonModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
 <span style="color:#75715e">// Module specific imports ...
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">@NgModule</span>({
@@ -384,7 +461,7 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">ModuleWithProviders</span>, <span style="color:#a6e22e">Optional</span>, <span style="color:#a6e22e">SkipSelf</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">ModuleWithProviders</span>, <span style="color:#a6e22e">Optional</span>, <span style="color:#a6e22e">SkipSelf</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
 <span style="color:#75715e">// Here we can create a default object
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">defaultConfig</span>: <span style="color:#66d9ef">ComponentServiceConfig</span> <span style="color:#f92672">=</span> {
@@ -435,10 +512,10 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Inject</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Inject</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComponentService</span> {
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span>) <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>) {}
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span>) <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>) {}
 
   <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">undefined</span> {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storageInterface</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
@@ -543,7 +620,7 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// Using it in our application
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createLocalStorage</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;localstorage-ponyfill&#34;</span>;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createLocalStorage</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;localstorage-ponyfill&#34;</span>;
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fakeLocalStorage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createLocalStorage</span>({ <span style="color:#a6e22e">mode</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;memory&#34;</span> });
 
 <span style="color:#66d9ef">@NgModule</span>({
@@ -644,49 +721,25 @@ both on the server side, and client side with Angular, RxJS and other frameworks
 
     <div class="text-center">
       
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="https://tane.dev/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="https://tane.dev/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="https://tane.dev/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="https://tane.dev/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="https://tane.dev/blog/2/">2</a></li>
-    
-    
-    <li class="page-item disabled">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="https://tane.dev/">1</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="https://tane.dev/blog/2/">2</a>
+  </li>
+  <li class="page-item disabled">
     <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="https://tane.dev/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="https://tane.dev/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.69.1" />
+  <meta name="generator" content="Hugo 0.78.2" />
   
   <title>RxJS Primitives - Operators for mutating and filtering primitives - Ideas and stuff</title>
 
@@ -57,6 +57,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
+
+
+<span>Published: Nov 18, 2020</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
 
 
@@ -88,14 +96,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
-
-
-<span>Published: May 10, 2019</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -123,8 +123,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.69.1 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2020-05-12 10:59</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.78.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2020-11-18 12:31</div>
   </div>
 </footer>
 
@@ -227,7 +227,7 @@ utility operators.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">from</span>([<span style="color:#e6db74">&#39;hello&#39;</span>, <span style="color:#e6db74">&#39;world&#39;</span>]).<span style="color:#a6e22e">pipe</span>(
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;hello&#39;</span>, <span style="color:#e6db74">&#39;world&#39;</span>]).<span style="color:#a6e22e">pipe</span>(
   <span style="color:#a6e22e">toUpperCase</span>()
 ).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [&#39;HELLO&#39;, &#39;WORLD&#39;]
 </span></code></pre></td></tr></table>
@@ -242,7 +242,7 @@ that returns the original value instead (like <code>filter</code>).</p>
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
 </span></code></pre></td></tr></table>
 </div>
 </div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString">Number.prototype.toLocaleString</a> supports formatting such as currency.</p>
@@ -281,7 +281,7 @@ that don&rsquo;t fit into the other packages but still have some usefulness.</p>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">searchField</span>.<span style="color:#a6e22e">valueChange</span>.<span style="color:#a6e22e">pipe</span>(
-  <span style="color:#a6e22e">debounceWithQuery</span>(<span style="color:#ae81ff">1000</span>, (<span style="color:#a6e22e">search</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`/search?query=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">search</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
+  <span style="color:#a6e22e">debounceWithQuery</span>(<span style="color:#ae81ff">1000</span>, (<span style="color:#a6e22e">search</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">http</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">`/search?query=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">search</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
 ).<span style="color:#a6e22e">subscribe</span>()
 </code></pre></td></tr></table>
 </div>

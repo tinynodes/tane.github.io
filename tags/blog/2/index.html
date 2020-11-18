@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.69.1" />
+  <meta name="generator" content="Hugo 0.78.2" />
   
   <title>Tags - Ideas and stuff</title>
 
@@ -58,6 +58,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
+
+
+<span>Published: Nov 18, 2020</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
 
 
@@ -89,14 +97,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
-
-
-<span>Published: May 10, 2019</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -124,8 +124,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.69.1 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2020-05-12 10:59</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.78.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2020-11-18 12:31</div>
   </div>
 </footer>
 
@@ -152,543 +152,248 @@
 
   </div>
   <main class="column main">
-    
+    <h2
+      class="taxonomy-title"
+      title="The taxonomy of this page is Tags"
+      aria-label="The taxonomy of this page is Tags">
+      Tags
+    </h2>
     
     <div class="post">
   <div class="post-heading">
     <h1>
-      <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/">Providing injectable features to Angular modules</a>
+      <a href="https://tane.dev/tags/ecmascript/">ECMAScript</a>
     </h1>
     
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Mar 14, 2019</span>
-  
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Mar 16, 2019)</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1700 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 8 minutes reading time</span>
-</div>
-
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
-    
-    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/development">Development</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
-    
   </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/#commento">... comments</a>
-</div>
-
-      
-    
-  </div>
-  <div class="post-content"><p>Working with <a href="https://angular.io/">Angular</a> and <a href="https://www.typescriptlang.org/">Typescript</a>; as I have refactored and re-written components I&rsquo;ve been learning to take advantage of one of the more powerful features - dependency injection.</p>
-<p>Building Angular components, most developers will have already used this to inject features like the HTTP client or the FormBuilder to be used in a component. A common service example might look like this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span>, <span style="color:#a6e22e">HttpResponse</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-
-<span style="color:#66d9ef">@Injectable</span>()
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RequestService</span> {
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>) {}
-
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">getExample</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">HttpResponse</span><span style="color:#f92672">&gt;</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/api/example&#39;</span>);
-  }
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>Angular&rsquo;s own features can be injected via their class identity (e.g. <code>HttpClient</code>).  You can also inject any components, services or pipes that are registered within a module.</p>
-<p>Angular also provides a mechanism for custom injections, this means items like configurations or instances of external libraries can be passed into any constructor within your module or any item within the dependency tree.  To do this the library needs to provide an <code>InjectionToken</code> which represents the key in the dependency tree, and use the <code>Inject</code> decorator to provide an instance into a class constructor (this is covered later in this post).</p>
-<h2 id="creating-the-service">Creating The Service</h2>
-<p>I recently worked on refactoring some code where in a component it had some code to handle getting a session object from <code>sessionStorage</code>. When working with Angular&rsquo;s <code>ng serve</code> making changes will often result in a refresh, destroying any existing session. This feature allowed session storage to be turned on and keep it between refreshes by allowing the component to check if a value existed in <code>sessionStorage</code> object.</p>
-<p>Using the principles in <a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a> I moved the code into a service. Having a service do one thing it made the code easier to understand. The unit test for this is also smaller and can cover most of the component.</p>
-<p>The service has one additional property which is <code>storagePrefix</code>, used to make each instance of the service unique to it&rsquo;s component.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-
-<span style="color:#66d9ef">@Injectable</span>()
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComponentService</span> {
-  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">storagePrefix</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my-app&#39;</span>;
-
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">init</span>(<span style="color:#a6e22e">storagePrefix</span>: <span style="color:#66d9ef">string</span>) {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">storagePrefix</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">storagePrefix</span>;
-  }
-
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">undefined</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sessionStorage</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-  }
-
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
-    <span style="color:#a6e22e">sessionStorage</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>, <span style="color:#a6e22e">value</span>);
-  }
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>In it&rsquo;s current implementation it&rsquo;s usable, but it has a few issues.  The main one is that it uses <code>sessionStorage</code> but trusts that it exists on the global object, this means we should always expect it to be available, and is a bad practice.  It also limits this service to only use <code>sessionStorage</code> and no other key/value store. It would be better if we could provide it to our service instead.</p>
-<p>We can also set the storagePrefix via our app configuration and means our component doesn&rsquo;t need to understand this configuration (yet!) so it avoids us having to call the <code>init</code> method within a component&rsquo;s <code>ngOnInit</code>.</p>
-<p>By making these injectable, we will not only be able to provide our <code>sessionStorage</code> but we can support any module or
-library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage API</a>. This means we no longer need to rely on the global object and we have more control over what we inject.</p>
-<p>The powerful feature of dependency injection is the ability to pass instances of other non-angular applications. For example you could pass the instance of a <code>jQuery</code> application and call it&rsquo;s methods from your application (you&rsquo;ll also want to check out <a href="https://angular.io/api/core/NgZone">NgZone</a> when running these, but I&rsquo;ll discuss that in a future post).</p>
-<p>This allows for the transition of applications over time within an organisation, rather than having to replace all applications in one go. It&rsquo;s a good way to safely inject features from third-party libraries and means passing mock versions is easier for tests.</p>
-<h2 id="creating-an-injectable-service-and-module">Creating an injectable service and module</h2>
-<h3 id="making-features-injectable">Making features injectable</h3>
-<p>First we need to define the interface of the object want to use for the configuration. This interface provides a contract in the <code>forRoot</code> method described below and tells developers what options they can provide to the application</p>
-<p>Our configuration will require a <code>storagePrefix</code> as a string - this is need to set the name of the store.  We also pass our <code>Storage</code> instance, but with this we can set a default value in our component</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ComponentServiceConfig</span> {
-  <span style="color:#a6e22e">storagePrefix</span>: <span style="color:#66d9ef">string</span>;
-  <span style="color:#a6e22e">storageInterface?</span>: <span style="color:#66d9ef">Storage</span>;
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>Next we will create an <code>InjectionToken</code>, a token that is usually constant representation of something we want to provide via dependency injection.  You can use any type of object as your token type, and can even provide a factory method to provide dependencies. Check out the <a href="https://angular.io/api/core/InjectionToken#tree-shakable-injectiontoken">Tree-shakeable Injection Token</a> to see how you can do some advanced use. In our case we will just have the component config object.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">ComponentServiceConfig</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;COMPONENT_SERVICE_CONFIG&#39;</span>);
-</code></pre></td></tr></table>
-</div>
-</div><p>Now we have the token service we will provide a simple configuration with this token which will be an object, but a token can be used to inject anything from a string to a function, or even a class instance.</p>
-<h3 id="making-the-angular-module-configurable">Making the Angular module configurable</h3>
-<p>To make the service configurable, it should be provided via a <a href="https://angular.io/guide/ngmodules">NgModule</a> - a regular module might look something like this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CommonModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
-<span style="color:#75715e">// Module specific imports ...
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">@NgModule</span>({
-  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">CommonModule</span>, <span style="color:#a6e22e">ReactiveFormsModule</span>],
-  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">FeatureFormComponent</span>, <span style="color:#a6e22e">FeatureViewComponent</span>, <span style="color:#a6e22e">FeaturePipe</span>],
-  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">FeatureFormComponent</span>, <span style="color:#a6e22e">FeatureViewComponent</span>],
-  <span style="color:#a6e22e">provides</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">ComponentService</span>]
-})
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibraryModule</span> {}
-</code></pre></td></tr></table>
-</div>
-</div><p>To make this module accept a configuration we need to add a method that can return an instance of our module with custom providers. Providers are an important part of Angular&rsquo;s <a href="https://angular.io/guide/dependency-injection">dependency injection</a> as these are the instance of what child components can inject - all will hopefully become clear through the code example.</p>
-<p>First we will add a static <code>forRoot</code> method to the class. This method provides a factory function where we can pass a configuration in the application imports.</p>
-<p>The factory returns an instance of that module with the provided configuration, and this passed into the items with <code>Inject</code> . The module can then be further used without the <code>forRoot</code> as long as it&rsquo;s configured at the root of the application (see <a href="https://angular.io/api/core/SkipSelf">SkipSelf</a>)</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">ModuleWithProviders</span>, <span style="color:#a6e22e">Optional</span>, <span style="color:#a6e22e">SkipSelf</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-
-<span style="color:#75715e">// Here we can create a default object
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">defaultConfig</span>: <span style="color:#66d9ef">ComponentServiceConfig</span> <span style="color:#f92672">=</span> {
-  <span style="color:#a6e22e">storagePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
-  <span style="color:#a6e22e">storageInterface</span>: <span style="color:#66d9ef">sessionStorage</span>; <span style="color:#75715e">// In our default value we will trust the global is there 
-</span><span style="color:#75715e"></span>}
-
-<span style="color:#66d9ef">@NgModule</span>({
-  ...
-})
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibraryModule</span> {
-  <span style="color:#66d9ef">constructor</span>(
-    <span style="color:#66d9ef">@Optional</span>()
-    <span style="color:#66d9ef">@SkipSelf</span>()
-    <span style="color:#a6e22e">parentModule</span>: <span style="color:#66d9ef">LibraryModule</span>,
-  ) {}
-  <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">forRoot</span>(<span style="color:#a6e22e">config?</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ModuleWithProviders</span> {
-    <span style="color:#66d9ef">return</span> {
-      <span style="color:#a6e22e">ngModule</span>: <span style="color:#66d9ef">LibraryModule</span>,
-      <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [
-        {
-          <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">COMPONENT_SERVICE_CONFIG</span>,
-          <span style="color:#75715e">// Destructring allows the value of the config to be merged
-</span><span style="color:#75715e"></span>          <span style="color:#75715e">// this is a shallow operation so keep the objects simple
-</span><span style="color:#75715e"></span>          <span style="color:#a6e22e">useValue</span><span style="color:#f92672">:</span> { ...<span style="color:#a6e22e">defaultConfig</span>, ...<span style="color:#a6e22e">config</span> },
-        },
-      ],
-    };
-  }
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>Before we can use this in our application we also need to update the <code>ComponentService</code> itself to use this configuration. Here the <a href="https://angular.io/api/core/Inject">Inject</a> decorator will be used to tell the constructor that the <code>ComponentServiceConfig</code> this service needs will be available to inject via the <code>COMPONENT_SERVICE_CONFIG</code> token.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Inject</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComponentService</span> {
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span>) <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>) {}
-
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">undefined</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storageInterface</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-  }
-
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storageInterface</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>, <span style="color:#a6e22e">value</span>);
-  }
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>As the config is set with <code>private</code> in the constructor, TypeScript knows to set this as a property on the class. This is the same as writing the following code and provides a clean shorthand to set up properties.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComponentService</span> {
-  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>;
-
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>) {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>;
-  }
-}
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="providing-the-features-in-the-app">Providing the features in the app</h3>
-<p>Now that we have our configurable module, the Angular application can be provided with a configuration when importing.</p>
-<p>As the module now accepts any <code>Storage</code> type, we&rsquo;ll instead provide <code>localStorage</code> for this application, along side the <code>storagePrefix</code>:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@NgModule</span>({
-  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>],
-  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">BrowserModule</span>,
-    <span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forRoot</span>([], <span style="color:#a6e22e">routerConfig</span>),
-    <span style="color:#a6e22e">LibraryModule</span>.<span style="color:#a6e22e">forRoot</span>({
-      <span style="color:#a6e22e">storageInterface</span>: <span style="color:#66d9ef">localStorage</span>,
-      <span style="color:#a6e22e">storagePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;my-new-app&#39;</span>
-    })
-  ],
-  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [...<span style="color:#a6e22e">environment</span>.<span style="color:#a6e22e">mockProviders</span>],
-  <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>]
-})
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
-</code></pre></td></tr></table>
-</div>
-</div><p>Another example is we could have an NPM library that provides the same interface, such as <a href="https://www.npmjs.com/package/localstorage-ponyfill">localStorage-ponyfill</a>, it could be used in your application - or you may want to provide it to a <code>TestBed</code> configuration:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// Using it in our application
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createLocalStorage</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;localstorage-ponyfill&#34;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fakeLocalStorage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createLocalStorage</span>({ <span style="color:#a6e22e">mode</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;memory&#34;</span> });
-
-<span style="color:#66d9ef">@NgModule</span>({
-  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
-    ...
-    <span style="color:#a6e22e">LibraryModule</span>.<span style="color:#a6e22e">forRoot</span>({
-      <span style="color:#a6e22e">storageInterface</span>: <span style="color:#66d9ef">fakeLocalStorage</span>,
-      <span style="color:#a6e22e">storagePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;my-new-app&#39;</span>
-    })
-    ...
-  ]
-})
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
-
-<span style="color:#75715e">// Or writing some tests
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">TestBed</span>.<span style="color:#a6e22e">configureTestingModule</span>({
-  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">TestHostComponent</span>],
-  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [
-    {
-      <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">BB_FORMS_CONTAINER_CONFIG</span>,
-      <span style="color:#a6e22e">useValue</span><span style="color:#f92672">:</span> {
-        <span style="color:#a6e22e">storageStrategy</span>: <span style="color:#66d9ef">fakeLocalStorage</span>,
-      },
-    },
-  ]
-});
-</code></pre></td></tr></table>
-</div>
-</div><p>With this technique, any kind of primitive or complex object, method or class can now be passed into your feature modules - and is a useful way to provide third-party libraries to your modules, configuring not just your services, but also components, pipes and stores.</p>
-<p>Any class with a <code>constructor</code> (provided it&rsquo;s in the same dependency tree) can use <code>Inject</code> with your exported token to access this configuration.</p>
-<p>Hopefully you will also find this technique useful to improve the configurable and testable features of your module.  Feel free to <a href="https://twitter.com/tanepiper">respond on twitter</a> if you spot any typos or errors.</p>
-</div>
+  <div class="post-content"></div>
 </div>
 
     
     <div class="post">
   <div class="post-heading">
     <h1>
-      <a href="https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/">New blog (&#39;Hey I&#39;m Moving From Medium&#39;)</a>
+      <a href="https://tane.dev/tags/library/">Library</a>
     </h1>
     
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Mar 12, 2019</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 600 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 3 minutes reading time</span>
+  </div>
+  <div class="post-content"></div>
 </div>
 
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
     
-    <a class="flex-item" href="https://tane.dev/tags/blog">Blog</a>
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/npm/">NPM</a>
+    </h1>
     
   </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/#commento">... comments</a>
+  <div class="post-content"></div>
 </div>
 
-      
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/rxjs/">RxJS</a>
+    </h1>
     
   </div>
-  <div class="post-content"><p>Buying a new domain is always a good excuse to do something with it, so of course grabbing my <code>.dev</code> seemed like a perfect idea
-to set up a new blog.  Also recently I&rsquo;ve been dissatisfied with the way <a href="https://medium.com">Medium</a> has dealt with recent changes
-(although I&rsquo;m not going to go into all the reasons except to say I&rsquo;d rather own and control all my content).</p>
-<p>The site is Markdown powered, generated with <a href="https://gohugo.io/">Hugo</a> and served via <a href="https://github.com">GitHub</a> Pages with a CI deployment.
-I plan to keep the blog light and tracking free as possible (but I would like to know if anyone is reading at some point).</p>
-<p>Over the course of the next few weeks, I&rsquo;m planning to migrate some of existing content over to this site, mostly by updating some
-of the content - although there are some previous life posts I might just leave. Below are a set of links to some of that existing content.</p>
-<p>Hopefully though those links you as a reader would see value in what I will be writing here; I&rsquo;ve been writing software
-across various stacks for over 10 years and have gained a lot of experience in building many types of applications.</p>
-<p>I&rsquo;ve also had a lot of life experience and have also talked about burnout and depression. I&rsquo;ve also recently been diagnosed with
-ADHD at the age of 37 and I am about to begin treatment for it in a foreign country.  I&rsquo;ve living in The Netherlands for just over two years,
-mostly due to the catastrophe that is the Brexit.</p>
-<p>These topics might come up, but I will be mostly trying to focus on development topics.  My current focus is on Typescript
-both on the server side, and client side with Angular, RxJS and other frameworks.</p>
-<h2 id="blog-posts-on-medium">Blog Posts on Medium</h2>
-<ul>
-<li><a href="https://medium.com/this-happened-to-me/i-made-a-huge-mistake-86b9d27f9962">I made a huge mistake</a> - A story about me taking on too much work and not communicating enough. My first real burnout story.</li>
-<li><a href="https://medium.com/@tanepiper/takeoff-a-rapid-development-environment-designed-for-hack-days-9a45ae891366">Takeoff: A rapid development environment designed for hack days</a> - In this post I announced <a href="https://takeoff.sh">Takeoff</a> (and subsequent updates <a href="https://medium.com/@tanepiper/takeoff-1-1-support-for-blueprints-83e6606ec11">1</a>, <a href="https://medium.com/@tanepiper/hacking-in-minutes-with-takeoff-6193aed52e3f">2</a>, <a href="https://medium.com/@tanepiper/takeoff-v2-making-rapid-development-even-easier-with-typescript-and-docker-15786c53b685">3</a>) a tool I&rsquo;ve developed for prototyping application easily using docker compose and local source files.</li>
-<li><a href="https://medium.com/@tanepiper/i-could-have-been-a-contender-7c5fb37213d3">I could have been a contender</a> - Projects I&rsquo;ve abandoned, with my recent ADHD diagnosis these posts provide an insight into how it affects me.</li>
-<li><a href="https://medium.com/@tanepiper/music-markup-web-components-for-web-audio-774c26e3cd71">Music Markup - Web Components for Web Audio</a> - Webcomponents! WebAudio! This post has it all, and with them I create a compostable keyboard using <a href="https://stenciljs.com/">StencilJS</a> to create reusable web components</li>
-<li><a href="https://medium.com/@tanepiper/dark-patterns-with-the-html-5-2-dialog-tag-and-chrome-for-fun-and-profit-249ce092d200">Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</a> - Using and abusing the inbuilt <code>dialog</code> tag in HTML5 to crash the users browser very easily, with some proposed solutions on how it could be fixed.</li>
-<li><a href="https://medium.com/dailyjs/refactoring-an-old-and-broken-library-to-using-async-await-with-tdd-90157de268a2">Refactoring an old and broken library to using async/await with TDD</a> - I refactored one of my nodejs modules and wrote a blog post on the process of publishing different versions of a node module using a CI pipeline.</li>
-<li><a href="https://medium.com/@tanepiper/typescript-tip-dont-use-naked-any-create-an-any-interface-instead-730bdd2fc224">Typescript tip: Don&rsquo;t use “naked any”, create an “any interface” instead</a> - A Typescript tip for making types on the fly to handle situations where you don&rsquo;t know the shape of the data.</li>
-</ul>
+  <div class="post-content"></div>
 </div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/typescript/">TypeScript</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/best-practice/">Best Practice</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/function-overloading/">Function Overloading</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/polymorphism/">Polymorphism</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/github/">Github</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/monorepo/">Monorepo</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/nx/">NX</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/angular/">Angular</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/development/">Development</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/json/">JSON</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/schema-json/">Schema JSON</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/tutorial/">Tutorial</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/tags/blog/">Blog</a>
+    </h1>
+    
+  </div>
+  <div class="post-content"></div>
 </div>
 
     
     <div class="text-center">
       
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="https://tane.dev/tags/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="https://tane.dev/tags/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="https://tane.dev/tags/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="https://tane.dev/tags/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="https://tane.dev/tags/blog/2/">2</a></li>
-    
-    
-    <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="https://tane.dev/tags/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="https://tane.dev/tags/">1</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="https://tane.dev/tags/blog/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="https://tane.dev/tags/blog/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="https://tane.dev/tags/blog/4/">4</a>
+  </li>
+  <li class="page-item">
+    <a href="https://tane.dev/tags/blog/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="https://tane.dev/tags/blog/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 
     </div>
   </main>
 </div>
+
+<style>
+  .taxonomy-title {
+    padding-left: 1rem;
+  }
+
+  .taxonomy-title:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f02c';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900;
+  }
+</style>
 </div>
     <footer></footer>
 

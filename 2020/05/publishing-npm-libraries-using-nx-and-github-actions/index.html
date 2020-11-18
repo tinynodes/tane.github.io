@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.69.1" />
+  <meta name="generator" content="Hugo 0.78.2" />
   
   <title>Publishing NPM Libraries using NX and Github Actions - Ideas and stuff</title>
 
@@ -57,6 +57,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
+
+
+<span>Published: Nov 18, 2020</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
 
 
@@ -88,14 +96,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
-
-
-<span>Published: May 10, 2019</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -123,8 +123,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.69.1 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2020-05-12 10:59</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.78.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2020-11-18 12:31</div>
   </div>
 </footer>
 
@@ -290,9 +290,9 @@ changing the path to <code>@tinynodes/rxjs-string</code> to match the NPM import
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// index.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">myFactoryFunction</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./libs/factory&#39;</span>;
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyThing</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./classes/my-thing&#39;</span>
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyInterface</span>, <span style="color:#a6e22e">SOME_CONSTANT</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./types/thing-types&#39;</span> 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">myFactoryFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./libs/factory&#39;</span>;
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyThing</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./classes/my-thing&#39;</span>
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyInterface</span>, <span style="color:#a6e22e">SOME_CONSTANT</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./types/thing-types&#39;</span> 
 </code></pre></td></tr></table>
 </div>
 </div><p>To see the output of this library you can run <code>nx build library-name</code>, this will output a NPM module
@@ -315,14 +315,14 @@ to the <code>dist</code> folder.</p>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># File for Pull Request on master branch</span>
-<span style="color:#66d9ef">name</span>: PR on master
+<span style="color:#f92672">name</span>: <span style="color:#ae81ff">PR on master</span>
 
 <span style="color:#75715e"># When a PR is opened to master</span>
-<span style="color:#66d9ef">on</span>:
-  <span style="color:#66d9ef">pull_request</span>:
-    <span style="color:#66d9ef">branches</span>:
-      - master
-    <span style="color:#66d9ef">types</span>: [opened, reopened, synchronize]
+<span style="color:#f92672">on</span>:
+  <span style="color:#f92672">pull_request</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+    <span style="color:#f92672">types</span>: [<span style="color:#ae81ff">opened, reopened, synchronize]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>This first section provides the name and triggers for when the action runs: when a pull request opened or re-opened against <code>master</code>.</p>
@@ -339,14 +339,14 @@ to the <code>dist</code> folder.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">jobs</span>:
-  <span style="color:#66d9ef">build</span>:
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">jobs</span>:
+  <span style="color:#f92672">build</span>:
     <span style="color:#75715e"># Setup OS and Node Version</span>
-    <span style="color:#66d9ef">runs-on</span>: ubuntu-latest
-    <span style="color:#66d9ef">strategy</span>:
-      <span style="color:#66d9ef">matrix</span>:
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+    <span style="color:#f92672">strategy</span>:
+      <span style="color:#f92672">matrix</span>:
         <span style="color:#75715e"># Latest nodes only</span>
-        <span style="color:#66d9ef">node-version</span>: [<span style="color:#ae81ff">13.</span>x]
+        <span style="color:#f92672">node-version</span>: [<span style="color:#ae81ff">13.</span><span style="color:#ae81ff">x]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>This sets up a Github Action runner and makes sure NodeJS 13 is installed. Here you can add more versions and run parallel tests against different versions
@@ -368,17 +368,17 @@ if you plan to support more than one.</p>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Define Steps</span>
-<span style="color:#66d9ef">steps</span>:
+<span style="color:#f92672">steps</span>:
   <span style="color:#75715e"># Checkout code</span>
-  - <span style="color:#66d9ef">uses</span>: actions/checkout@v2
-    <span style="color:#66d9ef">with</span>:
-      <span style="color:#66d9ef">ref</span>: ${{ github.event.pull_request.head.ref }}
-      <span style="color:#66d9ef">fetch-depth</span>: <span style="color:#ae81ff">0</span>
+  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+    <span style="color:#f92672">with</span>:
+      <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">${{ github.event.pull_request.head.ref }}</span>
+      <span style="color:#f92672">fetch-depth</span>: <span style="color:#ae81ff">0</span>
 
-  - <span style="color:#66d9ef">name</span>: Use Node.js ${{ matrix.node-version }}
-    <span style="color:#66d9ef">uses</span>: actions/setup-node@v1
-    <span style="color:#66d9ef">with</span>:
-      <span style="color:#66d9ef">node-version</span>: ${{ matrix.node-version }}
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use Node.js ${{ matrix.node-version }}</span>
+    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-node@v1</span>
+    <span style="color:#f92672">with</span>:
+      <span style="color:#f92672">node-version</span>: <span style="color:#ae81ff">${{ matrix.node-version }}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>The first two steps first check out the code from the pull request branch, and then sets up NodeJS to run.</p>
@@ -393,8 +393,8 @@ only the current one - and this includes the master branch. This command tells g
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#75715e"># Make sure we have all branches</span>
-  - <span style="color:#66d9ef">name</span>: Fetch other branches
-    <span style="color:#66d9ef">run</span>: git fetch --no-tags --prune --depth=<span style="color:#ae81ff">5</span> origin master
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Fetch other branches</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">git fetch --no-tags --prune --depth=5 origin master</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Finally, we run some NPM command for installing the dependencies, running linting and test coverage.</p>
@@ -410,14 +410,14 @@ only the current one - and this includes the master branch. This command tells g
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#66d9ef">name</span>: Install environment
-    <span style="color:#66d9ef">run</span>: npm ci
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install environment</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm ci</span>
 
-  - <span style="color:#66d9ef">name</span>: Run lint
-    <span style="color:#66d9ef">run</span>: npm run affected:lint -- --base=<span style="color:#e6db74">&#34;origin/master&#34;</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run lint</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run affected:lint -- --base=&#34;origin/master&#34;</span>
 
-  - <span style="color:#66d9ef">name</span>: Tests coverage
-    <span style="color:#66d9ef">run</span>: npm run affected:test -- --base=<span style="color:#e6db74">&#34;origin/master&#34;</span> --codeCoverage
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Tests coverage</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run affected:test -- --base=&#34;origin/master&#34; --codeCoverage</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Using the affected commands, the pipeline will only run linting and testing against libraries that have changed against the
@@ -449,12 +449,12 @@ settings in &ldquo;Developer Settings -&gt; Personal Access Token&rdquo;. The on
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">name</span>: Merge on master
-<span style="color:#66d9ef">on</span>:
-  <span style="color:#66d9ef">pull_request</span>:
-    <span style="color:#66d9ef">branches</span>:
-      - master
-    <span style="color:#66d9ef">types</span>: [closed]
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Merge on master</span>
+<span style="color:#f92672">on</span>:
+  <span style="color:#f92672">pull_request</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+    <span style="color:#f92672">types</span>: [<span style="color:#ae81ff">closed]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>The <code>job</code> section is the same as above, but for the steps there is a slight change - to allow merges to master that <em>don&rsquo;t</em> trigger a release,
@@ -469,11 +469,11 @@ you can&rsquo;t just put a block around the entire set of steps so has to be add
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">steps</span>:
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">steps</span>:
   <span style="color:#75715e"># Checkout code</span>
-  - <span style="color:#66d9ef">name</span>: Checkout Code
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">uses</span>: actions/checkout@v2
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout Code</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Instead of running lint and test, we&rsquo;ll now run a set of different tasks - hold on tight because we&rsquo;re about to dive into some <code>bash</code> code!</p>
@@ -491,13 +491,13 @@ then we call our publish bash script</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#66d9ef">name</span>: Deploy
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">env</span>:
-      <span style="color:#66d9ef">NPM_AUTH_TOKEN</span>: ${{ secrets.NPM_AUTH_TOKEN }}
-    <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">      npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN</span>
-      ./.github/scripts/publish-libraries.sh
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">env</span>:
+      <span style="color:#f92672">NPM_AUTH_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.NPM_AUTH_TOKEN }}</span>
+    <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">      npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
+</span><span style="color:#e6db74">      ./.github/scripts/publish-libraries.sh</span>      
 </code></pre></td></tr></table>
 </div>
 </div><p>Create the <code>.github/scripts/publish-libraries.sh</code> file and make sure it&rsquo;s set to executable by typing <code>chmod +x .github/scripts/publish-libraries.sh</code> before committing the script.</p>
@@ -658,25 +658,25 @@ for other developers to use!  We&rsquo;re not done yet though!</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#66d9ef">name</span>: Build Docs
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">run</span>: npm run docs
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build Docs</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run docs</span>
 
-  - <span style="color:#66d9ef">name</span>: Commit files
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">      git config --local user.email &#34;action@github.com&#34;</span>
-      git config --local user.name <span style="color:#e6db74">&#34;GitHub Action&#34;</span>
-      git add .
-      git commit -m <span style="color:#e6db74">&#34;Release [skip-ci]&#34;</span> -a || <span style="color:#66d9ef">true</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Commit files</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">      git config --local user.email &#34;action@github.com&#34;
+</span><span style="color:#e6db74">      git config --local user.name &#34;GitHub Action&#34;
+</span><span style="color:#e6db74">      git add .
+</span><span style="color:#e6db74">      git commit -m &#34;Release [skip-ci]&#34; -a || true</span>      
 
-  - <span style="color:#66d9ef">name</span>: Push changes
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">uses</span>: ad-m/github-push-action@master
-    <span style="color:#66d9ef">with</span>:
-      <span style="color:#66d9ef">github_token</span>: ${{ secrets.ACTION_AUTH_TOKEN }}
-      <span style="color:#66d9ef">tags</span>: <span style="color:#66d9ef">true</span>
-      <span style="color:#66d9ef">force</span>: <span style="color:#66d9ef">true</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Push changes</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ad-m/github-push-action@master</span>
+    <span style="color:#f92672">with</span>:
+      <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">${{ secrets.ACTION_AUTH_TOKEN }}</span>
+      <span style="color:#f92672">tags</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#f92672">force</span>: <span style="color:#66d9ef">true</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>For RxJS Primitives I used <a href="https://typedoc.org/">TypeDoc</a> to generate static content to the <code>docs</code> folder, which is then used by GitHub Pages, but here

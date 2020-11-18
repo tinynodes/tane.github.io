@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.69.1" />
+  <meta name="generator" content="Hugo 0.78.2" />
   
   <title>Polymorphism - Ideas and stuff</title>
 
@@ -58,6 +58,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
+
+
+<span>Published: Nov 18, 2020</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
 
 
@@ -89,14 +97,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
-
-
-<span>Published: May 10, 2019</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -124,8 +124,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.69.1 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2020-05-12 10:59</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.78.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2020-11-18 12:31</div>
   </div>
 </footer>
 
@@ -220,8 +220,8 @@ error:</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
 }
 
 <span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Testing&#39;</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">concat</span>([<span style="color:#e6db74">&#39; one&#39;</span>, <span style="color:#e6db74">&#39; two&#39;</span>])).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)
@@ -252,10 +252,10 @@ which attempts to keep the type information in all implementations:</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
 }
 
 <span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
@@ -285,10 +285,10 @@ we need to use the <code>any</code> value in the <a href="https://stackblitz.com
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
 }
 
 <span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
@@ -326,14 +326,14 @@ then we pass all the arguments using destructuring:</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> {
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
   <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">inArgs</span>: <span style="color:#66d9ef">any</span>[] <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">args</span>];
   <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">instanceof</span> Array) {
-    <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>])))
+    <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>])))
   }
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>)))
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>)))
 }
 
 <span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }

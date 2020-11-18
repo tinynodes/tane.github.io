@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.69.1" />
+  <meta name="generator" content="Hugo 0.78.2" />
   
   <title>Archive Posts - Ideas and stuff</title>
 
@@ -58,6 +58,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
+
+
+<span>Published: Nov 18, 2020</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
 
 
@@ -89,14 +97,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a> 
-
-
-<span>Published: May 10, 2019</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -124,8 +124,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.69.1 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2020-05-12 10:59</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.78.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2020-11-18 12:31</div>
   </div>
 </footer>
 
@@ -153,6 +153,319 @@
   </div>
   <main class="column main">
     
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Nov 18, 2020</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Nov 18, 2020)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1000 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs">RxJS</a> libraries in <a href="https://github.com/tanepiper/rxjs-primitives">rxjs-primitives</a>.
+Since it&rsquo;s released I&rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&rsquo;ve highlighted them here as they may be useful to some developers.</p>
+<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives">full docs here</a>.</p>
+<h3 id="typescript-4">Typescript 4</h3>
+<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">polymorphic functions</a> in place of
+<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html">Vardic Tuple Types</a> and is why there is a major bump on all packages.</p>
+<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts">old</a> and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts">new</a>
+<code>concat</code> operator in the <code>rxjs-string</code> package.</p>
+<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> allowing for more robust
+Observable testing (if you are working with RxJS I highly recommend checking it out, it integrates well with runners like Jest).</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(
+    <span style="color:#e6db74">&#39;should return string value of string ending with passed character&#39;</span>,
+    <span style="color:#a6e22e">marbles</span>((<span style="color:#a6e22e">m</span>) <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-|&#39;</span>, { <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;test&#39;</span>, <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;testing&#39;</span>, <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;gone&#39;</span> });
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^------!&#39;</span>;
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;---y---|&#39;</span>, { <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;testing&#39;</span> });
+      <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterEndsWith</span>(<span style="color:#e6db74">&#39;g&#39;</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
+      <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
+    }),
+  );
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="rxjs-array">rxjs-array</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-array</p>
+</blockquote>
+<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html">array module</a> there are some operators to use with finding
+the difference or intersection between a source and a passed array, for example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">of</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>])
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">difference</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>]))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [&#39;b&#39;, &#39;d&#39;]
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">of</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>])
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">intersects</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>]))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [&#39;a&#39;]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>These methods accept an array, or an <code>Observable&lt;Array&gt;</code> of items to compare against.</p>
+<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch">binarySearch</a> operator which returns
+a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult">BinarySearchResult</a> tuple.</p>
+<h3 id="rxjs-boolean">rxjs-boolean</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-boolean</p>
+</blockquote>
+<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm</a> operator <code>luhnCheck</code> is provided that does validation on
+numbers such as credit cards, ID cards and other value schemes that use the check.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;4485275742308327&#39;</span>)
+    .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">luhnCheck</span>())
+    .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// true, this is a valid credit card
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rxjs-number">rxjs-number</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-number</p>
+</blockquote>
+<p><code>inRange</code> / <code>outOfRange</code> and <code>filterInRange</code> / <code>filterOutOfRange</code> both all two numbers, the filter methods return the value from the source observable within the range of those values,
+while the other methods return a boolean value if in range. An optional third value will include/exclude the range value
+based on the method</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>])
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterInRange</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [0, 1, 2, 10]
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// Passing true as the third parameter, the range numbers will also be excluded
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fromNumber</span>([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>])
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterInRange</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>, <span style="color:#66d9ef">true</span>))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [1, 2]
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rxjs-string">rxjs-string</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-string</p>
+</blockquote>
+<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize">titleize</a>, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat">repeat</a> and
+<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match">match</a> add new utility features for strings. Where they can they also support localisation:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Mary had a little lamb&#39;</span>)
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">titleize</span>())
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// &#39;Mary Had A Little Lamb&#39;
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Mary had ä little lamb&#39;</span>)
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">titleize</span>(<span style="color:#e6db74">&#39;de-DE&#39;</span>))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// &#39;Mary Had Ä Little Lamb&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rxjs-utility">rxjs-utility</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-utility</p>
+</blockquote>
+<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html">utility module</a> contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
+These provide a way to do side effects.  With <code>startWithTap</code> it can be used with Angular to do a form touch, also <code>tapOnSubscribe</code> will
+fire when there is a subscription to the Observable:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// Only touch on first value change
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">valueChange</span>.<span style="color:#a6e22e">pipe</span>(
+ <span style="color:#a6e22e">startWithTap</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onTouch</span>())
+).<span style="color:#a6e22e">subscribe</span>()
+
+<span style="color:#75715e">// Fire when a component subscribes to the service bus
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">serviceBus</span>.<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tapOnSubscribe</span>((<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`New Subscription to </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>tapIf</code> will only fire if a passed method result is truthy:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tapIf</span>((<span style="color:#a6e22e">val</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>), (<span style="color:#a6e22e">val</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">val</span>)
+).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 2, 4, 6
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The last operator is <code>mapIfSource</code> which might be a bit of a weird one but I hope might become useful.</p>
+<p>The operator takes the value from the source and passes to a predicate method, and depending on the result will <code>map</code> the
+result of a passed method. A simple example would be:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">mapIfSource</span>(
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>,
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>,
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>
+  )
+).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 20, 20, 60 40, 100, 60
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Here, if the result of the predicate is true multiply by 10, otherwise by 20. The method is typed to allow different return values
+based on the result (so you will have to handle the type later). For example we could even turn it into a
+FizzBuzz operator:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">16</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">mapIfSource</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">string</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">number</span>&gt;(
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>,
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> (<span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">`FizzBuzz`</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;Fizz&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Buzz&#39;</span>),
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>
+  )
+).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 1, &#39;Fizz&#39;, &#39;Buzz&#39;, &#39;FizzBuzz&#39;, 16
+</span></code></pre></td></tr></table>
+</div>
+</div><p>You could even turn this into your own FizzBuzz operator:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fizzbuzz</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">OperatorFunction</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">string</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">number</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">number</span>&gt;) <span style="color:#f92672">=&gt;</span>
+    <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(
+      <span style="color:#a6e22e">mapIfSource</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">string</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">number</span>&gt;(
+        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>,
+        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> (<span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">`FizzBuzz`</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;Fizz&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Buzz&#39;</span>),
+        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>
+     )
+  );
+}
+
+<span style="color:#75715e">// And now we use it in our code
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">16</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">fizzbuzz</span>(),
+).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 1, &#39;Fizz&#39;, &#39;Buzz&#39;, &#39;FizzBuzz&#39;, 16
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Hopefully you&rsquo;ll find these operators useful and feel free to leave feedback and suggestions.</p>
+</div>
+</div>
+
     
     <div class="post">
   <div class="post-heading">
@@ -215,8 +528,8 @@ error:</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
 }
 
 <span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Testing&#39;</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">concat</span>([<span style="color:#e6db74">&#39; one&#39;</span>, <span style="color:#e6db74">&#39; two&#39;</span>])).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)
@@ -247,10 +560,10 @@ which attempts to keep the type information in all implementations:</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
 }
 
 <span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
@@ -280,10 +593,10 @@ we need to use the <code>any</code> value in the <a href="https://stackblitz.com
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
 }
 
 <span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
@@ -321,14 +634,14 @@ then we pass all the arguments using destructuring:</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> {
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
   <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">inArgs</span>: <span style="color:#66d9ef">any</span>[] <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">args</span>];
   <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">instanceof</span> Array) {
-    <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>])))
+    <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>])))
   }
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>)))
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>)))
 }
 
 <span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
@@ -462,9 +775,9 @@ changing the path to <code>@tinynodes/rxjs-string</code> to match the NPM import
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// index.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">myFactoryFunction</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./libs/factory&#39;</span>;
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyThing</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./classes/my-thing&#39;</span>
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyInterface</span>, <span style="color:#a6e22e">SOME_CONSTANT</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./types/thing-types&#39;</span> 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">myFactoryFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./libs/factory&#39;</span>;
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyThing</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./classes/my-thing&#39;</span>
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyInterface</span>, <span style="color:#a6e22e">SOME_CONSTANT</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./types/thing-types&#39;</span> 
 </code></pre></td></tr></table>
 </div>
 </div><p>To see the output of this library you can run <code>nx build library-name</code>, this will output a NPM module
@@ -487,14 +800,14 @@ to the <code>dist</code> folder.</p>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># File for Pull Request on master branch</span>
-<span style="color:#66d9ef">name</span>: PR on master
+<span style="color:#f92672">name</span>: <span style="color:#ae81ff">PR on master</span>
 
 <span style="color:#75715e"># When a PR is opened to master</span>
-<span style="color:#66d9ef">on</span>:
-  <span style="color:#66d9ef">pull_request</span>:
-    <span style="color:#66d9ef">branches</span>:
-      - master
-    <span style="color:#66d9ef">types</span>: [opened, reopened, synchronize]
+<span style="color:#f92672">on</span>:
+  <span style="color:#f92672">pull_request</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+    <span style="color:#f92672">types</span>: [<span style="color:#ae81ff">opened, reopened, synchronize]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>This first section provides the name and triggers for when the action runs: when a pull request opened or re-opened against <code>master</code>.</p>
@@ -511,14 +824,14 @@ to the <code>dist</code> folder.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">jobs</span>:
-  <span style="color:#66d9ef">build</span>:
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">jobs</span>:
+  <span style="color:#f92672">build</span>:
     <span style="color:#75715e"># Setup OS and Node Version</span>
-    <span style="color:#66d9ef">runs-on</span>: ubuntu-latest
-    <span style="color:#66d9ef">strategy</span>:
-      <span style="color:#66d9ef">matrix</span>:
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+    <span style="color:#f92672">strategy</span>:
+      <span style="color:#f92672">matrix</span>:
         <span style="color:#75715e"># Latest nodes only</span>
-        <span style="color:#66d9ef">node-version</span>: [<span style="color:#ae81ff">13.</span>x]
+        <span style="color:#f92672">node-version</span>: [<span style="color:#ae81ff">13.</span><span style="color:#ae81ff">x]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>This sets up a Github Action runner and makes sure NodeJS 13 is installed. Here you can add more versions and run parallel tests against different versions
@@ -540,17 +853,17 @@ if you plan to support more than one.</p>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Define Steps</span>
-<span style="color:#66d9ef">steps</span>:
+<span style="color:#f92672">steps</span>:
   <span style="color:#75715e"># Checkout code</span>
-  - <span style="color:#66d9ef">uses</span>: actions/checkout@v2
-    <span style="color:#66d9ef">with</span>:
-      <span style="color:#66d9ef">ref</span>: ${{ github.event.pull_request.head.ref }}
-      <span style="color:#66d9ef">fetch-depth</span>: <span style="color:#ae81ff">0</span>
+  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+    <span style="color:#f92672">with</span>:
+      <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">${{ github.event.pull_request.head.ref }}</span>
+      <span style="color:#f92672">fetch-depth</span>: <span style="color:#ae81ff">0</span>
 
-  - <span style="color:#66d9ef">name</span>: Use Node.js ${{ matrix.node-version }}
-    <span style="color:#66d9ef">uses</span>: actions/setup-node@v1
-    <span style="color:#66d9ef">with</span>:
-      <span style="color:#66d9ef">node-version</span>: ${{ matrix.node-version }}
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use Node.js ${{ matrix.node-version }}</span>
+    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-node@v1</span>
+    <span style="color:#f92672">with</span>:
+      <span style="color:#f92672">node-version</span>: <span style="color:#ae81ff">${{ matrix.node-version }}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>The first two steps first check out the code from the pull request branch, and then sets up NodeJS to run.</p>
@@ -565,8 +878,8 @@ only the current one - and this includes the master branch. This command tells g
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#75715e"># Make sure we have all branches</span>
-  - <span style="color:#66d9ef">name</span>: Fetch other branches
-    <span style="color:#66d9ef">run</span>: git fetch --no-tags --prune --depth=<span style="color:#ae81ff">5</span> origin master
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Fetch other branches</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">git fetch --no-tags --prune --depth=5 origin master</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Finally, we run some NPM command for installing the dependencies, running linting and test coverage.</p>
@@ -582,14 +895,14 @@ only the current one - and this includes the master branch. This command tells g
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#66d9ef">name</span>: Install environment
-    <span style="color:#66d9ef">run</span>: npm ci
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install environment</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm ci</span>
 
-  - <span style="color:#66d9ef">name</span>: Run lint
-    <span style="color:#66d9ef">run</span>: npm run affected:lint -- --base=<span style="color:#e6db74">&#34;origin/master&#34;</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run lint</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run affected:lint -- --base=&#34;origin/master&#34;</span>
 
-  - <span style="color:#66d9ef">name</span>: Tests coverage
-    <span style="color:#66d9ef">run</span>: npm run affected:test -- --base=<span style="color:#e6db74">&#34;origin/master&#34;</span> --codeCoverage
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Tests coverage</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run affected:test -- --base=&#34;origin/master&#34; --codeCoverage</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Using the affected commands, the pipeline will only run linting and testing against libraries that have changed against the
@@ -621,12 +934,12 @@ settings in &ldquo;Developer Settings -&gt; Personal Access Token&rdquo;. The on
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">name</span>: Merge on master
-<span style="color:#66d9ef">on</span>:
-  <span style="color:#66d9ef">pull_request</span>:
-    <span style="color:#66d9ef">branches</span>:
-      - master
-    <span style="color:#66d9ef">types</span>: [closed]
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Merge on master</span>
+<span style="color:#f92672">on</span>:
+  <span style="color:#f92672">pull_request</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+    <span style="color:#f92672">types</span>: [<span style="color:#ae81ff">closed]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>The <code>job</code> section is the same as above, but for the steps there is a slight change - to allow merges to master that <em>don&rsquo;t</em> trigger a release,
@@ -641,11 +954,11 @@ you can&rsquo;t just put a block around the entire set of steps so has to be add
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">steps</span>:
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">steps</span>:
   <span style="color:#75715e"># Checkout code</span>
-  - <span style="color:#66d9ef">name</span>: Checkout Code
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">uses</span>: actions/checkout@v2
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout Code</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Instead of running lint and test, we&rsquo;ll now run a set of different tasks - hold on tight because we&rsquo;re about to dive into some <code>bash</code> code!</p>
@@ -663,13 +976,13 @@ then we call our publish bash script</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#66d9ef">name</span>: Deploy
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">env</span>:
-      <span style="color:#66d9ef">NPM_AUTH_TOKEN</span>: ${{ secrets.NPM_AUTH_TOKEN }}
-    <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">      npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN</span>
-      ./.github/scripts/publish-libraries.sh
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">env</span>:
+      <span style="color:#f92672">NPM_AUTH_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.NPM_AUTH_TOKEN }}</span>
+    <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">      npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
+</span><span style="color:#e6db74">      ./.github/scripts/publish-libraries.sh</span>      
 </code></pre></td></tr></table>
 </div>
 </div><p>Create the <code>.github/scripts/publish-libraries.sh</code> file and make sure it&rsquo;s set to executable by typing <code>chmod +x .github/scripts/publish-libraries.sh</code> before committing the script.</p>
@@ -830,25 +1143,25 @@ for other developers to use!  We&rsquo;re not done yet though!</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#66d9ef">name</span>: Build Docs
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">run</span>: npm run docs
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build Docs</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run docs</span>
 
-  - <span style="color:#66d9ef">name</span>: Commit files
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">      git config --local user.email &#34;action@github.com&#34;</span>
-      git config --local user.name <span style="color:#e6db74">&#34;GitHub Action&#34;</span>
-      git add .
-      git commit -m <span style="color:#e6db74">&#34;Release [skip-ci]&#34;</span> -a || <span style="color:#66d9ef">true</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Commit files</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">      git config --local user.email &#34;action@github.com&#34;
+</span><span style="color:#e6db74">      git config --local user.name &#34;GitHub Action&#34;
+</span><span style="color:#e6db74">      git add .
+</span><span style="color:#e6db74">      git commit -m &#34;Release [skip-ci]&#34; -a || true</span>      
 
-  - <span style="color:#66d9ef">name</span>: Push changes
-    <span style="color:#66d9ef">if</span>: github.event.pull_request.merged == <span style="color:#66d9ef">true</span> <span style="color:#75715e">&amp;&amp;</span> contains(github.event.commits[<span style="color:#ae81ff">0</span>].message, <span style="color:#e6db74">&#39;[skip-ci]&#39;</span>) == <span style="color:#66d9ef">false</span>
-    <span style="color:#66d9ef">uses</span>: ad-m/github-push-action@master
-    <span style="color:#66d9ef">with</span>:
-      <span style="color:#66d9ef">github_token</span>: ${{ secrets.ACTION_AUTH_TOKEN }}
-      <span style="color:#66d9ef">tags</span>: <span style="color:#66d9ef">true</span>
-      <span style="color:#66d9ef">force</span>: <span style="color:#66d9ef">true</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Push changes</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
+    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ad-m/github-push-action@master</span>
+    <span style="color:#f92672">with</span>:
+      <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">${{ secrets.ACTION_AUTH_TOKEN }}</span>
+      <span style="color:#f92672">tags</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#f92672">force</span>: <span style="color:#66d9ef">true</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>For RxJS Primitives I used <a href="https://typedoc.org/">TypeDoc</a> to generate static content to the <code>docs</code> folder, which is then used by GitHub Pages, but here
@@ -920,7 +1233,7 @@ utility operators.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">from</span>([<span style="color:#e6db74">&#39;hello&#39;</span>, <span style="color:#e6db74">&#39;world&#39;</span>]).<span style="color:#a6e22e">pipe</span>(
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;hello&#39;</span>, <span style="color:#e6db74">&#39;world&#39;</span>]).<span style="color:#a6e22e">pipe</span>(
   <span style="color:#a6e22e">toUpperCase</span>()
 ).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [&#39;HELLO&#39;, &#39;WORLD&#39;]
 </span></code></pre></td></tr></table>
@@ -935,7 +1248,7 @@ that returns the original value instead (like <code>filter</code>).</p>
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
 </span></code></pre></td></tr></table>
 </div>
 </div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString">Number.prototype.toLocaleString</a> supports formatting such as currency.</p>
@@ -974,7 +1287,7 @@ that don&rsquo;t fit into the other packages but still have some usefulness.</p>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">searchField</span>.<span style="color:#a6e22e">valueChange</span>.<span style="color:#a6e22e">pipe</span>(
-  <span style="color:#a6e22e">debounceWithQuery</span>(<span style="color:#ae81ff">1000</span>, (<span style="color:#a6e22e">search</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`/search?query=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">search</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
+  <span style="color:#a6e22e">debounceWithQuery</span>(<span style="color:#ae81ff">1000</span>, (<span style="color:#a6e22e">search</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">http</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">`/search?query=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">search</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
 ).<span style="color:#a6e22e">subscribe</span>()
 </code></pre></td></tr></table>
 </div>
@@ -1046,7 +1359,7 @@ draft (at the time of writing it&rsquo;s <a href="http://json-schema.org/specifi
 <p>This file can be used to generate types for design-time coding using CLI tools and can be used for data validation at
 runtime using another library that can consume a schema to generate a validation method.</p>
 <h3 id="schema-example">Schema Example</h3>
-<p>For this demo, I&rsquo;ve created a simple schema object defining a customer within a system. The customers&rsquo; properties are:</p>
+<p>For this demo, I&rsquo;ve created a simple schema object defining a customer within a system. The customers' properties are:</p>
 <ul>
 <li><code>ID</code></li>
 <li><code>firstName</code></li>
@@ -1230,8 +1543,8 @@ complex references.  For example, if we define an entire customer order type it 
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OrderItem</span>, <span style="color:#a6e22e">Checkout</span>, <span style="color:#a6e22e">Address</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./shop-front&#39;</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OrderItem</span>, <span style="color:#a6e22e">Checkout</span>, <span style="color:#a6e22e">Address</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./shop-front&#39;</span>
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomerOrder</span> {
   <span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">CustomerRecord</span>;
@@ -1262,16 +1575,16 @@ you can return a <code>CustomerRecord</code>.  You can also use <code>Required</
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerClass</span> {
   <span style="color:#75715e">// Return a API request with a customers object
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">addCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Partial</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span> {
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">addCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Partial</span>&lt;<span style="color:#f92672">CustomerRecord</span>&gt;)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">CustomerRecord</span>&gt; {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">customer</span>);
   }
   
   <span style="color:#75715e">// Return a API request with a customers object
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">updateCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Required</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">CustomerRecord</span><span style="color:#f92672">&gt;</span> {
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">updateCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Required</span>&lt;<span style="color:#f92672">CustomerRecord</span>&gt;)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">CustomerRecord</span>&gt; {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">customer</span>);
   }
 }
@@ -1318,13 +1631,13 @@ that is injectable through your application.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClientModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">JSONSchemaService</span>, <span style="color:#a6e22e">AJV_INSTANCE</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./json-schema.service&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">ajv</span>, { <span style="color:#a6e22e">Ajv</span>, <span style="color:#a6e22e">Options</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClientModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">JSONSchemaService</span>, <span style="color:#a6e22e">AJV_INSTANCE</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./json-schema.service&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">ajv</span>, { <span style="color:#a6e22e">Ajv</span>, <span style="color:#a6e22e">Options</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_CLASS</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Ajv</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;The AJV Class Instance&#39;</span>);
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Ajv</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;The AJV Class config&#39;</span>);
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_CLASS</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>&lt;<span style="color:#f92672">Ajv</span>&gt;(<span style="color:#e6db74">&#39;The AJV Class Instance&#39;</span>);
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>&lt;<span style="color:#f92672">Ajv</span>&gt;(<span style="color:#e6db74">&#39;The AJV Class config&#39;</span>);
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createAjvInstance</span>(<span style="color:#a6e22e">AjvClass</span>: <span style="color:#66d9ef">any</span>, <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">Options</span>) {
   <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AjvClass</span>(<span style="color:#a6e22e">config</span>);
@@ -1401,11 +1714,11 @@ service shared within the same application.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">Inject</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Ajv</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">Inject</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Ajv</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_INSTANCE</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Ajv</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;The AJV Class Instance&#39;</span>);
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_INSTANCE</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>&lt;<span style="color:#f92672">Ajv</span>&gt;(<span style="color:#e6db74">&#39;The AJV Class Instance&#39;</span>);
 
 <span style="color:#75715e">/**
 </span><span style="color:#75715e"> * The response of a validation result
@@ -1427,7 +1740,7 @@ service shared within the same application.</p>
     <span style="color:#a6e22e">provideIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
 })
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JSONSchemaService</span> {
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>, <span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">AJV_INSTANCE</span>) <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">ajv</span>: <span style="color:#66d9ef">Ajv</span>) {}
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>, <span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">AJV_INSTANCE</span>) <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">ajv</span>: <span style="color:#66d9ef">Ajv</span>) {}
 
   <span style="color:#75715e">/**
 </span><span style="color:#75715e">   * Fetches the Schema and adds it to the validator schema set
@@ -1435,7 +1748,7 @@ service shared within the same application.</p>
 </span><span style="color:#75715e">   * @param urlPath The URL path of the schema to load
 </span><span style="color:#75715e">   */</span>
   <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">loadSchema</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">urlPath</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">urlPath</span>).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">result</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ajv</span>.<span style="color:#a6e22e">addSchema</span>(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">name</span>));
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">urlPath</span>).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">result</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ajv</span>.<span style="color:#a6e22e">addSchema</span>(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">name</span>));
   }
 
   <span style="color:#75715e">/**
@@ -1443,7 +1756,7 @@ service shared within the same application.</p>
 </span><span style="color:#75715e">   * @param name The name of the schema to validate
 </span><span style="color:#75715e">   * @param data The data to validate
 </span><span style="color:#75715e">   */</span>
-  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">validateData</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ValidateResult</span> {
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">validateData</span>&lt;<span style="color:#f92672">T</span>&gt;(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ValidateResult</span> {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isValid</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ajv</span>.<span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">data</span>) <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">boolean</span>;
     <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">isValid</span>, <span style="color:#a6e22e">errorsText</span>: <span style="color:#66d9ef">this.ajv.errorsText</span>() };
   }
@@ -1521,7 +1834,7 @@ schemas from another service) or how you could validate the parameters passed to
 })
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FormComponent</span> {
   
-  <span style="color:#a6e22e">error$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BehaviorSubject</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+  <span style="color:#a6e22e">error$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BehaviorSubject</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#39;&#39;</span>);
 
   <span style="color:#a6e22e">customerForm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">fb</span>.<span style="color:#a6e22e">group</span>({
     <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
@@ -1531,7 +1844,7 @@ schemas from another service) or how you could validate the parameters passed to
     <span style="color:#a6e22e">dateOfBirth</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>]
   });
 
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">fb</span>: <span style="color:#66d9ef">FormBuilder</span>, <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">schema</span>: <span style="color:#66d9ef">JSONSchemaService</span>, <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">app</span>: <span style="color:#66d9ef">AppService</span>) {
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">fb</span>: <span style="color:#66d9ef">FormBuilder</span>, <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">schema</span>: <span style="color:#66d9ef">JSONSchemaService</span>, <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">app</span>: <span style="color:#66d9ef">AppService</span>) {
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">loadSchema</span>(<span style="color:#e6db74">&#39;customer&#39;</span>, <span style="color:#e6db74">&#39;https://tane.dev/customer.json&#39;</span>)
   }
 
@@ -1552,7 +1865,7 @@ schemas from another service) or how you could validate the parameters passed to
 </span><span style="color:#75715e">   * This custom method can take a type of T (which in this case is an `any`) and validate
 </span><span style="color:#75715e">   * that the data is valid
 </span><span style="color:#75715e">   */</span>
-  <span style="color:#a6e22e">customMethod</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">T</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>(<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>) {
+  <span style="color:#a6e22e">customMethod</span>&lt;<span style="color:#f92672">T</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#a6e22e">any</span>&gt;(<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>) {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">validateData</span>(<span style="color:#e6db74">&#39;customer&#39;</span>, <span style="color:#a6e22e">data</span>);
     <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">isValid</span>) {
        <span style="color:#75715e">// Do custom logic
@@ -1573,128 +1886,27 @@ pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>one
 </div>
 
     
-    <div class="post">
-  <div class="post-heading">
-    <h1>
-      <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a>
-    </h1>
-    
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: May 10, 2019</span>
-  
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: May 10, 2019)</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 300 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 2 minutes reading time</span>
-</div>
-
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
-    
-    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
-    
-  </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/#commento">... comments</a>
-</div>
-
-      
-    
-  </div>
-  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs">NPM</a>.</p>
-<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io">EditorJS</a> instances.</p>
-<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo">demo application</a> is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes"><code>@tinynodes</code> monorepo</a>.</p>
-<h2 id="included-features">Included Features</h2>
-<p>The library exports several features once the <code>NgxEditorJSModule</code> has been included in your project.</p>
-<h4 id="ngxeditorjsdirective">NgxEditorJSDirective</h4>
-<p>This is the main directive which can be used on any element with the <code>[ngxEditorJS]</code> selector and and <code>id</code> attribute.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-editor&#34;</span> <span style="color:#a6e22e">ngxEditorJS</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p>This will handle creating the editor instance via the <code>NgxEditorJSService</code></p>
-<h4 id="ngxeditorjscomponent">NgxEditorJSComponent</h4>
-<p>This component can be used in any Angular component using the <code>&lt;ngx-editorjs&gt;</code> tag. Again this component can take a set of blocks, it also provides a <code>holder</code> input for overriding the ID.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">ngx-editorjs</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">holder</span><span style="color:#960050;background-color:#1e0010">]=&#34;</span><span style="color:#a6e22e">holderProperty</span><span style="color:#960050;background-color:#1e0010">&#34;</span>&gt;&lt;/<span style="color:#f92672">ngx-editorjs</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="ngxeditorjsservice">NgxEditorJSService</h4>
-<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api">EditorJS API</a> - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
-<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md">README.md</a>) on how to do this in a AOT-friendly way.</p>
-<h2 id="next-steps">Next Steps</h2>
-<p>Before release I had to resolve an issue with AOT compiling and injecting EditorJS plugins - this means version <code>1.1.0</code> has already been released - now this is resolved I want support additional feature in the editor, as well as provide unit test coverage and better documentation and demo.</p>
-<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues">GitHub Issues</a> page.</p>
-</div>
-</div>
-
-    
     <div class="text-center">
       
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="https://tane.dev/archive/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item disabled">
+  <li class="page-item">
+    <a href="https://tane.dev/archive/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item disabled">
     <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="https://tane.dev/archive/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="https://tane.dev/archive/blog/2/">2</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="https://tane.dev/archive/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="https://tane.dev/archive/blog/2/">2</a>
+  </li>
+  <li class="page-item">
     <a href="https://tane.dev/archive/blog/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="https://tane.dev/archive/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="https://tane.dev/archive/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 
