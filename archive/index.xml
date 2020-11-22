@@ -14,6 +14,15 @@
     
     
     <item>
+      <title>RxJS Primitives is now RxJS Ninja</title>
+      <link>https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/</link>
+      <pubDate>Mon, 23 Nov 2020 00:01:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <guid>https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/</guid>
+      <description>Today I&amp;rsquo;ve re-released RxJS Primitives as RxJS Ninja. The new libraries have been published as the same last versions under their old name, so it&amp;rsquo;s easy to migrate to the new version - all now published under @rxjx-ninja instead of @tinynodes (a deprecation notice has also been left the old packages).</description>
+    </item>
+    
+    <item>
       <title>New RxJS Primitives release, new operators &#43; Typescript 4</title>
       <link>https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/</link>
       <pubDate>Wed, 18 Nov 2020 11:30:00 +0100</pubDate>
@@ -55,16 +64,6 @@ After some trial an error (and many failed builds) I managed to get the workflow
       <description>Today I&amp;rsquo;ve published a new set of libraries to NPM - RxJS Primitives.
 These are based on some operators I&amp;rsquo;ve collected over the last year, and some additional ones I&amp;rsquo;ve started adding. Most are based around ECMASCript objects such as String, Number and Boolean but also includes some useful utility operators.
 Over the coming weeks I&amp;rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful.</description>
-    </item>
-    
-    <item>
-      <title>Validating data with JSON Schema, Angular and TypeScript</title>
-      <link>https://tane.dev/2019/09/validating-data-with-json-schema-angular-and-typescript/</link>
-      <pubDate>Wed, 18 Sep 2019 11:00:00 +0100</pubDate>
-      <author>spam@tane.dev (Tane Piper)</author>
-      <guid>https://tane.dev/2019/09/validating-data-with-json-schema-angular-and-typescript/</guid>
-      <description>One common question I see with a lot of new TypeScript developers is how to handle runtime validation of data, using the types they have built.
-The issue is web platform, as yet, does not support types. Typescript itself is a higher-level language built on top of JavaScript and uses a compiler to create compatible code for the web, node or other JS platforms - this means that types are only available at design time.</description>
     </item>
     
   </channel>
