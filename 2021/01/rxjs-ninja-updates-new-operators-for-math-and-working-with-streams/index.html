@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="generator" content="Hugo 0.80.0" />
   
-  <title>New blog (&#39;Hey I&#39;m Moving From Medium&#39;) - Ideas and stuff</title>
+  <title>RxJS Ninja Updates - New operators for math and working with streams - Ideas and stuff</title>
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet" />
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous" />
@@ -155,13 +155,11 @@
   <div class="flex-item previous">
     
     
+    <a href="https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/" class="previous"><i class="fas fa-arrow-square-left"></i> Previous Post</a>
+    
     
   </div>
   <div class="flex-item next">
-    
-    
-    <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/" class="previous">Next Post <i class="fas fa-arrow-square-right"></i></a>
-    
     
   </div>
 </div>
@@ -170,20 +168,30 @@
     <div class="post">
   <div class="post-heading">
     <h1>
-      <a href="https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/">New blog (&#39;Hey I&#39;m Moving From Medium&#39;)</a>
+      <a href="https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/">RxJS Ninja Updates - New operators for math and working with streams</a>
     </h1>
     
       <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Mar 12, 2019</span>
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 14, 2021</span>
   
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 600 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 3 minutes reading time</span>
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 14, 2021)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 300 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 2 minutes reading time</span>
 </div>
 
       
   <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
     
-    <a class="flex-item" href="https://tane.dev/tags/blog">Blog</a>
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
     
   </div>
 
@@ -194,35 +202,52 @@
     class="far fa-comment-alt-lines"
     title="Read what the trolls have posted..."
     aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/#commento">... comments</a>
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/#commento">... comments</a>
 </div>
 
       
     
   </div>
-  <div class="post-content"><p>Buying a new domain is always a good excuse to do something with it, so of course grabbing my <code>.dev</code> seemed like a perfect idea
-to set up a new blog.  Also recently I&rsquo;ve been dissatisfied with the way <a href="https://medium.com">Medium</a> has dealt with recent changes
-(although I&rsquo;m not going to go into all the reasons except to say I&rsquo;d rather own and control all my content).</p>
-<p>The site is Markdown powered, generated with <a href="https://gohugo.io/">Hugo</a> and served via <a href="https://github.com">GitHub</a> Pages with a CI deployment.
-I plan to keep the blog light and tracking free as possible (but I would like to know if anyone is reading at some point).</p>
-<p>Over the course of the next few weeks, I&rsquo;m planning to migrate some of existing content over to this site, mostly by updating some
-of the content - although there are some previous life posts I might just leave. Below are a set of links to some of that existing content.</p>
-<p>Hopefully though those links you as a reader would see value in what I will be writing here; I&rsquo;ve been writing software
-across various stacks for over 10 years and have gained a lot of experience in building many types of applications.</p>
-<p>I&rsquo;ve also had a lot of life experience and have also talked about burnout and depression. I&rsquo;ve also recently been diagnosed with
-ADHD at the age of 37 and I am about to begin treatment for it in a foreign country.  I&rsquo;ve living in The Netherlands for just over two years,
-mostly due to the catastrophe that is the Brexit.</p>
-<p>These topics might come up, but I will be mostly trying to focus on development topics.  My current focus is on Typescript
-both on the server side, and client side with Angular, RxJS and other frameworks.</p>
-<h2 id="blog-posts-on-medium">Blog Posts on Medium</h2>
+  <div class="post-content"><p>Since the last update on <a href="https://rxjs.ninja">RxJS Ninja</a> there have been a few new operators added, below are some details
+and links to StackBlitz demos showing them in action.</p>
+<h3 id="numbers-and-math-operators">Numbers and Math operators</h3>
+<p>In <code>@rxjs-ninja/rxjs-number</code> the missing <a href="https://rxjs.ninja/modules/number.html#tofixed">toFixed</a> operator has been
+added, alongside a new custom <a href="https://rxjs.ninja/modules/number.html#tohex">toHex</a> operator and the
+corresponding <a href="https://rxjs.ninja/modules/number.html#parsehex">parseHex</a> one allowing hex numbers to be worked with (
+such as converting colours)</p>
+<p>There are also new operators for some basic math - <a href="https://rxjs.ninja/modules/number.html#add">add</a>
+, <a href="https://rxjs.ninja/modules/number.html#sub">sub</a>, <a href="https://rxjs.ninja/modules/number.html#div">div</a>,
+<a href="https://rxjs.ninja/modules/number.html#mul">mul</a>, <a href="https://rxjs.ninja/modules/number.html#mod">mod</a> and
+<a href="https://rxjs.ninja/modules/number.html#pow">pow</a> all allowing you to modify source numbers, all accept a number, or an
+Observable number source.</p>
+<h3 id="working-with-browser-streams">Working with Browser Streams</h3>
+<p>Some new operators have been added to <code>@rxjs-ninja/rxjs-utility</code> that allow interoperability between <a href="http://rxjs.dev">RxJS</a>
+and <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream">ReadableStream</a>
+and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream">WritableStream</a>. These APIs are not in all browsers
+but there is an available <a href="https://www.npmjs.com/package/web-streams-polyfill">polyfill</a> available.</p>
+<h4 id="fromreadablestream"><code>fromReadableStream</code></h4>
+<p>This <a href="https://rxjs.ninja/modules/utility.html#fromreadablestream">operator</a> accepts a <code>ReadableStream</code> and provides the
+emitted values as an Observable, allowing you to use RxJS operators to work with the data.</p>
 <ul>
-<li><a href="https://medium.com/this-happened-to-me/i-made-a-huge-mistake-86b9d27f9962">I made a huge mistake</a> - A story about me taking on too much work and not communicating enough. My first real burnout story.</li>
-<li><a href="https://medium.com/@tanepiper/takeoff-a-rapid-development-environment-designed-for-hack-days-9a45ae891366">Takeoff: A rapid development environment designed for hack days</a> - In this post I announced <a href="https://takeoff.sh">Takeoff</a> (and subsequent updates <a href="https://medium.com/@tanepiper/takeoff-1-1-support-for-blueprints-83e6606ec11">1</a>, <a href="https://medium.com/@tanepiper/hacking-in-minutes-with-takeoff-6193aed52e3f">2</a>, <a href="https://medium.com/@tanepiper/takeoff-v2-making-rapid-development-even-easier-with-typescript-and-docker-15786c53b685">3</a>) a tool I&rsquo;ve developed for prototyping application easily using docker compose and local source files.</li>
-<li><a href="https://medium.com/@tanepiper/i-could-have-been-a-contender-7c5fb37213d3">I could have been a contender</a> - Projects I&rsquo;ve abandoned, with my recent ADHD diagnosis these posts provide an insight into how it affects me.</li>
-<li><a href="https://medium.com/@tanepiper/music-markup-web-components-for-web-audio-774c26e3cd71">Music Markup - Web Components for Web Audio</a> - Webcomponents! WebAudio! This post has it all, and with them I create a compostable keyboard using <a href="https://stenciljs.com/">StencilJS</a> to create reusable web components</li>
-<li><a href="https://medium.com/@tanepiper/dark-patterns-with-the-html-5-2-dialog-tag-and-chrome-for-fun-and-profit-249ce092d200">Dark patterns with the HTML 5.2 &lt;dialog&gt; tag and Chrome for fun and profit</a> - Using and abusing the inbuilt <code>dialog</code> tag in HTML5 to crash the users browser very easily, with some proposed solutions on how it could be fixed.</li>
-<li><a href="https://medium.com/dailyjs/refactoring-an-old-and-broken-library-to-using-async-await-with-tdd-90157de268a2">Refactoring an old and broken library to using async/await with TDD</a> - I refactored one of my nodejs modules and wrote a blog post on the process of publishing different versions of a node module using a CI pipeline.</li>
-<li><a href="https://medium.com/@tanepiper/typescript-tip-dont-use-naked-any-create-an-any-interface-instead-730bdd2fc224">Typescript tip: Don&rsquo;t use “naked any”, create an “any interface” instead</a> - A Typescript tip for making types on the fly to handle situations where you don&rsquo;t know the shape of the data.</li>
+<li><a href="https://stackblitz.com/edit/rxjs-readable-stream-fetch">Demo</a> - Using <code>fetch</code> body with <code>fromReadableStream</code> to show
+partial images</li>
+<li><a href="https://stackblitz.com/edit/rxjs-readable-stream">Demo</a> - A basic infinite number stream that ticks per second</li>
+</ul>
+<h4 id="towritablestream"><code>toWritableStream</code></h4>
+<p>This <a href="https://rxjs.ninja/modules/utility.html#towritablestream">operator</a> accepts a <code>WritableStream</code> which when the
+source Observable emits, will also write to the stream. The operator also takes care of closing the writer when the
+Observable subscription is closed.</p>
+<ul>
+<li><a href="https://stackblitz.com/edit/rxjs-writable-stream">Demo</a> - Streams an Observable interval value into a <code>WritableStream</code>
+with optional ability to stop the writer without ending the Observable subscription.</li>
+</ul>
+<h4 id="fromfetchwithprogress"><code>fromFetchWithProgress</code></h4>
+<p>This <a href="https://rxjs.ninja/modules/utility.html#fromfetchwithprogress">operator</a> uses <code>fetch</code> to do a HTTP request, instead
+of the body response it emits either a <code>number</code> which is the current progress, or a <code>Uint8Array</code> containing the final
+response from the body.</p>
+<ul>
+<li><a href="https://stackblitz.com/edit/fetch-with-progress">Demo</a> Fetches an image and shows a progress bar with the current percentage
+and once complete shows the image.</li>
 </ul>
 </div>
 </div>
@@ -231,13 +256,11 @@ both on the server side, and client side with Angular, RxJS and other frameworks
   <div class="flex-item previous">
     
     
+    <a href="https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/" class="previous"><i class="fas fa-arrow-square-left"></i> Previous Post</a>
+    
     
   </div>
   <div class="flex-item next">
-    
-    
-    <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/" class="previous">Next Post <i class="fas fa-arrow-square-right"></i></a>
-    
     
   </div>
 </div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="generator" content="Hugo 0.78.2" />
+  <meta name="generator" content="Hugo 0.80.0" />
   
   <title>Archive Posts - Ideas and stuff</title>
 
@@ -16,7 +16,7 @@
 
 
 
-<link rel="stylesheet" href="https://tane.dev/css/bundle.min.a3e9629bf6601b2b3159e442160a8ea1de3a2b35c856b4688fffb4b1746e7a2410a9dfc848c9de05963b09c6ab0c817eed5a448a421ce38ab6e5de96f8ee8611.css" integrity="sha512-o&#43;lim/ZgGysxWeRCFgqOod46KzXIVrRoj/&#43;0sXRueiQQqd/ISMneBZY7CcarDIF&#43;7VpEikIc44q25d6W&#43;O6GEQ==" />
+<link rel="stylesheet" href="https://tane.dev/css/bundle.min.860283af9f116f9e7c3c8b30f173a99265c0c653f5153cad9acf7f7465eb99635ab360987470fdeb8539e964c6b7e239a14f432d044b9cac92ac28af741c4e4a.css" integrity="sha512-hgKDr58Rb558PIsw8XOpkmXAxlP1FTytms9/dGXrmWNas2CYdHD964U56WTGt&#43;I5oU9DLQRLnKySrCivdBxOSg==" />
 
 
   <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/archive/index.xml" title="tane.dev" />
@@ -58,6 +58,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/">RxJS Ninja Updates - New operators for math and working with streams</a> 
+
+
+<span>Published: Jan 14, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/">RxJS Primitives is now RxJS Ninja</a> 
 
 
@@ -89,14 +97,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/">RxJS Primitives - Operators for mutating and filtering primitives</a> 
-
-
-<span>Published: Apr 23, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -116,7 +116,7 @@
   <footer class="footer">
   <div class="flex-item contact">
     
-    <i class="far fa-copyright"></i>&nbsp;2020 Tane Piper
+    <i class="far fa-copyright"></i>&nbsp;2021 Tane Piper
     
 
     
@@ -124,8 +124,8 @@
     
   </div>
   <div class="flex-item meta">
-    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.78.2 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2020-11-23 00:41</div>
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-14 00:22</div>
   </div>
 </footer>
 
@@ -153,6 +153,126 @@
   </div>
   <main class="column main">
     
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/">RxJS Primitives - Operators for mutating and filtering primitives</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Apr 23, 2020</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Apr 23, 2020)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 400 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 2 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>Today I&rsquo;ve published a new set of libraries to NPM - <a href="https://github.com/tanepiper/rxjs-primitives">RxJS Primitives</a>.</p>
+<p>These are based on some operators I&rsquo;ve collected over the last year, and some additional ones I&rsquo;ve started adding.
+Most are based around ECMASCript objects such as <code>String</code>, <code>Number</code> and <code>Boolean</code> but also includes some useful
+utility operators.</p>
+<p>Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful.</p>
+<p>The following modules are on NPM:</p>
+<h2 id="rxjs-string">rxjs-string</h2>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-string">@tinynodes/rxjs-string</a> operators that are built around the <code>String</code> object in ECMAScript, for example with <code>toUpperCase</code>:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;hello&#39;</span>, <span style="color:#e6db74">&#39;world&#39;</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">toUpperCase</span>()
+).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [&#39;HELLO&#39;, &#39;WORLD&#39;]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>There are also some boolean value operators such as <code>endsWith</code> and extraction operators like <code>charAt</code>, with plans
+to add more useful utilities.  For example <code>endWith</code> returns a boolean value, but I also want to include an <code>endsWith</code>
+that returns the original value instead (like <code>filter</code>).</p>
+<h2 id="rxjs-number">rxjs-number</h2>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-number">@tinynodes/rxjs-number</a> operators that are built around the <code>Number</code> object in ECMAScript, for example <code>parseFloat</code>/<code>parseInt</code> and <code>isNaN</code>.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString">Number.prototype.toLocaleString</a> supports formatting such as currency.</p>
+<h2 id="rxjs-boolean">rxjs-boolean</h2>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-boolean">@tinynodes/rxjs-boolean</a> operators that are built around the <code>Boolean</code> object in ECMAScript,
+and are designed to help with filtering content from observables.  Currently, there are two operators <code>firstTruthy</code> and <code>filterTruthy</code>.</p>
+<p>In both cases these return the underlying value only if it&rsquo;s a truthy value in JavaScript, in the case of <code>firstTruthy</code> it only returns
+the first value, while <code>filterTruthy</code> returns all truthy values.</p>
+<h2 id="rxjs-utility">rxjs-utility</h2>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-utility">@tinynodes/rxjs-utility</a> is a custom module that provides some additional operators
+that don&rsquo;t fit into the other packages but still have some usefulness.</p>
+<p>Currently, there are two operators:</p>
+<ul>
+<li><code>startWithTap</code> - Will fire a callback method only on the first emission from an Observable</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">valueChanges</span>.<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">startWithTap</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">touch</span>()),
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>debounceWithQuery</code> - Debounces an input such as a text input and passes it to a method that returns a value from a query (such as a search)</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">searchField</span>.<span style="color:#a6e22e">valueChange</span>.<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">debounceWithQuery</span>(<span style="color:#ae81ff">1000</span>, (<span style="color:#a6e22e">search</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">http</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">`/search?query=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">search</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div></div>
+</div>
+
     
     <div class="post">
   <div class="post-heading">

@@ -8,11 +8,22 @@
     <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
     <webMaster>spam@tane.dev (Tane Piper)</webMaster>
     <copyright>This work is copyright Tane Piper</copyright>
-    <lastBuildDate>Mon, 23 Nov 2020 00:01:00 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 14 Jan 2021 00:15:00 +0100</lastBuildDate>
     
         <atom:link href="https://tane.dev/tags/rxjs/index.xml" rel="self" type="application/rss+xml" />
     
     
+    
+    <item>
+      <title>RxJS Ninja Updates - New operators for math and working with streams</title>
+      <link>https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/</link>
+      <pubDate>Thu, 14 Jan 2021 00:15:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <guid>https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/</guid>
+      <description>Since the last update on RxJS Ninja there have been a few new operators added, below are some details and links to StackBlitz demos showing them in action.
+Numbers and Math operators In @rxjs-ninja/rxjs-number the missing toFixed operator has been added, alongside a new custom toHex operator and the corresponding parseHex one allowing hex numbers to be worked with ( such as converting colours)
+There are also new operators for some basic math - add , sub, div, mul, mod and pow all allowing you to modify source numbers, all accept a number, or an Observable number source.</description>
+    </item>
     
     <item>
       <title>RxJS Primitives is now RxJS Ninja</title>
@@ -54,17 +65,6 @@ Typescript 4 Upgrading to Typescript 4 has allowed the removal of polymorphic fu
       <description>This week I released version 1.0 of RxJS Primitives to NPM - but the journey to get there was not as easy as I hoped.
 In the past I&amp;rsquo;ve used CircleCI and at work I use Jenkins but with this project I wanted to try out Github Actions.
 After some trial an error (and many failed builds) I managed to get the workflow working, I&amp;rsquo;ve decided to share here the steps taken to hopefully save you from the same pain.</description>
-    </item>
-    
-    <item>
-      <title>RxJS Primitives - Operators for mutating and filtering primitives</title>
-      <link>https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/</link>
-      <pubDate>Thu, 23 Apr 2020 11:30:00 +0100</pubDate>
-      <author>spam@tane.dev (Tane Piper)</author>
-      <guid>https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/</guid>
-      <description>Today I&amp;rsquo;ve published a new set of libraries to NPM - RxJS Primitives.
-These are based on some operators I&amp;rsquo;ve collected over the last year, and some additional ones I&amp;rsquo;ve started adding. Most are based around ECMASCript objects such as String, Number and Boolean but also includes some useful utility operators.
-Over the coming weeks I&amp;rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful.</description>
     </item>
     
   </channel>

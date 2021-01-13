@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="generator" content="Hugo 0.80.0" />
   
-  <title>Takeoff - Ideas and stuff</title>
+  <title>Library - Ideas and stuff</title>
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet" />
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous" />
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://tane.dev/css/bundle.min.860283af9f116f9e7c3c8b30f173a99265c0c653f5153cad9acf7f7465eb99635ab360987470fdeb8539e964c6b7e239a14f432d044b9cac92ac28af741c4e4a.css" integrity="sha512-hgKDr58Rb558PIsw8XOpkmXAxlP1FTytms9/dGXrmWNas2CYdHD964U56WTGt&#43;I5oU9DLQRLnKySrCivdBxOSg==" />
 
 
-  <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/takeoff/index.xml" title="tane.dev" />
+  <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/tags/library/index.xml" title="tane.dev" />
   </head>
 
 
@@ -152,7 +152,12 @@
 
   </div>
   <main class="column main">
-    
+    <h2
+      class="taxonomy-title"
+      title="The taxonomy of this page is Library"
+      aria-label="The taxonomy of this page is Library">
+      Library
+    </h2>
     
     <div class="post">
   <div class="post-heading">
@@ -581,193 +586,6 @@ FizzBuzz operator:</p>
 </span></code></pre></td></tr></table>
 </div>
 </div><p>Hopefully you&rsquo;ll find these operators useful and feel free to leave feedback and suggestions.</p>
-</div>
-</div>
-
-    
-    <div class="post">
-  <div class="post-heading">
-    <h1>
-      <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a>
-    </h1>
-    
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: May 12, 2020</span>
-  
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: May 12, 2020)</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 600 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 3 minutes reading time</span>
-</div>
-
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
-    
-    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/best-practice">Best Practice</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/polymorphism">Polymorphism</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/function-overloading">Function Overloading</a>
-    
-  </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/#commento">... comments</a>
-</div>
-
-      
-    
-  </div>
-  <div class="post-content"><p>Recently in <a href="https://tanepiper.github.io/rxjs-primitives/">RxJS Primitives</a> I encountered a situation where
-one of the methods - <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#concat">concat</a> was initially
-designed to take an argument list of strings and in the method used rest (<code>...args</code>) parameters, mimicking the signature
-and passing them to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat">String.prototype.concat</a></p>
-<blockquote>
-<p>I&rsquo;ve created a <a href="https://stackblitz.com/edit/function-overloading-with-rest">StackBlitz Project</a> with the code for each
-step that can be followed along.</p>
-</blockquote>
-<p>I wanted to refactor it to support an array of strings, but found that in the current implementation
-<a href="https://stackblitz.com/edit/function-overloading-with-rest?file=concat-overload-1.ts">this is not possible</a> and throws a TypeScript
-error:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
-}
-
-<span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Testing&#39;</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">concat</span>([<span style="color:#e6db74">&#39; one&#39;</span>, <span style="color:#e6db74">&#39; two&#39;</span>])).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Argument of type <span style="color:#e6db74">&#39;string[]&#39;</span> is not assignable to parameter of type <span style="color:#e6db74">&#39;string&#39;</span>.
-</code></pre></td></tr></table>
-</div>
-</div><p>Due to how TypeScript treats rest parameters, it expects a list of parameters as a single string which is turned into
-an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">arguments</a>.</p>
-<p>To get around this, we can use TypeScript <a href="https://www.typescriptlang.org/docs/handbook/functions.html#overloads"><code>function</code> overloading</a>.</p>
-<h2 id="how-to-overload-functions-with-rest-parameters">How to overload functions with rest parameters</h2>
-<p>My first attempt at writing this method lead to <a href="https://stackblitz.com/edit/function-overloading-with-rest?file=concat-overload-2.ts">this code</a>
-which attempts to keep the type information in all implementations:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
-}
-
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
-</code></pre></td></tr></table>
-</div>
-</div><p>This resulted in an error on the second implementation:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">function</span> concat<span style="color:#f92672">(</span>args: string<span style="color:#f92672">[])</span>: MonoTypeOperatorFunction&lt;string&gt; <span style="color:#f92672">(</span>+1 overload<span style="color:#f92672">)</span>
-This overload signature is not compatible with its implementation signature.
-</code></pre></td></tr></table>
-</div>
-</div><p>It appears that TypeScript cannot convert an Array rest type to an <code>arguments</code> Array-like value, to get around this
-we need to use the <code>any</code> value in the <a href="https://stackblitz.com/edit/function-overloading-with-rest?file=concat-overload-3.ts">last implementation</a>:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
-}
-
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
-</code></pre></td></tr></table>
-</div>
-</div><p>So now the TypeScript compiler stops complaining, and we can test it using both supported argument types:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Testing&#39;</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">concat</span>(<span style="color:#e6db74">&#39; one&#39;</span>, <span style="color:#e6db74">&#39; two&#39;</span>)).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// Testing one two
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Testing&#39;</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">concat</span>([<span style="color:#e6db74">&#39; one&#39;</span>, <span style="color:#e6db74">&#39; two&#39;</span>])).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// Testing one, two
-</span></code></pre></td></tr></table>
-</div>
-</div><p>However, if you look at the output of the result you&rsquo;ll notice a bug in our Array implementation where a comma
-appears in the text - the issue is that now the implementation treats the array as the first argument in a list of
-<code>arguments</code> - and changing the last method to be <code>args:any</code> would remove our rest parameter destructing.</p>
-<p>To solve this, we need to use the <code>any</code> type again to destructure our arguments and check for the first one being an array,
-if it is then we use this as our destructured arguments into the <code>String.prototype.concat</code> method, but if it&rsquo;s a string
-then we pass all the arguments using destructuring:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">inArgs</span>: <span style="color:#66d9ef">any</span>[] <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">args</span>];
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">instanceof</span> Array) {
-    <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>])))
-  }
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>)))
-}
-
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
-</code></pre></td></tr></table>
-</div>
-</div><p>Now <a href="https://stackblitz.com/edit/function-overloading-with-rest?file=concat-overload-4.ts">the implementation</a> works as intended - our method can accept one or more string arguments, or an array of strings
-as the first argument - and it&rsquo;s not possible to mix the two up - if you try add a second array to the arguments, the TypeScript
-compiler will look for single string arguments.</p>
 </div>
 </div>
 
@@ -1293,26 +1111,223 @@ to <code>master</code> using the GitHub token generated earlier.</p>
 </div>
 
     
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/">RxJS Primitives - Operators for mutating and filtering primitives</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Apr 23, 2020</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Apr 23, 2020)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 400 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 2 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2020/04/rxjs-primitives-operators-for-mutating-and-filtering-primitives/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>Today I&rsquo;ve published a new set of libraries to NPM - <a href="https://github.com/tanepiper/rxjs-primitives">RxJS Primitives</a>.</p>
+<p>These are based on some operators I&rsquo;ve collected over the last year, and some additional ones I&rsquo;ve started adding.
+Most are based around ECMASCript objects such as <code>String</code>, <code>Number</code> and <code>Boolean</code> but also includes some useful
+utility operators.</p>
+<p>Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful.</p>
+<p>The following modules are on NPM:</p>
+<h2 id="rxjs-string">rxjs-string</h2>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-string">@tinynodes/rxjs-string</a> operators that are built around the <code>String</code> object in ECMAScript, for example with <code>toUpperCase</code>:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;hello&#39;</span>, <span style="color:#e6db74">&#39;world&#39;</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">toUpperCase</span>()
+).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [&#39;HELLO&#39;, &#39;WORLD&#39;]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>There are also some boolean value operators such as <code>endsWith</code> and extraction operators like <code>charAt</code>, with plans
+to add more useful utilities.  For example <code>endWith</code> returns a boolean value, but I also want to include an <code>endsWith</code>
+that returns the original value instead (like <code>filter</code>).</p>
+<h2 id="rxjs-number">rxjs-number</h2>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-number">@tinynodes/rxjs-number</a> operators that are built around the <code>Number</code> object in ECMAScript, for example <code>parseFloat</code>/<code>parseInt</code> and <code>isNaN</code>.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString">Number.prototype.toLocaleString</a> supports formatting such as currency.</p>
+<h2 id="rxjs-boolean">rxjs-boolean</h2>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-boolean">@tinynodes/rxjs-boolean</a> operators that are built around the <code>Boolean</code> object in ECMAScript,
+and are designed to help with filtering content from observables.  Currently, there are two operators <code>firstTruthy</code> and <code>filterTruthy</code>.</p>
+<p>In both cases these return the underlying value only if it&rsquo;s a truthy value in JavaScript, in the case of <code>firstTruthy</code> it only returns
+the first value, while <code>filterTruthy</code> returns all truthy values.</p>
+<h2 id="rxjs-utility">rxjs-utility</h2>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-utility">@tinynodes/rxjs-utility</a> is a custom module that provides some additional operators
+that don&rsquo;t fit into the other packages but still have some usefulness.</p>
+<p>Currently, there are two operators:</p>
+<ul>
+<li><code>startWithTap</code> - Will fire a callback method only on the first emission from an Observable</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">valueChanges</span>.<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">startWithTap</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">touch</span>()),
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>debounceWithQuery</code> - Debounces an input such as a text input and passes it to a method that returns a value from a query (such as a search)</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">searchField</span>.<span style="color:#a6e22e">valueChange</span>.<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">debounceWithQuery</span>(<span style="color:#ae81ff">1000</span>, (<span style="color:#a6e22e">search</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">http</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">`/search?query=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">search</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div></div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: May 10, 2019</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: May 10, 2019)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 300 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 2 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs">NPM</a>.</p>
+<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io">EditorJS</a> instances.</p>
+<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo">demo application</a> is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes"><code>@tinynodes</code> monorepo</a>.</p>
+<h2 id="included-features">Included Features</h2>
+<p>The library exports several features once the <code>NgxEditorJSModule</code> has been included in your project.</p>
+<h4 id="ngxeditorjsdirective">NgxEditorJSDirective</h4>
+<p>This is the main directive which can be used on any element with the <code>[ngxEditorJS]</code> selector and and <code>id</code> attribute.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-editor&#34;</span> <span style="color:#a6e22e">ngxEditorJS</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>This will handle creating the editor instance via the <code>NgxEditorJSService</code></p>
+<h4 id="ngxeditorjscomponent">NgxEditorJSComponent</h4>
+<p>This component can be used in any Angular component using the <code>&lt;ngx-editorjs&gt;</code> tag. Again this component can take a set of blocks, it also provides a <code>holder</code> input for overriding the ID.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">ngx-editorjs</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">holder</span><span style="color:#960050;background-color:#1e0010">]=&#34;</span><span style="color:#a6e22e">holderProperty</span><span style="color:#960050;background-color:#1e0010">&#34;</span>&gt;&lt;/<span style="color:#f92672">ngx-editorjs</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="ngxeditorjsservice">NgxEditorJSService</h4>
+<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api">EditorJS API</a> - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
+<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md">README.md</a>) on how to do this in a AOT-friendly way.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>Before release I had to resolve an issue with AOT compiling and injecting EditorJS plugins - this means version <code>1.1.0</code> has already been released - now this is resolved I want support additional feature in the editor, as well as provide unit test coverage and better documentation and demo.</p>
+<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues">GitHub Issues</a> page.</p>
+</div>
+</div>
+
+    
     <div class="text-center">
       
 <ul class="pagination">
   <li class="page-item">
-    <a href="https://tane.dev/takeoff/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <a href="https://tane.dev/tags/library/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
   </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  <li class="page-item">
+    <a href="https://tane.dev/tags/library/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="https://tane.dev/tags/library/">1</a>
   </li>
   <li class="page-item active">
-    <a class="page-link" href="https://tane.dev/takeoff/">1</a>
+    <a class="page-link" href="https://tane.dev/tags/library/blog/2/">2</a>
+  </li>
+  <li class="page-item disabled">
+    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a class="page-link" href="https://tane.dev/takeoff/blog/2/">2</a>
-  </li>
-  <li class="page-item">
-    <a href="https://tane.dev/takeoff/blog/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="https://tane.dev/takeoff/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="https://tane.dev/tags/library/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 
@@ -1320,6 +1335,21 @@ to <code>master</code> using the GitHub token generated earlier.</p>
     </div>
   </main>
 </div>
+
+<style>
+  .taxonomy-title {
+    padding-left: 1rem;
+  }
+
+  .taxonomy-title:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f02c';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900;
+  }
+</style>
 </div>
     <footer></footer>
 
