@@ -125,7 +125,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-25 17:28</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-25 17:39</div>
   </div>
 </footer>
 
@@ -204,26 +204,17 @@
       
     
   </div>
-  <div class="post-content"><p><a href="https://rxjs.dev">RxJS</a> is a popular library available for <a href="https://www.typescriptlang.org/">TypeScript</a> and
-JavaScript.</p>
-<p>It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods.
-It&rsquo;s one of the foundation libraries of <a href="https://angular.io">Angular</a>.</p>
-<p>Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in
-chains of operators.</p>
-<p>Many of the operators are low level, and combining them through the <code>pipe</code> method they create a powerful way to work
-with data.</p>
+  <div class="post-content"><p><a href="https://rxjs.dev">RxJS</a> is a popular library available for <a href="https://www.typescriptlang.org/">TypeScript</a> and JavaScript.</p>
+<p>It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods. It&rsquo;s one of the foundation libraries of <a href="https://angular.io">Angular</a>.</p>
+<p>Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in chains of operators.</p>
+<p>Many of the operators are low level, and combining them through the <code>pipe</code> method they create a powerful way to work with data.</p>
 <h2 id="creating-custom-operators-for-our-domain">Creating custom operators for our domain</h2>
-<p>The good news is it&rsquo;s also very easy to create new higher-level operators for our domain code - these can be used where
-you find duplicate or complicated operations.</p>
-<p>Creating operators we can also ensure well-tested code
-using <a href="https://rxjs.dev/guide/testing/marble-testing">marble testing</a> and they can be shared among your team to make
-your code more readable and stable.</p>
-<p>There are two types of operators that can be created - a <code>MonoTypeOperatorFunction</code> and <code>OperatorFunction</code> and all
-operators must do two things:</p>
+<p>The good news is it&rsquo;s also very easy to create new higher-level operators for our domain code - these can be used where you find duplicate or complicated operations.</p>
+<p>Creating operators we can also ensure well-tested code using <a href="https://rxjs.dev/guide/testing/marble-testing">marble testing</a> and they can be shared among your team to make your code more readable and stable.</p>
+<p>There are two types of operators that can be created - a <code>MonoTypeOperatorFunction</code> and <code>OperatorFunction</code> and all operators must do two things:</p>
 <ul>
 <li>Return a function which accepts as its parameter a source from the previous Observable value in the stream</li>
-<li>Return a value of the same type for <code>MonoTypeOperatorFunction</code> or different type for an <code>OperatorFunction</code> by using
-the source value with <code>pipe</code></li>
+<li>Return a value of the same type for <code>MonoTypeOperatorFunction</code> or different type for an <code>OperatorFunction</code> by using the source value with <code>pipe</code></li>
 </ul>
 <p>Below we&rsquo;ll have an example of each, but first, to support creating the operators we need some code to simplify:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -267,10 +258,8 @@ the source value with <code>pipe</code></li>
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id="creating-monotypeoperatorfunction-for-single-types">Creating MonoTypeOperatorFunction for single types</h2>
-<p>As the name suggests a <code>MonoTypeOperatorFunction</code> is a function that works with a single type of data - the input and
-output value <strong>must</strong> be of the same type.</p>
-<p>Looking at our code we can identify two multiplication operations in our code that are the same. To turn this into an
-operator the function will look like this:</p>
+<p>As the name suggests a <code>MonoTypeOperatorFunction</code> is a function that works with a single type of data - the input and output value <strong>must</strong> be of the same type.</p>
+<p>Looking at our code we can identify two multiplication operations in our code that are the same. To turn this into an operator the function will look like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -289,25 +278,18 @@ operator the function will look like this:</p>
 }
 </code></pre></td></tr></table>
 </div>
-</div><p>Here, we are returning an arrow function that takes the previous source - which must be an <code>Observable&lt;number&gt;</code>. The
-source is piped to <a href="https://rxjs.dev/api/operators/map">map</a> which allows the source value to be converted to a new
-value, in our case we multiply by the <code>factor</code></p>
-<p>TypeScript understands that the output must also be a number - and if you try to return another value type it will throw
-a compile error.</p>
+</div><p>Here, we are returning an arrow function that takes the previous source - which must be an <code>Observable&lt;number&gt;</code>. The source is piped to <a href="https://rxjs.dev/api/operators/map">map</a> which allows the source value to be converted to a new value, in our case we multiply by the <code>factor</code></p>
+<p>TypeScript understands that the output must also be a number - and if you try to return another value type it will throw a compile error.</p>
 <h3 id="writing-a-marble-test">Writing a marble test</h3>
-<p><a href="https://rxjs.dev/guide/testing/marble-testing">Marble testing</a> is a way to write tests for RxJS operators that deal
-with data over time - data is not static due to its asynchronous nature and cannot always be guaranteed in a specific
-order. Luckily the test for this operator is simple.</p>
+<p><a href="https://rxjs.dev/guide/testing/marble-testing">Marble testing</a> is a way to write tests for RxJS operators that deal with data over time - data is not static due to its asynchronous nature and cannot always be guaranteed in a specific order. Luckily the test for this operator is simple.</p>
 <blockquote>
 <p>My personal preference has been to write these test in Jest using <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> and <a href="https://www.npmjs.com/package/jest-marbles">jest-marbles</a>, but there are other libraries to write these test available.</p>
 </blockquote>
 <p>Using marbles, we can set up a mock source that will emit 5 numbers at the specified frames.</p>
 <p>The test result contains two things:</p>
 <ul>
-<li>A subscriptions string which is used to check that the operator handle subscription ending properly
-using <code>toHaveSubscriptions</code></li>
-<li>An output Observable that will contain the results of the operator and compared against the expectations
-using <code>toBeObservable</code></li>
+<li>A subscriptions string which is used to check that the operator handle subscription ending properly using <code>toHaveSubscriptions</code></li>
+<li>An output Observable that will contain the results of the operator and compared against the expectations using <code>toBeObservable</code></li>
 </ul>
 <p>In this test, we&rsquo;ll pass a source of numbers and multiply by <code>10</code></p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -343,8 +325,7 @@ using <code>toBeObservable</code></li>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="update-code">Update Code</h3>
-<p>Now the operator is created it can be used in the existing code from above - ideally the operator should be part of a
-shared library of code:</p>
+<p>Now the operator is created it can be used in the existing code from above - ideally the operator should be part of a shared library of code:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -367,16 +348,14 @@ shared library of code:</p>
 </div>
 </div><p>Already much more readable! Our code explains our intent, but we haven&rsquo;t really reduced the duplication of our sources.</p>
 <h2 id="changing-the-api-with-operatorfunction">Changing the API with OperatorFunction</h2>
-<p>In our domain, we know we always want more than one value from a source and using the <code>OperatorFunction</code> we can use that
-to reduce our duplicate code even more.</p>
-<p>This would introduce an API change, but with proper tests, we should be able to migrate our code easily</p>
+<p>In our domain, we know we always want more than one value from a source and using the <code>OperatorFunction</code> we can use that to reduce our duplicate code even more.</p>
+<p>This would introduce an API change, but with proper tests, we should be able to migrate our code easily.</p>
 <p>For our source value, it is still a single number value, but in the API we&rsquo;ve changed:</p>
 <ul>
 <li>The input <code>factor</code> can be a single value or an array of values</li>
 <li>The return value is now an array of values, regardless of the input.</li>
 </ul>
-<p>Instead of forcing the users to check the type of response, this single API can be well documented and expected when we
-use it in our code:</p>
+<p>Instead of forcing the users to check the type of response, this single API can be well documented and expected when we use it in our code:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -396,8 +375,7 @@ use it in our code:</p>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="updating-the-tests">Updating the tests</h3>
-<p>First, we need to update the existing test - here we only have to change the values in our <code>expected</code> Observable - we
-now expect an array of numbers regardless of the input - but with a single value our array length will be <code>1</code></p>
+<p>First, we need to update the existing test - here we only have to change the values in our <code>expected</code> Observable - we now expect an array of numbers regardless of the input - but with a single value our array length will be <code>1</code></p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -440,8 +418,7 @@ now expect an array of numbers regardless of the input - but with a single value
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="update-code-1">Update Code</h3>
-<p>We can now update the code further - here we can now remove the two additional cold Observables and create a single one
-using out new <code>multiply</code> operator, passing it an array containing out factors:</p>
+<p>We can now update the code further - here we can now remove the two additional cold Observables and create a single one using our new <code>multiply</code> operator, passing it an array containing out factors:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -466,8 +443,7 @@ using out new <code>multiply</code> operator, passing it an array containing out
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyValues$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>([<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>]));
 </code></pre></td></tr></table>
 </div>
-</div><p>Now we can subscribe to the <code>multiplyValues$</code> source and get both our new result which contains the multiplication of
-both numbers</p>
+</div><p>Now we can subscribe to the <code>multiplyValues$</code> source and get both our new result which contains the multiplication of both numbers</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -479,11 +455,8 @@ both numbers</p>
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id="next-steps">Next Steps</h2>
-<p>You can see a working version of this operator
-on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts">StackBlitz</a> by opening the console to see the
-result.</p>
-<p>This operator is just a taste of what&rsquo;s possible with RxJS - diving into the API you&rsquo;ll find many more operators to help
-work with data in other synchronous and asynchronous operations.</p>
+<p>You can see a working version of this operator on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts">StackBlitz</a> by opening the console to see the result.</p>
+<p>This operator is just a taste of what&rsquo;s possible with RxJS - diving into the API you&rsquo;ll find many more operators to help work with data in other synchronous and asynchronous operations.</p>
 <h2 id="a-collection-of-pre-built-operators-for-your-projects">A collection of pre-built operators for your projects</h2>
 <p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
 <p>Now for a shameless plug - my own library - <a href="https://rxjs.ninja">RxJS Ninja</a> - is a collection of over 130 operators for working with various types of data (such as <a href="https://rxjs.ninja/modules/array.html">arrays</a> or <a href="https://rxjs.ninja/modules/number.html">numbers</a>) and <a href="https://rxjs.ninja/modules/utility.html#Streams">streams</a> allowing for modifying, filtering and querying the data.</p>
