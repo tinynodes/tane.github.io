@@ -58,6 +58,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
+
+
+<span>Published: Jan 25, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/">RxJS Ninja Updates - New operators for math and working with streams</a> 
 
 
@@ -89,14 +97,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/publishing-npm-libraries-using-nx-and-github-actions/">Publishing NPM Libraries using NX and Github Actions</a> 
-
-
-<span>Published: May 7, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -125,7 +125,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-14 01:18</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-25 17:28</div>
   </div>
 </footer>
 
@@ -153,6 +153,340 @@
   </div>
   <main class="column main">
     
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 25, 2021</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 25, 2021)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1500 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 7 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p><a href="https://rxjs.dev">RxJS</a> is a popular library available for <a href="https://www.typescriptlang.org/">TypeScript</a> and
+JavaScript.</p>
+<p>It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods.
+It&rsquo;s one of the foundation libraries of <a href="https://angular.io">Angular</a>.</p>
+<p>Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in
+chains of operators.</p>
+<p>Many of the operators are low level, and combining them through the <code>pipe</code> method they create a powerful way to work
+with data.</p>
+<h2 id="creating-custom-operators-for-our-domain">Creating custom operators for our domain</h2>
+<p>The good news is it&rsquo;s also very easy to create new higher-level operators for our domain code - these can be used where
+you find duplicate or complicated operations.</p>
+<p>Creating operators we can also ensure well-tested code
+using <a href="https://rxjs.dev/guide/testing/marble-testing">marble testing</a> and they can be shared among your team to make
+your code more readable and stable.</p>
+<p>There are two types of operators that can be created - a <code>MonoTypeOperatorFunction</code> and <code>OperatorFunction</code> and all
+operators must do two things:</p>
+<ul>
+<li>Return a function which accepts as its parameter a source from the previous Observable value in the stream</li>
+<li>Return a value of the same type for <code>MonoTypeOperatorFunction</code> or different type for an <code>OperatorFunction</code> by using
+the source value with <code>pipe</code></li>
+</ul>
+<p>Below we&rsquo;ll have an example of each, but first, to support creating the operators we need some code to simplify:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span>, <span style="color:#a6e22e">tap</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+
+<span style="color:#75715e">// Create a cold source that will emit each number
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
+
+<span style="color:#75715e">// Create a cold source that multiplies each number by `5`
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByFive$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>));
+<span style="color:#75715e">// Create a cold source that multiplies each number by `10`
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByTen$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>));
+
+<span style="color:#75715e">// Subscribe to the sources and console.log the output
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">multiplyByFive$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
+<span style="color:#75715e">// Output: `5, 10, 15, 20, 25`
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">multiplyByTen$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
+<span style="color:#75715e">// Output: `10, 20, 30, 40, 50`
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="creating-monotypeoperatorfunction-for-single-types">Creating MonoTypeOperatorFunction for single types</h2>
+<p>As the name suggests a <code>MonoTypeOperatorFunction</code> is a function that works with a single type of data - the input and
+output value <strong>must</strong> be of the same type.</p>
+<p>Looking at our code we can identify two multiplication operations in our code that are the same. To turn this into an
+operator the function will look like this:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MonoTypeOperatorFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#a6e22e">factor</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">number</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">factor</span>))
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Here, we are returning an arrow function that takes the previous source - which must be an <code>Observable&lt;number&gt;</code>. The
+source is piped to <a href="https://rxjs.dev/api/operators/map">map</a> which allows the source value to be converted to a new
+value, in our case we multiply by the <code>factor</code></p>
+<p>TypeScript understands that the output must also be a number - and if you try to return another value type it will throw
+a compile error.</p>
+<h3 id="writing-a-marble-test">Writing a marble test</h3>
+<p><a href="https://rxjs.dev/guide/testing/marble-testing">Marble testing</a> is a way to write tests for RxJS operators that deal
+with data over time - data is not static due to its asynchronous nature and cannot always be guaranteed in a specific
+order. Luckily the test for this operator is simple.</p>
+<blockquote>
+<p>My personal preference has been to write these test in Jest using <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> and <a href="https://www.npmjs.com/package/jest-marbles">jest-marbles</a>, but there are other libraries to write these test available.</p>
+</blockquote>
+<p>Using marbles, we can set up a mock source that will emit 5 numbers at the specified frames.</p>
+<p>The test result contains two things:</p>
+<ul>
+<li>A subscriptions string which is used to check that the operator handle subscription ending properly
+using <code>toHaveSubscriptions</code></li>
+<li>An output Observable that will contain the results of the operator and compared against the expectations
+using <code>toBeObservable</code></li>
+</ul>
+<p>In this test, we&rsquo;ll pass a source of numbers and multiply by <code>10</code></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">marbles</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs-marbles/jest&#34;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs/operators&#34;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./multiply&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;multiply&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">20</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">30</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">40</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">50</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">60</span>});
+    <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>(<span style="color:#ae81ff">10</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
+    <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
+  }));
+});
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="update-code">Update Code</h3>
+<p>Now the operator is created it can be used in the existing code from above - ideally the operator should be part of a
+shared library of code:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@myorg/rxjs-library&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByFive$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>(<span style="color:#ae81ff">5</span>));
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByTen$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>(<span style="color:#ae81ff">10</span>));
+</code></pre></td></tr></table>
+</div>
+</div><p>Already much more readable! Our code explains our intent, but we haven&rsquo;t really reduced the duplication of our sources.</p>
+<h2 id="changing-the-api-with-operatorfunction">Changing the API with OperatorFunction</h2>
+<p>In our domain, we know we always want more than one value from a source and using the <code>OperatorFunction</code> we can use that
+to reduce our duplicate code even more.</p>
+<p>This would introduce an API change, but with proper tests, we should be able to migrate our code easily</p>
+<p>For our source value, it is still a single number value, but in the API we&rsquo;ve changed:</p>
+<ul>
+<li>The input <code>factor</code> can be a single value or an array of values</li>
+<li>The return value is now an array of values, regardless of the input.</li>
+</ul>
+<p>Instead of forcing the users to check the type of response, this single API can be well documented and expected when we
+use it in our code:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OperatorFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#a6e22e">factor</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">number</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">OperatorFunction</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">number</span><span style="color:#960050;background-color:#1e0010">[]</span>&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">source</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> (Array.<span style="color:#a6e22e">isArray</span>(<span style="color:#a6e22e">factor</span>) <span style="color:#f92672">?</span> <span style="color:#a6e22e">factor</span> <span style="color:#f92672">:</span> [<span style="color:#a6e22e">factor</span>]).<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">f</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">f</span>)))
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="updating-the-tests">Updating the tests</h3>
+<p>First, we need to update the existing test - here we only have to change the values in our <code>expected</code> Observable - we
+now expect an array of numbers regardless of the input - but with a single value our array length will be <code>1</code></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">20</span>], <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">30</span>], <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">40</span>], <span style="color:#a6e22e">d</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">50</span>], <span style="color:#a6e22e">e</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">60</span>]});
+  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>(<span style="color:#ae81ff">10</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
+  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
+}));
+</code></pre></td></tr></table>
+</div>
+</div><p>To ensure full coverage, we should also test for the case where were have an array input for the multiplication factor:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>], <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">30</span>], <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">40</span>], <span style="color:#a6e22e">d</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">50</span>], <span style="color:#a6e22e">e</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">60</span>]});
+  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>([<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>]))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
+  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
+}));
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="update-code-1">Update Code</h3>
+<p>We can now update the code further - here we can now remove the two additional cold Observables and create a single one
+using out new <code>multiply</code> operator, passing it an array containing out factors:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span>, <span style="color:#a6e22e">tap</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> }
+
+<span style="color:#e6db74">&#39;@myorg/rxjs-library&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyValues$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>([<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>]));
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can subscribe to the <code>multiplyValues$</code> source and get both our new result which contains the multiplication of
+both numbers</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">multiplyValues$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
+<span style="color:#75715e">// Output: `[5, 10], [10, 20], [15, 30], [20, 40], [25, 50]`
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="next-steps">Next Steps</h2>
+<p>You can see a working version of this operator
+on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts">StackBlitz</a> by opening the console to see the
+result.</p>
+<p>This operator is just a taste of what&rsquo;s possible with RxJS - diving into the API you&rsquo;ll find many more operators to help
+work with data in other synchronous and asynchronous operations.</p>
+<h2 id="a-collection-of-pre-built-operators-for-your-projects">A collection of pre-built operators for your projects</h2>
+<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
+<p>Now for a shameless plug - my own library - <a href="https://rxjs.ninja">RxJS Ninja</a> - is a collection of over 130 operators for working with various types of data (such as <a href="https://rxjs.ninja/modules/array.html">arrays</a> or <a href="https://rxjs.ninja/modules/number.html">numbers</a>) and <a href="https://rxjs.ninja/modules/utility.html#Streams">streams</a> allowing for modifying, filtering and querying the data.</p>
+<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja">GitHub</a>.  There you can also find a <a href="https://github.com/rxjs-ninja/nx-library-starter">starter project</a> for creating your own TypeScript libraries like this.</p>
+</div>
+</div>
+
     
     <div class="post">
   <div class="post-heading">
@@ -771,527 +1105,6 @@ compiler will look for single string arguments.</p>
 </div>
 
     
-    <div class="post">
-  <div class="post-heading">
-    <h1>
-      <a href="https://tane.dev/2020/05/publishing-npm-libraries-using-nx-and-github-actions/">Publishing NPM Libraries using NX and Github Actions</a>
-    </h1>
-    
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: May 7, 2020</span>
-  
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: May 7, 2020)</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 2300 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 11 minutes reading time</span>
-</div>
-
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
-    
-    <a class="flex-item" href="https://tane.dev/tags/nx">NX</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/github">Github</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/monorepo">Monorepo</a>
-    
-  </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2020/05/publishing-npm-libraries-using-nx-and-github-actions/#commento">... comments</a>
-</div>
-
-      
-    
-  </div>
-  <div class="post-content"><p>This week I released version 1.0 of <a href="https://tanepiper.github.io/rxjs-primitives/">RxJS Primitives</a> to NPM - but the journey
-to get there was not as easy as I hoped.</p>
-<p>In the past I&rsquo;ve used <a href="https://circleci.com/">CircleCI</a> and at work I use <a href="https://www.jenkins.io/">Jenkins</a>
-but with this project I wanted to try out <a href="https://github.com/features/actions">Github Actions</a>.</p>
-<p>After some trial an error (and many failed builds) I managed to get the workflow working, I&rsquo;ve decided to share here
-the steps taken to hopefully save you from the same pain.</p>
-<h2 id="setting-up-your-monorepo">Setting up your monorepo</h2>
-<p>The <a href="https://nx.dev/">NX</a> CLI is a set of tools that make managing your repository of JavaScript and TypeScript code
-easy. Originally built on top of the <a href="https://cli.angular.io/">Angular CLI</a> the tooling now supports more project
-types including Node, React and Web Components.</p>
-<p>In my day-job most of my work is building Angular Enterprise applications, but I also work on my own open source software
-and in both cases I use NX, including using it to publish Angular and TypeScript libraries to NPM.</p>
-<p>Each way of setting this up is subtly different. In this example I&rsquo;ll show the steps of how I built a pipeline for releasing
-my TypeScript RxJS library.</p>
-<p>The easiest way to start is to create your repo using <a href="https://www.npmjs.com/package/create-nx-workspace"><code>create-nx-workspace</code></a></p>
-<blockquote>
-<p><code>npx create-nx-workspace &lt;project-name&gt;</code></p>
-</blockquote>
-<p>When running this, you will be asked a few questions depending on your setup. For <code>RxJS Primitives</code> I used a plain workspace,
-and then once created I added <a href="https://www.npmjs.com/package/@nrwl/node"><code>@nrwl/node</code></a> to the project. The default <code>@nrwl/workspace</code>
-plugin allows the creation of libraries, but does not provide a publishable output (adding <code>package.json</code>) as an option.</p>
-<p>Once set up you can now create libraries that can be built and published as NPM modules, using the <code>@nrwl/node</code> plugin type
-to create them.  For <code>rxjs-string</code> I used:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt; nx g @nrwl/node:library --name<span style="color:#f92672">=</span>string --directory<span style="color:#f92672">=</span>rxjs --publishable
-</code></pre></td></tr></table>
-</div>
-</div><p>If it&rsquo;s an Angular library use:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt; nx g @nrwl/angular:library --name<span style="color:#f92672">=</span>my-component --directory<span style="color:#f92672">=</span>ngx --publishable
-</code></pre></td></tr></table>
-</div>
-</div><p>After a few seconds, inside the <code>libs</code> folder will be a default output of a TypeScript library,
-with various <code>tsconfig.json</code> files for testing and building, a <a href="https://jestjs.io/">Jest</a> config for
-unit testing, a <code>index.ts</code> file as the entry point and <code>package.json</code> for publishing.</p>
-<blockquote>
-<p>One issue with <code>nx</code> is that with this configuration in the <code>package.json</code> you&rsquo;ll find a 2-level
-name for your library (e.g. <code>@tinynodes/rxjs-string</code>) however in the root <code>tsconfig.json</code> file you&rsquo;ll see the following
-in the <code>paths</code> property</p>
-</blockquote>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;paths&#34;</span>: {
-    <span style="color:#f92672">&#34;@tinynodes/rxjs/string&#34;</span>: [<span style="color:#e6db74">&#34;libs/rxjs/string/src/index.ts&#34;</span>]
-  }
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>If you are only using this library internally it&rsquo;s not really an issue, but when you intend to publish the library I recommend
-changing the path to <code>@tinynodes/rxjs-string</code> to match the NPM import path.</p>
-<h2 id="preparing-for-publishing">Preparing for publishing</h2>
-<p>Once you have developed your library, it&rsquo;s time to publish to NPM! First of all, make sure your public API
-(Functions, Classes, and Types) are exported in the library <code>index.ts</code>:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// index.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">myFactoryFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./libs/factory&#39;</span>;
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyThing</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./classes/my-thing&#39;</span>
-<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">MyInterface</span>, <span style="color:#a6e22e">SOME_CONSTANT</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./types/thing-types&#39;</span> 
-</code></pre></td></tr></table>
-</div>
-</div><p>To see the output of this library you can run <code>nx build library-name</code>, this will output a NPM module
-to the <code>dist</code> folder.</p>
-<h2 id="setting-up-github-actions-for-pull-requests">Setting up Github Actions for Pull Requests</h2>
-<p>For an open-source library on GitHub, it&rsquo;s good practice for you to get pull requests from other developers, and to have confidence in those PRs having a pull request checker is ideal.</p>
-<p>First create a folder <code>.github</code> at the root of your workspace, and inside the <code>workflows</code> folder. This is the folder that GitHub checks to see if there are any YAML files containing action flows.</p>
-<p>Create a file <code>pr_on_master.yml</code> and inside this file set up the following steps:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># File for Pull Request on master branch</span>
-<span style="color:#f92672">name</span>: <span style="color:#ae81ff">PR on master</span>
-
-<span style="color:#75715e"># When a PR is opened to master</span>
-<span style="color:#f92672">on</span>:
-  <span style="color:#f92672">pull_request</span>:
-    <span style="color:#f92672">branches</span>:
-      - <span style="color:#ae81ff">master</span>
-    <span style="color:#f92672">types</span>: [<span style="color:#ae81ff">opened, reopened, synchronize]</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>This first section provides the name and triggers for when the action runs: when a pull request opened or re-opened against <code>master</code>.</p>
-<p>Next the steps need set up:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">jobs</span>:
-  <span style="color:#f92672">build</span>:
-    <span style="color:#75715e"># Setup OS and Node Version</span>
-    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
-    <span style="color:#f92672">strategy</span>:
-      <span style="color:#f92672">matrix</span>:
-        <span style="color:#75715e"># Latest nodes only</span>
-        <span style="color:#f92672">node-version</span>: [<span style="color:#ae81ff">13.</span><span style="color:#ae81ff">x]</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>This sets up a Github Action runner and makes sure NodeJS 13 is installed. Here you can add more versions and run parallel tests against different versions
-if you plan to support more than one.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Define Steps</span>
-<span style="color:#f92672">steps</span>:
-  <span style="color:#75715e"># Checkout code</span>
-  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
-    <span style="color:#f92672">with</span>:
-      <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">${{ github.event.pull_request.head.ref }}</span>
-      <span style="color:#f92672">fetch-depth</span>: <span style="color:#ae81ff">0</span>
-
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use Node.js ${{ matrix.node-version }}</span>
-    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-node@v1</span>
-    <span style="color:#f92672">with</span>:
-      <span style="color:#f92672">node-version</span>: <span style="color:#ae81ff">${{ matrix.node-version }}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>The first two steps first check out the code from the pull request branch, and then sets up NodeJS to run.</p>
-<p>The next piece of step was the part of setting up the pipeline that took the longest to fix.</p>
-<p>To use the <code>nx affected</code> commands it needs a base branch to compare changes against - by default Github checkout does not pull all the branches,
-only the current one - and this includes the master branch. This command tells git to pull the master branch from the origin:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#75715e"># Make sure we have all branches</span>
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Fetch other branches</span>
-    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">git fetch --no-tags --prune --depth=5 origin master</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Finally, we run some NPM command for installing the dependencies, running linting and test coverage.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install environment</span>
-    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm ci</span>
-
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run lint</span>
-    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run affected:lint -- --base=&#34;origin/master&#34;</span>
-
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Tests coverage</span>
-    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run affected:test -- --base=&#34;origin/master&#34; --codeCoverage</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Using the affected commands, the pipeline will only run linting and testing against libraries that have changed against the
-master branch. More steps such as <a href="https://sonarqube.org">SonarQube</a> or other webhooks can be performed here.</p>
-<h3 id="publishing-to-npm">Publishing to NPM</h3>
-<p>When publishing libraries, there&rsquo;s a few additional steps needed before we write the pipeline.  First of all we need two access tokens,
-one for NPM and one for GitHub.</p>
-<h4 id="npm-token">NPM Token</h4>
-<p>The NPM token will be used to publish the library to the public NPM registry. Log into NPM and under your profile go to the &ldquo;Auth Tokens&rdquo;
-section and create a new token with &ldquo;Publish&rdquo; access. Next go to your Github repository and under &ldquo;Settings -&gt; Secrets&rdquo; add a new token
-called <code>NPM_AUTH_TOKEN</code> and paste in the value.</p>
-<blockquote>
-<p>If publishing to a private registry follow it&rsquo;s instructions on generating an API token.</p>
-</blockquote>
-<h4 id="github-token">Github Token</h4>
-<p>To publish changes back to GitHub from the pipeline you also need a personal access token - this can be created under your account
-settings in &ldquo;Developer Settings -&gt; Personal Access Token&rdquo;. The only permissions you need to give this token are the <code>repo</code> permissions.</p>
-<p>Add this under &ldquo;Settings -&gt; Secrets&rdquo; as <code>ACTION_AUTH_TOKEN</code> (it seems you cannot name them with <code>GITHUB_</code> in the name at all) 🤷‍♂️</p>
-<h4 id="setting-up-the-action">Setting up the action</h4>
-<p>Like before we are going to add a YAML file to the <code>.github/workflows</code> folder - this time called <code>publish.yml</code></p>
-<p>First set the action up to trigger only when a PR is closed on <code>master</code>:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Merge on master</span>
-<span style="color:#f92672">on</span>:
-  <span style="color:#f92672">pull_request</span>:
-    <span style="color:#f92672">branches</span>:
-      - <span style="color:#ae81ff">master</span>
-    <span style="color:#f92672">types</span>: [<span style="color:#ae81ff">closed]</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>The <code>job</code> section is the same as above, but for the steps there is a slight change - to allow merges to master that <em>don&rsquo;t</em> trigger a release,
-each command will be wrapped in a <code>if</code> block this block checks the commit message for the string <code>[skip-ci]</code> to avoid running these tasks (unfortunatly it seems
-you can&rsquo;t just put a block around the entire set of steps so has to be added to all of them)</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">steps</span>:
-  <span style="color:#75715e"># Checkout code</span>
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout Code</span>
-    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
-    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Instead of running lint and test, we&rsquo;ll now run a set of different tasks - hold on tight because we&rsquo;re about to dive into some <code>bash</code> code!</p>
-<h4 id="deployment-step">Deployment Step</h4>
-<p>In our <code>publish.yaml</code> add the following step which first exports our registry publishing setting with the auth token we set up earlier,
-then we call our publish bash script</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy</span>
-    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
-    <span style="color:#f92672">env</span>:
-      <span style="color:#f92672">NPM_AUTH_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.NPM_AUTH_TOKEN }}</span>
-    <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">      npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
-</span><span style="color:#e6db74">      ./.github/scripts/publish-libraries.sh</span>      
-</code></pre></td></tr></table>
-</div>
-</div><p>Create the <code>.github/scripts/publish-libraries.sh</code> file and make sure it&rsquo;s set to executable by typing <code>chmod +x .github/scripts/publish-libraries.sh</code> before committing the script.</p>
-<p>The first part of the script is setting up our variables and <code>getBuildType</code> function to check what type of release we are doing. It&rsquo;s good to use <a href="https://semver.org/">SemVer</a> to publish based on changes that happen in the library
-and with this function using the following words in the <strong>MERGE COMMIT</strong> message will determine the release type.</p>
-<p>For example: <code>(fix): Fixed that annoying bug in issue #123</code> will set the release type to <code>patch</code>. The default is <code>minor</code>. Using <code>(feat)</code> will make a major
-change.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/usr/bin/env bash
-</span><span style="color:#75715e"></span>set -o errexit -o noclobber -o nounset -o pipefail
-
-<span style="color:#75715e"># This script uses the parent version as the version to publish a library with</span>
-
-getBuildType<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-  local release_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;minor&#34;</span>
-  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;feat&#34;</span>* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
-    release_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;major&#34;</span>
-  <span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;fix&#34;</span>* <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;docs&#34;</span>* <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;chore&#34;</span>* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
-    release_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;patch&#34;</span>
-  <span style="color:#66d9ef">fi</span>
-  echo <span style="color:#e6db74">&#34;</span>$release_type<span style="color:#e6db74">&#34;</span>
-<span style="color:#f92672">}</span>
-
-PARENT_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">&#34;</span>
-ROOT_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.&#34;</span>
-echo <span style="color:#e6db74">&#34;Removing Dist&#34;</span>
-rm -rf <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>ROOT_DIR:?<span style="color:#e6db74">}</span><span style="color:#e6db74">/dist&#34;</span>
-COMMIT_MESSAGE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>git log -1 --pretty<span style="color:#f92672">=</span>format:<span style="color:#e6db74">&#34;%s&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-RELEASE_TYPE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>1<span style="color:#66d9ef">:-$(</span>getBuildType <span style="color:#e6db74">&#34;</span>$COMMIT_MESSAGE<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">}</span>
-DRY_RUN<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>DRY_RUN<span style="color:#66d9ef">:-</span><span style="color:#e6db74">&#34;False&#34;</span><span style="color:#e6db74">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>The script also cleans up the dist folder, and has an optional <code>DRY_RUN</code> to set if you want to test the pipeline before release.</p>
-<p>After this add the following:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">AFFECTED<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>node node_modules/.bin/nx affected:libs --plain --base<span style="color:#f92672">=</span>origin/master~1<span style="color:#66d9ef">)</span>
-<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$AFFECTED<span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-  cd <span style="color:#e6db74">&#34;</span>$PARENT_DIR<span style="color:#e6db74">&#34;</span>
-  echo <span style="color:#e6db74">&#34;Copy Environment Files&#34;</span>
-
-  <span style="color:#66d9ef">while</span> IFS<span style="color:#f92672">=</span> read -r -d <span style="color:#e6db74">$&#39; &#39;</span> lib; <span style="color:#66d9ef">do</span>
-    echo <span style="color:#e6db74">&#34;Setting version for </span>$lib<span style="color:#e6db74">&#34;</span>
-    cd <span style="color:#e6db74">&#34;</span>$PARENT_DIR<span style="color:#e6db74">&#34;</span>
-    cd <span style="color:#e6db74">&#34;</span>$ROOT_DIR<span style="color:#e6db74">/libs/</span><span style="color:#e6db74">${</span>lib/-//<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
-    npm version <span style="color:#e6db74">&#34;</span>$RELEASE_TYPE<span style="color:#e6db74">&#34;</span> -f -m <span style="color:#e6db74">&#34;RxJS Primitives </span>$RELEASE_TYPE<span style="color:#e6db74">&#34;</span>
-    echo <span style="color:#e6db74">&#34;Building </span>$lib<span style="color:#e6db74">&#34;</span>
-    cd <span style="color:#e6db74">&#34;</span>$PARENT_DIR<span style="color:#e6db74">&#34;</span>
-    npm run build <span style="color:#e6db74">&#34;</span>$lib<span style="color:#e6db74">&#34;</span> -- --prod --with-deps
-    wait
-  <span style="color:#66d9ef">done</span> <span style="color:#f92672">&lt;&lt;&lt;</span><span style="color:#e6db74">&#34;</span>$AFFECTED<span style="color:#e6db74"> &#34;</span> <span style="color:#75715e"># leave space on end to generate correct output</span>
-
-  cd <span style="color:#e6db74">&#34;</span>$PARENT_DIR<span style="color:#e6db74">&#34;</span>
-  <span style="color:#66d9ef">while</span> IFS<span style="color:#f92672">=</span> read -r -d <span style="color:#e6db74">$&#39; &#39;</span> lib; <span style="color:#66d9ef">do</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$DRY_RUN<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-      echo <span style="color:#e6db74">&#34;Publishing </span>$lib<span style="color:#e6db74">&#34;</span>
-      npm publish <span style="color:#e6db74">&#34;</span>$ROOT_DIR<span style="color:#e6db74">/dist/libs/</span><span style="color:#e6db74">${</span>lib/-//<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> --access<span style="color:#f92672">=</span>public
-    <span style="color:#66d9ef">else</span>
-      echo <span style="color:#e6db74">&#34;Dry Run, not publishing </span>$lib<span style="color:#e6db74">&#34;</span>
-    <span style="color:#66d9ef">fi</span>
-    wait
-  <span style="color:#66d9ef">done</span> <span style="color:#f92672">&lt;&lt;&lt;</span><span style="color:#e6db74">&#34;</span>$AFFECTED<span style="color:#e6db74"> &#34;</span> <span style="color:#75715e"># leave space on end to generate correct output</span>
-<span style="color:#66d9ef">else</span>
-  echo <span style="color:#e6db74">&#34;No Libraries to publish&#34;</span>
-<span style="color:#66d9ef">fi</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>This part of the script allows us to control the build and release - the first line gets a single line list of affected libraries from the
-current <code>master</code> to the last <code>HEAD</code> in <code>master</code> - if you use only PRs to make changes into <code>master</code> this is very effective - but can break if you make
-changes directly to <code>master</code>.</p>
-<p>This is done instead of using <code>nx affected</code> as there is currently no task for publishing, so this gives a way to provide a loop for both building and publishing.</p>
-<p>Both <code>while</code> loops parses this string and splits on the space to allow a loop to be run.</p>
-<blockquote>
-<p>In each loop there is a string replacement <code>${lib/-//}</code> - this changes the library name (e.g. <code>rxjs-string</code>) into a path (<code>rxjs/string</code>)</p>
-</blockquote>
-<p>The first <code>while</code> loop ensures we are in the correct directory and does <code>npm version</code> - bumping the <code>package.json</code> for release - it then runs the build task for production, and ensures any dependencies are also build.</p>
-<p>The second <code>while</code> loop iterates over the same list but runs the <code>npm publish</code> command in each directory, setting the access to public.</p>
-<h4 id="congratulations">Congratulations</h4>
-<p>If you&rsquo;ve made it this far, well done - this is quite a long post!  At this point your pipeline should have successfully published your NPM module
-for other developers to use!  We&rsquo;re not done yet though!</p>
-<p>Before running this we are going to add some additional steps so that we can publish documentation and changes back to Github:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build Docs</span>
-    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
-    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm run docs</span>
-
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Commit files</span>
-    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
-    <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">      git config --local user.email &#34;action@github.com&#34;
-</span><span style="color:#e6db74">      git config --local user.name &#34;GitHub Action&#34;
-</span><span style="color:#e6db74">      git add .
-</span><span style="color:#e6db74">      git commit -m &#34;Release [skip-ci]&#34; -a || true</span>      
-
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Push changes</span>
-    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true &amp;&amp; contains(github.event.commits[0].message, &#39;[skip-ci]&#39;) == false</span>
-    <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ad-m/github-push-action@master</span>
-    <span style="color:#f92672">with</span>:
-      <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">${{ secrets.ACTION_AUTH_TOKEN }}</span>
-      <span style="color:#f92672">tags</span>: <span style="color:#66d9ef">true</span>
-      <span style="color:#f92672">force</span>: <span style="color:#66d9ef">true</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>For RxJS Primitives I used <a href="https://typedoc.org/">TypeDoc</a> to generate static content to the <code>docs</code> folder, which is then used by GitHub Pages, but here
-you can set up whatever documentation system you prefer.</p>
-<p>Once the docs have been generated we then commit all changes including the <code>package.json</code> version bumps back to git and then finally push it back
-to <code>master</code> using the GitHub token generated earlier.</p>
-<p>Within a few seconds your GitHub Page should update with the latest content, the master branch reflect all changes made.</p>
-<p>That&rsquo;s a wrap! You&rsquo;ve now successfully published your TypeScript library for other developers to use, along with documentation.</p>
-<p>If you&rsquo;ve found this article useful, let me know - and if you find any issues or improvements please get in touch!</p>
-</div>
-</div>
-
-    
     <div class="text-center">
       
 <ul class="pagination">
@@ -1308,10 +1121,13 @@ to <code>master</code> using the GitHub token generated earlier.</p>
     <a class="page-link" href="https://tane.dev/blog/blog/2/">2</a>
   </li>
   <li class="page-item">
+    <a class="page-link" href="https://tane.dev/blog/blog/3/">3</a>
+  </li>
+  <li class="page-item">
     <a href="https://tane.dev/blog/blog/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="https://tane.dev/blog/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="https://tane.dev/blog/blog/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

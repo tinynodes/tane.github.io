@@ -8,11 +8,26 @@
     <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
     <webMaster>spam@tane.dev (Tane Piper)</webMaster>
     <copyright>This work is copyright Tane Piper</copyright>
-    <lastBuildDate>Thu, 14 Jan 2021 00:15:00 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 25 Jan 2021 00:15:00 +0100</lastBuildDate>
     
         <atom:link href="https://tane.dev/index.xml" rel="self" type="application/rss+xml" />
     
     
+    
+    <item>
+      <title>Publishing NPM Libraries using NX and Github Actions</title>
+      <link>https://tane.dev/2020/05/publishing-npm-libraries-using-nx-and-github-actions/</link>
+      <guid>https://tane.dev/2020/05/publishing-npm-libraries-using-nx-and-github-actions/</guid>
+      <comments>https://tane.dev/2020/05/publishing-npm-libraries-using-nx-and-github-actions/#commento</comments>
+      <pubDate>Thu, 07 May 2020 20:30:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <description>This week I released version 1.0 of RxJS Primitives to NPM - but the journey to get there was not as easy as I hoped.
+In the past I&amp;rsquo;ve used CircleCI and at work I use Jenkins but with this project I wanted to try out Github Actions.
+After some trial an error (and many failed builds) I managed to get the workflow working, I&amp;rsquo;ve decided to share here the steps taken to hopefully save you from the same pain.</description>
+      
+        <category>NX</category><category>Github</category><category>NPM</category><category>Library</category><category>Monorepo</category>
+      
+    </item>
     
     <item>
       <title>RxJS Primitives - Operators for mutating and filtering primitives</title>
@@ -72,20 +87,6 @@ Building Angular components, most developers will have already used this to inje
 1 2 3 4 5 6 7 8 9 10 11 12  import { Injectable } from &amp;#39;@angular/core&amp;#39;; import { HttpClient, HttpResponse } from &amp;#39;@angular/common/http&amp;#39;; import { Observable } from &amp;#39;rxjs&amp;#39;; @Injectable() export class RequestService { constructor(private readonly http: HttpClient) {} public getExample(): Observable&amp;lt;HttpResponse&amp;gt; { return this.</description>
       
         <category>TypeScript</category><category>Angular</category><category>Development</category><category>Tutorial</category>
-      
-    </item>
-    
-    <item>
-      <title>New blog (&#39;Hey I&#39;m Moving From Medium&#39;)</title>
-      <link>https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/</link>
-      <guid>https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/</guid>
-      <comments>https://tane.dev/2019/03/new-blog-hey-im-moving-from-medium/#commento</comments>
-      <pubDate>Tue, 12 Mar 2019 19:40:00 +0100</pubDate>
-      <author>spam@tane.dev (Tane Piper)</author>
-      <description>Buying a new domain is always a good excuse to do something with it, so of course grabbing my .dev seemed like a perfect idea to set up a new blog. Also recently I&amp;rsquo;ve been dissatisfied with the way Medium has dealt with recent changes (although I&amp;rsquo;m not going to go into all the reasons except to say I&amp;rsquo;d rather own and control all my content).
-The site is Markdown powered, generated with Hugo and served via GitHub Pages with a CI deployment.</description>
-      
-        <category>Blog</category>
       
     </item>
     
