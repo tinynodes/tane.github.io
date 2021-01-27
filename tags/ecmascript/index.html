@@ -64,6 +64,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
 
 
@@ -95,14 +103,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
-
-
-<span>Published: May 12, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -131,7 +131,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 09:09</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
   </div>
 </footer>
 
@@ -168,13 +168,294 @@
     <div class="post">
   <div class="post-heading">
     <h1>
+      <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 27, 2021</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/observables">Observables</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/media-query">Media Query</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p><a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">Demo Link</a>
+</p>
+<p>One of the more recent features available in browsers is ability to
+do <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_blank">CSS Media Queries</a>
+ based on user
+theme &amp; accessibility settings in the operating system - for example using <code>@media (prefers-color-scheme: dark)</code>
+(see <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" target="_blank">prefers-color-scheme</a>
+)
+you can check if the users OS theme is currently in Dark Mode and use this to set a websites theme accordingly.</p>
+<p>The query is also available in JavaScript using
+the <a href="https://developer.mozilla.org/en-us/docs/Web/API/Window/matchMedia" target="_blank">window.matchMedia</a>
+ function - that returns a
+<code>MediaListQuery</code> that will allow us to do two things:</p>
+<ul>
+<li>The current value of the users setting via the <code>matches</code> boolean property</li>
+<li>Any future values by listening to its <code>changes</code> event and attaching an event lister function to it</li>
+</ul>
+<p>Combining these, it&rsquo;s the perfect candidate to turn into a
+<a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">fully reactive dark mode switcher</a>
+
+using <a href="https://rxjs.dev" target="_blank">RxJS</a>
+ and Observables that will give us the users current setting.  If you&rsquo;re not familiar with
+Observables, they are a type of stream that emits values over time - consumers can subscribe to these Observables to get
+their values - this means we can use them to get values from long running functions or event emitters.</p>
+<p>In the full demo you&rsquo;ll find an example page with light and dark mode set from your own OS settings. To see the full
+working example you need to change the setting (e.g. in OSX Dark Mode is under &ldquo;General&rdquo; settings) - also provided are a
+user toggle button, and a button to turn off and on the media query listener. The Observable in this example supports
+more than one <code>prefers-</code> type of query but in the tutorial below we&rsquo;ll build a much simpler <code>isDarkMode</code> Observable than
+the one provided in the demo, but the concept is the same.</p>
+<h2 id="creating-a-dark-mode-observable">Creating a Dark Mode Observable</h2>
+<p>For our code we first need to create our Observable factory - this is our function that allows us to pass any required
+parameters for the implementation and returns an Observable which can then be subscribed to.</p>
+<p>The Observable constructor takes a function - a callback any time there is a new subscription - this is where the
+implementation will live.</p>
+<p>As soon as the subscription opens, we first check to see if <code>window.matchMedia</code> is available - it should be available in
+all modern browsers but is not available in environments like node (yay unit testing!) - so here we can throw an error.</p>
+<p>The factory also accepts an optional <a href="https://developer.mozilla.org/en-us/docs/Web/API/AbortSignal" target="_blank">AbortSignal</a>
+, an
+object that contains an <code>onabort</code> callback - the parent of the signal is
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController" target="_blank">AbortController</a>
+ and using this we can externally
+signal our Observable to close all subscriptions and remove all event listeners.</p>
+<p>The return value of the constructor is another function - the teardown logic - this is called when an RxJS subscription
+is ended, such as using <code>takeUntil</code> or <code>take(1)</code> - here we also ensure that all subscriptions and event listeners are
+closed.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isDarkMode</span>(<span style="color:#a6e22e">signal?</span>: <span style="color:#66d9ef">AbortSignal</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#a6e22e">subscriber</span> <span style="color:#f92672">=&gt;</span> {
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>window.<span style="color:#a6e22e">matchMedia</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">error</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;No windows Media Match available&#39;</span>));
+    }
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">signal</span>) {
+      <span style="color:#a6e22e">signal</span>.<span style="color:#a6e22e">onabort</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+        <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+      }
+    }
+
+    <span style="color:#66d9ef">return</span> () <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+    }
+  });
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="adding-the-media-query">Adding the Media Query</h3>
+<p>The main implementation of our Observable is to create our <code>MediaListQuery</code> and use it to emit values to any
+subscribers. On creation, contain a <code>matches</code> value of <code>true</code> or <code>false</code> which can be immediately be passed to
+<code>subscriber.next</code>.</p>
+<p>We also need to bind a listener using to the <code>change</code> event of the query. As we also need to remove this later create an
+internal private function for the event handler - this will also call <code>subscriber.next</code> each time there is a detected
+change.</p>
+<p>Also casting the event to a <code>MediaQueryListEvent</code> ensures TypeScript recognises it has the <code>matches</code> property which
+contains our value.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">emitValue</span>(<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">Event</span>) {
+  <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>((<span style="color:#a6e22e">event</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">MediaQueryListEvent</span>).<span style="color:#a6e22e">matches</span>);
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mediaListQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">matchMedia</span>(<span style="color:#e6db74">&#39;(prefers-color-scheme: dark)&#39;</span>);
+<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+<span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">matches</span>);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="cleaning-up-handlers-and-subscriptions">Cleaning up handlers and subscriptions</h3>
+<p>Already we can start to use the new Observable, but we also need to make sure that we:</p>
+<ul>
+<li>End any subscriptions to the Observable when either the <code>AbortSignal</code> fires or RxJS unsubscribes from it</li>
+<li>Remove any event listeners in the DOM for the <code>change</code> event</li>
+</ul>
+<p>With a slight bit of refactoring we have our final Observable factory below - in both the <code>signal.onabort</code> and the
+Observable teardown logic we remove the event listener - the API for this requires you pass the function implementation
+from our private function.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isDarkMode</span>(<span style="color:#a6e22e">signal?</span>: <span style="color:#66d9ef">AbortSignal</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#a6e22e">subscriber</span> <span style="color:#f92672">=&gt;</span> {
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>window.<span style="color:#a6e22e">matchMedia</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">error</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;No windows Media Match available&#39;</span>));
+    }
+
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">emitValue</span>(<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">Event</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>((<span style="color:#a6e22e">event</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">MediaQueryListEvent</span>).<span style="color:#a6e22e">matches</span>);
+    }
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mediaListQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">matchMedia</span>(<span style="color:#e6db74">&#39;(prefers-color-scheme: dark)&#39;</span>);
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">signal</span>) {
+      <span style="color:#a6e22e">signal</span>.<span style="color:#a6e22e">onabort</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+        <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>)
+        <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+      }
+    }
+
+    <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+    <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">matches</span>);
+
+    <span style="color:#66d9ef">return</span> () <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+      <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+    }
+  })
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="finishing-up">Finishing up</h3>
+<p>Now we have a fully working reactive Observable for a Dark Mode media query, this can be used in any application or
+website to check the users theme setting. The <a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">demo</a>
+ provides
+some more example of how to do this in full.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">isDarkMode</span>().<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">removeClass</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;light&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dark&#39;</span>);
+    <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">addClass</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;dark&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;light&#39;</span>);
+  })
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><p>This tutorial is just one small example of the kind of things that can be done with RxJS - any API that can emit
+values over time can be turned into Observables.</p>
+<h2 id="a-collection-of-pre-built-operators-and-observables-for-your-projects">A collection of pre-built operators and Observables for your projects</h2>
+<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
+<p><a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for working with various types of data (such
+as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+, <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and
+<a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+ allowing for modifying, filtering and querying the data.</p>
+<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+.</p>
+</div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
       <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a>
     </h1>
     
       <div class="meta">
   <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 25, 2021</span>
   
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 26, 2021)</span>
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 27, 2021)</span>
   
   |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1500 words</span>
   |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 7 minutes reading time</span>
@@ -187,9 +468,9 @@
     
     <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
     
-    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    <a class="flex-item" href="https://tane.dev/tags/observable">Observable</a>
     
-    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    <a class="flex-item" href="https://tane.dev/tags/operators">Operators</a>
     
     <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
     
@@ -210,10 +491,13 @@
       
     
   </div>
-  <div class="post-content"><p><a href="https://rxjs.dev">RxJS</a> is a popular library available for <a href="https://www.typescriptlang.org/">TypeScript</a> and
+  <div class="post-content"><p><a href="https://rxjs.dev" target="_blank">RxJS</a>
+ is a popular library available for <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
+ and
 JavaScript.</p>
 <p>It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods.
-It&rsquo;s one of the foundation libraries of <a href="https://angular.io">Angular</a>.</p>
+It&rsquo;s one of the foundation libraries of <a href="https://angular.io" target="_blank">Angular</a>
+.</p>
 <p>Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in
 chains of operators.</p>
 <p>Many of the operators are low level, and combining them through the <code>pipe</code> method they create a powerful way to work
@@ -222,7 +506,8 @@ with data.</p>
 <p>The good news is it&rsquo;s also very easy to create new higher-level operators for our domain code - these can be used where
 you find duplicate or complicated operations.</p>
 <p>Creating operators we can also ensure well-tested code
-using <a href="https://rxjs.dev/guide/testing/marble-testing">marble testing</a> and they can be shared among your team to make
+using <a href="https://rxjs.dev/guide/testing/marble-testing" target="_blank">marble testing</a>
+ and they can be shared among your team to make
 your code more readable and stable.</p>
 <p>There are two types of operators that can be created - a <code>MonoTypeOperatorFunction</code> and <code>OperatorFunction</code> and all
 operators must do two things:</p>
@@ -296,16 +581,20 @@ operator the function will look like this:</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Here, we are returning an arrow function that takes the previous source - which must be an <code>Observable&lt;number&gt;</code>. The
-source is piped to <a href="https://rxjs.dev/api/operators/map">map</a> which allows the source value to be converted to a new
+source is piped to <a href="https://rxjs.dev/api/operators/map" target="_blank">map</a>
+ which allows the source value to be converted to a new
 value, in our case we multiply by the <code>factor</code></p>
 <p>TypeScript understands that the output must also be a number - and if you try to return another value type it will throw
 a compile error.</p>
 <h3 id="writing-a-marble-test">Writing a marble test</h3>
-<p><a href="https://rxjs.dev/guide/testing/marble-testing">Marble testing</a> is a way to write tests for RxJS operators that deal
+<p><a href="https://rxjs.dev/guide/testing/marble-testing" target="_blank">Marble testing</a>
+ is a way to write tests for RxJS operators that deal
 with data over time - data is not static due to its asynchronous nature and cannot always be guaranteed in a specific
 order. Luckily the test for this operator is simple.</p>
 <blockquote>
-<p>My personal preference has been to write these test in Jest using <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> and <a href="https://www.npmjs.com/package/jest-marbles">jest-marbles</a>, but there are other libraries to write these test available.</p>
+<p>My personal preference has been to write these test in Jest using <a href="https://www.npmjs.com/package/rxjs-marbles" target="_blank">rxjs-marbles</a>
+ and <a href="https://www.npmjs.com/package/jest-marbles" target="_blank">jest-marbles</a>
+, but there are other libraries to write these test available.</p>
 </blockquote>
 <p>Using marbles, we can set up a mock source that will emit 5 numbers at the specified frames.</p>
 <p>The test result contains two things:</p>
@@ -480,19 +769,26 @@ both numbers</p>
 </div>
 </div><h2 id="next-steps">Next Steps</h2>
 <p>You can see a working version of this operator
-on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts">StackBlitz</a> by opening the console to see the
+on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts" target="_blank">StackBlitz</a>
+ by opening the console to see the
 result.</p>
 <p>This operator is just a taste of what&rsquo;s possible with RxJS - diving into the API you&rsquo;ll find many more operators to help
 work with data in other synchronous and asynchronous operations.</p>
 <h2 id="a-collection-of-pre-built-operators-for-your-projects">A collection of pre-built operators for your projects</h2>
 <p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
-<p>Now for a shameless plug - my own library - <a href="https://rxjs.ninja">RxJS Ninja</a> - is a collection of over 130 operators for
-working with various types of data (such as <a href="https://rxjs.ninja/modules/array.html">arrays</a>
-or <a href="https://rxjs.ninja/modules/number.html">numbers</a>) and <a href="https://rxjs.ninja/modules/utility.html#Streams">streams</a>
+<p>Now for a shameless plug - my own library - <a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for
+working with various types of data (such as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+
+or <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and <a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+
 allowing for modifying, filtering and querying the data.</p>
 <p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
-<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja">GitHub</a>. There you can also find
-a <a href="https://github.com/rxjs-ninja/nx-library-starter">starter project</a> for creating your own TypeScript libraries like
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+. There you can also find
+a <a href="https://github.com/rxjs-ninja/nx-library-starter" target="_blank">starter project</a>
+ for creating your own TypeScript libraries like
 this.</p>
 </div>
 </div>
@@ -541,44 +837,66 @@ this.</p>
       
     
   </div>
-  <div class="post-content"><p>Since the last update on <a href="https://rxjs.ninja">RxJS Ninja</a> there have been a few new operators added, below are some details
+  <div class="post-content"><p>Since the last update on <a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ there have been a few new operators added, below are some details
 and links to StackBlitz demos showing them in action.</p>
 <h3 id="numbers-and-math-operators">Numbers and Math operators</h3>
-<p>In <code>@rxjs-ninja/rxjs-number</code> the missing <a href="https://rxjs.ninja/modules/number.html#tofixed">toFixed</a> operator has been
-added, alongside a new custom <a href="https://rxjs.ninja/modules/number.html#tohex">toHex</a> operator and the
-corresponding <a href="https://rxjs.ninja/modules/number.html#parsehex">parseHex</a> one allowing hex numbers to be worked with (
+<p>In <code>@rxjs-ninja/rxjs-number</code> the missing <a href="https://rxjs.ninja/modules/number.html#tofixed" target="_blank">toFixed</a>
+ operator has been
+added, alongside a new custom <a href="https://rxjs.ninja/modules/number.html#tohex" target="_blank">toHex</a>
+ operator and the
+corresponding <a href="https://rxjs.ninja/modules/number.html#parsehex" target="_blank">parseHex</a>
+ one allowing hex numbers to be worked with (
 such as converting colours)</p>
-<p>There are also new operators for some basic math - <a href="https://rxjs.ninja/modules/number.html#add">add</a>
-, <a href="https://rxjs.ninja/modules/number.html#sub">sub</a>, <a href="https://rxjs.ninja/modules/number.html#div">div</a>,
-<a href="https://rxjs.ninja/modules/number.html#mul">mul</a>, <a href="https://rxjs.ninja/modules/number.html#mod">mod</a> and
-<a href="https://rxjs.ninja/modules/number.html#pow">pow</a> all allowing you to modify source numbers, all accept a number, or an
+<p>There are also new operators for some basic math - <a href="https://rxjs.ninja/modules/number.html#add" target="_blank">add</a>
+
+, <a href="https://rxjs.ninja/modules/number.html#sub" target="_blank">sub</a>
+, <a href="https://rxjs.ninja/modules/number.html#div" target="_blank">div</a>
+,
+<a href="https://rxjs.ninja/modules/number.html#mul" target="_blank">mul</a>
+, <a href="https://rxjs.ninja/modules/number.html#mod" target="_blank">mod</a>
+ and
+<a href="https://rxjs.ninja/modules/number.html#pow" target="_blank">pow</a>
+ all allowing you to modify source numbers, all accept a number, or an
 Observable number source.</p>
 <h3 id="working-with-browser-streams">Working with Browser Streams</h3>
-<p>Some new operators have been added to <code>@rxjs-ninja/rxjs-utility</code> that allow interoperability between <a href="http://rxjs.dev">RxJS</a>
-and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">StreamsAPI</a>. These APIs are not in all browsers
-but there is an available <a href="https://www.npmjs.com/package/web-streams-polyfill">polyfill</a>.</p>
+<p>Some new operators have been added to <code>@rxjs-ninja/rxjs-utility</code> that allow interoperability between <a href="http://rxjs.dev" target="_blank">RxJS</a>
+
+and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API" target="_blank">StreamsAPI</a>
+. These APIs are not in all browsers
+but there is an available <a href="https://www.npmjs.com/package/web-streams-polyfill" target="_blank">polyfill</a>
+.</p>
 <h4 id="fromreadablestream"><code>fromReadableStream</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#fromreadablestream">operator</a> accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream">ReadableStream</a>
+<p>This <a href="https://rxjs.ninja/modules/utility.html#fromreadablestream" target="_blank">operator</a>
+ accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream" target="_blank">ReadableStream</a>
+
 and provides the emitted values as an Observable, allowing you to use RxJS operators to work with the data.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/rxjs-readable-stream-fetch">Demo</a> - Using <code>fetch</code> body with <code>fromReadableStream</code> to show
+<li><a href="https://stackblitz.com/edit/rxjs-readable-stream-fetch" target="_blank">Demo</a>
+ - Using <code>fetch</code> body with <code>fromReadableStream</code> to show
 partial images</li>
-<li><a href="https://stackblitz.com/edit/rxjs-readable-stream">Demo</a> - A basic infinite number stream that ticks per second</li>
+<li><a href="https://stackblitz.com/edit/rxjs-readable-stream" target="_blank">Demo</a>
+ - A basic infinite number stream that ticks per second</li>
 </ul>
 <h4 id="towritablestream"><code>toWritableStream</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#towritablestream">operator</a> accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream">WritableStream</a>.
+<p>This <a href="https://rxjs.ninja/modules/utility.html#towritablestream" target="_blank">operator</a>
+ accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream" target="_blank">WritableStream</a>
+.
 The operator emits the source value and also writes to the stream. The operator takes care of closing the writer when the
 Observable subscription is closed.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/rxjs-writable-stream">Demo</a> - Streams an Observable interval value into a <code>WritableStream</code>
+<li><a href="https://stackblitz.com/edit/rxjs-writable-stream" target="_blank">Demo</a>
+ - Streams an Observable interval value into a <code>WritableStream</code>
 with optional ability to stop the writer without ending the Observable subscription.</li>
 </ul>
 <h4 id="fromfetchwithprogress"><code>fromFetchWithProgress</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#fromfetchwithprogress">operator</a> uses <code>fetch</code> to do a HTTP request, instead
+<p>This <a href="https://rxjs.ninja/modules/utility.html#fromfetchwithprogress" target="_blank">operator</a>
+ uses <code>fetch</code> to do a HTTP request, instead
 of the body response it emits either a <code>number</code> which is the current progress, or a <code>Uint8Array</code> containing the final
 response from the body.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/fetch-with-progress">Demo</a> Fetches an image and shows a progress bar with the current percentage
+<li><a href="https://stackblitz.com/edit/fetch-with-progress" target="_blank">Demo</a>
+ Fetches an image and shows a progress bar with the current percentage
 and once complete shows the image.</li>
 </ul>
 </div>
@@ -629,7 +947,8 @@ and once complete shows the image.</li>
     
   </div>
   <div class="post-content"><p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="RxJS Ninja Logo is a Ninja jumping over a crescent moon"></p>
-<p>Today I&rsquo;ve re-released RxJS Primitives as <a href="https://rxjs.ninja">RxJS Ninja</a>. The new libraries have been published as the same last versions
+<p>Today I&rsquo;ve re-released RxJS Primitives as <a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+. The new libraries have been published as the same last versions
 under their old name, so it&rsquo;s easy to migrate to the new version - all now published under <code>@rxjs-ninja</code> instead of <code>@tinynodes</code>
 (a deprecation notice has also been left the old packages).</p>
 </div>
@@ -679,15 +998,23 @@ under their old name, so it&rsquo;s easy to migrate to the new version - all now
       
     
   </div>
-  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs">RxJS</a> libraries in <a href="https://github.com/tanepiper/rxjs-primitives">rxjs-primitives</a>.
+  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs" target="_blank">RxJS</a>
+ libraries in <a href="https://github.com/tanepiper/rxjs-primitives" target="_blank">rxjs-primitives</a>
+.
 Since it&rsquo;s released I&rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&rsquo;ve highlighted them here as they may be useful to some developers.</p>
-<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives">full docs here</a>.</p>
+<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives" target="_blank">full docs here</a>
+.</p>
 <h3 id="typescript-4">Typescript 4</h3>
-<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">polymorphic functions</a> in place of
-<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html">Vardic Tuple Types</a> and is why there is a major bump on all packages.</p>
-<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts">old</a> and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts">new</a>
+<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/" target="_blank">polymorphic functions</a>
+ in place of
+<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html" target="_blank">Vardic Tuple Types</a>
+ and is why there is a major bump on all packages.</p>
+<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts" target="_blank">old</a>
+ and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts" target="_blank">new</a>
+
 <code>concat</code> operator in the <code>rxjs-string</code> package.</p>
-<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> allowing for more robust
+<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles" target="_blank">rxjs-marbles</a>
+ allowing for more robust
 Observable testing (if you are working with RxJS I highly recommend checking it out, it integrates well with runners like Jest).</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -719,7 +1046,8 @@ Observable testing (if you are working with RxJS I highly recommend checking it 
 <blockquote>
 <p>npm install @tinynodes/rxjs-array</p>
 </blockquote>
-<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html">array module</a> there are some operators to use with finding
+<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html" target="_blank">array module</a>
+ there are some operators to use with finding
 the difference or intersection between a source and a passed array, for example:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -742,13 +1070,16 @@ the difference or intersection between a source and a passed array, for example:
 </span></code></pre></td></tr></table>
 </div>
 </div><p>These methods accept an array, or an <code>Observable&lt;Array&gt;</code> of items to compare against.</p>
-<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch">binarySearch</a> operator which returns
-a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult">BinarySearchResult</a> tuple.</p>
+<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch" target="_blank">binarySearch</a>
+ operator which returns
+a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult" target="_blank">BinarySearchResult</a>
+ tuple.</p>
 <h3 id="rxjs-boolean">rxjs-boolean</h3>
 <blockquote>
 <p>npm install @tinynodes/rxjs-boolean</p>
 </blockquote>
-<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm</a> operator <code>luhnCheck</code> is provided that does validation on
+<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank">Luhn algorithm</a>
+ operator <code>luhnCheck</code> is provided that does validation on
 numbers such as credit cards, ID cards and other value schemes that use the check.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -795,8 +1126,11 @@ based on the method</p>
 <blockquote>
 <p>npm install @tinynodes/rxjs-string</p>
 </blockquote>
-<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize">titleize</a>, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat">repeat</a> and
-<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match">match</a> add new utility features for strings. Where they can they also support localisation:</p>
+<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize" target="_blank">titleize</a>
+, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat" target="_blank">repeat</a>
+ and
+<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match" target="_blank">match</a>
+ add new utility features for strings. Where they can they also support localisation:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -821,7 +1155,8 @@ based on the method</p>
 <blockquote>
 <p>npm install @tinynodes/rxjs-utility</p>
 </blockquote>
-<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html">utility module</a> contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
+<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html" target="_blank">utility module</a>
+ contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
 These provide a way to do side effects.  With <code>startWithTap</code> it can be used with Angular to do a form touch, also <code>tapOnSubscribe</code> will
 fire when there is a subscription to the Observable:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -971,14 +1306,16 @@ FizzBuzz operator:</p>
       
     
   </div>
-  <div class="post-content"><p>Today I&rsquo;ve published a new set of libraries to NPM - <a href="https://github.com/tanepiper/rxjs-primitives">RxJS Primitives</a>.</p>
+  <div class="post-content"><p>Today I&rsquo;ve published a new set of libraries to NPM - <a href="https://github.com/tanepiper/rxjs-primitives" target="_blank">RxJS Primitives</a>
+.</p>
 <p>These are based on some operators I&rsquo;ve collected over the last year, and some additional ones I&rsquo;ve started adding.
 Most are based around ECMASCript objects such as <code>String</code>, <code>Number</code> and <code>Boolean</code> but also includes some useful
 utility operators.</p>
 <p>Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful.</p>
 <p>The following modules are on NPM:</p>
 <h2 id="rxjs-string">rxjs-string</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-string">@tinynodes/rxjs-string</a> operators that are built around the <code>String</code> object in ECMAScript, for example with <code>toUpperCase</code>:</p>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-string" target="_blank">@tinynodes/rxjs-string</a>
+ operators that are built around the <code>String</code> object in ECMAScript, for example with <code>toUpperCase</code>:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -995,7 +1332,8 @@ utility operators.</p>
 to add more useful utilities.  For example <code>endWith</code> returns a boolean value, but I also want to include an <code>endsWith</code>
 that returns the original value instead (like <code>filter</code>).</p>
 <h2 id="rxjs-number">rxjs-number</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-number">@tinynodes/rxjs-number</a> operators that are built around the <code>Number</code> object in ECMAScript, for example <code>parseFloat</code>/<code>parseInt</code> and <code>isNaN</code>.</p>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-number" target="_blank">@tinynodes/rxjs-number</a>
+ operators that are built around the <code>Number</code> object in ECMAScript, for example <code>parseFloat</code>/<code>parseInt</code> and <code>isNaN</code>.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -1004,14 +1342,17 @@ that returns the original value instead (like <code>filter</code>).</p>
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
 </span></code></pre></td></tr></table>
 </div>
-</div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString">Number.prototype.toLocaleString</a> supports formatting such as currency.</p>
+</div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString" target="_blank">Number.prototype.toLocaleString</a>
+ supports formatting such as currency.</p>
 <h2 id="rxjs-boolean">rxjs-boolean</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-boolean">@tinynodes/rxjs-boolean</a> operators that are built around the <code>Boolean</code> object in ECMAScript,
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-boolean" target="_blank">@tinynodes/rxjs-boolean</a>
+ operators that are built around the <code>Boolean</code> object in ECMAScript,
 and are designed to help with filtering content from observables.  Currently, there are two operators <code>firstTruthy</code> and <code>filterTruthy</code>.</p>
 <p>In both cases these return the underlying value only if it&rsquo;s a truthy value in JavaScript, in the case of <code>firstTruthy</code> it only returns
 the first value, while <code>filterTruthy</code> returns all truthy values.</p>
 <h2 id="rxjs-utility">rxjs-utility</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-utility">@tinynodes/rxjs-utility</a> is a custom module that provides some additional operators
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-utility" target="_blank">@tinynodes/rxjs-utility</a>
+ is a custom module that provides some additional operators
 that don&rsquo;t fit into the other packages but still have some usefulness.</p>
 <p>Currently, there are two operators:</p>
 <ul>
@@ -1050,6 +1391,26 @@ that don&rsquo;t fit into the other packages but still have some usefulness.</p>
     
     <div class="text-center">
       
+<ul class="pagination">
+  <li class="page-item">
+    <a href="https://tane.dev/tags/ecmascript/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item disabled">
+    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="https://tane.dev/tags/ecmascript/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="https://tane.dev/tags/ecmascript/blog/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a href="https://tane.dev/tags/ecmascript/blog/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="https://tane.dev/tags/ecmascript/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
 
 
     </div>

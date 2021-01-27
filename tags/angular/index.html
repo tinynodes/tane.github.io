@@ -64,6 +64,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
 
 
@@ -95,14 +103,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
-
-
-<span>Published: May 12, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -131,7 +131,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 09:09</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
   </div>
 </footer>
 
@@ -219,13 +219,17 @@ platforms - this means that types are only available at design time.</p>
 correct before sending it to another API. This works for hard coded data in Typescript, but not dynamic data from sources
 such as a form or API source</p>
 <p>The good news is the problem itself has been solved and there are several solutions for TypeScript such as
-<a href="https://github.com/gcanti/io-ts">io-ts</a> or <a href="https://github.com/hapijs/joi">joi</a> but I find these solutions to encourage
+<a href="https://github.com/gcanti/io-ts" target="_blank">io-ts</a>
+ or <a href="https://github.com/hapijs/joi" target="_blank">joi</a>
+ but I find these solutions to encourage
 duplication of types across different domains to maintain both your types and validation objects.</p>
 <h2 id="introducing-json-schema">Introducing JSON Schema</h2>
 <p>A much simpler way to maintain both types and validation within a project is to use a single source of truth.
-The main option for this is <a href="https://json-schema.org">JSON Schema</a>.</p>
+The main option for this is <a href="https://json-schema.org" target="_blank">JSON Schema</a>
+.</p>
 <p>A JSON Schema file allows you to define types using a JSON file, using a specification defined by the selected
-draft (at the time of writing it&rsquo;s <a href="http://json-schema.org/specification.html">number 7</a>).</p>
+draft (at the time of writing it&rsquo;s <a href="http://json-schema.org/specification.html" target="_blank">number 7</a>
+).</p>
 <p>This file can be used to generate types for design-time coding using CLI tools and can be used for data validation at
 runtime using another library that can consume a schema to generate a validation method.</p>
 <h3 id="schema-example">Schema Example</h3>
@@ -325,7 +329,8 @@ string additional properties to be added.</p>
 }
 </code></pre></td></tr></table>
 </div>
-</div><p>The first tool we will run this through is the imaginatively titled <a href="https://www.npmjs.com/package/json-schema-to-typescript"><code>json-schema-to-typescript</code></a>!
+</div><p>The first tool we will run this through is the imaginatively titled <a href="https://www.npmjs.com/package/json-schema-to-typescript" target="_blank">&lt;code&gt;json-schema-to-typescript&lt;/code&gt;</a>
+!
 This project will take a valid schema file and generate a file containing the types.  From the example above the output is:</p>
 <blockquote>
 <p><code>json2ts -i customer.json -o customer.d.ts --style.singleQuote</code></p>
@@ -396,7 +401,8 @@ This project will take a valid schema file and generate a file containing the ty
 </div>
 </div><p>One thing to note is that <code>email</code> and <code>dateOfBirth</code> are string in our type, the <code>format</code> is only used
 with validation. It is possible to create types for these fields and reference them using a more
-<a href="https://json-schema.org/understanding-json-schema/structuring.html">complex schema</a>.</p>
+<a href="https://json-schema.org/understanding-json-schema/structuring.html" target="_blank">complex schema</a>
+.</p>
 <p>This type can now be imported into other types, and the <code>json-schema-to-typescript</code> will do this when you use
 complex references.  For example, if we define an entire customer order type it might look like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -464,7 +470,8 @@ you can return a <code>CustomerRecord</code>.  You can also use <code>Required</
 <p>Now you have types, it makes the development of your application easier - but we still need to validate data
 entered is correct.</p>
 <p>One way is to use the same schema on the server-side, using your languages JSON Schema validator, but in
-this example, I&rsquo;ll use <a href="https://github.com/epoberezkin/ajv">ajv</a> - a javascript library that allows a schema
+this example, I&rsquo;ll use <a href="https://github.com/epoberezkin/ajv" target="_blank">ajv</a>
+ - a javascript library that allows a schema
 to be loaded and data validated against it. The documentation is quite complete on using it in a JavaScript environment
 so I won&rsquo;t repeat it too much here, but instead, I&rsquo;ll build an Angular module that can be provided as a schema
 validation service.</p>
@@ -750,8 +757,10 @@ schemas from another service) or how you could validate the parameters passed to
 <p>I hope you&rsquo;ve found this article useful in helping understand how and where Typescript can be used to validate data
 within an application, and JSON Schema to validate dynamic data.</p>
 <p>Please feel free to leave feedback on any issues or improvements, but hopefully, these examples give a clearer understanding.</p>
-<p>For full documentation of JSON Schema, check out the <a href="http://json-schema.org/understanding-json-schema/">Understanding JSON Schema</a>
-pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>oneOf</code> and using <a href="http://json-schema.org/understanding-json-schema/structuring.html#reuse">definitions</a></p>
+<p>For full documentation of JSON Schema, check out the <a href="http://json-schema.org/understanding-json-schema/" target="_blank">Understanding JSON Schema</a>
+
+pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>oneOf</code> and using <a href="http://json-schema.org/understanding-json-schema/structuring.html#reuse" target="_blank">definitions</a>
+</p>
 </div>
 </div>
 
@@ -797,9 +806,13 @@ pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>one
       
     
   </div>
-  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs">NPM</a>.</p>
-<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io">EditorJS</a> instances.</p>
-<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo">demo application</a> is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes"><code>@tinynodes</code> monorepo</a>.</p>
+  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs" target="_blank">NPM</a>
+.</p>
+<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io" target="_blank">EditorJS</a>
+ instances.</p>
+<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo" target="_blank">demo application</a>
+ is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes" target="_blank">&lt;code&gt;@tinynodes&lt;/code&gt; monorepo</a>
+.</p>
 <h2 id="included-features">Included Features</h2>
 <p>The library exports several features once the <code>NgxEditorJSModule</code> has been included in your project.</p>
 <h4 id="ngxeditorjsdirective">NgxEditorJSDirective</h4>
@@ -824,11 +837,14 @@ pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>one
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="ngxeditorjsservice">NgxEditorJSService</h4>
-<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api">EditorJS API</a> - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
-<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md">README.md</a>) on how to do this in a AOT-friendly way.</p>
+<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api" target="_blank">EditorJS API</a>
+ - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
+<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md" target="_blank">README.md</a>
+) on how to do this in a AOT-friendly way.</p>
 <h2 id="next-steps">Next Steps</h2>
 <p>Before release I had to resolve an issue with AOT compiling and injecting EditorJS plugins - this means version <code>1.1.0</code> has already been released - now this is resolved I want support additional feature in the editor, as well as provide unit test coverage and better documentation and demo.</p>
-<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues">GitHub Issues</a> page.</p>
+<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues" target="_blank">GitHub Issues</a>
+ page.</p>
 </div>
 </div>
 
@@ -874,7 +890,9 @@ pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>one
       
     
   </div>
-  <div class="post-content"><p>Working with <a href="https://angular.io/">Angular</a> and <a href="https://www.typescriptlang.org/">Typescript</a>; as I have refactored and re-written components I&rsquo;ve been learning to take advantage of one of the more powerful features - dependency injection.</p>
+  <div class="post-content"><p>Working with <a href="https://angular.io/" target="_blank">Angular</a>
+ and <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a>
+; as I have refactored and re-written components I&rsquo;ve been learning to take advantage of one of the more powerful features - dependency injection.</p>
 <p>Building Angular components, most developers will have already used this to inject features like the HTTP client or the FormBuilder to be used in a component. A common service example might look like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -910,7 +928,8 @@ pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>one
 <p>Angular also provides a mechanism for custom injections, this means items like configurations or instances of external libraries can be passed into any constructor within your module or any item within the dependency tree.  To do this the library needs to provide an <code>InjectionToken</code> which represents the key in the dependency tree, and use the <code>Inject</code> decorator to provide an instance into a class constructor (this is covered later in this post).</p>
 <h2 id="creating-the-service">Creating The Service</h2>
 <p>I recently worked on refactoring some code where in a component it had some code to handle getting a session object from <code>sessionStorage</code>. When working with Angular&rsquo;s <code>ng serve</code> making changes will often result in a refresh, destroying any existing session. This feature allowed session storage to be turned on and keep it between refreshes by allowing the component to check if a value existed in <code>sessionStorage</code> object.</p>
-<p>Using the principles in <a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a> I moved the code into a service. Having a service do one thing it made the code easier to understand. The unit test for this is also smaller and can cover most of the component.</p>
+<p>Using the principles in <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank">SOLID</a>
+ I moved the code into a service. Having a service do one thing it made the code easier to understand. The unit test for this is also smaller and can cover most of the component.</p>
 <p>The service has one additional property which is <code>storagePrefix</code>, used to make each instance of the service unique to it&rsquo;s component.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -957,8 +976,10 @@ pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>one
 </div><p>In it&rsquo;s current implementation it&rsquo;s usable, but it has a few issues.  The main one is that it uses <code>sessionStorage</code> but trusts that it exists on the global object, this means we should always expect it to be available, and is a bad practice.  It also limits this service to only use <code>sessionStorage</code> and no other key/value store. It would be better if we could provide it to our service instead.</p>
 <p>We can also set the storagePrefix via our app configuration and means our component doesn&rsquo;t need to understand this configuration (yet!) so it avoids us having to call the <code>init</code> method within a component&rsquo;s <code>ngOnInit</code>.</p>
 <p>By making these injectable, we will not only be able to provide our <code>sessionStorage</code> but we can support any module or
-library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage API</a>. This means we no longer need to rely on the global object and we have more control over what we inject.</p>
-<p>The powerful feature of dependency injection is the ability to pass instances of other non-angular applications. For example you could pass the instance of a <code>jQuery</code> application and call it&rsquo;s methods from your application (you&rsquo;ll also want to check out <a href="https://angular.io/api/core/NgZone">NgZone</a> when running these, but I&rsquo;ll discuss that in a future post).</p>
+library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank">Web Storage API</a>
+. This means we no longer need to rely on the global object and we have more control over what we inject.</p>
+<p>The powerful feature of dependency injection is the ability to pass instances of other non-angular applications. For example you could pass the instance of a <code>jQuery</code> application and call it&rsquo;s methods from your application (you&rsquo;ll also want to check out <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>
+ when running these, but I&rsquo;ll discuss that in a future post).</p>
 <p>This allows for the transition of applications over time within an organisation, rather than having to replace all applications in one go. It&rsquo;s a good way to safely inject features from third-party libraries and means passing mock versions is easier for tests.</p>
 <h2 id="creating-an-injectable-service-and-module">Creating an injectable service and module</h2>
 <h3 id="making-features-injectable">Making features injectable</h3>
@@ -978,7 +999,8 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 }
 </code></pre></td></tr></table>
 </div>
-</div><p>Next we will create an <code>InjectionToken</code>, a token that is usually constant representation of something we want to provide via dependency injection.  You can use any type of object as your token type, and can even provide a factory method to provide dependencies. Check out the <a href="https://angular.io/api/core/InjectionToken#tree-shakable-injectiontoken">Tree-shakeable Injection Token</a> to see how you can do some advanced use. In our case we will just have the component config object.</p>
+</div><p>Next we will create an <code>InjectionToken</code>, a token that is usually constant representation of something we want to provide via dependency injection.  You can use any type of object as your token type, and can even provide a factory method to provide dependencies. Check out the <a href="https://angular.io/api/core/InjectionToken#tree-shakable-injectiontoken" target="_blank">Tree-shakeable Injection Token</a>
+ to see how you can do some advanced use. In our case we will just have the component config object.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -991,7 +1013,8 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </div>
 </div><p>Now we have the token service we will provide a simple configuration with this token which will be an object, but a token can be used to inject anything from a string to a function, or even a class instance.</p>
 <h3 id="making-the-angular-module-configurable">Making the Angular module configurable</h3>
-<p>To make the service configurable, it should be provided via a <a href="https://angular.io/guide/ngmodules">NgModule</a> - a regular module might look something like this:</p>
+<p>To make the service configurable, it should be provided via a <a href="https://angular.io/guide/ngmodules" target="_blank">NgModule</a>
+ - a regular module might look something like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -1022,9 +1045,11 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibraryModule</span> {}
 </code></pre></td></tr></table>
 </div>
-</div><p>To make this module accept a configuration we need to add a method that can return an instance of our module with custom providers. Providers are an important part of Angular&rsquo;s <a href="https://angular.io/guide/dependency-injection">dependency injection</a> as these are the instance of what child components can inject - all will hopefully become clear through the code example.</p>
+</div><p>To make this module accept a configuration we need to add a method that can return an instance of our module with custom providers. Providers are an important part of Angular&rsquo;s <a href="https://angular.io/guide/dependency-injection" target="_blank">dependency injection</a>
+ as these are the instance of what child components can inject - all will hopefully become clear through the code example.</p>
 <p>First we will add a static <code>forRoot</code> method to the class. This method provides a factory function where we can pass a configuration in the application imports.</p>
-<p>The factory returns an instance of that module with the provided configuration, and this passed into the items with <code>Inject</code> . The module can then be further used without the <code>forRoot</code> as long as it&rsquo;s configured at the root of the application (see <a href="https://angular.io/api/core/SkipSelf">SkipSelf</a>)</p>
+<p>The factory returns an instance of that module with the provided configuration, and this passed into the items with <code>Inject</code> . The module can then be further used without the <code>forRoot</code> as long as it&rsquo;s configured at the root of the application (see <a href="https://angular.io/api/core/SkipSelf" target="_blank">SkipSelf</a>
+)</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -1093,7 +1118,8 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 }
 </code></pre></td></tr></table>
 </div>
-</div><p>Before we can use this in our application we also need to update the <code>ComponentService</code> itself to use this configuration. Here the <a href="https://angular.io/api/core/Inject">Inject</a> decorator will be used to tell the constructor that the <code>ComponentServiceConfig</code> this service needs will be available to inject via the <code>COMPONENT_SERVICE_CONFIG</code> token.</p>
+</div><p>Before we can use this in our application we also need to update the <code>ComponentService</code> itself to use this configuration. Here the <a href="https://angular.io/api/core/Inject" target="_blank">Inject</a>
+ decorator will be used to tell the constructor that the <code>ComponentServiceConfig</code> this service needs will be available to inject via the <code>COMPONENT_SERVICE_CONFIG</code> token.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -1184,7 +1210,8 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
 </code></pre></td></tr></table>
 </div>
-</div><p>Another example is we could have an NPM library that provides the same interface, such as <a href="https://www.npmjs.com/package/localstorage-ponyfill">localStorage-ponyfill</a>, it could be used in your application - or you may want to provide it to a <code>TestBed</code> configuration:</p>
+</div><p>Another example is we could have an NPM library that provides the same interface, such as <a href="https://www.npmjs.com/package/localstorage-ponyfill" target="_blank">localStorage-ponyfill</a>
+, it could be used in your application - or you may want to provide it to a <code>TestBed</code> configuration:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -1251,7 +1278,8 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
 </div>
 </div><p>With this technique, any kind of primitive or complex object, method or class can now be passed into your feature modules - and is a useful way to provide third-party libraries to your modules, configuring not just your services, but also components, pipes and stores.</p>
 <p>Any class with a <code>constructor</code> (provided it&rsquo;s in the same dependency tree) can use <code>Inject</code> with your exported token to access this configuration.</p>
-<p>Hopefully you will also find this technique useful to improve the configurable and testable features of your module.  Feel free to <a href="https://twitter.com/tanepiper">respond on twitter</a> if you spot any typos or errors.</p>
+<p>Hopefully you will also find this technique useful to improve the configurable and testable features of your module.  Feel free to <a href="https://twitter.com/tanepiper" target="_blank">respond on twitter</a>
+ if you spot any typos or errors.</p>
 </div>
 </div>
 

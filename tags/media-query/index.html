@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html  lang="en-gb" >
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="generator" content="Hugo 0.80.0" />
+  
+  <title>Media Query - Development tutorials for modern web development</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous" />
+
+
+
+
+
+
+<link rel="stylesheet" href="https://tane.dev/css/bundle.min.860283af9f116f9e7c3c8b30f173a99265c0c653f5153cad9acf7f7465eb99635ab360987470fdeb8539e964c6b7e239a14f432d044b9cac92ac28af741c4e4a.css" integrity="sha512-hgKDr58Rb558PIsw8XOpkmXAxlP1FTytms9/dGXrmWNas2CYdHD964U56WTGt&#43;I5oU9DLQRLnKySrCivdBxOSg==" />
+
+
+  <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/tags/media-query/index.xml" title="tane.dev" />
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://tane.dev/images/social_generic.jpg"/>
+
+<meta name="twitter:title" content="Media Query"/>
+<meta name="twitter:description" content="Development tutorials for modern web development"/>
+
+</head>
+
+
+  <body class="light">
+
+    <div class="container-left">
+<div class="row">
+  <div class="column sidebar">
+    <div class="sidebar-content">
+  <h1
+    class="site-title flex-item flex-start"
+    title="The title of the site tane.dev - click it to go back to the homepage"
+    aria-label="The title of the site tane.dev - click it to go back to the homepage"
+  >
+    <a href="https://tane.dev" title="Click here to go back to the home page">tane.dev</a>
+  </h1>
+  <h2
+    class="flex-item subtitle"
+    title="The subtitle of the site, is has a brain in it which makes the assumption the author has one"
+    aria-label="The subtitle of the site, is has a brain in it which makes the assumption the author has one"
+  >
+    [ <i class="far fa-head-side-brain"></i> ideas <sup>&amp; stuff</sup> ]
+  </h2>
+
+  
+
+  <aside class="menu">
+    <ul class="sidebar-menus menu-list">
+      
+    </ul>
+
+    <h3 class="menu-label" title="A recent list of posts I've somehow managed to write down">
+      <i class="far fa-keyboard"></i> Recent Posts:
+    </h3>
+
+    <ul class="previous-posts">
+      
+      <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
+
+
+<span>Published: Jan 25, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/">RxJS Ninja Updates - New operators for math and working with streams</a> 
+
+
+<span>Published: Jan 14, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/">RxJS Primitives is now RxJS Ninja</a> 
+
+
+<span>Published: Nov 23, 2020</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
+
+
+<span>Published: Nov 18, 2020</span>
+
+      </li>
+      
+    </ul>
+    <div class="feed">
+      <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
+    </div>
+  </aside>
+  <div class="service-buttons">
+  <div class="flex-item button-group-label">Links:</div>
+  
+    <a class="flex-item" href="https://github.com/tanepiper" title="Link to my Github" target="_new"><i class='fab fa-github-alt'></i></a>
+  
+    <a class="flex-item" href="https://linkedin.com/in/tanepiper" title="Link to my LinkedIn" target="_new"><i class='fab fa-linkedin'></i></a>
+  
+    <a class="flex-item" href="https://twitter.com/tanepiper" title="Link to my Twitter" target="_new"><i class='fab fa-twitter'></i></a>
+  
+</div>
+
+  <footer class="footer">
+  <div class="flex-item contact">
+    
+    <i class="far fa-copyright"></i>&nbsp;2021 Tane Piper
+    
+
+    
+    <a href="mailto:" title="I promise I check this from time to time" aria-label="I promise I check this from time to time"><i class="far fa-mailbox"></i>&nbsp;Email into the void</a>
+    
+  </div>
+  <div class="flex-item meta">
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
+  </div>
+</footer>
+
+  <div class="theme-buttons">
+  <div class="flex-item button-group-label">Theme:</div>
+  <button class="flex-item btn btn-circle btn-theme btn-light" data-theme="light" title="Click this button for the light theme" aria-label="Click this button for the light theme" />
+  <button class="flex-item btn btn-circle btn-theme btn-dark" data-theme="dark" title="Click this button for the dark theme" aria-label="Click this button for the dark theme" />
+  <button class="flex-item btn btn-circle btn-theme btn-darkgreen" data-theme="darkgreen" title="Click this button for the darkgreen theme" aria-label="Click this button for the darkgreen theme" />
+</div>
+
+</div>
+
+<style type="text/css">
+  .previous-posts li {
+    flex-direction: column;
+  }
+
+  .previous-posts li span {
+    margin-left: .5rem;
+    border-left: 1px solid #d3d3d3;
+    justify-content: right;
+  }
+</style>
+
+  </div>
+  <main class="column main">
+    <h2
+      class="taxonomy-title"
+      title="The taxonomy of this page is Media Query"
+      aria-label="The taxonomy of this page is Media Query">
+      Media Query
+    </h2>
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 27, 2021</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/observables">Observables</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/media-query">Media Query</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p><a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">Demo Link</a>
+</p>
+<p>One of the more recent features available in browsers is ability to
+do <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_blank">CSS Media Queries</a>
+ based on user
+theme &amp; accessibility settings in the operating system - for example using <code>@media (prefers-color-scheme: dark)</code>
+(see <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" target="_blank">prefers-color-scheme</a>
+)
+you can check if the users OS theme is currently in Dark Mode and use this to set a websites theme accordingly.</p>
+<p>The query is also available in JavaScript using
+the <a href="https://developer.mozilla.org/en-us/docs/Web/API/Window/matchMedia" target="_blank">window.matchMedia</a>
+ function - that returns a
+<code>MediaListQuery</code> that will allow us to do two things:</p>
+<ul>
+<li>The current value of the users setting via the <code>matches</code> boolean property</li>
+<li>Any future values by listening to its <code>changes</code> event and attaching an event lister function to it</li>
+</ul>
+<p>Combining these, it&rsquo;s the perfect candidate to turn into a
+<a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">fully reactive dark mode switcher</a>
+
+using <a href="https://rxjs.dev" target="_blank">RxJS</a>
+ and Observables that will give us the users current setting.  If you&rsquo;re not familiar with
+Observables, they are a type of stream that emits values over time - consumers can subscribe to these Observables to get
+their values - this means we can use them to get values from long running functions or event emitters.</p>
+<p>In the full demo you&rsquo;ll find an example page with light and dark mode set from your own OS settings. To see the full
+working example you need to change the setting (e.g. in OSX Dark Mode is under &ldquo;General&rdquo; settings) - also provided are a
+user toggle button, and a button to turn off and on the media query listener. The Observable in this example supports
+more than one <code>prefers-</code> type of query but in the tutorial below we&rsquo;ll build a much simpler <code>isDarkMode</code> Observable than
+the one provided in the demo, but the concept is the same.</p>
+<h2 id="creating-a-dark-mode-observable">Creating a Dark Mode Observable</h2>
+<p>For our code we first need to create our Observable factory - this is our function that allows us to pass any required
+parameters for the implementation and returns an Observable which can then be subscribed to.</p>
+<p>The Observable constructor takes a function - a callback any time there is a new subscription - this is where the
+implementation will live.</p>
+<p>As soon as the subscription opens, we first check to see if <code>window.matchMedia</code> is available - it should be available in
+all modern browsers but is not available in environments like node (yay unit testing!) - so here we can throw an error.</p>
+<p>The factory also accepts an optional <a href="https://developer.mozilla.org/en-us/docs/Web/API/AbortSignal" target="_blank">AbortSignal</a>
+, an
+object that contains an <code>onabort</code> callback - the parent of the signal is
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController" target="_blank">AbortController</a>
+ and using this we can externally
+signal our Observable to close all subscriptions and remove all event listeners.</p>
+<p>The return value of the constructor is another function - the teardown logic - this is called when an RxJS subscription
+is ended, such as using <code>takeUntil</code> or <code>take(1)</code> - here we also ensure that all subscriptions and event listeners are
+closed.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isDarkMode</span>(<span style="color:#a6e22e">signal?</span>: <span style="color:#66d9ef">AbortSignal</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#a6e22e">subscriber</span> <span style="color:#f92672">=&gt;</span> {
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>window.<span style="color:#a6e22e">matchMedia</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">error</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;No windows Media Match available&#39;</span>));
+    }
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">signal</span>) {
+      <span style="color:#a6e22e">signal</span>.<span style="color:#a6e22e">onabort</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+        <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+      }
+    }
+
+    <span style="color:#66d9ef">return</span> () <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+    }
+  });
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="adding-the-media-query">Adding the Media Query</h3>
+<p>The main implementation of our Observable is to create our <code>MediaListQuery</code> and use it to emit values to any
+subscribers. On creation, contain a <code>matches</code> value of <code>true</code> or <code>false</code> which can be immediately be passed to
+<code>subscriber.next</code>.</p>
+<p>We also need to bind a listener using to the <code>change</code> event of the query. As we also need to remove this later create an
+internal private function for the event handler - this will also call <code>subscriber.next</code> each time there is a detected
+change.</p>
+<p>Also casting the event to a <code>MediaQueryListEvent</code> ensures TypeScript recognises it has the <code>matches</code> property which
+contains our value.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">emitValue</span>(<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">Event</span>) {
+  <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>((<span style="color:#a6e22e">event</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">MediaQueryListEvent</span>).<span style="color:#a6e22e">matches</span>);
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mediaListQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">matchMedia</span>(<span style="color:#e6db74">&#39;(prefers-color-scheme: dark)&#39;</span>);
+<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+<span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">matches</span>);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="cleaning-up-handlers-and-subscriptions">Cleaning up handlers and subscriptions</h3>
+<p>Already we can start to use the new Observable, but we also need to make sure that we:</p>
+<ul>
+<li>End any subscriptions to the Observable when either the <code>AbortSignal</code> fires or RxJS unsubscribes from it</li>
+<li>Remove any event listeners in the DOM for the <code>change</code> event</li>
+</ul>
+<p>With a slight bit of refactoring we have our final Observable factory below - in both the <code>signal.onabort</code> and the
+Observable teardown logic we remove the event listener - the API for this requires you pass the function implementation
+from our private function.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isDarkMode</span>(<span style="color:#a6e22e">signal?</span>: <span style="color:#66d9ef">AbortSignal</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#a6e22e">subscriber</span> <span style="color:#f92672">=&gt;</span> {
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>window.<span style="color:#a6e22e">matchMedia</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">error</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;No windows Media Match available&#39;</span>));
+    }
+
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">emitValue</span>(<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">Event</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>((<span style="color:#a6e22e">event</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">MediaQueryListEvent</span>).<span style="color:#a6e22e">matches</span>);
+    }
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mediaListQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">matchMedia</span>(<span style="color:#e6db74">&#39;(prefers-color-scheme: dark)&#39;</span>);
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">signal</span>) {
+      <span style="color:#a6e22e">signal</span>.<span style="color:#a6e22e">onabort</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+        <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>)
+        <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+      }
+    }
+
+    <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+    <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">matches</span>);
+
+    <span style="color:#66d9ef">return</span> () <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+      <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+    }
+  })
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="finishing-up">Finishing up</h3>
+<p>Now we have a fully working reactive Observable for a Dark Mode media query, this can be used in any application or
+website to check the users theme setting. The <a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">demo</a>
+ provides
+some more example of how to do this in full.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">isDarkMode</span>().<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">removeClass</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;light&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dark&#39;</span>);
+    <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">addClass</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;dark&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;light&#39;</span>);
+  })
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><p>This tutorial is just one small example of the kind of things that can be done with RxJS - any API that can emit
+values over time can be turned into Observables.</p>
+<h2 id="a-collection-of-pre-built-operators-and-observables-for-your-projects">A collection of pre-built operators and Observables for your projects</h2>
+<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
+<p><a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for working with various types of data (such
+as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+, <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and
+<a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+ allowing for modifying, filtering and querying the data.</p>
+<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+.</p>
+</div>
+</div>
+
+    
+    <div class="text-center">
+      
+
+
+    </div>
+  </main>
+</div>
+
+<style>
+  .taxonomy-title {
+    padding-left: 1rem;
+  }
+
+  .taxonomy-title:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f02c';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900;
+  }
+</style>
+</div>
+    <footer></footer>
+
+
+
+
+<script src="https://tane.dev/js/bundle.min.a035a604266b30159999a46dd819244c0e3a66e10a11fbee9f56e328e47b47d11341be8f083661a570f80852476f66f4f9a57af856c1a5cc80c34a0ab879ab05.js" integrity="sha512-oDWmBCZrMBWZmaRt2BkkTA46ZuEKEfvun1bjKOR7R9ETQb6PCDZhpXD4CFJHb2b0&#43;aV6&#43;FbBpcyAw0oKuHmrBQ==" defer></script>
+
+
+  <script defer src="https://cdn.commento.io/js/count.js"></script>
+
+
+
+
+    
+  </body>
+</html>

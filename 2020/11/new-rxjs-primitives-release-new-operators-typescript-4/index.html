@@ -23,8 +23,8 @@
 <meta name="twitter:image" content="https://tane.dev/images/social_generic.jpg"/>
 
 <meta name="twitter:title" content="New RxJS Primitives release, new operators &#43; Typescript 4"/>
-<meta name="twitter:description" content="This week I released new versions of my RxJS libraries in rxjs-primitives. Since it&rsquo;s released I&rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&rsquo;ve highlighted them here as they may be useful to some developers.
-You can check out the full docs here.
+<meta name="twitter:description" content="This week I released new versions of my RxJS libraries in rxjs-primitives . Since it&rsquo;s released I&rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&rsquo;ve highlighted them here as they may be useful to some developers.
+You can check out the full docs here .
 Typescript 4 Upgrading to Typescript 4 has allowed the removal of polymorphic functions in place of Vardic Tuple Types and is why there is a major bump on all packages."/>
 
 </head>
@@ -65,6 +65,14 @@ Typescript 4 Upgrading to Typescript 4 has allowed the removal of polymorphic fu
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
 
 
@@ -96,14 +104,6 @@ Typescript 4 Upgrading to Typescript 4 has allowed the removal of polymorphic fu
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
-
-
-<span>Published: May 12, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -132,7 +132,7 @@ Typescript 4 Upgrading to Typescript 4 has allowed the removal of polymorphic fu
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 09:09</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
   </div>
 </footer>
 
@@ -220,15 +220,23 @@ Typescript 4 Upgrading to Typescript 4 has allowed the removal of polymorphic fu
       
     
   </div>
-  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs">RxJS</a> libraries in <a href="https://github.com/tanepiper/rxjs-primitives">rxjs-primitives</a>.
+  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs" target="_blank">RxJS</a>
+ libraries in <a href="https://github.com/tanepiper/rxjs-primitives" target="_blank">rxjs-primitives</a>
+.
 Since it&rsquo;s released I&rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&rsquo;ve highlighted them here as they may be useful to some developers.</p>
-<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives">full docs here</a>.</p>
+<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives" target="_blank">full docs here</a>
+.</p>
 <h3 id="typescript-4">Typescript 4</h3>
-<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">polymorphic functions</a> in place of
-<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html">Vardic Tuple Types</a> and is why there is a major bump on all packages.</p>
-<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts">old</a> and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts">new</a>
+<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/" target="_blank">polymorphic functions</a>
+ in place of
+<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html" target="_blank">Vardic Tuple Types</a>
+ and is why there is a major bump on all packages.</p>
+<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts" target="_blank">old</a>
+ and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts" target="_blank">new</a>
+
 <code>concat</code> operator in the <code>rxjs-string</code> package.</p>
-<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> allowing for more robust
+<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles" target="_blank">rxjs-marbles</a>
+ allowing for more robust
 Observable testing (if you are working with RxJS I highly recommend checking it out, it integrates well with runners like Jest).</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -260,7 +268,8 @@ Observable testing (if you are working with RxJS I highly recommend checking it 
 <blockquote>
 <p>npm install @tinynodes/rxjs-array</p>
 </blockquote>
-<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html">array module</a> there are some operators to use with finding
+<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html" target="_blank">array module</a>
+ there are some operators to use with finding
 the difference or intersection between a source and a passed array, for example:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -283,13 +292,16 @@ the difference or intersection between a source and a passed array, for example:
 </span></code></pre></td></tr></table>
 </div>
 </div><p>These methods accept an array, or an <code>Observable&lt;Array&gt;</code> of items to compare against.</p>
-<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch">binarySearch</a> operator which returns
-a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult">BinarySearchResult</a> tuple.</p>
+<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch" target="_blank">binarySearch</a>
+ operator which returns
+a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult" target="_blank">BinarySearchResult</a>
+ tuple.</p>
 <h3 id="rxjs-boolean">rxjs-boolean</h3>
 <blockquote>
 <p>npm install @tinynodes/rxjs-boolean</p>
 </blockquote>
-<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm</a> operator <code>luhnCheck</code> is provided that does validation on
+<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank">Luhn algorithm</a>
+ operator <code>luhnCheck</code> is provided that does validation on
 numbers such as credit cards, ID cards and other value schemes that use the check.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -336,8 +348,11 @@ based on the method</p>
 <blockquote>
 <p>npm install @tinynodes/rxjs-string</p>
 </blockquote>
-<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize">titleize</a>, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat">repeat</a> and
-<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match">match</a> add new utility features for strings. Where they can they also support localisation:</p>
+<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize" target="_blank">titleize</a>
+, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat" target="_blank">repeat</a>
+ and
+<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match" target="_blank">match</a>
+ add new utility features for strings. Where they can they also support localisation:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -362,7 +377,8 @@ based on the method</p>
 <blockquote>
 <p>npm install @tinynodes/rxjs-utility</p>
 </blockquote>
-<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html">utility module</a> contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
+<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html" target="_blank">utility module</a>
+ contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
 These provide a way to do side effects.  With <code>startWithTap</code> it can be used with Angular to do a form touch, also <code>tapOnSubscribe</code> will
 fire when there is a subscription to the Observable:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">

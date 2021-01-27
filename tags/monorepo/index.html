@@ -64,6 +64,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
 
 
@@ -95,14 +103,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
-
-
-<span>Published: May 12, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -131,7 +131,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 09:09</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
   </div>
 </footer>
 
@@ -208,26 +208,34 @@
       
     
   </div>
-  <div class="post-content"><p>This week I released version 1.0 of <a href="https://tanepiper.github.io/rxjs-primitives/">RxJS Primitives</a> to NPM - but the journey
+  <div class="post-content"><p>This week I released version 1.0 of <a href="https://tanepiper.github.io/rxjs-primitives/" target="_blank">RxJS Primitives</a>
+ to NPM - but the journey
 to get there was not as easy as I hoped.</p>
-<p>In the past I&rsquo;ve used <a href="https://circleci.com/">CircleCI</a> and at work I use <a href="https://www.jenkins.io/">Jenkins</a>
-but with this project I wanted to try out <a href="https://github.com/features/actions">Github Actions</a>.</p>
+<p>In the past I&rsquo;ve used <a href="https://circleci.com/" target="_blank">CircleCI</a>
+ and at work I use <a href="https://www.jenkins.io/" target="_blank">Jenkins</a>
+
+but with this project I wanted to try out <a href="https://github.com/features/actions" target="_blank">Github Actions</a>
+.</p>
 <p>After some trial an error (and many failed builds) I managed to get the workflow working, I&rsquo;ve decided to share here
 the steps taken to hopefully save you from the same pain.</p>
 <h2 id="setting-up-your-monorepo">Setting up your monorepo</h2>
-<p>The <a href="https://nx.dev/">NX</a> CLI is a set of tools that make managing your repository of JavaScript and TypeScript code
-easy. Originally built on top of the <a href="https://cli.angular.io/">Angular CLI</a> the tooling now supports more project
+<p>The <a href="https://nx.dev/" target="_blank">NX</a>
+ CLI is a set of tools that make managing your repository of JavaScript and TypeScript code
+easy. Originally built on top of the <a href="https://cli.angular.io/" target="_blank">Angular CLI</a>
+ the tooling now supports more project
 types including Node, React and Web Components.</p>
 <p>In my day-job most of my work is building Angular Enterprise applications, but I also work on my own open source software
 and in both cases I use NX, including using it to publish Angular and TypeScript libraries to NPM.</p>
 <p>Each way of setting this up is subtly different. In this example I&rsquo;ll show the steps of how I built a pipeline for releasing
 my TypeScript RxJS library.</p>
-<p>The easiest way to start is to create your repo using <a href="https://www.npmjs.com/package/create-nx-workspace"><code>create-nx-workspace</code></a></p>
+<p>The easiest way to start is to create your repo using <a href="https://www.npmjs.com/package/create-nx-workspace" target="_blank">&lt;code&gt;create-nx-workspace&lt;/code&gt;</a>
+</p>
 <blockquote>
 <p><code>npx create-nx-workspace &lt;project-name&gt;</code></p>
 </blockquote>
 <p>When running this, you will be asked a few questions depending on your setup. For <code>RxJS Primitives</code> I used a plain workspace,
-and then once created I added <a href="https://www.npmjs.com/package/@nrwl/node"><code>@nrwl/node</code></a> to the project. The default <code>@nrwl/workspace</code>
+and then once created I added <a href="https://www.npmjs.com/package/@nrwl/node" target="_blank">&lt;code&gt;@nrwl/node&lt;/code&gt;</a>
+ to the project. The default <code>@nrwl/workspace</code>
 plugin allows the creation of libraries, but does not provide a publishable output (adding <code>package.json</code>) as an option.</p>
 <p>Once set up you can now create libraries that can be built and published as NPM modules, using the <code>@nrwl/node</code> plugin type
 to create them.  For <code>rxjs-string</code> I used:</p>
@@ -249,7 +257,8 @@ to create them.  For <code>rxjs-string</code> I used:</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>After a few seconds, inside the <code>libs</code> folder will be a default output of a TypeScript library,
-with various <code>tsconfig.json</code> files for testing and building, a <a href="https://jestjs.io/">Jest</a> config for
+with various <code>tsconfig.json</code> files for testing and building, a <a href="https://jestjs.io/" target="_blank">Jest</a>
+ config for
 unit testing, a <code>index.ts</code> file as the entry point and <code>package.json</code> for publishing.</p>
 <blockquote>
 <p>One issue with <code>nx</code> is that with this configuration in the <code>package.json</code> you&rsquo;ll find a 2-level
@@ -417,7 +426,8 @@ only the current one - and this includes the master branch. This command tells g
 </code></pre></td></tr></table>
 </div>
 </div><p>Using the affected commands, the pipeline will only run linting and testing against libraries that have changed against the
-master branch. More steps such as <a href="https://sonarqube.org">SonarQube</a> or other webhooks can be performed here.</p>
+master branch. More steps such as <a href="https://sonarqube.org" target="_blank">SonarQube</a>
+ or other webhooks can be performed here.</p>
 <h3 id="publishing-to-npm">Publishing to NPM</h3>
 <p>When publishing libraries, there&rsquo;s a few additional steps needed before we write the pipeline.  First of all we need two access tokens,
 one for NPM and one for GitHub.</p>
@@ -497,7 +507,8 @@ then we call our publish bash script</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Create the <code>.github/scripts/publish-libraries.sh</code> file and make sure it&rsquo;s set to executable by typing <code>chmod +x .github/scripts/publish-libraries.sh</code> before committing the script.</p>
-<p>The first part of the script is setting up our variables and <code>getBuildType</code> function to check what type of release we are doing. It&rsquo;s good to use <a href="https://semver.org/">SemVer</a> to publish based on changes that happen in the library
+<p>The first part of the script is setting up our variables and <code>getBuildType</code> function to check what type of release we are doing. It&rsquo;s good to use <a href="https://semver.org/" target="_blank">SemVer</a>
+ to publish based on changes that happen in the library
 and with this function using the following words in the <strong>MERGE COMMIT</strong> message will determine the release type.</p>
 <p>For example: <code>(fix): Fixed that annoying bug in issue #123</code> will set the release type to <code>patch</code>. The default is <code>minor</code>. Using <code>(feat)</code> will make a major
 change.</p>
@@ -675,7 +686,8 @@ for other developers to use!  We&rsquo;re not done yet though!</p>
       <span style="color:#f92672">force</span>: <span style="color:#66d9ef">true</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>For RxJS Primitives I used <a href="https://typedoc.org/">TypeDoc</a> to generate static content to the <code>docs</code> folder, which is then used by GitHub Pages, but here
+</div><p>For RxJS Primitives I used <a href="https://typedoc.org/" target="_blank">TypeDoc</a>
+ to generate static content to the <code>docs</code> folder, which is then used by GitHub Pages, but here
 you can set up whatever documentation system you prefer.</p>
 <p>Once the docs have been generated we then commit all changes including the <code>package.json</code> version bumps back to git and then finally push it back
 to <code>master</code> using the GitHub token generated earlier.</p>

@@ -25,7 +25,7 @@
 <meta name="twitter:title" content="RxJS Ninja Updates - New operators for math and working with streams"/>
 <meta name="twitter:description" content="Since the last update on RxJS Ninja there have been a few new operators added, below are some details and links to StackBlitz demos showing them in action.
 Numbers and Math operators In @rxjs-ninja/rxjs-number the missing toFixed operator has been added, alongside a new custom toHex operator and the corresponding parseHex one allowing hex numbers to be worked with ( such as converting colours)
-There are also new operators for some basic math - add , sub, div, mul, mod and pow all allowing you to modify source numbers, all accept a number, or an Observable number source."/>
+There are also new operators for some basic math - add , sub , div , mul , mod and pow all allowing you to modify source numbers, all accept a number, or an Observable number source."/>
 
 </head>
 
@@ -65,6 +65,14 @@ There are also new operators for some basic math - add , sub, div, mul, mod and 
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
 
 
@@ -96,14 +104,6 @@ There are also new operators for some basic math - add , sub, div, mul, mod and 
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
-
-
-<span>Published: May 12, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -132,7 +132,7 @@ There are also new operators for some basic math - add , sub, div, mul, mod and 
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 09:09</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
   </div>
 </footer>
 
@@ -220,44 +220,66 @@ There are also new operators for some basic math - add , sub, div, mul, mod and 
       
     
   </div>
-  <div class="post-content"><p>Since the last update on <a href="https://rxjs.ninja">RxJS Ninja</a> there have been a few new operators added, below are some details
+  <div class="post-content"><p>Since the last update on <a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ there have been a few new operators added, below are some details
 and links to StackBlitz demos showing them in action.</p>
 <h3 id="numbers-and-math-operators">Numbers and Math operators</h3>
-<p>In <code>@rxjs-ninja/rxjs-number</code> the missing <a href="https://rxjs.ninja/modules/number.html#tofixed">toFixed</a> operator has been
-added, alongside a new custom <a href="https://rxjs.ninja/modules/number.html#tohex">toHex</a> operator and the
-corresponding <a href="https://rxjs.ninja/modules/number.html#parsehex">parseHex</a> one allowing hex numbers to be worked with (
+<p>In <code>@rxjs-ninja/rxjs-number</code> the missing <a href="https://rxjs.ninja/modules/number.html#tofixed" target="_blank">toFixed</a>
+ operator has been
+added, alongside a new custom <a href="https://rxjs.ninja/modules/number.html#tohex" target="_blank">toHex</a>
+ operator and the
+corresponding <a href="https://rxjs.ninja/modules/number.html#parsehex" target="_blank">parseHex</a>
+ one allowing hex numbers to be worked with (
 such as converting colours)</p>
-<p>There are also new operators for some basic math - <a href="https://rxjs.ninja/modules/number.html#add">add</a>
-, <a href="https://rxjs.ninja/modules/number.html#sub">sub</a>, <a href="https://rxjs.ninja/modules/number.html#div">div</a>,
-<a href="https://rxjs.ninja/modules/number.html#mul">mul</a>, <a href="https://rxjs.ninja/modules/number.html#mod">mod</a> and
-<a href="https://rxjs.ninja/modules/number.html#pow">pow</a> all allowing you to modify source numbers, all accept a number, or an
+<p>There are also new operators for some basic math - <a href="https://rxjs.ninja/modules/number.html#add" target="_blank">add</a>
+
+, <a href="https://rxjs.ninja/modules/number.html#sub" target="_blank">sub</a>
+, <a href="https://rxjs.ninja/modules/number.html#div" target="_blank">div</a>
+,
+<a href="https://rxjs.ninja/modules/number.html#mul" target="_blank">mul</a>
+, <a href="https://rxjs.ninja/modules/number.html#mod" target="_blank">mod</a>
+ and
+<a href="https://rxjs.ninja/modules/number.html#pow" target="_blank">pow</a>
+ all allowing you to modify source numbers, all accept a number, or an
 Observable number source.</p>
 <h3 id="working-with-browser-streams">Working with Browser Streams</h3>
-<p>Some new operators have been added to <code>@rxjs-ninja/rxjs-utility</code> that allow interoperability between <a href="http://rxjs.dev">RxJS</a>
-and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">StreamsAPI</a>. These APIs are not in all browsers
-but there is an available <a href="https://www.npmjs.com/package/web-streams-polyfill">polyfill</a>.</p>
+<p>Some new operators have been added to <code>@rxjs-ninja/rxjs-utility</code> that allow interoperability between <a href="http://rxjs.dev" target="_blank">RxJS</a>
+
+and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API" target="_blank">StreamsAPI</a>
+. These APIs are not in all browsers
+but there is an available <a href="https://www.npmjs.com/package/web-streams-polyfill" target="_blank">polyfill</a>
+.</p>
 <h4 id="fromreadablestream"><code>fromReadableStream</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#fromreadablestream">operator</a> accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream">ReadableStream</a>
+<p>This <a href="https://rxjs.ninja/modules/utility.html#fromreadablestream" target="_blank">operator</a>
+ accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream" target="_blank">ReadableStream</a>
+
 and provides the emitted values as an Observable, allowing you to use RxJS operators to work with the data.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/rxjs-readable-stream-fetch">Demo</a> - Using <code>fetch</code> body with <code>fromReadableStream</code> to show
+<li><a href="https://stackblitz.com/edit/rxjs-readable-stream-fetch" target="_blank">Demo</a>
+ - Using <code>fetch</code> body with <code>fromReadableStream</code> to show
 partial images</li>
-<li><a href="https://stackblitz.com/edit/rxjs-readable-stream">Demo</a> - A basic infinite number stream that ticks per second</li>
+<li><a href="https://stackblitz.com/edit/rxjs-readable-stream" target="_blank">Demo</a>
+ - A basic infinite number stream that ticks per second</li>
 </ul>
 <h4 id="towritablestream"><code>toWritableStream</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#towritablestream">operator</a> accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream">WritableStream</a>.
+<p>This <a href="https://rxjs.ninja/modules/utility.html#towritablestream" target="_blank">operator</a>
+ accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream" target="_blank">WritableStream</a>
+.
 The operator emits the source value and also writes to the stream. The operator takes care of closing the writer when the
 Observable subscription is closed.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/rxjs-writable-stream">Demo</a> - Streams an Observable interval value into a <code>WritableStream</code>
+<li><a href="https://stackblitz.com/edit/rxjs-writable-stream" target="_blank">Demo</a>
+ - Streams an Observable interval value into a <code>WritableStream</code>
 with optional ability to stop the writer without ending the Observable subscription.</li>
 </ul>
 <h4 id="fromfetchwithprogress"><code>fromFetchWithProgress</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#fromfetchwithprogress">operator</a> uses <code>fetch</code> to do a HTTP request, instead
+<p>This <a href="https://rxjs.ninja/modules/utility.html#fromfetchwithprogress" target="_blank">operator</a>
+ uses <code>fetch</code> to do a HTTP request, instead
 of the body response it emits either a <code>number</code> which is the current progress, or a <code>Uint8Array</code> containing the final
 response from the body.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/fetch-with-progress">Demo</a> Fetches an image and shows a progress bar with the current percentage
+<li><a href="https://stackblitz.com/edit/fetch-with-progress" target="_blank">Demo</a>
+ Fetches an image and shows a progress bar with the current percentage
 and once complete shows the image.</li>
 </ul>
 </div>

@@ -24,7 +24,7 @@
 
 <meta name="twitter:title" content="Creating Custom RxJS Operators"/>
 <meta name="twitter:description" content="RxJS is a popular library available for TypeScript and JavaScript.
-It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods. It&rsquo;s one of the foundation libraries of Angular.
+It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods. It&rsquo;s one of the foundation libraries of Angular .
 Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in chains of operators.
 Many of the operators are low level, and combining them through the pipe method they create a powerful way to work with data."/>
 
@@ -66,6 +66,14 @@ Many of the operators are low level, and combining them through the pipe method 
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
 
 
@@ -97,14 +105,6 @@ Many of the operators are low level, and combining them through the pipe method 
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
-
-
-<span>Published: May 12, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -133,7 +133,7 @@ Many of the operators are low level, and combining them through the pipe method 
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 09:09</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
   </div>
 </footer>
 
@@ -170,6 +170,10 @@ Many of the operators are low level, and combining them through the pipe method 
   </div>
   <div class="flex-item next">
     
+    
+    <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/" class="previous">Next Post <i class="fas fa-arrow-square-right"></i></a>
+    
+    
   </div>
 </div>
 
@@ -183,7 +187,7 @@ Many of the operators are low level, and combining them through the pipe method 
       <div class="meta">
   <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 25, 2021</span>
   
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 26, 2021)</span>
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 27, 2021)</span>
   
   |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1500 words</span>
   |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 7 minutes reading time</span>
@@ -196,9 +200,9 @@ Many of the operators are low level, and combining them through the pipe method 
     
     <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
     
-    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    <a class="flex-item" href="https://tane.dev/tags/observable">Observable</a>
     
-    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    <a class="flex-item" href="https://tane.dev/tags/operators">Operators</a>
     
     <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
     
@@ -219,10 +223,13 @@ Many of the operators are low level, and combining them through the pipe method 
       
     
   </div>
-  <div class="post-content"><p><a href="https://rxjs.dev">RxJS</a> is a popular library available for <a href="https://www.typescriptlang.org/">TypeScript</a> and
+  <div class="post-content"><p><a href="https://rxjs.dev" target="_blank">RxJS</a>
+ is a popular library available for <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
+ and
 JavaScript.</p>
 <p>It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods.
-It&rsquo;s one of the foundation libraries of <a href="https://angular.io">Angular</a>.</p>
+It&rsquo;s one of the foundation libraries of <a href="https://angular.io" target="_blank">Angular</a>
+.</p>
 <p>Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in
 chains of operators.</p>
 <p>Many of the operators are low level, and combining them through the <code>pipe</code> method they create a powerful way to work
@@ -231,7 +238,8 @@ with data.</p>
 <p>The good news is it&rsquo;s also very easy to create new higher-level operators for our domain code - these can be used where
 you find duplicate or complicated operations.</p>
 <p>Creating operators we can also ensure well-tested code
-using <a href="https://rxjs.dev/guide/testing/marble-testing">marble testing</a> and they can be shared among your team to make
+using <a href="https://rxjs.dev/guide/testing/marble-testing" target="_blank">marble testing</a>
+ and they can be shared among your team to make
 your code more readable and stable.</p>
 <p>There are two types of operators that can be created - a <code>MonoTypeOperatorFunction</code> and <code>OperatorFunction</code> and all
 operators must do two things:</p>
@@ -305,16 +313,20 @@ operator the function will look like this:</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Here, we are returning an arrow function that takes the previous source - which must be an <code>Observable&lt;number&gt;</code>. The
-source is piped to <a href="https://rxjs.dev/api/operators/map">map</a> which allows the source value to be converted to a new
+source is piped to <a href="https://rxjs.dev/api/operators/map" target="_blank">map</a>
+ which allows the source value to be converted to a new
 value, in our case we multiply by the <code>factor</code></p>
 <p>TypeScript understands that the output must also be a number - and if you try to return another value type it will throw
 a compile error.</p>
 <h3 id="writing-a-marble-test">Writing a marble test</h3>
-<p><a href="https://rxjs.dev/guide/testing/marble-testing">Marble testing</a> is a way to write tests for RxJS operators that deal
+<p><a href="https://rxjs.dev/guide/testing/marble-testing" target="_blank">Marble testing</a>
+ is a way to write tests for RxJS operators that deal
 with data over time - data is not static due to its asynchronous nature and cannot always be guaranteed in a specific
 order. Luckily the test for this operator is simple.</p>
 <blockquote>
-<p>My personal preference has been to write these test in Jest using <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> and <a href="https://www.npmjs.com/package/jest-marbles">jest-marbles</a>, but there are other libraries to write these test available.</p>
+<p>My personal preference has been to write these test in Jest using <a href="https://www.npmjs.com/package/rxjs-marbles" target="_blank">rxjs-marbles</a>
+ and <a href="https://www.npmjs.com/package/jest-marbles" target="_blank">jest-marbles</a>
+, but there are other libraries to write these test available.</p>
 </blockquote>
 <p>Using marbles, we can set up a mock source that will emit 5 numbers at the specified frames.</p>
 <p>The test result contains two things:</p>
@@ -489,19 +501,26 @@ both numbers</p>
 </div>
 </div><h2 id="next-steps">Next Steps</h2>
 <p>You can see a working version of this operator
-on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts">StackBlitz</a> by opening the console to see the
+on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts" target="_blank">StackBlitz</a>
+ by opening the console to see the
 result.</p>
 <p>This operator is just a taste of what&rsquo;s possible with RxJS - diving into the API you&rsquo;ll find many more operators to help
 work with data in other synchronous and asynchronous operations.</p>
 <h2 id="a-collection-of-pre-built-operators-for-your-projects">A collection of pre-built operators for your projects</h2>
 <p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
-<p>Now for a shameless plug - my own library - <a href="https://rxjs.ninja">RxJS Ninja</a> - is a collection of over 130 operators for
-working with various types of data (such as <a href="https://rxjs.ninja/modules/array.html">arrays</a>
-or <a href="https://rxjs.ninja/modules/number.html">numbers</a>) and <a href="https://rxjs.ninja/modules/utility.html#Streams">streams</a>
+<p>Now for a shameless plug - my own library - <a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for
+working with various types of data (such as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+
+or <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and <a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+
 allowing for modifying, filtering and querying the data.</p>
 <p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
-<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja">GitHub</a>. There you can also find
-a <a href="https://github.com/rxjs-ninja/nx-library-starter">starter project</a> for creating your own TypeScript libraries like
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+. There you can also find
+a <a href="https://github.com/rxjs-ninja/nx-library-starter" target="_blank">starter project</a>
+ for creating your own TypeScript libraries like
 this.</p>
 </div>
 </div>
@@ -515,6 +534,10 @@ this.</p>
     
   </div>
   <div class="flex-item next">
+    
+    
+    <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/" class="previous">Next Post <i class="fas fa-arrow-square-right"></i></a>
+    
     
   </div>
 </div>

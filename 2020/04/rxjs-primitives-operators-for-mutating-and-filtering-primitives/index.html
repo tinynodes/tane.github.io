@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://tane.dev/images/social_generic.jpg"/>
 
 <meta name="twitter:title" content="RxJS Primitives - Operators for mutating and filtering primitives"/>
-<meta name="twitter:description" content="Today I&rsquo;ve published a new set of libraries to NPM - RxJS Primitives.
+<meta name="twitter:description" content="Today I&rsquo;ve published a new set of libraries to NPM - RxJS Primitives .
 These are based on some operators I&rsquo;ve collected over the last year, and some additional ones I&rsquo;ve started adding. Most are based around ECMASCript objects such as String, Number and Boolean but also includes some useful utility operators.
 Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful."/>
 
@@ -65,6 +65,14 @@ Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript me
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
 
 
@@ -96,14 +104,6 @@ Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript me
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
-
-
-<span>Published: May 12, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -132,7 +132,7 @@ Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript me
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 09:09</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
   </div>
 </footer>
 
@@ -220,14 +220,16 @@ Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript me
       
     
   </div>
-  <div class="post-content"><p>Today I&rsquo;ve published a new set of libraries to NPM - <a href="https://github.com/tanepiper/rxjs-primitives">RxJS Primitives</a>.</p>
+  <div class="post-content"><p>Today I&rsquo;ve published a new set of libraries to NPM - <a href="https://github.com/tanepiper/rxjs-primitives" target="_blank">RxJS Primitives</a>
+.</p>
 <p>These are based on some operators I&rsquo;ve collected over the last year, and some additional ones I&rsquo;ve started adding.
 Most are based around ECMASCript objects such as <code>String</code>, <code>Number</code> and <code>Boolean</code> but also includes some useful
 utility operators.</p>
 <p>Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful.</p>
 <p>The following modules are on NPM:</p>
 <h2 id="rxjs-string">rxjs-string</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-string">@tinynodes/rxjs-string</a> operators that are built around the <code>String</code> object in ECMAScript, for example with <code>toUpperCase</code>:</p>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-string" target="_blank">@tinynodes/rxjs-string</a>
+ operators that are built around the <code>String</code> object in ECMAScript, for example with <code>toUpperCase</code>:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -244,7 +246,8 @@ utility operators.</p>
 to add more useful utilities.  For example <code>endWith</code> returns a boolean value, but I also want to include an <code>endsWith</code>
 that returns the original value instead (like <code>filter</code>).</p>
 <h2 id="rxjs-number">rxjs-number</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-number">@tinynodes/rxjs-number</a> operators that are built around the <code>Number</code> object in ECMAScript, for example <code>parseFloat</code>/<code>parseInt</code> and <code>isNaN</code>.</p>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-number" target="_blank">@tinynodes/rxjs-number</a>
+ operators that are built around the <code>Number</code> object in ECMAScript, for example <code>parseFloat</code>/<code>parseInt</code> and <code>isNaN</code>.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -253,14 +256,17 @@ that returns the original value instead (like <code>filter</code>).</p>
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
 </span></code></pre></td></tr></table>
 </div>
-</div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString">Number.prototype.toLocaleString</a> supports formatting such as currency.</p>
+</div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString" target="_blank">Number.prototype.toLocaleString</a>
+ supports formatting such as currency.</p>
 <h2 id="rxjs-boolean">rxjs-boolean</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-boolean">@tinynodes/rxjs-boolean</a> operators that are built around the <code>Boolean</code> object in ECMAScript,
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-boolean" target="_blank">@tinynodes/rxjs-boolean</a>
+ operators that are built around the <code>Boolean</code> object in ECMAScript,
 and are designed to help with filtering content from observables.  Currently, there are two operators <code>firstTruthy</code> and <code>filterTruthy</code>.</p>
 <p>In both cases these return the underlying value only if it&rsquo;s a truthy value in JavaScript, in the case of <code>firstTruthy</code> it only returns
 the first value, while <code>filterTruthy</code> returns all truthy values.</p>
 <h2 id="rxjs-utility">rxjs-utility</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-utility">@tinynodes/rxjs-utility</a> is a custom module that provides some additional operators
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-utility" target="_blank">@tinynodes/rxjs-utility</a>
+ is a custom module that provides some additional operators
 that don&rsquo;t fit into the other packages but still have some usefulness.</p>
 <p>Currently, there are two operators:</p>
 <ul>

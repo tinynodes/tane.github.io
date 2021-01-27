@@ -64,6 +64,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
 
 
@@ -95,14 +103,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a> 
-
-
-<span>Published: May 12, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -131,7 +131,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 09:09</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
   </div>
 </footer>
 
@@ -164,339 +164,6 @@
       aria-label="The taxonomy of this page is NPM">
       NPM
     </h2>
-    
-    <div class="post">
-  <div class="post-heading">
-    <h1>
-      <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a>
-    </h1>
-    
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 25, 2021</span>
-  
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 26, 2021)</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1500 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 7 minutes reading time</span>
-</div>
-
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
-    
-    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
-    
-  </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/#commento">... comments</a>
-</div>
-
-      
-    
-  </div>
-  <div class="post-content"><p><a href="https://rxjs.dev">RxJS</a> is a popular library available for <a href="https://www.typescriptlang.org/">TypeScript</a> and
-JavaScript.</p>
-<p>It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods.
-It&rsquo;s one of the foundation libraries of <a href="https://angular.io">Angular</a>.</p>
-<p>Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in
-chains of operators.</p>
-<p>Many of the operators are low level, and combining them through the <code>pipe</code> method they create a powerful way to work
-with data.</p>
-<h2 id="creating-custom-operators-for-a-domain">Creating custom operators for a domain</h2>
-<p>The good news is it&rsquo;s also very easy to create new higher-level operators for our domain code - these can be used where
-you find duplicate or complicated operations.</p>
-<p>Creating operators we can also ensure well-tested code
-using <a href="https://rxjs.dev/guide/testing/marble-testing">marble testing</a> and they can be shared among your team to make
-your code more readable and stable.</p>
-<p>There are two types of operators that can be created - a <code>MonoTypeOperatorFunction</code> and <code>OperatorFunction</code> and all
-operators must do two things:</p>
-<ul>
-<li>Return a function which accepts as its parameter a source from the previous Observable value in the stream</li>
-<li>Return a value of the same type for <code>MonoTypeOperatorFunction</code> or different type for an <code>OperatorFunction</code> by using
-the source value with <code>pipe</code></li>
-</ul>
-<p>Below we&rsquo;ll have an example of each, but first, to support creating the operators we need some code to simplify:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span>, <span style="color:#a6e22e">tap</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
-
-<span style="color:#75715e">// Create a cold source that will emit each number
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
-
-<span style="color:#75715e">// Create a cold source that multiplies each number by `5`
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByFive$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>));
-<span style="color:#75715e">// Create a cold source that multiplies each number by `10`
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByTen$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>));
-
-<span style="color:#75715e">// Subscribe to the sources and console.log the output
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">multiplyByFive$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
-<span style="color:#75715e">// Output: `5, 10, 15, 20, 25`
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">multiplyByTen$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
-<span style="color:#75715e">// Output: `10, 20, 30, 40, 50`
-</span></code></pre></td></tr></table>
-</div>
-</div><h2 id="creating-monotypeoperatorfunction-for-single-types">Creating MonoTypeOperatorFunction for single types</h2>
-<p>As the name suggests a <code>MonoTypeOperatorFunction</code> is a function that works with a single type of data - the input and
-output value <strong>must</strong> be of the same type.</p>
-<p>Looking at our code we can identify two multiplication operations in our code that are the same. To turn this into an
-operator the function will look like this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MonoTypeOperatorFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#a6e22e">factor</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">number</span>&gt; {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">factor</span>))
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>Here, we are returning an arrow function that takes the previous source - which must be an <code>Observable&lt;number&gt;</code>. The
-source is piped to <a href="https://rxjs.dev/api/operators/map">map</a> which allows the source value to be converted to a new
-value, in our case we multiply by the <code>factor</code></p>
-<p>TypeScript understands that the output must also be a number - and if you try to return another value type it will throw
-a compile error.</p>
-<h3 id="writing-a-marble-test">Writing a marble test</h3>
-<p><a href="https://rxjs.dev/guide/testing/marble-testing">Marble testing</a> is a way to write tests for RxJS operators that deal
-with data over time - data is not static due to its asynchronous nature and cannot always be guaranteed in a specific
-order. Luckily the test for this operator is simple.</p>
-<blockquote>
-<p>My personal preference has been to write these test in Jest using <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> and <a href="https://www.npmjs.com/package/jest-marbles">jest-marbles</a>, but there are other libraries to write these test available.</p>
-</blockquote>
-<p>Using marbles, we can set up a mock source that will emit 5 numbers at the specified frames.</p>
-<p>The test result contains two things:</p>
-<ul>
-<li>A subscriptions string which is used to check that the operator handle subscription ending properly
-using <code>toHaveSubscriptions</code></li>
-<li>An output Observable that will contain the results of the operator and compared against the expectations
-using <code>toBeObservable</code></li>
-</ul>
-<p>In this test, we&rsquo;ll pass a source of numbers and multiply by <code>10</code></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">marbles</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs-marbles/jest&#34;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs/operators&#34;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./multiply&#39;</span>
-
-<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;multiply&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">20</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">30</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">40</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">50</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">60</span>});
-    <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>(<span style="color:#ae81ff">10</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
-    <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
-  }));
-});
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="update-code">Update Code</h3>
-<p>Now the operator is created it can be used in the existing code from above - ideally the operator should be part of a
-shared library of code:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@myorg/rxjs-library&#39;</span>
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByFive$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>(<span style="color:#ae81ff">5</span>));
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByTen$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>(<span style="color:#ae81ff">10</span>));
-</code></pre></td></tr></table>
-</div>
-</div><p>Already much more readable! Our code explains our intent, but we haven&rsquo;t really reduced the duplication of our sources.</p>
-<h2 id="changing-the-api-with-operatorfunction">Changing the API with OperatorFunction</h2>
-<p>In our domain, we know we always want more than one value from a source and using the <code>OperatorFunction</code> we can use that
-to reduce our duplicate code even more.</p>
-<p>This would introduce an API change, but with proper tests, we should be able to migrate our code easily.</p>
-<p>For our source value, it is still a single number value, but in the API we&rsquo;ve changed:</p>
-<ul>
-<li>The input <code>factor</code> can be a single value or an array of values</li>
-<li>The return value is now an array of values, regardless of the input.</li>
-</ul>
-<p>Instead of forcing the users to check the type of response, this single API can be well documented and expected when we
-use it in our code:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OperatorFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#a6e22e">factor</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">number</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">OperatorFunction</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">number</span><span style="color:#960050;background-color:#1e0010">[]</span>&gt; {
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">source</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> (Array.<span style="color:#a6e22e">isArray</span>(<span style="color:#a6e22e">factor</span>) <span style="color:#f92672">?</span> <span style="color:#a6e22e">factor</span> <span style="color:#f92672">:</span> [<span style="color:#a6e22e">factor</span>]).<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">f</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">f</span>)))
-}
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="updating-the-tests">Updating the tests</h3>
-<p>First, we need to update the existing test - here we only have to change the values in our <code>expected</code> Observable - we
-now expect an array of numbers regardless of the input - but with a single value our array length will be <code>1</code></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">20</span>], <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">30</span>], <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">40</span>], <span style="color:#a6e22e">d</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">50</span>], <span style="color:#a6e22e">e</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">60</span>]});
-  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>(<span style="color:#ae81ff">10</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
-  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
-}));
-</code></pre></td></tr></table>
-</div>
-</div><p>To ensure full coverage, we should also test for the case where were have an array input for the multiplication factor:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by by 5 and 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>], <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">30</span>], <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">40</span>], <span style="color:#a6e22e">d</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">50</span>], <span style="color:#a6e22e">e</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">60</span>]});
-  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>([<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>]))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
-  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
-}));
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="update-code-1">Update Code</h3>
-<p>We can now update the code further - here we can now remove the two additional cold Observables and create a single one
-using our new <code>multiply</code> operator, passing it an array containing out factors:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@myorg/rxjs-library&#39;</span>
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyValues$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>([<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>]));
-</code></pre></td></tr></table>
-</div>
-</div><p>Now we can subscribe to the <code>multiplyValues$</code> source and get both our new result which contains the multiplication of
-both numbers</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">multiplyValues$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
-<span style="color:#75715e">// Output: `[5, 10], [10, 20], [15, 30], [20, 40], [25, 50]`
-</span></code></pre></td></tr></table>
-</div>
-</div><h2 id="next-steps">Next Steps</h2>
-<p>You can see a working version of this operator
-on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts">StackBlitz</a> by opening the console to see the
-result.</p>
-<p>This operator is just a taste of what&rsquo;s possible with RxJS - diving into the API you&rsquo;ll find many more operators to help
-work with data in other synchronous and asynchronous operations.</p>
-<h2 id="a-collection-of-pre-built-operators-for-your-projects">A collection of pre-built operators for your projects</h2>
-<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
-<p>Now for a shameless plug - my own library - <a href="https://rxjs.ninja">RxJS Ninja</a> - is a collection of over 130 operators for
-working with various types of data (such as <a href="https://rxjs.ninja/modules/array.html">arrays</a>
-or <a href="https://rxjs.ninja/modules/number.html">numbers</a>) and <a href="https://rxjs.ninja/modules/utility.html#Streams">streams</a>
-allowing for modifying, filtering and querying the data.</p>
-<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
-<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja">GitHub</a>. There you can also find
-a <a href="https://github.com/rxjs-ninja/nx-library-starter">starter project</a> for creating your own TypeScript libraries like
-this.</p>
-</div>
-</div>
-
     
     <div class="post">
   <div class="post-heading">
@@ -541,44 +208,66 @@ this.</p>
       
     
   </div>
-  <div class="post-content"><p>Since the last update on <a href="https://rxjs.ninja">RxJS Ninja</a> there have been a few new operators added, below are some details
+  <div class="post-content"><p>Since the last update on <a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ there have been a few new operators added, below are some details
 and links to StackBlitz demos showing them in action.</p>
 <h3 id="numbers-and-math-operators">Numbers and Math operators</h3>
-<p>In <code>@rxjs-ninja/rxjs-number</code> the missing <a href="https://rxjs.ninja/modules/number.html#tofixed">toFixed</a> operator has been
-added, alongside a new custom <a href="https://rxjs.ninja/modules/number.html#tohex">toHex</a> operator and the
-corresponding <a href="https://rxjs.ninja/modules/number.html#parsehex">parseHex</a> one allowing hex numbers to be worked with (
+<p>In <code>@rxjs-ninja/rxjs-number</code> the missing <a href="https://rxjs.ninja/modules/number.html#tofixed" target="_blank">toFixed</a>
+ operator has been
+added, alongside a new custom <a href="https://rxjs.ninja/modules/number.html#tohex" target="_blank">toHex</a>
+ operator and the
+corresponding <a href="https://rxjs.ninja/modules/number.html#parsehex" target="_blank">parseHex</a>
+ one allowing hex numbers to be worked with (
 such as converting colours)</p>
-<p>There are also new operators for some basic math - <a href="https://rxjs.ninja/modules/number.html#add">add</a>
-, <a href="https://rxjs.ninja/modules/number.html#sub">sub</a>, <a href="https://rxjs.ninja/modules/number.html#div">div</a>,
-<a href="https://rxjs.ninja/modules/number.html#mul">mul</a>, <a href="https://rxjs.ninja/modules/number.html#mod">mod</a> and
-<a href="https://rxjs.ninja/modules/number.html#pow">pow</a> all allowing you to modify source numbers, all accept a number, or an
+<p>There are also new operators for some basic math - <a href="https://rxjs.ninja/modules/number.html#add" target="_blank">add</a>
+
+, <a href="https://rxjs.ninja/modules/number.html#sub" target="_blank">sub</a>
+, <a href="https://rxjs.ninja/modules/number.html#div" target="_blank">div</a>
+,
+<a href="https://rxjs.ninja/modules/number.html#mul" target="_blank">mul</a>
+, <a href="https://rxjs.ninja/modules/number.html#mod" target="_blank">mod</a>
+ and
+<a href="https://rxjs.ninja/modules/number.html#pow" target="_blank">pow</a>
+ all allowing you to modify source numbers, all accept a number, or an
 Observable number source.</p>
 <h3 id="working-with-browser-streams">Working with Browser Streams</h3>
-<p>Some new operators have been added to <code>@rxjs-ninja/rxjs-utility</code> that allow interoperability between <a href="http://rxjs.dev">RxJS</a>
-and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">StreamsAPI</a>. These APIs are not in all browsers
-but there is an available <a href="https://www.npmjs.com/package/web-streams-polyfill">polyfill</a>.</p>
+<p>Some new operators have been added to <code>@rxjs-ninja/rxjs-utility</code> that allow interoperability between <a href="http://rxjs.dev" target="_blank">RxJS</a>
+
+and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API" target="_blank">StreamsAPI</a>
+. These APIs are not in all browsers
+but there is an available <a href="https://www.npmjs.com/package/web-streams-polyfill" target="_blank">polyfill</a>
+.</p>
 <h4 id="fromreadablestream"><code>fromReadableStream</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#fromreadablestream">operator</a> accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream">ReadableStream</a>
+<p>This <a href="https://rxjs.ninja/modules/utility.html#fromreadablestream" target="_blank">operator</a>
+ accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream" target="_blank">ReadableStream</a>
+
 and provides the emitted values as an Observable, allowing you to use RxJS operators to work with the data.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/rxjs-readable-stream-fetch">Demo</a> - Using <code>fetch</code> body with <code>fromReadableStream</code> to show
+<li><a href="https://stackblitz.com/edit/rxjs-readable-stream-fetch" target="_blank">Demo</a>
+ - Using <code>fetch</code> body with <code>fromReadableStream</code> to show
 partial images</li>
-<li><a href="https://stackblitz.com/edit/rxjs-readable-stream">Demo</a> - A basic infinite number stream that ticks per second</li>
+<li><a href="https://stackblitz.com/edit/rxjs-readable-stream" target="_blank">Demo</a>
+ - A basic infinite number stream that ticks per second</li>
 </ul>
 <h4 id="towritablestream"><code>toWritableStream</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#towritablestream">operator</a> accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream">WritableStream</a>.
+<p>This <a href="https://rxjs.ninja/modules/utility.html#towritablestream" target="_blank">operator</a>
+ accepts a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream" target="_blank">WritableStream</a>
+.
 The operator emits the source value and also writes to the stream. The operator takes care of closing the writer when the
 Observable subscription is closed.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/rxjs-writable-stream">Demo</a> - Streams an Observable interval value into a <code>WritableStream</code>
+<li><a href="https://stackblitz.com/edit/rxjs-writable-stream" target="_blank">Demo</a>
+ - Streams an Observable interval value into a <code>WritableStream</code>
 with optional ability to stop the writer without ending the Observable subscription.</li>
 </ul>
 <h4 id="fromfetchwithprogress"><code>fromFetchWithProgress</code></h4>
-<p>This <a href="https://rxjs.ninja/modules/utility.html#fromfetchwithprogress">operator</a> uses <code>fetch</code> to do a HTTP request, instead
+<p>This <a href="https://rxjs.ninja/modules/utility.html#fromfetchwithprogress" target="_blank">operator</a>
+ uses <code>fetch</code> to do a HTTP request, instead
 of the body response it emits either a <code>number</code> which is the current progress, or a <code>Uint8Array</code> containing the final
 response from the body.</p>
 <ul>
-<li><a href="https://stackblitz.com/edit/fetch-with-progress">Demo</a> Fetches an image and shows a progress bar with the current percentage
+<li><a href="https://stackblitz.com/edit/fetch-with-progress" target="_blank">Demo</a>
+ Fetches an image and shows a progress bar with the current percentage
 and once complete shows the image.</li>
 </ul>
 </div>
@@ -629,7 +318,8 @@ and once complete shows the image.</li>
     
   </div>
   <div class="post-content"><p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="RxJS Ninja Logo is a Ninja jumping over a crescent moon"></p>
-<p>Today I&rsquo;ve re-released RxJS Primitives as <a href="https://rxjs.ninja">RxJS Ninja</a>. The new libraries have been published as the same last versions
+<p>Today I&rsquo;ve re-released RxJS Primitives as <a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+. The new libraries have been published as the same last versions
 under their old name, so it&rsquo;s easy to migrate to the new version - all now published under <code>@rxjs-ninja</code> instead of <code>@tinynodes</code>
 (a deprecation notice has also been left the old packages).</p>
 </div>
@@ -679,15 +369,23 @@ under their old name, so it&rsquo;s easy to migrate to the new version - all now
       
     
   </div>
-  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs">RxJS</a> libraries in <a href="https://github.com/tanepiper/rxjs-primitives">rxjs-primitives</a>.
+  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs" target="_blank">RxJS</a>
+ libraries in <a href="https://github.com/tanepiper/rxjs-primitives" target="_blank">rxjs-primitives</a>
+.
 Since it&rsquo;s released I&rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&rsquo;ve highlighted them here as they may be useful to some developers.</p>
-<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives">full docs here</a>.</p>
+<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives" target="_blank">full docs here</a>
+.</p>
 <h3 id="typescript-4">Typescript 4</h3>
-<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">polymorphic functions</a> in place of
-<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html">Vardic Tuple Types</a> and is why there is a major bump on all packages.</p>
-<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts">old</a> and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts">new</a>
+<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/" target="_blank">polymorphic functions</a>
+ in place of
+<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html" target="_blank">Vardic Tuple Types</a>
+ and is why there is a major bump on all packages.</p>
+<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts" target="_blank">old</a>
+ and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts" target="_blank">new</a>
+
 <code>concat</code> operator in the <code>rxjs-string</code> package.</p>
-<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles">rxjs-marbles</a> allowing for more robust
+<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles" target="_blank">rxjs-marbles</a>
+ allowing for more robust
 Observable testing (if you are working with RxJS I highly recommend checking it out, it integrates well with runners like Jest).</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -719,7 +417,8 @@ Observable testing (if you are working with RxJS I highly recommend checking it 
 <blockquote>
 <p>npm install @tinynodes/rxjs-array</p>
 </blockquote>
-<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html">array module</a> there are some operators to use with finding
+<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html" target="_blank">array module</a>
+ there are some operators to use with finding
 the difference or intersection between a source and a passed array, for example:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -742,13 +441,16 @@ the difference or intersection between a source and a passed array, for example:
 </span></code></pre></td></tr></table>
 </div>
 </div><p>These methods accept an array, or an <code>Observable&lt;Array&gt;</code> of items to compare against.</p>
-<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch">binarySearch</a> operator which returns
-a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult">BinarySearchResult</a> tuple.</p>
+<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch" target="_blank">binarySearch</a>
+ operator which returns
+a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult" target="_blank">BinarySearchResult</a>
+ tuple.</p>
 <h3 id="rxjs-boolean">rxjs-boolean</h3>
 <blockquote>
 <p>npm install @tinynodes/rxjs-boolean</p>
 </blockquote>
-<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm</a> operator <code>luhnCheck</code> is provided that does validation on
+<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank">Luhn algorithm</a>
+ operator <code>luhnCheck</code> is provided that does validation on
 numbers such as credit cards, ID cards and other value schemes that use the check.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -795,8 +497,11 @@ based on the method</p>
 <blockquote>
 <p>npm install @tinynodes/rxjs-string</p>
 </blockquote>
-<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize">titleize</a>, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat">repeat</a> and
-<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match">match</a> add new utility features for strings. Where they can they also support localisation:</p>
+<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize" target="_blank">titleize</a>
+, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat" target="_blank">repeat</a>
+ and
+<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match" target="_blank">match</a>
+ add new utility features for strings. Where they can they also support localisation:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -821,7 +526,8 @@ based on the method</p>
 <blockquote>
 <p>npm install @tinynodes/rxjs-utility</p>
 </blockquote>
-<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html">utility module</a> contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
+<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html" target="_blank">utility module</a>
+ contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
 These provide a way to do side effects.  With <code>startWithTap</code> it can be used with Angular to do a form touch, also <code>tapOnSubscribe</code> will
 fire when there is a subscription to the Observable:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -971,26 +677,34 @@ FizzBuzz operator:</p>
       
     
   </div>
-  <div class="post-content"><p>This week I released version 1.0 of <a href="https://tanepiper.github.io/rxjs-primitives/">RxJS Primitives</a> to NPM - but the journey
+  <div class="post-content"><p>This week I released version 1.0 of <a href="https://tanepiper.github.io/rxjs-primitives/" target="_blank">RxJS Primitives</a>
+ to NPM - but the journey
 to get there was not as easy as I hoped.</p>
-<p>In the past I&rsquo;ve used <a href="https://circleci.com/">CircleCI</a> and at work I use <a href="https://www.jenkins.io/">Jenkins</a>
-but with this project I wanted to try out <a href="https://github.com/features/actions">Github Actions</a>.</p>
+<p>In the past I&rsquo;ve used <a href="https://circleci.com/" target="_blank">CircleCI</a>
+ and at work I use <a href="https://www.jenkins.io/" target="_blank">Jenkins</a>
+
+but with this project I wanted to try out <a href="https://github.com/features/actions" target="_blank">Github Actions</a>
+.</p>
 <p>After some trial an error (and many failed builds) I managed to get the workflow working, I&rsquo;ve decided to share here
 the steps taken to hopefully save you from the same pain.</p>
 <h2 id="setting-up-your-monorepo">Setting up your monorepo</h2>
-<p>The <a href="https://nx.dev/">NX</a> CLI is a set of tools that make managing your repository of JavaScript and TypeScript code
-easy. Originally built on top of the <a href="https://cli.angular.io/">Angular CLI</a> the tooling now supports more project
+<p>The <a href="https://nx.dev/" target="_blank">NX</a>
+ CLI is a set of tools that make managing your repository of JavaScript and TypeScript code
+easy. Originally built on top of the <a href="https://cli.angular.io/" target="_blank">Angular CLI</a>
+ the tooling now supports more project
 types including Node, React and Web Components.</p>
 <p>In my day-job most of my work is building Angular Enterprise applications, but I also work on my own open source software
 and in both cases I use NX, including using it to publish Angular and TypeScript libraries to NPM.</p>
 <p>Each way of setting this up is subtly different. In this example I&rsquo;ll show the steps of how I built a pipeline for releasing
 my TypeScript RxJS library.</p>
-<p>The easiest way to start is to create your repo using <a href="https://www.npmjs.com/package/create-nx-workspace"><code>create-nx-workspace</code></a></p>
+<p>The easiest way to start is to create your repo using <a href="https://www.npmjs.com/package/create-nx-workspace" target="_blank">&lt;code&gt;create-nx-workspace&lt;/code&gt;</a>
+</p>
 <blockquote>
 <p><code>npx create-nx-workspace &lt;project-name&gt;</code></p>
 </blockquote>
 <p>When running this, you will be asked a few questions depending on your setup. For <code>RxJS Primitives</code> I used a plain workspace,
-and then once created I added <a href="https://www.npmjs.com/package/@nrwl/node"><code>@nrwl/node</code></a> to the project. The default <code>@nrwl/workspace</code>
+and then once created I added <a href="https://www.npmjs.com/package/@nrwl/node" target="_blank">&lt;code&gt;@nrwl/node&lt;/code&gt;</a>
+ to the project. The default <code>@nrwl/workspace</code>
 plugin allows the creation of libraries, but does not provide a publishable output (adding <code>package.json</code>) as an option.</p>
 <p>Once set up you can now create libraries that can be built and published as NPM modules, using the <code>@nrwl/node</code> plugin type
 to create them.  For <code>rxjs-string</code> I used:</p>
@@ -1012,7 +726,8 @@ to create them.  For <code>rxjs-string</code> I used:</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>After a few seconds, inside the <code>libs</code> folder will be a default output of a TypeScript library,
-with various <code>tsconfig.json</code> files for testing and building, a <a href="https://jestjs.io/">Jest</a> config for
+with various <code>tsconfig.json</code> files for testing and building, a <a href="https://jestjs.io/" target="_blank">Jest</a>
+ config for
 unit testing, a <code>index.ts</code> file as the entry point and <code>package.json</code> for publishing.</p>
 <blockquote>
 <p>One issue with <code>nx</code> is that with this configuration in the <code>package.json</code> you&rsquo;ll find a 2-level
@@ -1180,7 +895,8 @@ only the current one - and this includes the master branch. This command tells g
 </code></pre></td></tr></table>
 </div>
 </div><p>Using the affected commands, the pipeline will only run linting and testing against libraries that have changed against the
-master branch. More steps such as <a href="https://sonarqube.org">SonarQube</a> or other webhooks can be performed here.</p>
+master branch. More steps such as <a href="https://sonarqube.org" target="_blank">SonarQube</a>
+ or other webhooks can be performed here.</p>
 <h3 id="publishing-to-npm">Publishing to NPM</h3>
 <p>When publishing libraries, there&rsquo;s a few additional steps needed before we write the pipeline.  First of all we need two access tokens,
 one for NPM and one for GitHub.</p>
@@ -1260,7 +976,8 @@ then we call our publish bash script</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Create the <code>.github/scripts/publish-libraries.sh</code> file and make sure it&rsquo;s set to executable by typing <code>chmod +x .github/scripts/publish-libraries.sh</code> before committing the script.</p>
-<p>The first part of the script is setting up our variables and <code>getBuildType</code> function to check what type of release we are doing. It&rsquo;s good to use <a href="https://semver.org/">SemVer</a> to publish based on changes that happen in the library
+<p>The first part of the script is setting up our variables and <code>getBuildType</code> function to check what type of release we are doing. It&rsquo;s good to use <a href="https://semver.org/" target="_blank">SemVer</a>
+ to publish based on changes that happen in the library
 and with this function using the following words in the <strong>MERGE COMMIT</strong> message will determine the release type.</p>
 <p>For example: <code>(fix): Fixed that annoying bug in issue #123</code> will set the release type to <code>patch</code>. The default is <code>minor</code>. Using <code>(feat)</code> will make a major
 change.</p>
@@ -1438,7 +1155,8 @@ for other developers to use!  We&rsquo;re not done yet though!</p>
       <span style="color:#f92672">force</span>: <span style="color:#66d9ef">true</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>For RxJS Primitives I used <a href="https://typedoc.org/">TypeDoc</a> to generate static content to the <code>docs</code> folder, which is then used by GitHub Pages, but here
+</div><p>For RxJS Primitives I used <a href="https://typedoc.org/" target="_blank">TypeDoc</a>
+ to generate static content to the <code>docs</code> folder, which is then used by GitHub Pages, but here
 you can set up whatever documentation system you prefer.</p>
 <p>Once the docs have been generated we then commit all changes including the <code>package.json</code> version bumps back to git and then finally push it back
 to <code>master</code> using the GitHub token generated earlier.</p>
@@ -1492,14 +1210,16 @@ to <code>master</code> using the GitHub token generated earlier.</p>
       
     
   </div>
-  <div class="post-content"><p>Today I&rsquo;ve published a new set of libraries to NPM - <a href="https://github.com/tanepiper/rxjs-primitives">RxJS Primitives</a>.</p>
+  <div class="post-content"><p>Today I&rsquo;ve published a new set of libraries to NPM - <a href="https://github.com/tanepiper/rxjs-primitives" target="_blank">RxJS Primitives</a>
+.</p>
 <p>These are based on some operators I&rsquo;ve collected over the last year, and some additional ones I&rsquo;ve started adding.
 Most are based around ECMASCript objects such as <code>String</code>, <code>Number</code> and <code>Boolean</code> but also includes some useful
 utility operators.</p>
 <p>Over the coming weeks I&rsquo;ll add more operators, both based on ECMAScript methods and custom functions that I have found useful.</p>
 <p>The following modules are on NPM:</p>
 <h2 id="rxjs-string">rxjs-string</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-string">@tinynodes/rxjs-string</a> operators that are built around the <code>String</code> object in ECMAScript, for example with <code>toUpperCase</code>:</p>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-string" target="_blank">@tinynodes/rxjs-string</a>
+ operators that are built around the <code>String</code> object in ECMAScript, for example with <code>toUpperCase</code>:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -1516,7 +1236,8 @@ utility operators.</p>
 to add more useful utilities.  For example <code>endWith</code> returns a boolean value, but I also want to include an <code>endsWith</code>
 that returns the original value instead (like <code>filter</code>).</p>
 <h2 id="rxjs-number">rxjs-number</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-number">@tinynodes/rxjs-number</a> operators that are built around the <code>Number</code> object in ECMAScript, for example <code>parseFloat</code>/<code>parseInt</code> and <code>isNaN</code>.</p>
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-number" target="_blank">@tinynodes/rxjs-number</a>
+ operators that are built around the <code>Number</code> object in ECMAScript, for example <code>parseFloat</code>/<code>parseInt</code> and <code>isNaN</code>.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -1525,14 +1246,17 @@ that returns the original value instead (like <code>filter</code>).</p>
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">from</span>([<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;3.14&#39;</span>]).<span style="color:#a6e22e">pipe</span>(parseInt()).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>)) <span style="color:#75715e">// [1, 2, 3]
 </span></code></pre></td></tr></table>
 </div>
-</div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString">Number.prototype.toLocaleString</a> supports formatting such as currency.</p>
+</div><p>This also includes <code>toString</code> which uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString" target="_blank">Number.prototype.toLocaleString</a>
+ supports formatting such as currency.</p>
 <h2 id="rxjs-boolean">rxjs-boolean</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-boolean">@tinynodes/rxjs-boolean</a> operators that are built around the <code>Boolean</code> object in ECMAScript,
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-boolean" target="_blank">@tinynodes/rxjs-boolean</a>
+ operators that are built around the <code>Boolean</code> object in ECMAScript,
 and are designed to help with filtering content from observables.  Currently, there are two operators <code>firstTruthy</code> and <code>filterTruthy</code>.</p>
 <p>In both cases these return the underlying value only if it&rsquo;s a truthy value in JavaScript, in the case of <code>firstTruthy</code> it only returns
 the first value, while <code>filterTruthy</code> returns all truthy values.</p>
 <h2 id="rxjs-utility">rxjs-utility</h2>
-<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-utility">@tinynodes/rxjs-utility</a> is a custom module that provides some additional operators
+<p><a href="https://www.npmjs.com/package/@tinynodes/rxjs-utility" target="_blank">@tinynodes/rxjs-utility</a>
+ is a custom module that provides some additional operators
 that don&rsquo;t fit into the other packages but still have some usefulness.</p>
 <p>Currently, there are two operators:</p>
 <ul>
@@ -1610,9 +1334,13 @@ that don&rsquo;t fit into the other packages but still have some usefulness.</p>
       
     
   </div>
-  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs">NPM</a>.</p>
-<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io">EditorJS</a> instances.</p>
-<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo">demo application</a> is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes"><code>@tinynodes</code> monorepo</a>.</p>
+  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs" target="_blank">NPM</a>
+.</p>
+<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io" target="_blank">EditorJS</a>
+ instances.</p>
+<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo" target="_blank">demo application</a>
+ is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes" target="_blank">&lt;code&gt;@tinynodes&lt;/code&gt; monorepo</a>
+.</p>
 <h2 id="included-features">Included Features</h2>
 <p>The library exports several features once the <code>NgxEditorJSModule</code> has been included in your project.</p>
 <h4 id="ngxeditorjsdirective">NgxEditorJSDirective</h4>
@@ -1637,11 +1365,14 @@ that don&rsquo;t fit into the other packages but still have some usefulness.</p>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="ngxeditorjsservice">NgxEditorJSService</h4>
-<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api">EditorJS API</a> - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
-<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md">README.md</a>) on how to do this in a AOT-friendly way.</p>
+<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api" target="_blank">EditorJS API</a>
+ - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
+<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md" target="_blank">README.md</a>
+) on how to do this in a AOT-friendly way.</p>
 <h2 id="next-steps">Next Steps</h2>
 <p>Before release I had to resolve an issue with AOT compiling and injecting EditorJS plugins - this means version <code>1.1.0</code> has already been released - now this is resolved I want support additional feature in the editor, as well as provide unit test coverage and better documentation and demo.</p>
-<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues">GitHub Issues</a> page.</p>
+<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues" target="_blank">GitHub Issues</a>
+ page.</p>
 </div>
 </div>
 
