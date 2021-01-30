@@ -8,11 +8,26 @@
     <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
     <webMaster>spam@tane.dev (Tane Piper)</webMaster>
     <copyright>This work is copyright Tane Piper</copyright>
-    <lastBuildDate>Wed, 27 Jan 2021 21:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 30 Jan 2021 12:00:00 +0100</lastBuildDate>
     
         <atom:link href="https://tane.dev/index.xml" rel="self" type="application/rss+xml" />
     
     
+    
+    <item>
+      <title>Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</title>
+      <link>https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/</link>
+      <guid>https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/</guid>
+      <comments>https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/#commento</comments>
+      <pubDate>Sat, 30 Jan 2021 12:00:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <description>Demo Link  Demo Source   Version 89 of Chrome and Edge browsers have released the Web Serial API unflagged which means as user it&amp;rsquo;s now available for general use rather than being locked behind experimental flags.
+The API allows for communication between the browser and supported serial hardware such as Arduino or RaspberryPi over USB Serial.
+If you don&amp;rsquo;t have any hardware to connect to, you can use Bluetooth Serial - provided your computer has a Bluetooth module.</description>
+      
+        <category>TypeScript</category><category>RxJS</category><category>Observables</category><category>Web Serial</category><category>ECMAScript</category><category>Tutorial</category>
+      
+    </item>
     
     <item>
       <title>Create your own Dark Mode Detection Observable using RxJS and Media Queries</title>
@@ -67,21 +82,6 @@ There are also new operators for some basic math - add , sub , div , mul , mod a
       <pubDate>Mon, 23 Nov 2020 00:01:00 +0100</pubDate>
       <author>spam@tane.dev (Tane Piper)</author>
       <description>Today I&amp;rsquo;ve re-released RxJS Primitives as RxJS Ninja . The new libraries have been published as the same last versions under their old name, so it&amp;rsquo;s easy to migrate to the new version - all now published under @rxjs-ninja instead of @tinynodes (a deprecation notice has also been left the old packages).</description>
-      
-        <category>TypeScript</category><category>RxJS</category><category>NPM</category><category>Library</category><category>ECMAScript</category>
-      
-    </item>
-    
-    <item>
-      <title>New RxJS Primitives release, new operators &#43; Typescript 4</title>
-      <link>https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/</link>
-      <guid>https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/</guid>
-      <comments>https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/#commento</comments>
-      <pubDate>Wed, 18 Nov 2020 11:30:00 +0100</pubDate>
-      <author>spam@tane.dev (Tane Piper)</author>
-      <description>This week I released new versions of my RxJS libraries in rxjs-primitives . Since it&amp;rsquo;s released I&amp;rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&amp;rsquo;ve highlighted them here as they may be useful to some developers.
-You can check out the full docs here .
-Typescript 4 Upgrading to Typescript 4 has allowed the removal of polymorphic functions in place of Vardic Tuple Types and is why there is a major bump on all packages.</description>
       
         <category>TypeScript</category><category>RxJS</category><category>NPM</category><category>Library</category><category>ECMAScript</category>
       

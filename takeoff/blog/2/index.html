@@ -64,6 +64,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/">Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</a> 
+
+
+<span>Published: Jan 30, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
 
 
@@ -95,14 +103,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
-
-
-<span>Published: Nov 18, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -131,7 +131,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-30 12:47</div>
   </div>
 </footer>
 
@@ -159,6 +159,314 @@
   </div>
   <main class="column main">
     
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Nov 18, 2020</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Nov 18, 2020)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 900 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs" target="_blank">RxJS</a>
+ libraries in <a href="https://github.com/tanepiper/rxjs-primitives" target="_blank">rxjs-primitives</a>
+.
+Since it&rsquo;s released I&rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&rsquo;ve highlighted them here as they may be useful to some developers.</p>
+<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives" target="_blank">full docs here</a>
+.</p>
+<h3 id="typescript-4">Typescript 4</h3>
+<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/" target="_blank">polymorphic functions</a>
+ in place of
+<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html" target="_blank">Vardic Tuple Types</a>
+ and is why there is a major bump on all packages.</p>
+<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts" target="_blank">old</a>
+ and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts" target="_blank">new</a>
+
+<code>concat</code> operator in the <code>rxjs-string</code> package.</p>
+<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles" target="_blank">rxjs-marbles</a>
+ allowing for more robust
+Observable testing (if you are working with RxJS I highly recommend checking it out, it integrates well with runners like Jest).</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(
+    <span style="color:#e6db74">&#39;should return string value of string ending with passed character&#39;</span>,
+    <span style="color:#a6e22e">marbles</span>((<span style="color:#a6e22e">m</span>) <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-|&#39;</span>, { <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;test&#39;</span>, <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;testing&#39;</span>, <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;gone&#39;</span> });
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^------!&#39;</span>;
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;---y---|&#39;</span>, { <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;testing&#39;</span> });
+      <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterEndsWith</span>(<span style="color:#e6db74">&#39;g&#39;</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
+      <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
+    }),
+  );
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="rxjs-array">rxjs-array</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-array</p>
+</blockquote>
+<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html" target="_blank">array module</a>
+ there are some operators to use with finding
+the difference or intersection between a source and a passed array, for example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">of</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>])
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">difference</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>]))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [&#39;b&#39;, &#39;d&#39;]
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">of</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>])
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">intersects</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>]))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [&#39;a&#39;]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>These methods accept an array, or an <code>Observable&lt;Array&gt;</code> of items to compare against.</p>
+<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch" target="_blank">binarySearch</a>
+ operator which returns
+a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult" target="_blank">BinarySearchResult</a>
+ tuple.</p>
+<h3 id="rxjs-boolean">rxjs-boolean</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-boolean</p>
+</blockquote>
+<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank">Luhn algorithm</a>
+ operator <code>luhnCheck</code> is provided that does validation on
+numbers such as credit cards, ID cards and other value schemes that use the check.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;4485275742308327&#39;</span>)
+    .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">luhnCheck</span>())
+    .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// true, this is a valid credit card
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rxjs-number">rxjs-number</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-number</p>
+</blockquote>
+<p><code>inRange</code> / <code>outOfRange</code> and <code>filterInRange</code> / <code>filterOutOfRange</code> both all two numbers, the filter methods return the value from the source observable within the range of those values,
+while the other methods return a boolean value if in range. An optional third value will include/exclude the range value
+based on the method</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>])
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterInRange</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [0, 1, 2, 10]
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// Passing true as the third parameter, the range numbers will also be excluded
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fromNumber</span>([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>])
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterInRange</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>, <span style="color:#66d9ef">true</span>))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [1, 2]
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rxjs-string">rxjs-string</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-string</p>
+</blockquote>
+<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize" target="_blank">titleize</a>
+, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat" target="_blank">repeat</a>
+ and
+<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match" target="_blank">match</a>
+ add new utility features for strings. Where they can they also support localisation:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Mary had a little lamb&#39;</span>)
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">titleize</span>())
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// &#39;Mary Had A Little Lamb&#39;
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Mary had ä little lamb&#39;</span>)
+ .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">titleize</span>(<span style="color:#e6db74">&#39;de-DE&#39;</span>))
+ .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// &#39;Mary Had Ä Little Lamb&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rxjs-utility">rxjs-utility</h3>
+<blockquote>
+<p>npm install @tinynodes/rxjs-utility</p>
+</blockquote>
+<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html" target="_blank">utility module</a>
+ contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
+These provide a way to do side effects.  With <code>startWithTap</code> it can be used with Angular to do a form touch, also <code>tapOnSubscribe</code> will
+fire when there is a subscription to the Observable:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// Only touch on first value change
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">valueChange</span>.<span style="color:#a6e22e">pipe</span>(
+ <span style="color:#a6e22e">startWithTap</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onTouch</span>())
+).<span style="color:#a6e22e">subscribe</span>()
+
+<span style="color:#75715e">// Fire when a component subscribes to the service bus
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">serviceBus</span>.<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tapOnSubscribe</span>((<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`New Subscription to </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>tapIf</code> will only fire if a passed method result is truthy:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tapIf</span>((<span style="color:#a6e22e">val</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>), (<span style="color:#a6e22e">val</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">val</span>)
+).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 2, 4, 6
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The last operator is <code>mapIfSource</code> which might be a bit of a weird one but I hope might become useful.</p>
+<p>The operator takes the value from the source and passes to a predicate method, and depending on the result will <code>map</code> the
+result of a passed method. A simple example would be:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">mapIfSource</span>(
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>,
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>,
+    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>
+  )
+).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 20, 20, 60 40, 100, 60
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Here, if the result of the predicate is true multiply by 10, otherwise by 20. The method is typed to allow different return values
+based on the result (so you will have to handle the type later). For example we could even turn it into a
+FizzBuzz operator:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fizzbuzz</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">OperatorFunction</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">string</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">number</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">number</span>&gt;) <span style="color:#f92672">=&gt;</span>
+    <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(
+      <span style="color:#a6e22e">mapIfSource</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">string</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">number</span>&gt;(
+        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>,
+        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> (<span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">`FizzBuzz`</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;Fizz&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Buzz&#39;</span>),
+        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>
+     )
+  );
+}
+
+<span style="color:#75715e">// And now we use it in our code
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">16</span>]).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">fizzbuzz</span>(),
+).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 1, &#39;Fizz&#39;, &#39;Buzz&#39;, &#39;FizzBuzz&#39;, 16
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Hopefully you&rsquo;ll find these operators useful and feel free to leave feedback and suggestions.</p>
+</div>
+</div>
+
     
     <div class="post">
   <div class="post-heading">
@@ -1612,90 +1920,6 @@ within an application, and JSON Schema to validate dynamic data.</p>
 
 pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>oneOf</code> and using <a href="http://json-schema.org/understanding-json-schema/structuring.html#reuse" target="_blank">definitions</a>
 </p>
-</div>
-</div>
-
-    
-    <div class="post">
-  <div class="post-heading">
-    <h1>
-      <a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/">Ngx-EditorJS library for Angular</a>
-    </h1>
-    
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: May 10, 2019</span>
-  
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: May 10, 2019)</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 300 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 2 minutes reading time</span>
-</div>
-
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
-    
-    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
-    
-  </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2019/05/ngx-editorjs-library-for-angular/#commento">... comments</a>
-</div>
-
-      
-    
-  </div>
-  <div class="post-content"><p>Today I have published my first full Angular module - <code>@tinynodes/ngx-editorjs</code> on <a href="https://www.npmjs.com/package/@tinynodes/ngx-editorjs" target="_blank">NPM</a>
-.</p>
-<p>The module is a set of features for Angular (7+) to create and control <a href="https://editorjs.io" target="_blank">EditorJS</a>
- instances.</p>
-<p>A <a href="https://tinynodes-ngx.firebaseapp.com/ngx-editorjs-demo" target="_blank">demo application</a>
- is available to see the editor in action, and the source is also available in the <a href="https://github.com/tanepiper/ngx-tinynodes" target="_blank">&lt;code&gt;@tinynodes&lt;/code&gt; monorepo</a>
-.</p>
-<h2 id="included-features">Included Features</h2>
-<p>The library exports several features once the <code>NgxEditorJSModule</code> has been included in your project.</p>
-<h4 id="ngxeditorjsdirective">NgxEditorJSDirective</h4>
-<p>This is the main directive which can be used on any element with the <code>[ngxEditorJS]</code> selector and and <code>id</code> attribute.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-editor&#34;</span> <span style="color:#a6e22e">ngxEditorJS</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p>This will handle creating the editor instance via the <code>NgxEditorJSService</code></p>
-<h4 id="ngxeditorjscomponent">NgxEditorJSComponent</h4>
-<p>This component can be used in any Angular component using the <code>&lt;ngx-editorjs&gt;</code> tag. Again this component can take a set of blocks, it also provides a <code>holder</code> input for overriding the ID.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">ngx-editorjs</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">holder</span><span style="color:#960050;background-color:#1e0010">]=&#34;</span><span style="color:#a6e22e">holderProperty</span><span style="color:#960050;background-color:#1e0010">&#34;</span>&gt;&lt;/<span style="color:#f92672">ngx-editorjs</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="ngxeditorjsservice">NgxEditorJSService</h4>
-<p>This service provides handling the life-cycle of the EditorJS instances, and exposes the underlying <a href="https://editorjs.io/api" target="_blank">EditorJS API</a>
- - in future releases more of the API will be exposed via service methods to make controlling the container easier.</p>
-<p>The module is configurable and allows EditorJS plugins to be injected into the library - (see <a href="https://github.com/tanepiper/ngx-tinynodes/blob/master/libs/ngx-editorjs/README.md" target="_blank">README.md</a>
-) on how to do this in a AOT-friendly way.</p>
-<h2 id="next-steps">Next Steps</h2>
-<p>Before release I had to resolve an issue with AOT compiling and injecting EditorJS plugins - this means version <code>1.1.0</code> has already been released - now this is resolved I want support additional feature in the editor, as well as provide unit test coverage and better documentation and demo.</p>
-<p>If you find any issues or have feature requests these can be left on the <a href="https://github.com/tanepiper/ngx-tinynodes/issues" target="_blank">GitHub Issues</a>
- page.</p>
 </div>
 </div>
 

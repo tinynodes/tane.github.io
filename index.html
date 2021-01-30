@@ -65,6 +65,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/">Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</a> 
+
+
+<span>Published: Jan 30, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
 
 
@@ -96,14 +104,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
-
-
-<span>Published: Nov 18, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -132,7 +132,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-30 12:47</div>
   </div>
 </footer>
 
@@ -166,11 +166,282 @@
     <div class="post">
   <div class="post-heading">
     <h1>
+      <a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/">Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 30, 2021</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/observables">Observables</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/web-serial">Web Serial</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><ul>
+<li><a href="https://rxjs-from-web-serial.stackblitz.io/" target="_blank">Demo Link</a>
+</li>
+<li><a href="https://stackblitz.com/edit/rxjs-from-web-serial?file=index.ts" target="_blank">Demo Source</a>
+</li>
+</ul>
+<p>Version 89 of Chrome and Edge browsers have released the <a href="https://reillyeon.github.io/serial/" target="_blank">Web Serial API</a>
+ unflagged
+which means as user it&rsquo;s now available for general use rather than being locked behind experimental flags.</p>
+<p>The API allows for communication between the browser and supported serial hardware such
+as <a href="https://www.arduino.cc/" target="_blank">Arduino</a>
+ or
+<a href="https://www.raspberrypi.org/" target="_blank">RaspberryPi</a>
+ over USB Serial.</p>
+<p>If you don&rsquo;t have any hardware to connect to, you can use Bluetooth Serial - provided your computer has a Bluetooth
+module. Connect your mobile device to it and use the appropriate software. For Android there
+is  <a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal&amp;hl=en&amp;gl=US" target="_blank">Serial Bluetooth Terminal</a>
+
+and iOS
+<a href="https://apps.apple.com/us/app/ble-to-serial-terminal/id1238004134" target="_blank">BLE to Serial Terminal</a>
+.</p>
+<h2 id="connecting-to-a-serial-device">Connecting to a serial device</h2>
+<p>To request access to a device, a call needs to be made to <code>navigator.serial.requestPort</code> - This call <strong>must</strong> be made
+after a user gesture such as a button click - you cannot just call <code>requestPort</code> from your code without some kind of
+user interaction as this will cause a security violation. You also must call it from a location that does not have
+policy set up to disable this (you can see this in the demo above - if you try run it in the editor it won&rsquo;t work due to
+the <code>&lt;iframe&gt;</code> not having the correct policy).</p>
+<p>You may also need to install the <a href="https://www.npmjs.com/package/@types/w3c-web-serial" target="_blank">w3c-web-serial types</a>
+ in your
+project to make sure you have the available types on the <code>navigator</code> object and global types such as <code>SerialPort</code>.</p>
+<p>To get a port, call <code>navigator.serial.requestPort</code> inside the handler - it will return a Promise that contains the port
+object - you can also wrap it in a <code>try/catch</code> to handle when the user cancels device selection.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">startButton</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;start&#34;</span>);
+
+<span style="color:#a6e22e">startButton</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">event</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">try</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serial</span>.<span style="color:#a6e22e">requestPort</span>();
+    <span style="color:#75715e">// We can now access the serial device by opening it
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// e.g. await port.open({baudRate: 9600})
+</span><span style="color:#75715e"></span>  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+    <span style="color:#75715e">// The prompt has been dismissed without selecting a device.
+</span><span style="color:#75715e"></span>  }
+});
+</code></pre></td></tr></table>
+</div>
+</div><p>The port object once created must be called with the <code>open</code> method - the only required property of the options is the
+<code>baudRate</code> which is the maximum bits-per-second transferred but there
+are <a href="https://reillyeon.github.io/serial/#open-method" target="_blank">other options</a>
+ based on the requirements of the device.</p>
+<p>Once opened the port can return a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream" target="_blank">ReadableStream</a>
+
+and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream" target="_blank">WritableStream</a>
+ which allows data to be passed to
+and from the device.</p>
+<h2 id="our-rxjs-operator">Our RxJS Operator</h2>
+<p>To turn this into an RxJS operator we&rsquo;ll consume the port and set up the functionality to both read and write to the
+serial bus. You
+can <a href="https://github.com/rxjs-ninja/rxjs-ninja/blob/main/libs/rxjs/utility/src/lib/from-web-serial.ts" target="_blank">read the full source code</a>
+
+to see how the final Observable was created, but we&rsquo;ll cover the important sections below.</p>
+<h2 id="reading-from-the-serial-bus">Reading from the Serial Bus</h2>
+<p>Once connected, the serial device can start sending data to us - as it&rsquo;s a <code>ReadableStream</code> the result will be
+a <code>UInt8Array</code>.</p>
+<p>Here we&rsquo;ll set up an iterable reader for our stream - while the result is not <code>done</code> and the port is still readable,
+we&rsquo;ll continue to read the source and emit it to the subscriber of the Observable. If the reader has completed, or the
+port has been closed we&rsquo;ll end this iteration.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">open</span>({<span style="color:#a6e22e">baudRate</span>: <span style="color:#66d9ef">9600</span>});
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">process</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (
+  <span style="color:#a6e22e">result</span>: <span style="color:#66d9ef">ReadableStreamReadResult</span>&lt;<span style="color:#f92672">Uint8Array</span>&gt;
+)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">ReadableStreamReadResult</span><span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">Uint8Array</span>&gt;<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">value</span>);
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">done</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>
+    <span style="color:#f92672">?</span> <span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">read</span>().<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">process</span>)
+    <span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">result</span>);
+};
+
+<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>) {
+  <span style="color:#a6e22e">reader</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>.<span style="color:#a6e22e">getReader</span>();
+  <span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">read</span>().<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">process</span>);
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>As the output of our Observable is a <code>Uint8Array</code>. Depending on your needs you can decode this to the format you need,
+but in most cases it will be text content - here we can use
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder" target="_blank">TextDecoder</a>
+ to get the value:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextDecoder</span>(<span style="color:#e6db74">&#34;utf-8&#34;</span>);
+
+<span style="color:#a6e22e">fromWebSerial</span>(<span style="color:#a6e22e">port</span>).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#75715e">// Value is a UInt8Array, we can append to a element by decoding it
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">outputEl</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decoder</span>.<span style="color:#a6e22e">decode</span>(<span style="color:#a6e22e">value</span>)
+  })
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="writing-to-the-serial-bus">Writing to the Serial Bus</h2>
+<p>The API also allows for writing data to the device, here we can use another <code>Observable</code> that emits a string and provide
+it to our function as a source, then we can hook it up to the ports <code>WritableStream</code>.</p>
+<p>Instead of directly writing, we will create
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/TransformStream" target="_blank">TextEncoderStream</a>
+ - this allows us to create a new
+internal writer that we have more control over - it contains both a reader and writer we use this to connect our
+sources.</p>
+<p>The reader from our encoder will be piped to the ports <code>WritableStream</code>, and the writer passed
+to <a href="https://github.com/rxjs-ninja/rxjs-ninja/blob/main/libs/rxjs/utility/src/lib/to-writable-stream.ts" target="_blank">toWritableStream</a>
+
+which connects the <code>Observable</code> to the writer:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">writerSource</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">writable</span>) {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextEncoderStream</span>();
+  <span style="color:#a6e22e">writerEnd</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">readable</span>.<span style="color:#a6e22e">pipeTo</span>(<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">writable</span>);
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">outputStream</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">writable</span>;
+
+  <span style="color:#a6e22e">writer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">outputStream</span>.<span style="color:#a6e22e">getWriter</span>();
+  <span style="color:#a6e22e">writerSource</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">toWritableStream</span>(<span style="color:#a6e22e">writer</span>, <span style="color:#a6e22e">signal</span>)).<span style="color:#a6e22e">subscribe</span>();
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can pass the <code>Observable</code> and use it to emit our values:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">emitter$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Subject</span>&lt;<span style="color:#f92672">string</span>&gt;();
+
+<span style="color:#a6e22e">fromWebSerial</span>(<span style="color:#a6e22e">port</span>, <span style="color:#a6e22e">emitter$</span>.<span style="color:#a6e22e">asObservable</span>()).<span style="color:#a6e22e">subscribe</span>();
+
+<span style="color:#a6e22e">emitter$</span>.<span style="color:#a6e22e">next</span>(<span style="color:#e6db74">&#39;Hello There!&#39;</span>);
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="creating-a-serial-chat-app">Creating a Serial Chat App</h2>
+<p>Now we can read from, and write to, our hardware device
+the <a href="https://github.com/svendahlstrand/web-serial-api" target="_blank">possibilities are endless</a>
+ with what we can do - provided the
+hardware supports it.</p>
+<p>For this tutorial I build a <a href="https://rxjs-from-web-serial.stackblitz.io/" target="_blank">very basic chat app</a>
+ - using the Bluetooth
+Serial applications mentioned above you can use it to send and receive text data between devices.</p>
+<p><img src="https://tane.dev/images/web-serial-mobile.jpg" alt="A screenshot of a web serial mobile app">
+<img src="https://tane.dev/images/web-serial-browser.png" alt="A screenshot of a web serial browser app"></p>
+<p>In the <a href="https://stackblitz.com/edit/rxjs-from-web-serial?file=index.ts" target="_blank">example code</a>
+ I&rsquo;ve set up a button to enable
+our port request - you should see a popup with a list of devices available for you to use. After connecting
+a basic chat interface will show up - type in some text and check out your device software - you should see the same
+message there, and you can then send a message back to the browser.</p>
+<p>Hopefully you&rsquo;ve found this tutorial useful and if you do build something with this I&rsquo;d love to hear about it!</p>
+<h2 id="a-collection-of-pre-built-operators-and-observables-for-your-projects">A collection of pre-built operators and Observables for your projects</h2>
+<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
+<p><a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for working with various types of data (such
+as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+, <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and
+<a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+ allowing for modifying, filtering and querying the data.</p>
+<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+.</p>
+</div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
       <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a>
     </h1>
     
       <div class="meta">
   <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 27, 2021</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 27, 2021)</span>
   
   |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
   |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
@@ -949,314 +1220,6 @@ and once complete shows the image.</li>
 . The new libraries have been published as the same last versions
 under their old name, so it&rsquo;s easy to migrate to the new version - all now published under <code>@rxjs-ninja</code> instead of <code>@tinynodes</code>
 (a deprecation notice has also been left the old packages).</p>
-</div>
-</div>
-
-    
-    <div class="post">
-  <div class="post-heading">
-    <h1>
-      <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a>
-    </h1>
-    
-      <div class="meta">
-  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Nov 18, 2020</span>
-  
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Nov 18, 2020)</span>
-  
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 900 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
-</div>
-
-      
-  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
-    
-    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/npm">NPM</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/library">Library</a>
-    
-    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
-    
-  </div>
-
-
-      
-        <div class="comments-link">
-  <i
-    class="far fa-comment-alt-lines"
-    title="Read what the trolls have posted..."
-    aria-label="Read what the trolls have posted..."
-  ></i>&nbsp;<a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/#commento">... comments</a>
-</div>
-
-      
-    
-  </div>
-  <div class="post-content"><p>This week I released new versions of my <a href="https://github.com/ReactiveX/rxjs" target="_blank">RxJS</a>
- libraries in <a href="https://github.com/tanepiper/rxjs-primitives" target="_blank">rxjs-primitives</a>
-.
-Since it&rsquo;s released I&rsquo;ve added a few new utility operators. Some of these have been out for a while since I originally wrote about the release, so I&rsquo;ve highlighted them here as they may be useful to some developers.</p>
-<p>You can check out the <a href="https://tanepiper.github.io/rxjs-primitives" target="_blank">full docs here</a>
-.</p>
-<h3 id="typescript-4">Typescript 4</h3>
-<p>Upgrading to Typescript 4 has allowed the removal of <a href="http://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/" target="_blank">polymorphic functions</a>
- in place of
-<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html" target="_blank">Vardic Tuple Types</a>
- and is why there is a major bump on all packages.</p>
-<p>This can be seen in the <a href="https://github.com/tanepiper/rxjs-primitives/blob/0f7d8f5c9bb5c6b9e6d1bc149ba661a464c52018/libs/rxjs/string/src/lib/concat.ts" target="_blank">old</a>
- and <a href="https://github.com/tanepiper/rxjs-primitives/blob/master/libs/rxjs/string/src/lib/concat.ts" target="_blank">new</a>
-
-<code>concat</code> operator in the <code>rxjs-string</code> package.</p>
-<p>Most of the tests have also been converted to <a href="https://www.npmjs.com/package/rxjs-marbles" target="_blank">rxjs-marbles</a>
- allowing for more robust
-Observable testing (if you are working with RxJS I highly recommend checking it out, it integrates well with runners like Jest).</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(
-    <span style="color:#e6db74">&#39;should return string value of string ending with passed character&#39;</span>,
-    <span style="color:#a6e22e">marbles</span>((<span style="color:#a6e22e">m</span>) <span style="color:#f92672">=&gt;</span> {
-      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-|&#39;</span>, { <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;test&#39;</span>, <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;testing&#39;</span>, <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;gone&#39;</span> });
-      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^------!&#39;</span>;
-      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;---y---|&#39;</span>, { <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;testing&#39;</span> });
-      <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterEndsWith</span>(<span style="color:#e6db74">&#39;g&#39;</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
-      <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
-    }),
-  );
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="rxjs-array">rxjs-array</h3>
-<blockquote>
-<p>npm install @tinynodes/rxjs-array</p>
-</blockquote>
-<p>In the <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html" target="_blank">array module</a>
- there are some operators to use with finding
-the difference or intersection between a source and a passed array, for example:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">of</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>])
- .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">difference</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>]))
- .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [&#39;b&#39;, &#39;d&#39;]
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">of</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>])
- .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">intersects</span>([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>]))
- .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [&#39;a&#39;]
-</span></code></pre></td></tr></table>
-</div>
-</div><p>These methods accept an array, or an <code>Observable&lt;Array&gt;</code> of items to compare against.</p>
-<p>The module also included a <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearch" target="_blank">binarySearch</a>
- operator which returns
-a custom <a href="https://tanepiper.github.io/rxjs-primitives/modules/array.html#binarysearchresult" target="_blank">BinarySearchResult</a>
- tuple.</p>
-<h3 id="rxjs-boolean">rxjs-boolean</h3>
-<blockquote>
-<p>npm install @tinynodes/rxjs-boolean</p>
-</blockquote>
-<p>A new <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank">Luhn algorithm</a>
- operator <code>luhnCheck</code> is provided that does validation on
-numbers such as credit cards, ID cards and other value schemes that use the check.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;4485275742308327&#39;</span>)
-    .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">luhnCheck</span>())
-    .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// true, this is a valid credit card
-</span></code></pre></td></tr></table>
-</div>
-</div><h3 id="rxjs-number">rxjs-number</h3>
-<blockquote>
-<p>npm install @tinynodes/rxjs-number</p>
-</blockquote>
-<p><code>inRange</code> / <code>outOfRange</code> and <code>filterInRange</code> / <code>filterOutOfRange</code> both all two numbers, the filter methods return the value from the source observable within the range of those values,
-while the other methods return a boolean value if in range. An optional third value will include/exclude the range value
-based on the method</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>])
- .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterInRange</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>))
- .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [0, 1, 2, 10]
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// Passing true as the third parameter, the range numbers will also be excluded
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">fromNumber</span>([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>])
- .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">filterInRange</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>, <span style="color:#66d9ef">true</span>))
- .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// [1, 2]
-</span></code></pre></td></tr></table>
-</div>
-</div><h3 id="rxjs-string">rxjs-string</h3>
-<blockquote>
-<p>npm install @tinynodes/rxjs-string</p>
-</blockquote>
-<p>New operators such as <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#titleize" target="_blank">titleize</a>
-, <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#repeat" target="_blank">repeat</a>
- and
-<a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#match" target="_blank">match</a>
- add new utility features for strings. Where they can they also support localisation:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Mary had a little lamb&#39;</span>)
- .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">titleize</span>())
- .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// &#39;Mary Had A Little Lamb&#39;
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Mary had ä little lamb&#39;</span>)
- .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">titleize</span>(<span style="color:#e6db74">&#39;de-DE&#39;</span>))
- .<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// &#39;Mary Had Ä Little Lamb&#39;
-</span></code></pre></td></tr></table>
-</div>
-</div><h3 id="rxjs-utility">rxjs-utility</h3>
-<blockquote>
-<p>npm install @tinynodes/rxjs-utility</p>
-</blockquote>
-<p>The <a href="https://tanepiper.github.io/rxjs-primitives/modules/utility.html" target="_blank">utility module</a>
- contains some specialised tap operators such as <code>tapIf</code>, <code>startWithTap</code> and <code>tapOnSubscribe</code>.
-These provide a way to do side effects.  With <code>startWithTap</code> it can be used with Angular to do a form touch, also <code>tapOnSubscribe</code> will
-fire when there is a subscription to the Observable:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// Only touch on first value change
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">valueChange</span>.<span style="color:#a6e22e">pipe</span>(
- <span style="color:#a6e22e">startWithTap</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onTouch</span>())
-).<span style="color:#a6e22e">subscribe</span>()
-
-<span style="color:#75715e">// Fire when a component subscribes to the service bus
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">serviceBus</span>.<span style="color:#a6e22e">pipe</span>(
-  <span style="color:#a6e22e">tapOnSubscribe</span>((<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`New Subscription to </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
-).<span style="color:#a6e22e">subscribe</span>()
-</code></pre></td></tr></table>
-</div>
-</div><p>The <code>tapIf</code> will only fire if a passed method result is truthy:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>]).<span style="color:#a6e22e">pipe</span>(
-  <span style="color:#a6e22e">tapIf</span>((<span style="color:#a6e22e">val</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>), (<span style="color:#a6e22e">val</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">val</span>)
-).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 2, 4, 6
-</span></code></pre></td></tr></table>
-</div>
-</div><p>The last operator is <code>mapIfSource</code> which might be a bit of a weird one but I hope might become useful.</p>
-<p>The operator takes the value from the source and passes to a predicate method, and depending on the result will <code>map</code> the
-result of a passed method. A simple example would be:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>]).<span style="color:#a6e22e">pipe</span>(
-  <span style="color:#a6e22e">mapIfSource</span>(
-    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>,
-    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>,
-    (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">val</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>
-  )
-).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 20, 20, 60 40, 100, 60
-</span></code></pre></td></tr></table>
-</div>
-</div><p>Here, if the result of the predicate is true multiply by 10, otherwise by 20. The method is typed to allow different return values
-based on the result (so you will have to handle the type later). For example we could even turn it into a
-FizzBuzz operator:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fizzbuzz</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">OperatorFunction</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">string</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">number</span>&gt; {
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">number</span>&gt;) <span style="color:#f92672">=&gt;</span>
-    <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(
-      <span style="color:#a6e22e">mapIfSource</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">string</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">number</span>&gt;(
-        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>,
-        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> (<span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">`FizzBuzz`</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;Fizz&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Buzz&#39;</span>),
-        (<span style="color:#a6e22e">value</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>
-     )
-  );
-}
-
-<span style="color:#75715e">// And now we use it in our code
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">fromNumber</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">16</span>]).<span style="color:#a6e22e">pipe</span>(
-  <span style="color:#a6e22e">fizzbuzz</span>(),
-).<span style="color:#a6e22e">subscribe</span>() <span style="color:#75715e">// 1, &#39;Fizz&#39;, &#39;Buzz&#39;, &#39;FizzBuzz&#39;, 16
-</span></code></pre></td></tr></table>
-</div>
-</div><p>Hopefully you&rsquo;ll find these operators useful and feel free to leave feedback and suggestions.</p>
 </div>
 </div>
 

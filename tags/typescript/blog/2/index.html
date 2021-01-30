@@ -64,6 +64,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/">Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</a> 
+
+
+<span>Published: Jan 30, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
 
 
@@ -95,14 +103,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2020/11/new-rxjs-primitives-release-new-operators-typescript-4/">New RxJS Primitives release, new operators &#43; Typescript 4</a> 
-
-
-<span>Published: Nov 18, 2020</span>
-
-      </li>
-      
     </ul>
     <div class="feed">
       <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
@@ -131,7 +131,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-01-27 21:45</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-30 12:47</div>
   </div>
 </footer>
 
@@ -168,11 +168,282 @@
     <div class="post">
   <div class="post-heading">
     <h1>
+      <a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/">Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 30, 2021</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/observables">Observables</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/web-serial">Web Serial</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><ul>
+<li><a href="https://rxjs-from-web-serial.stackblitz.io/" target="_blank">Demo Link</a>
+</li>
+<li><a href="https://stackblitz.com/edit/rxjs-from-web-serial?file=index.ts" target="_blank">Demo Source</a>
+</li>
+</ul>
+<p>Version 89 of Chrome and Edge browsers have released the <a href="https://reillyeon.github.io/serial/" target="_blank">Web Serial API</a>
+ unflagged
+which means as user it&rsquo;s now available for general use rather than being locked behind experimental flags.</p>
+<p>The API allows for communication between the browser and supported serial hardware such
+as <a href="https://www.arduino.cc/" target="_blank">Arduino</a>
+ or
+<a href="https://www.raspberrypi.org/" target="_blank">RaspberryPi</a>
+ over USB Serial.</p>
+<p>If you don&rsquo;t have any hardware to connect to, you can use Bluetooth Serial - provided your computer has a Bluetooth
+module. Connect your mobile device to it and use the appropriate software. For Android there
+is  <a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal&amp;hl=en&amp;gl=US" target="_blank">Serial Bluetooth Terminal</a>
+
+and iOS
+<a href="https://apps.apple.com/us/app/ble-to-serial-terminal/id1238004134" target="_blank">BLE to Serial Terminal</a>
+.</p>
+<h2 id="connecting-to-a-serial-device">Connecting to a serial device</h2>
+<p>To request access to a device, a call needs to be made to <code>navigator.serial.requestPort</code> - This call <strong>must</strong> be made
+after a user gesture such as a button click - you cannot just call <code>requestPort</code> from your code without some kind of
+user interaction as this will cause a security violation. You also must call it from a location that does not have
+policy set up to disable this (you can see this in the demo above - if you try run it in the editor it won&rsquo;t work due to
+the <code>&lt;iframe&gt;</code> not having the correct policy).</p>
+<p>You may also need to install the <a href="https://www.npmjs.com/package/@types/w3c-web-serial" target="_blank">w3c-web-serial types</a>
+ in your
+project to make sure you have the available types on the <code>navigator</code> object and global types such as <code>SerialPort</code>.</p>
+<p>To get a port, call <code>navigator.serial.requestPort</code> inside the handler - it will return a Promise that contains the port
+object - you can also wrap it in a <code>try/catch</code> to handle when the user cancels device selection.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">startButton</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;start&#34;</span>);
+
+<span style="color:#a6e22e">startButton</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">event</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">try</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serial</span>.<span style="color:#a6e22e">requestPort</span>();
+    <span style="color:#75715e">// We can now access the serial device by opening it
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// e.g. await port.open({baudRate: 9600})
+</span><span style="color:#75715e"></span>  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+    <span style="color:#75715e">// The prompt has been dismissed without selecting a device.
+</span><span style="color:#75715e"></span>  }
+});
+</code></pre></td></tr></table>
+</div>
+</div><p>The port object once created must be called with the <code>open</code> method - the only required property of the options is the
+<code>baudRate</code> which is the maximum bits-per-second transferred but there
+are <a href="https://reillyeon.github.io/serial/#open-method" target="_blank">other options</a>
+ based on the requirements of the device.</p>
+<p>Once opened the port can return a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream" target="_blank">ReadableStream</a>
+
+and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream" target="_blank">WritableStream</a>
+ which allows data to be passed to
+and from the device.</p>
+<h2 id="our-rxjs-operator">Our RxJS Operator</h2>
+<p>To turn this into an RxJS operator we&rsquo;ll consume the port and set up the functionality to both read and write to the
+serial bus. You
+can <a href="https://github.com/rxjs-ninja/rxjs-ninja/blob/main/libs/rxjs/utility/src/lib/from-web-serial.ts" target="_blank">read the full source code</a>
+
+to see how the final Observable was created, but we&rsquo;ll cover the important sections below.</p>
+<h2 id="reading-from-the-serial-bus">Reading from the Serial Bus</h2>
+<p>Once connected, the serial device can start sending data to us - as it&rsquo;s a <code>ReadableStream</code> the result will be
+a <code>UInt8Array</code>.</p>
+<p>Here we&rsquo;ll set up an iterable reader for our stream - while the result is not <code>done</code> and the port is still readable,
+we&rsquo;ll continue to read the source and emit it to the subscriber of the Observable. If the reader has completed, or the
+port has been closed we&rsquo;ll end this iteration.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">open</span>({<span style="color:#a6e22e">baudRate</span>: <span style="color:#66d9ef">9600</span>});
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">process</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (
+  <span style="color:#a6e22e">result</span>: <span style="color:#66d9ef">ReadableStreamReadResult</span>&lt;<span style="color:#f92672">Uint8Array</span>&gt;
+)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">ReadableStreamReadResult</span><span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">Uint8Array</span>&gt;<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">value</span>);
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">done</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>
+    <span style="color:#f92672">?</span> <span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">read</span>().<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">process</span>)
+    <span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">result</span>);
+};
+
+<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>) {
+  <span style="color:#a6e22e">reader</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>.<span style="color:#a6e22e">getReader</span>();
+  <span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">read</span>().<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">process</span>);
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>As the output of our Observable is a <code>Uint8Array</code>. Depending on your needs you can decode this to the format you need,
+but in most cases it will be text content - here we can use
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder" target="_blank">TextDecoder</a>
+ to get the value:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextDecoder</span>(<span style="color:#e6db74">&#34;utf-8&#34;</span>);
+
+<span style="color:#a6e22e">fromWebSerial</span>(<span style="color:#a6e22e">port</span>).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#75715e">// Value is a UInt8Array, we can append to a element by decoding it
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">outputEl</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decoder</span>.<span style="color:#a6e22e">decode</span>(<span style="color:#a6e22e">value</span>)
+  })
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="writing-to-the-serial-bus">Writing to the Serial Bus</h2>
+<p>The API also allows for writing data to the device, here we can use another <code>Observable</code> that emits a string and provide
+it to our function as a source, then we can hook it up to the ports <code>WritableStream</code>.</p>
+<p>Instead of directly writing, we will create
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/TransformStream" target="_blank">TextEncoderStream</a>
+ - this allows us to create a new
+internal writer that we have more control over - it contains both a reader and writer we use this to connect our
+sources.</p>
+<p>The reader from our encoder will be piped to the ports <code>WritableStream</code>, and the writer passed
+to <a href="https://github.com/rxjs-ninja/rxjs-ninja/blob/main/libs/rxjs/utility/src/lib/to-writable-stream.ts" target="_blank">toWritableStream</a>
+
+which connects the <code>Observable</code> to the writer:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">writerSource</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">writable</span>) {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextEncoderStream</span>();
+  <span style="color:#a6e22e">writerEnd</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">readable</span>.<span style="color:#a6e22e">pipeTo</span>(<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">writable</span>);
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">outputStream</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">writable</span>;
+
+  <span style="color:#a6e22e">writer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">outputStream</span>.<span style="color:#a6e22e">getWriter</span>();
+  <span style="color:#a6e22e">writerSource</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">toWritableStream</span>(<span style="color:#a6e22e">writer</span>, <span style="color:#a6e22e">signal</span>)).<span style="color:#a6e22e">subscribe</span>();
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can pass the <code>Observable</code> and use it to emit our values:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">emitter$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Subject</span>&lt;<span style="color:#f92672">string</span>&gt;();
+
+<span style="color:#a6e22e">fromWebSerial</span>(<span style="color:#a6e22e">port</span>, <span style="color:#a6e22e">emitter$</span>.<span style="color:#a6e22e">asObservable</span>()).<span style="color:#a6e22e">subscribe</span>();
+
+<span style="color:#a6e22e">emitter$</span>.<span style="color:#a6e22e">next</span>(<span style="color:#e6db74">&#39;Hello There!&#39;</span>);
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="creating-a-serial-chat-app">Creating a Serial Chat App</h2>
+<p>Now we can read from, and write to, our hardware device
+the <a href="https://github.com/svendahlstrand/web-serial-api" target="_blank">possibilities are endless</a>
+ with what we can do - provided the
+hardware supports it.</p>
+<p>For this tutorial I build a <a href="https://rxjs-from-web-serial.stackblitz.io/" target="_blank">very basic chat app</a>
+ - using the Bluetooth
+Serial applications mentioned above you can use it to send and receive text data between devices.</p>
+<p><img src="https://tane.dev/images/web-serial-mobile.jpg" alt="A screenshot of a web serial mobile app">
+<img src="https://tane.dev/images/web-serial-browser.png" alt="A screenshot of a web serial browser app"></p>
+<p>In the <a href="https://stackblitz.com/edit/rxjs-from-web-serial?file=index.ts" target="_blank">example code</a>
+ I&rsquo;ve set up a button to enable
+our port request - you should see a popup with a list of devices available for you to use. After connecting
+a basic chat interface will show up - type in some text and check out your device software - you should see the same
+message there, and you can then send a message back to the browser.</p>
+<p>Hopefully you&rsquo;ve found this tutorial useful and if you do build something with this I&rsquo;d love to hear about it!</p>
+<h2 id="a-collection-of-pre-built-operators-and-observables-for-your-projects">A collection of pre-built operators and Observables for your projects</h2>
+<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
+<p><a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for working with various types of data (such
+as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+, <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and
+<a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+ allowing for modifying, filtering and querying the data.</p>
+<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+.</p>
+</div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
       <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a>
     </h1>
     
       <div class="meta">
   <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 27, 2021</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 27, 2021)</span>
   
   |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
   |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
@@ -2720,11 +2991,14 @@ library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/W
   <li class="page-item active">
     <a class="page-link" href="https://tane.dev/tags/typescript/blog/2/">2</a>
   </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  <li class="page-item">
+    <a class="page-link" href="https://tane.dev/tags/typescript/blog/3/">3</a>
   </li>
   <li class="page-item">
-    <a href="https://tane.dev/tags/typescript/blog/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="https://tane.dev/tags/typescript/blog/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="https://tane.dev/tags/typescript/blog/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 
