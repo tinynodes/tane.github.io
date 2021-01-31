@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html  lang="en-gb"   prefix="og: https://ogp.me/ns#">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="generator" content="Hugo 0.80.0" />
+  
+  <title>Function Overloading - Development tutorials for modern web development</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous" />
+
+
+
+
+
+
+<link rel="stylesheet" href="https://tane.dev/css/bundle.min.860283af9f116f9e7c3c8b30f173a99265c0c653f5153cad9acf7f7465eb99635ab360987470fdeb8539e964c6b7e239a14f432d044b9cac92ac28af741c4e4a.css" integrity="sha512-hgKDr58Rb558PIsw8XOpkmXAxlP1FTytms9/dGXrmWNas2CYdHD964U56WTGt&#43;I5oU9DLQRLnKySrCivdBxOSg==" />
+
+
+  <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/tags/function-overloading/index.xml" title="tane.dev" />
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://tane.dev/images/social_generic.jpg"/>
+
+<meta name="twitter:title" content="Function Overloading"/>
+<meta name="twitter:description" content="Development tutorials for modern web development"/>
+
+  <meta property="og:title" content="Function Overloading"/>
+
+<meta property="og:description" content="Development tutorials for modern web development"/>
+
+<meta property="og:url" content="https://tane.dev/tags/function-overloading/"/>
+<meta property="og:site_name" content="tane.dev"/>
+<meta property="og:type" content="article"><meta property="og:image"
+      content="https://www.mugshotbot.com/m?mode=light&pattern=lines_in_motion&image=cc7ec56c&hide_watermark=true&url=https://tane.dev/tags/function-overloading/"/>
+
+ </head>
+
+
+  <body class="light">
+
+    <div class="container-left">
+<div class="row">
+  <div class="column sidebar">
+    <div class="sidebar-content">
+  <h1
+    class="site-title flex-item flex-start"
+    title="The title of the site tane.dev - click it to go back to the homepage"
+    aria-label="The title of the site tane.dev - click it to go back to the homepage"
+  >
+    <a href="https://tane.dev" title="Click here to go back to the home page">tane.dev</a>
+  </h1>
+  <h2
+    class="flex-item subtitle"
+    title="The subtitle of the site, is has a brain in it which makes the assumption the author has one"
+    aria-label="The subtitle of the site, is has a brain in it which makes the assumption the author has one"
+  >
+    [ <i class="far fa-head-side-brain"></i> ideas <sup>&amp; stuff</sup> ]
+  </h2>
+
+  
+
+  <aside class="menu">
+    <ul class="sidebar-menus menu-list">
+      
+    </ul>
+
+    <h3 class="menu-label" title="A recent list of posts I've somehow managed to write down">
+      <i class="far fa-keyboard"></i> Recent Posts:
+    </h3>
+
+    <ul class="previous-posts">
+      
+      <li>
+        <a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/">Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</a> 
+
+
+<span>Published: Jan 30, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
+
+
+<span>Published: Jan 25, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/">RxJS Ninja Updates - New operators for math and working with streams</a> 
+
+
+<span>Published: Jan 14, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/">RxJS Primitives is now RxJS Ninja</a> 
+
+
+<span>Published: Nov 23, 2020</span>
+
+      </li>
+      
+    </ul>
+    <div class="feed">
+      <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
+    </div>
+  </aside>
+  <div class="service-buttons">
+  <div class="flex-item button-group-label">Links:</div>
+  
+    <a class="flex-item" href="https://github.com/tanepiper" title="Link to my Github" target="_new"><i class='fab fa-github-alt'></i></a>
+  
+    <a class="flex-item" href="https://linkedin.com/in/tanepiper" title="Link to my LinkedIn" target="_new"><i class='fab fa-linkedin'></i></a>
+  
+    <a class="flex-item" href="https://twitter.com/tanepiper" title="Link to my Twitter" target="_new"><i class='fab fa-twitter'></i></a>
+  
+</div>
+
+  <footer class="footer">
+  <div class="flex-item contact">
+    
+    <i class="far fa-copyright"></i>&nbsp;2021 Tane Piper
+    
+
+    
+    <a href="mailto:" title="I promise I check this from time to time" aria-label="I promise I check this from time to time"><i class="far fa-mailbox"></i>&nbsp;Email into the void</a>
+    
+  </div>
+  <div class="flex-item meta">
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-31 21:45</div>
+  </div>
+</footer>
+
+  <div class="theme-buttons">
+  <div class="flex-item button-group-label">Theme:</div>
+  <button class="flex-item btn btn-circle btn-theme btn-light" data-theme="light" title="Click this button for the light theme" aria-label="Click this button for the light theme" />
+  <button class="flex-item btn btn-circle btn-theme btn-dark" data-theme="dark" title="Click this button for the dark theme" aria-label="Click this button for the dark theme" />
+  <button class="flex-item btn btn-circle btn-theme btn-darkgreen" data-theme="darkgreen" title="Click this button for the darkgreen theme" aria-label="Click this button for the darkgreen theme" />
+</div>
+
+</div>
+
+<style type="text/css">
+  .previous-posts li {
+    flex-direction: column;
+  }
+
+  .previous-posts li span {
+    margin-left: .5rem;
+    border-left: 1px solid #d3d3d3;
+    justify-content: right;
+  }
+</style>
+
+  </div>
+  <main class="column main">
+    <h2
+      class="taxonomy-title"
+      title="The taxonomy of this page is Function Overloading"
+      aria-label="The taxonomy of this page is Function Overloading">
+      Function Overloading
+    </h2>
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/">Polymorphic TypeScript - Function overloading with rest parameters</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: May 12, 2020</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 31, 2021)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 600 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 3 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/best-practice">Best Practice</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/polymorphism">Polymorphism</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/function-overloading">Function Overloading</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2020/05/polymorphic-typescript-function-overloading-with-rest-parameters/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>Recently in <a href="https://tanepiper.github.io/rxjs-primitives/" target="_blank">RxJS Primitives</a>
+ I encountered a situation where
+one of the methods - <a href="https://tanepiper.github.io/rxjs-primitives/modules/string.html#concat" target="_blank">concat</a>
+ was initially
+designed to take an argument list of strings and in the method used rest (<code>...args</code>) parameters, mimicking the signature
+and passing them to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat" target="_blank">String.prototype.concat</a>
+</p>
+<blockquote>
+<p>I&rsquo;ve created a <a href="https://stackblitz.com/edit/function-overloading-with-rest" target="_blank">StackBlitz Project</a>
+ with the code for each
+step that can be followed along.</p>
+</blockquote>
+<p>I wanted to refactor it to support an array of strings, but found that in the current implementation
+<a href="https://stackblitz.com/edit/function-overloading-with-rest?file=concat-overload-1.ts" target="_blank">this is not possible</a>
+ and throws a TypeScript
+error:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+}
+
+<span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Testing&#39;</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">concat</span>([<span style="color:#e6db74">&#39; one&#39;</span>, <span style="color:#e6db74">&#39; two&#39;</span>])).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Argument of type <span style="color:#e6db74">&#39;string[]&#39;</span> is not assignable to parameter of type <span style="color:#e6db74">&#39;string&#39;</span>.
+</code></pre></td></tr></table>
+</div>
+</div><p>Due to how TypeScript treats rest parameters, it expects a list of parameters as a single string which is turned into
+an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank">arguments</a>
+.</p>
+<p>To get around this, we can use TypeScript <a href="https://www.typescriptlang.org/docs/handbook/functions.html#overloads" target="_blank">&lt;code&gt;function&lt;/code&gt; overloading</a>
+.</p>
+<h2 id="how-to-overload-functions-with-rest-parameters">How to overload functions with rest parameters</h2>
+<p>My first attempt at writing this method lead to <a href="https://stackblitz.com/edit/function-overloading-with-rest?file=concat-overload-2.ts" target="_blank">this code</a>
+
+which attempts to keep the type information in all implementations:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+}
+
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
+</code></pre></td></tr></table>
+</div>
+</div><p>This resulted in an error on the second implementation:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">function</span> concat<span style="color:#f92672">(</span>args: string<span style="color:#f92672">[])</span>: MonoTypeOperatorFunction&lt;string&gt; <span style="color:#f92672">(</span>+1 overload<span style="color:#f92672">)</span>
+This overload signature is not compatible with its implementation signature.
+</code></pre></td></tr></table>
+</div>
+</div><p>It appears that TypeScript cannot convert an Array rest type to an <code>arguments</code> Array-like value, to get around this
+we need to use the <code>any</code> value in the <a href="https://stackblitz.com/edit/function-overloading-with-rest?file=concat-overload-3.ts" target="_blank">last implementation</a>
+:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>)))
+}
+
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
+</code></pre></td></tr></table>
+</div>
+</div><p>So now the TypeScript compiler stops complaining, and we can test it using both supported argument types:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Testing&#39;</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">concat</span>(<span style="color:#e6db74">&#39; one&#39;</span>, <span style="color:#e6db74">&#39; two&#39;</span>)).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// Testing one two
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fromString</span>(<span style="color:#e6db74">&#39;Testing&#39;</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">concat</span>([<span style="color:#e6db74">&#39; one&#39;</span>, <span style="color:#e6db74">&#39; two&#39;</span>])).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>) <span style="color:#75715e">// Testing one, two
+</span></code></pre></td></tr></table>
+</div>
+</div><p>However, if you look at the output of the result you&rsquo;ll notice a bug in our Array implementation where a comma
+appears in the text - the issue is that now the implementation treats the array as the first argument in a list of
+<code>arguments</code> - and changing the last method to be <code>args:any</code> would remove our rest parameter destructing.</p>
+<p>To solve this, we need to use the <code>any</code> type again to destructure our arguments and check for the first one being an array,
+if it is then we use this as our destructured arguments into the <code>String.prototype.concat</code> method, but if it&rsquo;s a string
+then we pass all the arguments using destructuring:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">string</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt;;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">string</span>&gt; {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">inArgs</span>: <span style="color:#66d9ef">any</span>[] <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">args</span>];
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">instanceof</span> Array) {
+    <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>[<span style="color:#ae81ff">0</span>])))
+  }
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">Observable</span>&lt;<span style="color:#f92672">string</span>&gt;) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">concat</span>(...<span style="color:#a6e22e">inArgs</span>)))
+}
+
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">concat</span> }
+</code></pre></td></tr></table>
+</div>
+</div><p>Now <a href="https://stackblitz.com/edit/function-overloading-with-rest?file=concat-overload-4.ts" target="_blank">the implementation</a>
+ works as intended - our method can accept one or more string arguments, or an array of strings
+as the first argument - and it&rsquo;s not possible to mix the two up - if you try add a second array to the arguments, the TypeScript
+compiler will look for single string arguments.</p>
+</div>
+</div>
+
+    
+    <div class="text-center">
+      
+
+
+    </div>
+  </main>
+</div>
+
+<style>
+  .taxonomy-title {
+    padding-left: 1rem;
+  }
+
+  .taxonomy-title:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f02c';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900;
+  }
+</style>
+</div>
+    <footer></footer>
+
+
+
+
+<script src="https://tane.dev/js/bundle.min.a035a604266b30159999a46dd819244c0e3a66e10a11fbee9f56e328e47b47d11341be8f083661a570f80852476f66f4f9a57af856c1a5cc80c34a0ab879ab05.js" integrity="sha512-oDWmBCZrMBWZmaRt2BkkTA46ZuEKEfvun1bjKOR7R9ETQb6PCDZhpXD4CFJHb2b0&#43;aV6&#43;FbBpcyAw0oKuHmrBQ==" defer></script>
+
+
+  <script defer src="https://cdn.commento.io/js/count.js"></script>
+
+
+
+
+
+  </body>
+</html>

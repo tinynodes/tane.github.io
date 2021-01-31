@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html  lang="en-gb"   prefix="og: https://ogp.me/ns#">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="generator" content="Hugo 0.80.0" />
+  
+  <title>Tutorial - Development tutorials for modern web development</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800" rel="stylesheet" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous" />
+
+
+
+
+
+
+<link rel="stylesheet" href="https://tane.dev/css/bundle.min.860283af9f116f9e7c3c8b30f173a99265c0c653f5153cad9acf7f7465eb99635ab360987470fdeb8539e964c6b7e239a14f432d044b9cac92ac28af741c4e4a.css" integrity="sha512-hgKDr58Rb558PIsw8XOpkmXAxlP1FTytms9/dGXrmWNas2CYdHD964U56WTGt&#43;I5oU9DLQRLnKySrCivdBxOSg==" />
+
+
+  <link rel="alternate" type="application/rss&#43;xml" href="https://tane.dev/tags/tutorial/index.xml" title="tane.dev" />
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://tane.dev/images/social_generic.jpg"/>
+
+<meta name="twitter:title" content="Tutorial"/>
+<meta name="twitter:description" content="Development tutorials for modern web development"/>
+
+  <meta property="og:title" content="Tutorial"/>
+
+<meta property="og:description" content="Development tutorials for modern web development"/>
+
+<meta property="og:url" content="https://tane.dev/tags/tutorial/"/>
+<meta property="og:site_name" content="tane.dev"/>
+<meta property="og:type" content="article"><meta property="og:image"
+      content="https://www.mugshotbot.com/m?mode=light&pattern=lines_in_motion&image=cc7ec56c&hide_watermark=true&url=https://tane.dev/tags/tutorial/"/>
+
+ </head>
+
+
+  <body class="light">
+
+    <div class="container-left">
+<div class="row">
+  <div class="column sidebar">
+    <div class="sidebar-content">
+  <h1
+    class="site-title flex-item flex-start"
+    title="The title of the site tane.dev - click it to go back to the homepage"
+    aria-label="The title of the site tane.dev - click it to go back to the homepage"
+  >
+    <a href="https://tane.dev" title="Click here to go back to the home page">tane.dev</a>
+  </h1>
+  <h2
+    class="flex-item subtitle"
+    title="The subtitle of the site, is has a brain in it which makes the assumption the author has one"
+    aria-label="The subtitle of the site, is has a brain in it which makes the assumption the author has one"
+  >
+    [ <i class="far fa-head-side-brain"></i> ideas <sup>&amp; stuff</sup> ]
+  </h2>
+
+  
+
+  <aside class="menu">
+    <ul class="sidebar-menus menu-list">
+      
+    </ul>
+
+    <h3 class="menu-label" title="A recent list of posts I've somehow managed to write down">
+      <i class="far fa-keyboard"></i> Recent Posts:
+    </h3>
+
+    <ul class="previous-posts">
+      
+      <li>
+        <a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/">Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</a> 
+
+
+<span>Published: Jan 30, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a> 
+
+
+<span>Published: Jan 27, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a> 
+
+
+<span>Published: Jan 25, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/">RxJS Ninja Updates - New operators for math and working with streams</a> 
+
+
+<span>Published: Jan 14, 2021</span>
+
+      </li>
+      
+      <li>
+        <a href="https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/">RxJS Primitives is now RxJS Ninja</a> 
+
+
+<span>Published: Nov 23, 2020</span>
+
+      </li>
+      
+    </ul>
+    <div class="feed">
+      <a href="https://tane.dev/index.xml"><i class="far fa-rss-square"></i>&nbsp;RSS Feed</a>
+    </div>
+  </aside>
+  <div class="service-buttons">
+  <div class="flex-item button-group-label">Links:</div>
+  
+    <a class="flex-item" href="https://github.com/tanepiper" title="Link to my Github" target="_new"><i class='fab fa-github-alt'></i></a>
+  
+    <a class="flex-item" href="https://linkedin.com/in/tanepiper" title="Link to my LinkedIn" target="_new"><i class='fab fa-linkedin'></i></a>
+  
+    <a class="flex-item" href="https://twitter.com/tanepiper" title="Link to my Twitter" target="_new"><i class='fab fa-twitter'></i></a>
+  
+</div>
+
+  <footer class="footer">
+  <div class="flex-item contact">
+    
+    <i class="far fa-copyright"></i>&nbsp;2021 Tane Piper
+    
+
+    
+    <a href="mailto:" title="I promise I check this from time to time" aria-label="I promise I check this from time to time"><i class="far fa-mailbox"></i>&nbsp;Email into the void</a>
+    
+  </div>
+  <div class="flex-item meta">
+    <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-01-31 21:45</div>
+  </div>
+</footer>
+
+  <div class="theme-buttons">
+  <div class="flex-item button-group-label">Theme:</div>
+  <button class="flex-item btn btn-circle btn-theme btn-light" data-theme="light" title="Click this button for the light theme" aria-label="Click this button for the light theme" />
+  <button class="flex-item btn btn-circle btn-theme btn-dark" data-theme="dark" title="Click this button for the dark theme" aria-label="Click this button for the dark theme" />
+  <button class="flex-item btn btn-circle btn-theme btn-darkgreen" data-theme="darkgreen" title="Click this button for the darkgreen theme" aria-label="Click this button for the darkgreen theme" />
+</div>
+
+</div>
+
+<style type="text/css">
+  .previous-posts li {
+    flex-direction: column;
+  }
+
+  .previous-posts li span {
+    margin-left: .5rem;
+    border-left: 1px solid #d3d3d3;
+    justify-content: right;
+  }
+</style>
+
+  </div>
+  <main class="column main">
+    <h2
+      class="taxonomy-title"
+      title="The taxonomy of this page is Tutorial"
+      aria-label="The taxonomy of this page is Tutorial">
+      Tutorial
+    </h2>
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/">Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 30, 2021</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 30, 2021)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/observables">Observables</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/web-serial">Web Serial</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><ul>
+<li><a href="https://rxjs-from-web-serial.stackblitz.io/" target="_blank">Demo Link</a>
+</li>
+<li><a href="https://stackblitz.com/edit/rxjs-from-web-serial?file=index.ts" target="_blank">Demo Source</a>
+</li>
+</ul>
+<p>Version 89 of Chrome and Edge browsers have released the <a href="https://reillyeon.github.io/serial/" target="_blank">Web Serial API</a>
+ unflagged
+which means as user it&rsquo;s now available for general use rather than being locked behind experimental flags (if you&rsquo;re
+on an earlier version you can enable <strong>Experimental Web Platform features</strong> in <code>chrome://flags</code>)</p>
+<p>The API allows for communication between the browser and supported serial hardware such
+as <a href="https://www.arduino.cc/" target="_blank">Arduino</a>
+ or <a href="https://www.raspberrypi.org/" target="_blank">RaspberryPi</a>
+ over USB Serial.</p>
+<p>If you don&rsquo;t have any hardware to connect to, you can use Bluetooth Serial - provided your computer has a Bluetooth
+module. Connect your mobile device to it and use the appropriate software. For Android there
+is  <a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal&amp;hl=en&amp;gl=US" target="_blank">Serial Bluetooth Terminal</a>
+
+and iOS <a href="https://apps.apple.com/us/app/ble-to-serial-terminal/id1238004134" target="_blank">BLE to Serial Terminal</a>
+.</p>
+<h2 id="connecting-to-a-serial-device">Connecting to a serial device</h2>
+<p>To request access to a device, a call needs to be made to <code>navigator.serial.requestPort</code> - This call <strong>must</strong> be made
+after a user gesture such as a button click - you cannot just call <code>requestPort</code> from your code without some kind of
+user interaction as this will cause a security violation. You also must call it from a location that does not have
+policy set up to disable this (you can see this in the demo above - if you try run it in the editor it won&rsquo;t work due to
+the <code>&lt;iframe&gt;</code> not having the correct policy).</p>
+<p>You may also need to install the <a href="https://www.npmjs.com/package/@types/w3c-web-serial" target="_blank">w3c-web-serial types</a>
+ in your
+project to make sure you have the available types on the <code>navigator</code> object and global types such as <code>SerialPort</code>.</p>
+<p>To get a port, call <code>navigator.serial.requestPort</code> inside the handler - it will return a Promise that contains the port
+object - you can also wrap it in a <code>try/catch</code> to handle when the user cancels device selection.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">startButton</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;start&#34;</span>);
+
+<span style="color:#a6e22e">startButton</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">event</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">try</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serial</span>.<span style="color:#a6e22e">requestPort</span>();
+    <span style="color:#75715e">// We can now access the serial device by opening it
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// e.g. await port.open({baudRate: 9600})
+</span><span style="color:#75715e"></span>  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+    <span style="color:#75715e">// The prompt has been dismissed without selecting a device.
+</span><span style="color:#75715e"></span>  }
+});
+</code></pre></td></tr></table>
+</div>
+</div><p>The port object once created must be called with the <code>open</code> method - the only required property of the options is the
+<code>baudRate</code> which is the maximum bits-per-second transferred but there
+are <a href="https://reillyeon.github.io/serial/#open-method" target="_blank">other options</a>
+ based on the requirements of the device.</p>
+<p>Once opened the port can return a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream" target="_blank">ReadableStream</a>
+
+and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WritableStream" target="_blank">WritableStream</a>
+ which allows data to be passed to
+and from the device.</p>
+<h2 id="our-rxjs-operator">Our RxJS Operator</h2>
+<p>To turn this into an RxJS operator we&rsquo;ll consume the port and set up the functionality to both read and write to the
+serial bus. You
+can <a href="https://github.com/rxjs-ninja/rxjs-ninja/blob/main/libs/rxjs/utility/src/lib/from-web-serial.ts" target="_blank">read the full source code</a>
+
+to see how the final Observable was created, but we&rsquo;ll cover the important sections below.</p>
+<h2 id="reading-from-the-serial-bus">Reading from the Serial Bus</h2>
+<p>Once connected, the serial device can start sending data to us - as it&rsquo;s a <code>ReadableStream</code> the result will be
+a <code>UInt8Array</code>.</p>
+<p>Here we&rsquo;ll set up an iterable reader for our stream - while the result is not <code>done</code> and the port is still readable,
+we&rsquo;ll continue to read the source and emit it to the subscriber of the Observable. If the reader has completed, or the
+port has been closed we&rsquo;ll end this iteration.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">open</span>({<span style="color:#a6e22e">baudRate</span>: <span style="color:#66d9ef">9600</span>});
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">process</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (
+  <span style="color:#a6e22e">result</span>: <span style="color:#66d9ef">ReadableStreamReadResult</span>&lt;<span style="color:#f92672">Uint8Array</span>&gt;
+)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">ReadableStreamReadResult</span><span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">Uint8Array</span>&gt;<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">value</span>);
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">done</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>
+    <span style="color:#f92672">?</span> <span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">read</span>().<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">process</span>)
+    <span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">result</span>);
+};
+
+<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>) {
+  <span style="color:#a6e22e">reader</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">readable</span>.<span style="color:#a6e22e">getReader</span>();
+  <span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">read</span>().<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">process</span>);
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>As the output of our Observable is a <code>Uint8Array</code>. Depending on your needs you can decode this to the format you need,
+but in most cases it will be text content - here we can use
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder" target="_blank">TextDecoder</a>
+ to get the value:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextDecoder</span>(<span style="color:#e6db74">&#34;utf-8&#34;</span>);
+
+<span style="color:#a6e22e">fromWebSerial</span>(<span style="color:#a6e22e">port</span>).<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#75715e">// Value is a UInt8Array, we can append to a element by decoding it
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">outputEl</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decoder</span>.<span style="color:#a6e22e">decode</span>(<span style="color:#a6e22e">value</span>)
+  })
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="writing-to-the-serial-bus">Writing to the Serial Bus</h2>
+<p>The API also allows for writing data to the device, here we can use another <code>Observable</code> that emits a string and provide
+it to our function as a source, then we can hook it up to the ports <code>WritableStream</code>.</p>
+<p>Instead of directly writing, we will create
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/TransformStream" target="_blank">TextEncoderStream</a>
+ - this allows us to create a new
+internal writer that we have more control over - it contains both a reader and writer we use this to connect our
+sources.</p>
+<p>The reader from our encoder will be piped to the ports <code>WritableStream</code>, and the writer passed
+to <a href="https://github.com/rxjs-ninja/rxjs-ninja/blob/main/libs/rxjs/utility/src/lib/to-writable-stream.ts" target="_blank">toWritableStream</a>
+
+which connects the <code>Observable</code> to the writer:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">writerSource</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">writable</span>) {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextEncoderStream</span>();
+  <span style="color:#a6e22e">writerEnd</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">readable</span>.<span style="color:#a6e22e">pipeTo</span>(<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">writable</span>);
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">outputStream</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">writable</span>;
+
+  <span style="color:#a6e22e">writer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">outputStream</span>.<span style="color:#a6e22e">getWriter</span>();
+  <span style="color:#a6e22e">writerSource</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">toWritableStream</span>(<span style="color:#a6e22e">writer</span>, <span style="color:#a6e22e">signal</span>)).<span style="color:#a6e22e">subscribe</span>();
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can pass the <code>Observable</code> and use it to emit our values:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">emitter$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Subject</span>&lt;<span style="color:#f92672">string</span>&gt;();
+
+<span style="color:#a6e22e">fromWebSerial</span>(<span style="color:#a6e22e">port</span>, <span style="color:#a6e22e">emitter$</span>.<span style="color:#a6e22e">asObservable</span>()).<span style="color:#a6e22e">subscribe</span>();
+
+<span style="color:#a6e22e">emitter$</span>.<span style="color:#a6e22e">next</span>(<span style="color:#e6db74">&#39;Hello There!&#39;</span>);
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="creating-a-serial-chat-app">Creating a Serial Chat App</h2>
+<p>Now we can read from, and write to, our hardware device
+the <a href="https://github.com/svendahlstrand/web-serial-api" target="_blank">possibilities are endless</a>
+ with what we can do - provided the
+hardware supports it.</p>
+<p>For this tutorial I build a <a href="https://rxjs-from-web-serial.stackblitz.io/" target="_blank">very basic chat app</a>
+ - using the Bluetooth
+Serial applications mentioned above you can use it to send and receive text data between devices.</p>
+<p><img src="https://tane.dev/images/web-serial-mobile.jpg" alt="A screenshot of a web serial mobile app">
+<img src="https://tane.dev/images/web-serial-browser.png" alt="A screenshot of a web serial browser app"></p>
+<p>In the <a href="https://stackblitz.com/edit/rxjs-from-web-serial?file=index.ts" target="_blank">example code</a>
+ I&rsquo;ve set up a button to enable
+our port request - you should see a popup with a list of devices available for you to use. After connecting
+a basic chat interface will show up - type in some text and check out your device software - you should see the same
+message there, and you can then send a message back to the browser.</p>
+<p>Hopefully you&rsquo;ve found this tutorial useful and if you do build something with this I&rsquo;d love to hear about it!</p>
+<h2 id="a-collection-of-pre-built-operators-and-observables-for-your-projects">A collection of pre-built operators and Observables for your projects</h2>
+<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
+<p><a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for working with various types of data (such
+as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+, <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and
+<a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+ allowing for modifying, filtering and querying the data.</p>
+<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+.</p>
+</div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/">Create your own Dark Mode Detection Observable using RxJS and Media Queries</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 27, 2021</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 27, 2021)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/observables">Observables</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/media-query">Media Query</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/create-your-own-dark-mode-detection-observable-using-rxjs-and-media-queries/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p><a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">Demo Link</a>
+</p>
+<p>One of the more recent features available in browsers is ability to
+do <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_blank">CSS Media Queries</a>
+ based on user
+theme &amp; accessibility settings in the operating system - for example using <code>@media (prefers-color-scheme: dark)</code>
+(see <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" target="_blank">prefers-color-scheme</a>
+)
+you can check if the users OS theme is currently in Dark Mode and use this to set a websites theme accordingly.</p>
+<p>The query is also available in JavaScript using
+the <a href="https://developer.mozilla.org/en-us/docs/Web/API/Window/matchMedia" target="_blank">window.matchMedia</a>
+ function - that returns a
+<code>MediaListQuery</code> that will allow us to do two things:</p>
+<ul>
+<li>The current value of the users setting via the <code>matches</code> boolean property</li>
+<li>Any future values by listening to its <code>changes</code> event and attaching an event lister function to it</li>
+</ul>
+<p>Combining these, it&rsquo;s the perfect candidate to turn into a
+<a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">fully reactive dark mode switcher</a>
+
+using <a href="https://rxjs.dev" target="_blank">RxJS</a>
+ and Observables that will give us the users current setting.  If you&rsquo;re not familiar with
+Observables, they are a type of stream that emits values over time - consumers can subscribe to these Observables to get
+their values - this means we can use them to get values from long running functions or event emitters.</p>
+<p>In the full demo you&rsquo;ll find an example page with light and dark mode set from your own OS settings. To see the full
+working example you need to change the setting (e.g. in OSX Dark Mode is under &ldquo;General&rdquo; settings) - also provided are a
+user toggle button, and a button to turn off and on the media query listener. The Observable in this example supports
+more than one <code>prefers-</code> type of query but in the tutorial below we&rsquo;ll build a much simpler <code>isDarkMode</code> Observable than
+the one provided in the demo, but the concept is the same.</p>
+<h2 id="creating-a-dark-mode-observable">Creating a Dark Mode Observable</h2>
+<p>For our code we first need to create our Observable factory - this is our function that allows us to pass any required
+parameters for the implementation and returns an Observable which can then be subscribed to.</p>
+<p>The Observable constructor takes a function - a callback any time there is a new subscription - this is where the
+implementation will live.</p>
+<p>As soon as the subscription opens, we first check to see if <code>window.matchMedia</code> is available - it should be available in
+all modern browsers but is not available in environments like node (yay unit testing!) - so here we can throw an error.</p>
+<p>The factory also accepts an optional <a href="https://developer.mozilla.org/en-us/docs/Web/API/AbortSignal" target="_blank">AbortSignal</a>
+, an
+object that contains an <code>onabort</code> callback - the parent of the signal is
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController" target="_blank">AbortController</a>
+ and using this we can externally
+signal our Observable to close all subscriptions and remove all event listeners.</p>
+<p>The return value of the constructor is another function - the teardown logic - this is called when an RxJS subscription
+is ended, such as using <code>takeUntil</code> or <code>take(1)</code> - here we also ensure that all subscriptions and event listeners are
+closed.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isDarkMode</span>(<span style="color:#a6e22e">signal?</span>: <span style="color:#66d9ef">AbortSignal</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#a6e22e">subscriber</span> <span style="color:#f92672">=&gt;</span> {
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>window.<span style="color:#a6e22e">matchMedia</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">error</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;No windows Media Match available&#39;</span>));
+    }
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">signal</span>) {
+      <span style="color:#a6e22e">signal</span>.<span style="color:#a6e22e">onabort</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+        <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+      }
+    }
+
+    <span style="color:#66d9ef">return</span> () <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+    }
+  });
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="adding-the-media-query">Adding the Media Query</h3>
+<p>The main implementation of our Observable is to create our <code>MediaListQuery</code> and use it to emit values to any
+subscribers. On creation, contain a <code>matches</code> value of <code>true</code> or <code>false</code> which can be immediately be passed to
+<code>subscriber.next</code>.</p>
+<p>We also need to bind a listener using to the <code>change</code> event of the query. As we also need to remove this later create an
+internal private function for the event handler - this will also call <code>subscriber.next</code> each time there is a detected
+change.</p>
+<p>Also casting the event to a <code>MediaQueryListEvent</code> ensures TypeScript recognises it has the <code>matches</code> property which
+contains our value.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">emitValue</span>(<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">Event</span>) {
+  <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>((<span style="color:#a6e22e">event</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">MediaQueryListEvent</span>).<span style="color:#a6e22e">matches</span>);
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mediaListQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">matchMedia</span>(<span style="color:#e6db74">&#39;(prefers-color-scheme: dark)&#39;</span>);
+<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+<span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">matches</span>);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="cleaning-up-handlers-and-subscriptions">Cleaning up handlers and subscriptions</h3>
+<p>Already we can start to use the new Observable, but we also need to make sure that we:</p>
+<ul>
+<li>End any subscriptions to the Observable when either the <code>AbortSignal</code> fires or RxJS unsubscribes from it</li>
+<li>Remove any event listeners in the DOM for the <code>change</code> event</li>
+</ul>
+<p>With a slight bit of refactoring we have our final Observable factory below - in both the <code>signal.onabort</code> and the
+Observable teardown logic we remove the event listener - the API for this requires you pass the function implementation
+from our private function.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isDarkMode</span>(<span style="color:#a6e22e">signal?</span>: <span style="color:#66d9ef">AbortSignal</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#a6e22e">subscriber</span> <span style="color:#f92672">=&gt;</span> {
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>window.<span style="color:#a6e22e">matchMedia</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">error</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;No windows Media Match available&#39;</span>));
+    }
+
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">emitValue</span>(<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">Event</span>) {
+      <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>((<span style="color:#a6e22e">event</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">MediaQueryListEvent</span>).<span style="color:#a6e22e">matches</span>);
+    }
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mediaListQuery</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">matchMedia</span>(<span style="color:#e6db74">&#39;(prefers-color-scheme: dark)&#39;</span>);
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">signal</span>) {
+      <span style="color:#a6e22e">signal</span>.<span style="color:#a6e22e">onabort</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+        <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>)
+        <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+      }
+    }
+
+    <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+    <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">matches</span>);
+
+    <span style="color:#66d9ef">return</span> () <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#a6e22e">mediaListQuery</span>.<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">emitValue</span>);
+      <span style="color:#f92672">!</span><span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">closed</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">subscriber</span>.<span style="color:#a6e22e">complete</span>()
+    }
+  })
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="finishing-up">Finishing up</h3>
+<p>Now we have a fully working reactive Observable for a Dark Mode media query, this can be used in any application or
+website to check the users theme setting. The <a href="https://stackblitz.com/edit/rxjs-media-query-observable" target="_blank">demo</a>
+ provides
+some more example of how to do this in full.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">isDarkMode</span>().<span style="color:#a6e22e">pipe</span>(
+  <span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">removeClass</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;light&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dark&#39;</span>);
+    <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">addClass</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;dark&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;light&#39;</span>);
+  })
+).<span style="color:#a6e22e">subscribe</span>()
+</code></pre></td></tr></table>
+</div>
+</div><p>This tutorial is just one small example of the kind of things that can be done with RxJS - any API that can emit
+values over time can be turned into Observables.</p>
+<h2 id="a-collection-of-pre-built-operators-and-observables-for-your-projects">A collection of pre-built operators and Observables for your projects</h2>
+<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
+<p><a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for working with various types of data (such
+as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+, <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and
+<a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+ allowing for modifying, filtering and querying the data.</p>
+<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+.</p>
+</div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/">Creating Custom RxJS Operators</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Jan 25, 2021</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 27, 2021)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1500 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 7 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/rxjs">RxJS</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/observable">Observable</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/operators">Operators</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/01/creating-custom-rxjs-operators/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p><a href="https://rxjs.dev" target="_blank">RxJS</a>
+ is a popular library available for <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
+ and
+JavaScript.</p>
+<p>It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods.
+It&rsquo;s one of the foundation libraries of <a href="https://angular.io" target="_blank">Angular</a>
+.</p>
+<p>Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in
+chains of operators.</p>
+<p>Many of the operators are low level, and combining them through the <code>pipe</code> method they create a powerful way to work
+with data.</p>
+<h2 id="creating-custom-operators-for-a-domain">Creating custom operators for a domain</h2>
+<p>The good news is it&rsquo;s also very easy to create new higher-level operators for our domain code - these can be used where
+you find duplicate or complicated operations.</p>
+<p>Creating operators we can also ensure well-tested code
+using <a href="https://rxjs.dev/guide/testing/marble-testing" target="_blank">marble testing</a>
+ and they can be shared among your team to make
+your code more readable and stable.</p>
+<p>There are two types of operators that can be created - a <code>MonoTypeOperatorFunction</code> and <code>OperatorFunction</code> and all
+operators must do two things:</p>
+<ul>
+<li>Return a function which accepts as its parameter a source from the previous Observable value in the stream</li>
+<li>Return a value of the same type for <code>MonoTypeOperatorFunction</code> or different type for an <code>OperatorFunction</code> by using
+the source value with <code>pipe</code></li>
+</ul>
+<p>Below we&rsquo;ll have an example of each, but first, to support creating the operators we need some code to simplify:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span>, <span style="color:#a6e22e">tap</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+
+<span style="color:#75715e">// Create a cold source that will emit each number
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
+
+<span style="color:#75715e">// Create a cold source that multiplies each number by `5`
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByFive$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>));
+<span style="color:#75715e">// Create a cold source that multiplies each number by `10`
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByTen$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>));
+
+<span style="color:#75715e">// Subscribe to the sources and console.log the output
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">multiplyByFive$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
+<span style="color:#75715e">// Output: `5, 10, 15, 20, 25`
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">multiplyByTen$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
+<span style="color:#75715e">// Output: `10, 20, 30, 40, 50`
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="creating-monotypeoperatorfunction-for-single-types">Creating MonoTypeOperatorFunction for single types</h2>
+<p>As the name suggests a <code>MonoTypeOperatorFunction</code> is a function that works with a single type of data - the input and
+output value <strong>must</strong> be of the same type.</p>
+<p>Looking at our code we can identify two multiplication operations in our code that are the same. To turn this into an
+operator the function will look like this:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MonoTypeOperatorFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#a6e22e">factor</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">MonoTypeOperatorFunction</span>&lt;<span style="color:#f92672">number</span>&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">source</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">factor</span>))
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Here, we are returning an arrow function that takes the previous source - which must be an <code>Observable&lt;number&gt;</code>. The
+source is piped to <a href="https://rxjs.dev/api/operators/map" target="_blank">map</a>
+ which allows the source value to be converted to a new
+value, in our case we multiply by the <code>factor</code></p>
+<p>TypeScript understands that the output must also be a number - and if you try to return another value type it will throw
+a compile error.</p>
+<h3 id="writing-a-marble-test">Writing a marble test</h3>
+<p><a href="https://rxjs.dev/guide/testing/marble-testing" target="_blank">Marble testing</a>
+ is a way to write tests for RxJS operators that deal
+with data over time - data is not static due to its asynchronous nature and cannot always be guaranteed in a specific
+order. Luckily the test for this operator is simple.</p>
+<blockquote>
+<p>My personal preference has been to write these test in Jest using <a href="https://www.npmjs.com/package/rxjs-marbles" target="_blank">rxjs-marbles</a>
+ and <a href="https://www.npmjs.com/package/jest-marbles" target="_blank">jest-marbles</a>
+, but there are other libraries to write these test available.</p>
+</blockquote>
+<p>Using marbles, we can set up a mock source that will emit 5 numbers at the specified frames.</p>
+<p>The test result contains two things:</p>
+<ul>
+<li>A subscriptions string which is used to check that the operator handle subscription ending properly
+using <code>toHaveSubscriptions</code></li>
+<li>An output Observable that will contain the results of the operator and compared against the expectations
+using <code>toBeObservable</code></li>
+</ul>
+<p>In this test, we&rsquo;ll pass a source of numbers and multiply by <code>10</code></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">marbles</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs-marbles/jest&#34;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs/operators&#34;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./multiply&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;multiply&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">20</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">30</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">40</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">50</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">60</span>});
+    <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>(<span style="color:#ae81ff">10</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
+    <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
+  }));
+});
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="update-code">Update Code</h3>
+<p>Now the operator is created it can be used in the existing code from above - ideally the operator should be part of a
+shared library of code:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@myorg/rxjs-library&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByFive$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>(<span style="color:#ae81ff">5</span>));
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyByTen$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>(<span style="color:#ae81ff">10</span>));
+</code></pre></td></tr></table>
+</div>
+</div><p>Already much more readable! Our code explains our intent, but we haven&rsquo;t really reduced the duplication of our sources.</p>
+<h2 id="changing-the-api-with-operatorfunction">Changing the API with OperatorFunction</h2>
+<p>In our domain, we know we always want more than one value from a source and using the <code>OperatorFunction</code> we can use that
+to reduce our duplicate code even more.</p>
+<p>This would introduce an API change, but with proper tests, we should be able to migrate our code easily.</p>
+<p>For our source value, it is still a single number value, but in the API we&rsquo;ve changed:</p>
+<ul>
+<li>The input <code>factor</code> can be a single value or an array of values</li>
+<li>The return value is now an array of values, regardless of the input.</li>
+</ul>
+<p>Instead of forcing the users to check the type of response, this single API can be well documented and expected when we
+use it in our code:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OperatorFunction</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#a6e22e">factor</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">number</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">OperatorFunction</span>&lt;<span style="color:#f92672">number</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">number</span><span style="color:#960050;background-color:#1e0010">[]</span>&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">source</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">value</span> <span style="color:#f92672">=&gt;</span> (Array.<span style="color:#a6e22e">isArray</span>(<span style="color:#a6e22e">factor</span>) <span style="color:#f92672">?</span> <span style="color:#a6e22e">factor</span> <span style="color:#f92672">:</span> [<span style="color:#a6e22e">factor</span>]).<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">f</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">f</span>)))
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="updating-the-tests">Updating the tests</h3>
+<p>First, we need to update the existing test - here we only have to change the values in our <code>expected</code> Observable - we
+now expect an array of numbers regardless of the input - but with a single value our array length will be <code>1</code></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">20</span>], <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">30</span>], <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">40</span>], <span style="color:#a6e22e">d</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">50</span>], <span style="color:#a6e22e">e</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">60</span>]});
+  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>(<span style="color:#ae81ff">10</span>))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
+  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
+}));
+</code></pre></td></tr></table>
+</div>
+</div><p>To ensure full coverage, we should also test for the case where were have an array input for the multiplication factor:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should multiply by by 5 and 10&#34;</span>, <span style="color:#a6e22e">marbles</span>(<span style="color:#a6e22e">m</span> <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">hot</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">c</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">6</span>});
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subs</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^----------!&#39;</span>;
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expected</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">cold</span>(<span style="color:#e6db74">&#39;-a-b-c-d-e-|&#39;</span>, {<span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>], <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">30</span>], <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">40</span>], <span style="color:#a6e22e">d</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">50</span>], <span style="color:#a6e22e">e</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">60</span>]});
+  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">mul</span>([<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>]))).<span style="color:#a6e22e">toBeObservable</span>(<span style="color:#a6e22e">expected</span>);
+  <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">input</span>).<span style="color:#a6e22e">toHaveSubscriptions</span>(<span style="color:#a6e22e">subs</span>);
+}));
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="update-code-1">Update Code</h3>
+<p>We can now update the code further - here we can now remove the two additional cold Observables and create a single one
+using our new <code>multiply</code> operator, passing it an array containing out factors:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">from</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">multiply</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@myorg/rxjs-library&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">source$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">from</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]);
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multiplyValues$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">source$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">multiply</span>([<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>]));
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can subscribe to the <code>multiplyValues$</code> source and get both our new result which contains the multiplication of
+both numbers</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">multiplyValues$</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>)).<span style="color:#a6e22e">subscribe</span>();
+<span style="color:#75715e">// Output: `[5, 10], [10, 20], [15, 30], [20, 40], [25, 50]`
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="next-steps">Next Steps</h2>
+<p>You can see a working version of this operator
+on <a href="https://stackblitz.com/edit/rxjs-create-custom-operator?file=index.ts" target="_blank">StackBlitz</a>
+ by opening the console to see the
+result.</p>
+<p>This operator is just a taste of what&rsquo;s possible with RxJS - diving into the API you&rsquo;ll find many more operators to help
+work with data in other synchronous and asynchronous operations.</p>
+<h2 id="a-collection-of-pre-built-operators-for-your-projects">A collection of pre-built operators for your projects</h2>
+<p><img src="https://raw.githubusercontent.com/rxjs-ninja/rxjs-ninja/main/assets/logo.png" alt="The RxJS Logo, a Ninja jumping over a moon"></p>
+<p>Now for a shameless plug - my own library - <a href="https://rxjs.ninja" target="_blank">RxJS Ninja</a>
+ - is a collection of over 130 operators for
+working with various types of data (such as <a href="https://rxjs.ninja/modules/array.html" target="_blank">arrays</a>
+
+or <a href="https://rxjs.ninja/modules/number.html" target="_blank">numbers</a>
+) and <a href="https://rxjs.ninja/modules/utility.html#Streams" target="_blank">streams</a>
+
+allowing for modifying, filtering and querying the data.</p>
+<p>Still in active development, you might find useful operators that provide clearer intent for your RxJS code.</p>
+<p>You can check out the source code on <a href="https://github.com/rxjs-ninja/rxjs-ninja" target="_blank">GitHub</a>
+. There you can also find
+a <a href="https://github.com/rxjs-ninja/nx-library-starter" target="_blank">starter project</a>
+ for creating your own TypeScript libraries like
+this.</p>
+</div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2019/09/validating-data-with-json-schema-angular-and-typescript/">Validating data with JSON Schema, Angular and TypeScript</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Sep 18, 2019</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Sep 18, 2019)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1900 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 9 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/development">Development</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/json">JSON</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/schema-json">Schema JSON</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2019/09/validating-data-with-json-schema-angular-and-typescript/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>One common question I see with a lot of new TypeScript developers is how to handle runtime validation of data, using
+the types they have built.</p>
+<p>The issue is web platform, as yet, does not support types. Typescript itself is a higher-level
+language built on top of JavaScript and uses a compiler to create compatible code for the web, node or other JS
+platforms - this means that types are only available at design time.</p>
+<p>Most developers have a method or form in their code where they want to validate data being passed in is
+correct before sending it to another API. This works for hard coded data in Typescript, but not dynamic data from sources
+such as a form or API source</p>
+<p>The good news is the problem itself has been solved and there are several solutions for TypeScript such as
+<a href="https://github.com/gcanti/io-ts" target="_blank">io-ts</a>
+ or <a href="https://github.com/hapijs/joi" target="_blank">joi</a>
+ but I find these solutions to encourage
+duplication of types across different domains to maintain both your types and validation objects.</p>
+<h2 id="introducing-json-schema">Introducing JSON Schema</h2>
+<p>A much simpler way to maintain both types and validation within a project is to use a single source of truth.
+The main option for this is <a href="https://json-schema.org" target="_blank">JSON Schema</a>
+.</p>
+<p>A JSON Schema file allows you to define types using a JSON file, using a specification defined by the selected
+draft (at the time of writing it&rsquo;s <a href="http://json-schema.org/specification.html" target="_blank">number 7</a>
+).</p>
+<p>This file can be used to generate types for design-time coding using CLI tools and can be used for data validation at
+runtime using another library that can consume a schema to generate a validation method.</p>
+<h3 id="schema-example">Schema Example</h3>
+<p>For this demo, I&rsquo;ve created a simple schema object defining a customer within a system. The customers' properties are:</p>
+<ul>
+<li><code>ID</code></li>
+<li><code>firstName</code></li>
+<li><code>lastName</code></li>
+<li><code>dateOfBirth</code></li>
+<li><code>email</code></li>
+</ul>
+<p>In this example we set <code>&quot;additionalProperties&quot;: false</code> to keep the example simple, but it&rsquo;s a very flexible option!</p>
+<p>If set to true or not included, the outputted types will include an indexable type with a <code>[key: string]: any</code>
+at the end of the type properties.</p>
+<p>You can also pass it properties such as <code>&quot;additionalProperties&quot;: { &quot;type&quot;: &quot;string&quot; }</code> which will allow only
+string additional properties to be added.</p>
+<p>By setting to false - only the properties defined will be available on the type, which I&rsquo;ll do for this example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;$id&#34;</span>: <span style="color:#e6db74">&#34;https://tane.dev/customer.json&#34;</span>,
+  <span style="color:#f92672">&#34;$schema&#34;</span>: <span style="color:#e6db74">&#34;http://json-schema.org/draft-07/schema#&#34;</span>,
+  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Customer Record&#34;</span>,
+  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+  <span style="color:#f92672">&#34;properties&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The Customers ID in our system&#34;</span>
+    },
+    <span style="color:#f92672">&#34;firstName&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The customer&#39;s first name.&#34;</span>
+    },
+    <span style="color:#f92672">&#34;lastName&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The customer&#39;s last name.&#34;</span>
+    },
+    <span style="color:#f92672">&#34;email&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;email&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The customers email address&#34;</span>
+    },
+    <span style="color:#f92672">&#34;dateOfBirth&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
+      <span style="color:#f92672">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;date&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;The customer&#39;s date of birth.&#34;</span>
+    }
+  },
+  <span style="color:#f92672">&#34;additionalProperties&#34;</span>: <span style="color:#66d9ef">false</span>,
+  <span style="color:#f92672">&#34;required&#34;</span>: [
+    <span style="color:#e6db74">&#34;id&#34;</span>,
+    <span style="color:#e6db74">&#34;firstName&#34;</span>,
+    <span style="color:#e6db74">&#34;lastName&#34;</span>,
+    <span style="color:#e6db74">&#34;dateOfBirth&#34;</span>,
+    <span style="color:#e6db74">&#34;email&#34;</span>
+  ]
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>The first tool we will run this through is the imaginatively titled <a href="https://www.npmjs.com/package/json-schema-to-typescript" target="_blank">&lt;code&gt;json-schema-to-typescript&lt;/code&gt;</a>
+!
+This project will take a valid schema file and generate a file containing the types.  From the example above the output is:</p>
+<blockquote>
+<p><code>json2ts -i customer.json -o customer.d.ts --style.singleQuote</code></p>
+</blockquote>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">/* tslint:disable */</span>
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * This file was automatically generated by json-schema-to-typescript.
+</span><span style="color:#75715e"> * DO NOT MODIFY IT BY HAND. Instead, modify the source JSONSchema file,
+</span><span style="color:#75715e"> * and run json-schema-to-typescript to regenerate this file.
+</span><span style="color:#75715e"> */</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomerRecord</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The Customers ID in our system
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The customer&#39;s first name.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">firstName</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The customer&#39;s last name.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">lastName</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The customers email address
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The customer&#39;s date of birth.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">dateOfBirth</span>: <span style="color:#66d9ef">string</span>;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>One thing to note is that <code>email</code> and <code>dateOfBirth</code> are string in our type, the <code>format</code> is only used
+with validation. It is possible to create types for these fields and reference them using a more
+<a href="https://json-schema.org/understanding-json-schema/structuring.html" target="_blank">complex schema</a>
+.</p>
+<p>This type can now be imported into other types, and the <code>json-schema-to-typescript</code> will do this when you use
+complex references.  For example, if we define an entire customer order type it might look like this:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OrderItem</span>, <span style="color:#a6e22e">Checkout</span>, <span style="color:#a6e22e">Address</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./shop-front&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomerOrder</span> {
+  <span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">CustomerRecord</span>;
+  <span style="color:#a6e22e">deliveryAddress</span>: <span style="color:#66d9ef">Address</span>;
+  <span style="color:#a6e22e">billingAddress</span>: <span style="color:#66d9ef">Address</span>;
+  <span style="color:#a6e22e">items</span>: <span style="color:#66d9ef">OrderItem</span>[]
+  <span style="color:#a6e22e">checkout</span>: <span style="color:#66d9ef">Checkout</span>
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Also, all the properties have been added to the required array. When creating a new customer, if the data does not contain
+an ID, you can use the <code>Partial</code> type to accept an incomplete object - if you expect your API to give back a full object
+you can return a <code>CustomerRecord</code>.  You can also use <code>Required</code> where you need to ensure all fields are passed.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CustomerRecord</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./customer&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerClass</span> {
+  <span style="color:#75715e">// Return a API request with a customers object
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">addCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Partial</span>&lt;<span style="color:#f92672">CustomerRecord</span>&gt;)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">CustomerRecord</span>&gt; {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">customer</span>);
+  }
+  
+  <span style="color:#75715e">// Return a API request with a customers object
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">updateCustomer</span>(<span style="color:#a6e22e">customer</span>: <span style="color:#66d9ef">Required</span>&lt;<span style="color:#f92672">CustomerRecord</span>&gt;)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">CustomerRecord</span>&gt; {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">customer</span>);
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="validating-with-the-schema">Validating with the Schema</h2>
+<p>Now you have types, it makes the development of your application easier - but we still need to validate data
+entered is correct.</p>
+<p>One way is to use the same schema on the server-side, using your languages JSON Schema validator, but in
+this example, I&rsquo;ll use <a href="https://github.com/epoberezkin/ajv" target="_blank">ajv</a>
+ - a javascript library that allows a schema
+to be loaded and data validated against it. The documentation is quite complete on using it in a JavaScript environment
+so I won&rsquo;t repeat it too much here, but instead, I&rsquo;ll build an Angular module that can be provided as a schema
+validation service.</p>
+<p>First, we&rsquo;ll create the Angular module, in to which we inject the AJV class and allow the user to provide
+a configuration, the service is provided below. This allows the module to be imported with a configuration and a service
+that is injectable through your application.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClientModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">JSONSchemaService</span>, <span style="color:#a6e22e">AJV_INSTANCE</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./json-schema.service&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">ajv</span>, { <span style="color:#a6e22e">Ajv</span>, <span style="color:#a6e22e">Options</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_CLASS</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>&lt;<span style="color:#f92672">Ajv</span>&gt;(<span style="color:#e6db74">&#39;The AJV Class Instance&#39;</span>);
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>&lt;<span style="color:#f92672">Ajv</span>&gt;(<span style="color:#e6db74">&#39;The AJV Class config&#39;</span>);
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createAjvInstance</span>(<span style="color:#a6e22e">AjvClass</span>: <span style="color:#66d9ef">any</span>, <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">Options</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AjvClass</span>(<span style="color:#a6e22e">config</span>);
+}
+
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#66d9ef">import</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">HttpClientModule</span>],
+  <span style="color:#a6e22e">provides</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">JSONSchemaService</span>,
+    { <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">AJV_CLASS</span>, <span style="color:#a6e22e">useValue</span>: <span style="color:#66d9ef">ajv</span> },
+    { <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">AJV_CONFIG</span>, <span style="color:#a6e22e">useValue</span><span style="color:#f92672">:</span> {} },
+    {
+      <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">AJV_INSTANCE</span>,
+      <span style="color:#a6e22e">useFactory</span>: <span style="color:#66d9ef">createAjvInstance</span>,
+      <span style="color:#a6e22e">deps</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AJV_CLASS</span>, <span style="color:#a6e22e">AJV_CONFIG</span>]
+   }
+  ]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JSONSchemaModule</span> {}
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we create a service - within this service it will access to the <code>Ajv</code> class that allows the service to be provided
+with schemas via an Angular HTTP call. The parsed schema is assigned a name and can be used through the app
+using dependency injection - this service is a good use case of a root service too, which create a Singleton of the
+service shared within the same application.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">Inject</span>, <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Ajv</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;ajv&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AJV_INSTANCE</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>&lt;<span style="color:#f92672">Ajv</span>&gt;(<span style="color:#e6db74">&#39;The AJV Class Instance&#39;</span>);
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * The response of a validation result
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ValidateResult</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * If the result is valid or not
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">isValid</span>: <span style="color:#66d9ef">boolean</span>;
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Error text from the validator
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">errorsText</span>: <span style="color:#66d9ef">string</span>;
+}
+
+
+<span style="color:#66d9ef">@Injectable</span>({
+    <span style="color:#a6e22e">provideIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JSONSchemaService</span> {
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>, <span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">AJV_INSTANCE</span>) <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">ajv</span>: <span style="color:#66d9ef">Ajv</span>) {}
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Fetches the Schema and adds it to the validator schema set
+</span><span style="color:#75715e">   * @param name The name of the schema, this will be used as the key to store it
+</span><span style="color:#75715e">   * @param urlPath The URL path of the schema to load
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">loadSchema</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">urlPath</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">urlPath</span>).<span style="color:#a6e22e">subscribe</span>(<span style="color:#a6e22e">result</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ajv</span>.<span style="color:#a6e22e">addSchema</span>(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">name</span>));
+  }
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Validate data against a schema
+</span><span style="color:#75715e">   * @param name The name of the schema to validate
+</span><span style="color:#75715e">   * @param data The data to validate
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">validateData</span>&lt;<span style="color:#f92672">T</span>&gt;(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ValidateResult</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isValid</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ajv</span>.<span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">data</span>) <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">boolean</span>;
+    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">isValid</span>, <span style="color:#a6e22e">errorsText</span>: <span style="color:#66d9ef">this.ajv.errorsText</span>() };
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can use our service to load a JSON schemas into an internal <code>Ajv</code> map, and using the key load the schema to
+validate a data object against it.  The service could be used alongside a form, any methods on a service or checking the
+result of one API before passing to another API.</p>
+<p>A simple example of how it could be used in a form component (the example is shortened, most likely you would load your
+schemas from another service) or how you could validate the parameters passed to a method:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;my-form-component&#39;</span>,
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;errors-component *ngIf=&#34;let errors; errors$ | async&#34;&gt;&lt;/errors-component&gt;
+</span><span style="color:#e6db74">    &lt;form [formGroup]=&#34;customerForm&#34; (ngSubmit)=&#34;submit()&#34;&gt;
+</span><span style="color:#e6db74">      &lt;!-- Customer form in here ---&gt;
+</span><span style="color:#e6db74">    &lt;/form&gt;
+</span><span style="color:#e6db74">  `</span> 
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FormComponent</span> {
+  
+  <span style="color:#a6e22e">error$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BehaviorSubject</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#39;&#39;</span>);
+
+  <span style="color:#a6e22e">customerForm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">fb</span>.<span style="color:#a6e22e">group</span>({
+    <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
+    <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
+    <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
+    <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>],
+    <span style="color:#a6e22e">dateOfBirth</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>]
+  });
+
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">fb</span>: <span style="color:#66d9ef">FormBuilder</span>, <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">schema</span>: <span style="color:#66d9ef">JSONSchemaService</span>, <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">app</span>: <span style="color:#66d9ef">AppService</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">loadSchema</span>(<span style="color:#e6db74">&#39;customer&#39;</span>, <span style="color:#e6db74">&#39;https://tane.dev/customer.json&#39;</span>)
+  }
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * In the submit method, we validate the input of a form - this can be on top of, or instead
+</span><span style="color:#75715e">   * of Angular form validation
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">submit() {</span>
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">validateData</span>(<span style="color:#e6db74">&#39;customer&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">customerForm</span>.<span style="color:#a6e22e">value</span>);
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">isValid</span>) {
+       <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">updateCustomer</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">customerForm</span>.<span style="color:#a6e22e">value</span>);
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">error$</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">errorsText</span>);
+    }
+  }
+ 
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * This custom method can take a type of T (which in this case is an `any`) and validate
+</span><span style="color:#75715e">   * that the data is valid
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#a6e22e">customMethod</span>&lt;<span style="color:#f92672">T</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#a6e22e">any</span>&gt;(<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">validateData</span>(<span style="color:#e6db74">&#39;customer&#39;</span>, <span style="color:#a6e22e">data</span>);
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">isValid</span>) {
+       <span style="color:#75715e">// Do custom logic
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">error$</span>.<span style="color:#a6e22e">next</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">errorsText</span>);
+    }
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="conclusion">Conclusion</h2>
+<p>I hope you&rsquo;ve found this article useful in helping understand how and where Typescript can be used to validate data
+within an application, and JSON Schema to validate dynamic data.</p>
+<p>Please feel free to leave feedback on any issues or improvements, but hopefully, these examples give a clearer understanding.</p>
+<p>For full documentation of JSON Schema, check out the <a href="http://json-schema.org/understanding-json-schema/" target="_blank">Understanding JSON Schema</a>
+
+pages to get examples of using <code>allOf</code>, <code>anyOf</code>, <code>oneOf</code> and using <a href="http://json-schema.org/understanding-json-schema/structuring.html#reuse" target="_blank">definitions</a>
+</p>
+</div>
+</div>
+
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/">Providing injectable features to Angular modules</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Mar 14, 2019</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Mar 16, 2019)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1700 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 8 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/typescript">TypeScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/angular">Angular</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/development">Development</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2019/03/providing-injectable-features-to-angular-modules/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>Working with <a href="https://angular.io/" target="_blank">Angular</a>
+ and <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a>
+; as I have refactored and re-written components I&rsquo;ve been learning to take advantage of one of the more powerful features - dependency injection.</p>
+<p>Building Angular components, most developers will have already used this to inject features like the HTTP client or the FormBuilder to be used in a component. A common service example might look like this:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span>, <span style="color:#a6e22e">HttpResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+
+<span style="color:#66d9ef">@Injectable</span>()
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RequestService</span> {
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>) {}
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">getExample</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">HttpResponse</span>&gt; {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">&#39;/api/example&#39;</span>);
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Angular&rsquo;s own features can be injected via their class identity (e.g. <code>HttpClient</code>).  You can also inject any components, services or pipes that are registered within a module.</p>
+<p>Angular also provides a mechanism for custom injections, this means items like configurations or instances of external libraries can be passed into any constructor within your module or any item within the dependency tree.  To do this the library needs to provide an <code>InjectionToken</code> which represents the key in the dependency tree, and use the <code>Inject</code> decorator to provide an instance into a class constructor (this is covered later in this post).</p>
+<h2 id="creating-the-service">Creating The Service</h2>
+<p>I recently worked on refactoring some code where in a component it had some code to handle getting a session object from <code>sessionStorage</code>. When working with Angular&rsquo;s <code>ng serve</code> making changes will often result in a refresh, destroying any existing session. This feature allowed session storage to be turned on and keep it between refreshes by allowing the component to check if a value existed in <code>sessionStorage</code> object.</p>
+<p>Using the principles in <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank">SOLID</a>
+ I moved the code into a service. Having a service do one thing it made the code easier to understand. The unit test for this is also smaller and can cover most of the component.</p>
+<p>The service has one additional property which is <code>storagePrefix</code>, used to make each instance of the service unique to it&rsquo;s component.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+
+<span style="color:#66d9ef">@Injectable</span>()
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComponentService</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">storagePrefix</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my-app&#39;</span>;
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">init</span>(<span style="color:#a6e22e">storagePrefix</span>: <span style="color:#66d9ef">string</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">storagePrefix</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">storagePrefix</span>;
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">undefined</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sessionStorage</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#a6e22e">sessionStorage</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>, <span style="color:#a6e22e">value</span>);
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>In it&rsquo;s current implementation it&rsquo;s usable, but it has a few issues.  The main one is that it uses <code>sessionStorage</code> but trusts that it exists on the global object, this means we should always expect it to be available, and is a bad practice.  It also limits this service to only use <code>sessionStorage</code> and no other key/value store. It would be better if we could provide it to our service instead.</p>
+<p>We can also set the storagePrefix via our app configuration and means our component doesn&rsquo;t need to understand this configuration (yet!) so it avoids us having to call the <code>init</code> method within a component&rsquo;s <code>ngOnInit</code>.</p>
+<p>By making these injectable, we will not only be able to provide our <code>sessionStorage</code> but we can support any module or
+library that conforms to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank">Web Storage API</a>
+. This means we no longer need to rely on the global object and we have more control over what we inject.</p>
+<p>The powerful feature of dependency injection is the ability to pass instances of other non-angular applications. For example you could pass the instance of a <code>jQuery</code> application and call it&rsquo;s methods from your application (you&rsquo;ll also want to check out <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>
+ when running these, but I&rsquo;ll discuss that in a future post).</p>
+<p>This allows for the transition of applications over time within an organisation, rather than having to replace all applications in one go. It&rsquo;s a good way to safely inject features from third-party libraries and means passing mock versions is easier for tests.</p>
+<h2 id="creating-an-injectable-service-and-module">Creating an injectable service and module</h2>
+<h3 id="making-features-injectable">Making features injectable</h3>
+<p>First we need to define the interface of the object want to use for the configuration. This interface provides a contract in the <code>forRoot</code> method described below and tells developers what options they can provide to the application</p>
+<p>Our configuration will require a <code>storagePrefix</code> as a string - this is need to set the name of the store.  We also pass our <code>Storage</code> instance, but with this we can set a default value in our component</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ComponentServiceConfig</span> {
+  <span style="color:#a6e22e">storagePrefix</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#a6e22e">storageInterface?</span>: <span style="color:#66d9ef">Storage</span>;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Next we will create an <code>InjectionToken</code>, a token that is usually constant representation of something we want to provide via dependency injection.  You can use any type of object as your token type, and can even provide a factory method to provide dependencies. Check out the <a href="https://angular.io/api/core/InjectionToken#tree-shakable-injectiontoken" target="_blank">Tree-shakeable Injection Token</a>
+ to see how you can do some advanced use. In our case we will just have the component config object.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">InjectionToken</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InjectionToken</span>&lt;<span style="color:#f92672">ComponentServiceConfig</span>&gt;(<span style="color:#e6db74">&#39;COMPONENT_SERVICE_CONFIG&#39;</span>);
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we have the token service we will provide a simple configuration with this token which will be an object, but a token can be used to inject anything from a string to a function, or even a class instance.</p>
+<h3 id="making-the-angular-module-configurable">Making the Angular module configurable</h3>
+<p>To make the service configurable, it should be provided via a <a href="https://angular.io/guide/ngmodules" target="_blank">NgModule</a>
+ - a regular module might look something like this:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CommonModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<span style="color:#75715e">// Module specific imports ...
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">CommonModule</span>, <span style="color:#a6e22e">ReactiveFormsModule</span>],
+  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">FeatureFormComponent</span>, <span style="color:#a6e22e">FeatureViewComponent</span>, <span style="color:#a6e22e">FeaturePipe</span>],
+  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">FeatureFormComponent</span>, <span style="color:#a6e22e">FeatureViewComponent</span>],
+  <span style="color:#a6e22e">provides</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">ComponentService</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibraryModule</span> {}
+</code></pre></td></tr></table>
+</div>
+</div><p>To make this module accept a configuration we need to add a method that can return an instance of our module with custom providers. Providers are an important part of Angular&rsquo;s <a href="https://angular.io/guide/dependency-injection" target="_blank">dependency injection</a>
+ as these are the instance of what child components can inject - all will hopefully become clear through the code example.</p>
+<p>First we will add a static <code>forRoot</code> method to the class. This method provides a factory function where we can pass a configuration in the application imports.</p>
+<p>The factory returns an instance of that module with the provided configuration, and this passed into the items with <code>Inject</code> . The module can then be further used without the <code>forRoot</code> as long as it&rsquo;s configured at the root of the application (see <a href="https://angular.io/api/core/SkipSelf" target="_blank">SkipSelf</a>
+)</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span>, <span style="color:#a6e22e">ModuleWithProviders</span>, <span style="color:#a6e22e">Optional</span>, <span style="color:#a6e22e">SkipSelf</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+
+<span style="color:#75715e">// Here we can create a default object
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">defaultConfig</span>: <span style="color:#66d9ef">ComponentServiceConfig</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">storagePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
+  <span style="color:#a6e22e">storageInterface</span>: <span style="color:#66d9ef">sessionStorage</span>; <span style="color:#75715e">// In our default value we will trust the global is there 
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">@NgModule</span>({
+  ...
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibraryModule</span> {
+  <span style="color:#66d9ef">constructor</span>(
+    <span style="color:#66d9ef">@Optional</span>()
+    <span style="color:#66d9ef">@SkipSelf</span>()
+    <span style="color:#a6e22e">parentModule</span>: <span style="color:#66d9ef">LibraryModule</span>,
+  ) {}
+  <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">forRoot</span>(<span style="color:#a6e22e">config?</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ModuleWithProviders</span> {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">ngModule</span>: <span style="color:#66d9ef">LibraryModule</span>,
+      <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [
+        {
+          <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">COMPONENT_SERVICE_CONFIG</span>,
+          <span style="color:#75715e">// Destructring allows the value of the config to be merged
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// this is a shallow operation so keep the objects simple
+</span><span style="color:#75715e"></span>          <span style="color:#a6e22e">useValue</span><span style="color:#f92672">:</span> { ...<span style="color:#a6e22e">defaultConfig</span>, ...<span style="color:#a6e22e">config</span> },
+        },
+      ],
+    };
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>Before we can use this in our application we also need to update the <code>ComponentService</code> itself to use this configuration. Here the <a href="https://angular.io/api/core/Inject" target="_blank">Inject</a>
+ decorator will be used to tell the constructor that the <code>ComponentServiceConfig</code> this service needs will be available to inject via the <code>COMPONENT_SERVICE_CONFIG</code> token.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Inject</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComponentService</span> {
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">COMPONENT_SERVICE_CONFIG</span>) <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>) {}
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">undefined</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storageInterface</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storageInterface</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">storagePrefix</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">key</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>, <span style="color:#a6e22e">value</span>);
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>As the config is set with <code>private</code> in the constructor, TypeScript knows to set this as a property on the class. This is the same as writing the following code and provides a clean shorthand to set up properties.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComponentService</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>;
+
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">ComponentServiceConfig</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>;
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="providing-the-features-in-the-app">Providing the features in the app</h3>
+<p>Now that we have our configurable module, the Angular application can be provided with a configuration when importing.</p>
+<p>As the module now accepts any <code>Storage</code> type, we&rsquo;ll instead provide <code>localStorage</code> for this application, along side the <code>storagePrefix</code>:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>],
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">BrowserModule</span>,
+    <span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forRoot</span>([], <span style="color:#a6e22e">routerConfig</span>),
+    <span style="color:#a6e22e">LibraryModule</span>.<span style="color:#a6e22e">forRoot</span>({
+      <span style="color:#a6e22e">storageInterface</span>: <span style="color:#66d9ef">localStorage</span>,
+      <span style="color:#a6e22e">storagePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;my-new-app&#39;</span>
+    })
+  ],
+  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [...<span style="color:#a6e22e">environment</span>.<span style="color:#a6e22e">mockProviders</span>],
+  <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
+</code></pre></td></tr></table>
+</div>
+</div><p>Another example is we could have an NPM library that provides the same interface, such as <a href="https://www.npmjs.com/package/localstorage-ponyfill" target="_blank">localStorage-ponyfill</a>
+, it could be used in your application - or you may want to provide it to a <code>TestBed</code> configuration:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// Using it in our application
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createLocalStorage</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;localstorage-ponyfill&#34;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fakeLocalStorage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createLocalStorage</span>({ <span style="color:#a6e22e">mode</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;memory&#34;</span> });
+
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+    ...
+    <span style="color:#a6e22e">LibraryModule</span>.<span style="color:#a6e22e">forRoot</span>({
+      <span style="color:#a6e22e">storageInterface</span>: <span style="color:#66d9ef">fakeLocalStorage</span>,
+      <span style="color:#a6e22e">storagePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;my-new-app&#39;</span>
+    })
+    ...
+  ]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
+
+<span style="color:#75715e">// Or writing some tests
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">TestBed</span>.<span style="color:#a6e22e">configureTestingModule</span>({
+  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">TestHostComponent</span>],
+  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [
+    {
+      <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">BB_FORMS_CONTAINER_CONFIG</span>,
+      <span style="color:#a6e22e">useValue</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">storageStrategy</span>: <span style="color:#66d9ef">fakeLocalStorage</span>,
+      },
+    },
+  ]
+});
+</code></pre></td></tr></table>
+</div>
+</div><p>With this technique, any kind of primitive or complex object, method or class can now be passed into your feature modules - and is a useful way to provide third-party libraries to your modules, configuring not just your services, but also components, pipes and stores.</p>
+<p>Any class with a <code>constructor</code> (provided it&rsquo;s in the same dependency tree) can use <code>Inject</code> with your exported token to access this configuration.</p>
+<p>Hopefully you will also find this technique useful to improve the configurable and testable features of your module.  Feel free to <a href="https://twitter.com/tanepiper" target="_blank">respond on twitter</a>
+ if you spot any typos or errors.</p>
+</div>
+</div>
+
+    
+    <div class="text-center">
+      
+
+
+    </div>
+  </main>
+</div>
+
+<style>
+  .taxonomy-title {
+    padding-left: 1rem;
+  }
+
+  .taxonomy-title:before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f02c';
+    display: inline-block;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    font-weight: 900;
+  }
+</style>
+</div>
+    <footer></footer>
+
+
+
+
+<script src="https://tane.dev/js/bundle.min.a035a604266b30159999a46dd819244c0e3a66e10a11fbee9f56e328e47b47d11341be8f083661a570f80852476f66f4f9a57af856c1a5cc80c34a0ab879ab05.js" integrity="sha512-oDWmBCZrMBWZmaRt2BkkTA46ZuEKEfvun1bjKOR7R9ETQb6PCDZhpXD4CFJHb2b0&#43;aV6&#43;FbBpcyAw0oKuHmrBQ==" defer></script>
+
+
+  <script defer src="https://cdn.commento.io/js/count.js"></script>
+
+
+
+
+
+  </body>
+</html>
