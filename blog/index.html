@@ -33,7 +33,7 @@
 
 <meta property="og:url" content="https://tane.dev/blog/"/>
 <meta property="og:site_name" content="tane.dev"/><meta property="og:type" content="website"/><meta property="og:image"
-      content="https://www.mugshotbot.com/m?mode=light&pattern=lines_in_motion&image=cc7ec56c&hide_watermark=true&url=https://tane.dev/blog/"/>
+      content="https://www.mugshotbot.com/m?mode=light&theme=two_up&pattern=lines_in_motion&image=cc7ec56c&hide_watermark=true&url=https://tane.dev/blog/"/>
 
  </head>
 
@@ -140,7 +140,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-02-01 13:14</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-02-01 19:33</div>
   </div>
 </footer>
 
@@ -181,7 +181,7 @@
   &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Jan 30, 2021)</span>
   
   |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 6 minutes reading time</span>
 </div>
 
       
@@ -227,24 +227,18 @@ on an earlier version you can enable <strong>Experimental Web Platform features<
 <p>The API allows for communication between the browser and supported serial hardware such
 as <a href="https://www.arduino.cc/" target="_blank">Arduino</a>
  or <a href="https://www.raspberrypi.org/" target="_blank">RaspberryPi</a>
- over USB Serial.</p>
-<p>If you don&rsquo;t have any hardware to connect to, you can use Bluetooth Serial - provided your computer has a Bluetooth
-module. Connect your mobile device to it and use the appropriate software. For Android there
-is  <a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal&amp;hl=en&amp;gl=US" target="_blank">Serial Bluetooth Terminal</a>
-
-and iOS <a href="https://apps.apple.com/us/app/ble-to-serial-terminal/id1238004134" target="_blank">BLE to Serial Terminal</a>
-.</p>
-<h2 id="connecting-to-a-serial-device">Connecting to a serial device</h2>
-<p>To request access to a device, a call needs to be made to <code>navigator.serial.requestPort</code> - This call <strong>must</strong> be made
-after a user gesture such as a button click - you cannot just call <code>requestPort</code> from your code without some kind of
-user interaction as this will cause a security violation. You also must call it from a location that does not have
-policy set up to disable this (you can see this in the demo above - if you try run it in the editor it won&rsquo;t work due to
-the <code>&lt;iframe&gt;</code> not having the correct policy).</p>
-<p>You may also need to install the <a href="https://www.npmjs.com/package/@types/w3c-web-serial" target="_blank">w3c-web-serial types</a>
- in your
-project to make sure you have the available types on the <code>navigator</code> object and global types such as <code>SerialPort</code>.</p>
-<p>To get a port, call <code>navigator.serial.requestPort</code> inside the handler - it will return a Promise that contains the port
-object - you can also wrap it in a <code>try/catch</code> to handle when the user cancels device selection.</p>
+ over USB Serial connection - the
+device registers as available to the browser and a port can be opened.</p>
+<p>If you don&rsquo;t have any hardware to connect to, you can easily test it using a Bluetooth Serial connection - provided your
+computer has a Bluetooth module you can connect your mobile device to it and use the appropriate software.</p>
+<ul>
+<li>For Android <a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal&amp;hl=en&amp;gl=US" target="_blank">Serial Bluetooth Terminal</a>
+</li>
+<li>For iOS <a href="https://apps.apple.com/us/app/ble-to-serial-terminal/id1238004134" target="_blank">BLE to Serial Terminal</a>
+.</li>
+</ul>
+<h2 id="connecting-browser-to-hardware">Connecting Browser to Hardware</h2>
+<p>To request access to a device, a call needs to be made to the newly available function <code>navigator.serial.requestPort</code>:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -273,7 +267,18 @@ object - you can also wrap it in a <code>try/catch</code> to handle when the use
 });
 </code></pre></td></tr></table>
 </div>
-</div><p>The port object once created must be called with the <code>open</code> method - the only required property of the options is the
+</div><p>This function is part of a set that <strong>must</strong> be called from a specific set of user interactions such as <code>touch</code> or
+<code>click</code> events - in the demo
+after a user gesture such as a button click - you cannot just call <code>requestPort</code> from your code without some kind of
+user interaction as this will cause a security violation. You also must call it from a location that does not have
+policy set up to disable this (you can see this in the demo above - if you try run it in the editor it won&rsquo;t work due to
+the <code>&lt;iframe&gt;</code> not having the correct policy).</p>
+<p>You may also need to install the <a href="https://www.npmjs.com/package/@types/w3c-web-serial" target="_blank">w3c-web-serial types</a>
+ in your
+project to make sure you have the available types on the <code>navigator</code> object and global types such as <code>SerialPort</code>.</p>
+<p>To get a port, call <code>navigator.serial.requestPort</code> inside the handler - it will return a Promise that contains the port
+object - you can also wrap it in a <code>try/catch</code> to handle when the user cancels device selection.</p>
+<p>The port object once created must be called with the <code>open</code> method - the only required property of the options is the
 <code>baudRate</code> which is the maximum bits-per-second transferred but there
 are <a href="https://reillyeon.github.io/serial/#open-method" target="_blank">other options</a>
  based on the requirements of the device.</p>

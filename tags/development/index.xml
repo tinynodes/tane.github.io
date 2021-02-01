@@ -21,7 +21,7 @@
       <author>spam@tane.dev (Tane Piper)</author>
       <guid>https://tane.dev/2021/01/web-serial-api-with-rxjs-two-way-reactive-communication-between-browser-and-serial-hardware/</guid>
       <description>Demo Link  Demo Source   Version 89 of Chrome and Edge browsers have released the Web Serial API unflagged which means as user it&amp;rsquo;s now available for general use rather than being locked behind experimental flags (if you&amp;rsquo;re on an earlier version you can enable Experimental Web Platform features in chrome://flags)
-The API allows for communication between the browser and supported serial hardware such as Arduino or RaspberryPi over USB Serial.</description>
+The API allows for communication between the browser and supported serial hardware such as Arduino or RaspberryPi over USB Serial connection - the device registers as available to the browser and a port can be opened.</description>
     </item>
     
     <item>
