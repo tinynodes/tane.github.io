@@ -8,11 +8,24 @@
     <managingEditor>spam@tane.dev (Tane Piper)</managingEditor>
     <webMaster>spam@tane.dev (Tane Piper)</webMaster>
     <copyright>This work is copyright Tane Piper</copyright>
-    <lastBuildDate>Sat, 30 Jan 2021 12:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 05 Feb 2021 21:00:00 +0100</lastBuildDate>
     
         <atom:link href="https://tane.dev/tags/rxjs/index.xml" rel="self" type="application/rss+xml" />
     
     
+    
+    <item>
+      <title>Webserial.app - An Svelte application for communicating with Serial Devices</title>
+      <link>https://tane.dev/2021/02/webserial.app-an-svelte-application-for-communicating-with-serial-devices/</link>
+      <pubDate>Fri, 05 Feb 2021 21:00:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <guid>https://tane.dev/2021/02/webserial.app-an-svelte-application-for-communicating-with-serial-devices/</guid>
+      <description>After my previous experiments with the Web Serial API, I started experimenting with Svelte .
+Within a couple of days I have created https://webserial.app/ - the Web Serial Controller app.
+The interface might seem familiar - it&amp;rsquo;s based on XP.css - a Windows XP CSS theme. It was inspired by some of the Serial hardware software used in the 00&amp;rsquo;s.
+The application is fully open source and features:
+ Fully connected state - use the screens or keyboard shortcuts to connect and disconnect from devices with shared state Filter devices by vendor ID with a fully searchable list of all hardware vendors A draggable interface XP-like interface Options storage in localStorage Send text messages to any connected device  </description>
+    </item>
     
     <item>
       <title>Web Serial API with RxJS - Two-Way Reactive Communication between Browser and Serial Hardware</title>
@@ -55,15 +68,6 @@ Many of the operators are low level, and combining them through the pipe method 
       <description>Since the last update on RxJS Ninja there have been a few new operators added, below are some details and links to StackBlitz demos showing them in action.
 Numbers and Math operators In @rxjs-ninja/rxjs-number the missing toFixed operator has been added, alongside a new custom toHex operator and the corresponding parseHex one allowing hex numbers to be worked with ( such as converting colours)
 There are also new operators for some basic math - add , sub , div , mul , mod and pow all allowing you to modify source numbers, all accept a number, or an Observable number source.</description>
-    </item>
-    
-    <item>
-      <title>RxJS Primitives is now RxJS Ninja</title>
-      <link>https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/</link>
-      <pubDate>Mon, 23 Nov 2020 00:01:00 +0100</pubDate>
-      <author>spam@tane.dev (Tane Piper)</author>
-      <guid>https://tane.dev/2020/11/rxjs-primitives-is-now-rxjs-ninja/</guid>
-      <description>Today I&amp;rsquo;ve re-released RxJS Primitives as RxJS Ninja . The new libraries have been published as the same last versions under their old name, so it&amp;rsquo;s easy to migrate to the new version - all now published under @rxjs-ninja instead of @tinynodes (a deprecation notice has also been left the old packages).</description>
     </item>
     
   </channel>
