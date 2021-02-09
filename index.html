@@ -156,7 +156,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-02-10 00:01</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-02-10 00:17</div>
   </div>
 </footer>
 
@@ -196,9 +196,9 @@
       <div class="meta">
   <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Feb 8, 2021</span>
   
-  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Feb 9, 2021)</span>
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Feb 10, 2021)</span>
   
-  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1200 words</span>
   |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 6 minutes reading time</span>
 </div>
 
@@ -246,7 +246,8 @@ so it sounds like <em>some</em> of the browser vendors are listening!</p>
 <blockquote>
 <p>The <em>preferred</em> way to use this tag in 2021 is to use the <code>open</code> attribute - which is a much more sensible way of using the tag.
 Its <a href="https://stackblitz.com/edit/dialog-dark-patterns-property" target="_blank">still possible</a>
- to do some of the things mentioned here but
+ to do some of the things mentioned and <a href="https://tane.dev/images/firefox-dialog-performance.png">kill browser performance</a>
+ here but
 it looks like the focus stealing is gone!</p>
 </blockquote>
 <p>I thought it would be a good opportunity to revisit it as I feel it still has issues that makes it a <em>potentially</em>
@@ -263,6 +264,9 @@ default, <a href="https://stackblitz.com/edit/dialog-dark-patterns-with-div" tar
 
 even when in a loop of generating modals you can click elsewhere on the page (although of course they always can be
 made to!)</li>
+<li>It&rsquo;s still very easy to <a href="https://tane.dev/images/firefox-dialog-performance.png">kill browser performance</a>
+ very easily, very quickly
+because there is no limit to the number of dialogs that can be created</li>
 <li>The <code>&lt;dialog&gt;</code> tag is built into the platform, so there&rsquo;s no way to stop its use by blocking any offending library
 code - bad actors have the tools to do this available in the DOM.</li>
 <li>A single API is also a single attack surface - any script injection attacks don&rsquo;t have to worry about library-specific
