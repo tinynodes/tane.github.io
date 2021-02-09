@@ -22,7 +22,7 @@
       <pubDate>Mon, 08 Feb 2021 22:50:00 +0100</pubDate>
       <author>spam@tane.dev (Tane Piper)</author>
       <description>Every once in a while I&amp;rsquo;ll see frontend developers tweet or blog about how great the HTML dialog tag is and each time I&amp;rsquo;m reminded me of an old Medium post I made a few years ago about it&amp;rsquo;s use.
-I thought it would be a good opportunity to revisit it as I feel it still has issues that makes it a dangerous tag to use on the web without thinking about the implementation.</description>
+ After publishing this, a Firefox user pointed out it wasn&amp;rsquo;t working - turns out dialog is behind a flag so it sounds like some of the browser vendors are listening!</description>
       
         <category>HTML</category><category>JavaScript</category><category>Browser</category><category>Security</category><category>ECMAScript</category><category>Tutorial</category>
       
