@@ -21,7 +21,7 @@
       <author>spam@tane.dev (Tane Piper)</author>
       <guid>https://tane.dev/2021/02/revisiting-dark-patterns-with-the-html-dialog-tag/</guid>
       <description>Every once in a while I&amp;rsquo;ll see frontend developers tweet or blog about how great the HTML dialog tag is and each time I&amp;rsquo;m reminded me of an old Medium post I made a few years ago about its use.
- After publishing this, a Firefox user pointed out it wasn&amp;rsquo;t working - turns out dialog is behind a flag so it sounds like some of the browser vendors are listening!</description>
+ After publishing this, a Firefox user pointed out it wasn&amp;rsquo;t working - turns out dialog.showModal is behind a flag so it sounds like some of the browser vendors are listening!</description>
     </item>
     
     <item>
