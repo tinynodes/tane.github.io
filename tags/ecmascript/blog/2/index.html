@@ -155,7 +155,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-02-09 23:33</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-02-09 23:48</div>
   </div>
 </footer>
 
@@ -201,7 +201,7 @@
   &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Feb 9, 2021)</span>
   
   |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
-  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 6 minutes reading time</span>
 </div>
 
       
@@ -239,18 +239,24 @@ HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" 
  tag is and each time I&rsquo;m reminded me of
 an <a href="https://tinynodes.medium.com/dark-patterns-with-the-html-5-2-dialog-tag-and-chrome-for-fun-and-profit-249ce092d200" target="_blank">old Medium post</a>
 
-I made a few years ago about it&rsquo;s use.</p>
+I made a few years ago about its use.</p>
 <blockquote>
 <p>After publishing this, a Firefox user pointed out it wasn&rsquo;t working - turns out <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=840640" target="_blank">dialog is behind a flag</a>
 
 so it sounds like <em>some</em> of the browser vendors are listening!</p>
 </blockquote>
-<p>I thought it would be a good opportunity to revisit it as I feel it still has issues that makes it a dangerous tag to
-use on the web <em>without thinking about the implementation</em>. One thing that blogpost (and me pointing it out) does is
-bring out people to say it&rsquo;s nothing to do with the platform&hellip;</p>
-<p><img src="https://tane.dev/images/do-shit-with-browsers.png" alt="Do Shit With Browsers">
+<blockquote>
+<p>The <em>preferred</em> way to use this tag in 2021 is to use the <code>open</code> attribute - which is a much more sensible way of using the tag.
+Its <a href="https://stackblitz.com/edit/dialog-dark-patterns-property" target="_blank">still possible</a>
+ to do some of the things mentioned here but
+it looks like the focus stealing is gone!</p>
+</blockquote>
+<p>I thought it would be a good opportunity to revisit it as I feel it still has issues that makes it a <em>potentially</em>
+dangerous tag to use on the web <em>without thinking about the implementation</em>. One thing that blogpost (and me pointing it
+out) does is bring out people to say it&rsquo;s nothing to do with the platform&hellip;</p>
+<p><img src="https://tane.dev/images/do-shit-with-browsers.png" alt="So you discovered you can do shit in the browser an mess with the user">
 <!-- raw HTML omitted -->
-<img src="https://tane.dev/images/haters-gonna-hate.png" alt="Haters always gonna hate"></p>
+<img src="https://tane.dev/images/haters-gonna-hate.png" alt="Except that nothing of this is related to the dialog tag, nor is the fact that it&rsquo;s &ldquo;built-in&rdquo;. If the argument is &ldquo;the built-in dialog should be restricted so that people can&rsquo;t abuse it&rdquo;, all you&rsquo;re doing is making sure abusers use a div (or different elem) as dialog instead."></p>
 <p>Certainly, some people didn&rsquo;t agree - and it would be a valid suggestiont to say this is achievable in other ways.
 However, several years later I still stand by my original points:</p>
 <ul>
