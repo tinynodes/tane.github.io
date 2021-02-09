@@ -15,6 +15,16 @@
     
     
     <item>
+      <title>Revisiting Dark patterns with the HTML &lt;dialog&gt; tag</title>
+      <link>https://tane.dev/2021/02/revisiting-dark-patterns-with-the-html-dialog-tag/</link>
+      <pubDate>Mon, 08 Feb 2021 22:50:00 +0100</pubDate>
+      <author>spam@tane.dev (Tane Piper)</author>
+      <guid>https://tane.dev/2021/02/revisiting-dark-patterns-with-the-html-dialog-tag/</guid>
+      <description>Every once in a while I&amp;rsquo;ll see frontend developers tweet or blog about how great the HTML dialog tag is and each time I&amp;rsquo;m reminded me of an old Medium post I made a few years ago about it&amp;rsquo;s use.
+I thought it would be a good opportunity to revisit it as I feel it still has issues that makes it a dangerous tag to use on the web without thinking about the implementation.</description>
+    </item>
+    
+    <item>
       <title>Webserial.app - An Svelte application for communicating with Serial Devices</title>
       <link>https://tane.dev/2021/02/webserial.app-an-svelte-application-for-communicating-with-serial-devices/</link>
       <pubDate>Fri, 05 Feb 2021 21:00:00 +0100</pubDate>
@@ -57,17 +67,6 @@ The query is also available in JavaScript using the window.</description>
 It provides APIs for the creation of applications and libraries using asynchronous streams of data and reactive methods. It&amp;rsquo;s one of the foundation libraries of Angular .
 Included in it are over 100 operators - functions that take an Observable stream of data and return values for use in chains of operators.
 Many of the operators are low level, and combining them through the pipe method they create a powerful way to work with data.</description>
-    </item>
-    
-    <item>
-      <title>RxJS Ninja Updates - New operators for math and working with streams</title>
-      <link>https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/</link>
-      <pubDate>Thu, 14 Jan 2021 00:15:00 +0100</pubDate>
-      <author>spam@tane.dev (Tane Piper)</author>
-      <guid>https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/</guid>
-      <description>Since the last update on RxJS Ninja there have been a few new operators added, below are some details and links to StackBlitz demos showing them in action.
-Numbers and Math operators In @rxjs-ninja/rxjs-number the missing toFixed operator has been added, alongside a new custom toHex operator and the corresponding parseHex one allowing hex numbers to be worked with ( such as converting colours)
-There are also new operators for some basic math - add , sub , div , mul , mod and pow all allowing you to modify source numbers, all accept a number, or an Observable number source.</description>
     </item>
     
   </channel>

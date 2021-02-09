@@ -88,6 +88,14 @@
     <ul class="previous-posts">
       
       <li>
+        <a href="https://tane.dev/2021/02/revisiting-dark-patterns-with-the-html-dialog-tag/">Revisiting Dark patterns with the HTML &lt;dialog&gt; tag</a> 
+
+
+<span>Published: Feb 8, 2021</span>
+
+      </li>
+      
+      <li>
         <a href="https://tane.dev/2021/02/webserial.app-an-svelte-application-for-communicating-with-serial-devices/">Webserial.app - An Svelte application for communicating with Serial Devices</a> 
 
 
@@ -119,14 +127,6 @@
 
       </li>
       
-      <li>
-        <a href="https://tane.dev/2021/01/rxjs-ninja-updates-new-operators-for-math-and-working-with-streams/">RxJS Ninja Updates - New operators for math and working with streams</a> 
-
-
-<span>Published: Jan 14, 2021</span>
-
-      </li>
-      
     </ul>
     <a href="https://tane.dev/archive">All Previous Posts &rang;</a>
     <div class="feed">
@@ -155,7 +155,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-02-07 22:53</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-02-09 23:18</div>
   </div>
 </footer>
 
@@ -188,6 +188,241 @@
       aria-label="The taxonomy of this page is ECMAScript">
       ECMAScript
     </h2>
+    
+    <div class="post">
+  <div class="post-heading">
+    <h1>
+      <a href="https://tane.dev/2021/02/revisiting-dark-patterns-with-the-html-dialog-tag/">Revisiting Dark patterns with the HTML &lt;dialog&gt; tag</a>
+    </h1>
+    
+      <div class="meta">
+  <i class="far fa-calendar-edit" title="The date when this post was originally published" aria-label="The date when this post was originally published"></i><span>&nbsp;Published: Feb 8, 2021</span>
+  
+  &nbsp;<span title="The date I last noticed a typo" aria-label="The date I last noticed a typo">(last updated: Mar 13, 2019)</span>
+  
+  |&nbsp;<i class="far fa-pencil" title="The number of semi-coherent words I managed to produce" aria-label="The number of semi-coherent words I managed to produce"></i><span>~ 1100 words</span>
+  |&nbsp;<i class="far fa-clock" title="Time is an illusion. Lunchtime doubly so" aria-label="Time is an illusion. Lunchtime doubly so"></i><span>~ 5 minutes reading time</span>
+</div>
+
+      
+  <div class="tags" title="Click the links in this to go to a page based on a tag value" aria-label="Click the links in this to go to a page based on a tag value">
+    
+    <a class="flex-item" href="https://tane.dev/tags/html">HTML</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/javascript">JavaScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/browser">Browser</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/security">Security</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/ecmascript">ECMAScript</a>
+    
+    <a class="flex-item" href="https://tane.dev/tags/tutorial">Tutorial</a>
+    
+  </div>
+
+
+      
+        <div class="comments-link">
+  <i
+    class="far fa-comment-alt-lines"
+    title="Read what the trolls have posted..."
+    aria-label="Read what the trolls have posted..."
+  ></i>&nbsp;<a href="https://tane.dev/2021/02/revisiting-dark-patterns-with-the-html-dialog-tag/#commento">... comments</a>
+</div>
+
+      
+    
+  </div>
+  <div class="post-content"><p>Every once in a while I&rsquo;ll see frontend developers tweet or blog about how great the
+HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank">dialog</a>
+ tag is and each time I&rsquo;m reminded me of
+an <a href="https://tinynodes.medium.com/dark-patterns-with-the-html-5-2-dialog-tag-and-chrome-for-fun-and-profit-249ce092d200" target="_blank">old Medium post</a>
+
+I made a few years ago about it&rsquo;s use.</p>
+<p>I thought it would be a good opportunity to revisit it as I feel it still has issues that makes it a dangerous tag to
+use on the web <em>without thinking about the implementation</em>. One thing that blogpost (and me pointing it out) does is
+bring out people to say it&rsquo;s nothing to do with the platform&hellip;</p>
+<p><img src="https://tane.dev/images/do-shit-with-browsers.png" alt="Do Shit With Browsers">
+<!-- raw HTML omitted -->
+<img src="https://tane.dev/images/haters-gonna-hate.png" alt="Haters always gonna hate"></p>
+<p>Certainly, some people didn&rsquo;t agree - and it would be a valid suggestiont to say this is achievable in other ways.
+However, several years later I still stand by my original points:</p>
+<ul>
+<li>By
+default, <a href="https://stackblitz.com/edit/dialog-dark-patterns-with-div" target="_blank">library modals do not completely steal the users mouse focus</a>
+
+even when in a loop of generating modals you can click elsewhere on the page (although of course they always can be
+made to!)</li>
+<li>The <code>&lt;dialog&gt;</code> tag is built into the platform, so there&rsquo;s no way to stop its use by blocking any offending library
+code - bad actors have the tools to do this available in the DOM.</li>
+<li>A single API is also a single attack surface - any script injection attacks don&rsquo;t have to worry about library-specific
+implementations - they can
+<strong>always</strong> rely on <code>document.getElementsByTagName('dialog')</code> to access dialogs on the page.</li>
+</ul>
+<p>Over the last few years, users have also been taught bad habits to click any popup in operating systems, or in the
+browser through the use of Cookie popups, newsletter popups and other generally badly implemented ideas.</p>
+<h2 id="revisiting-the-hacks">Revisiting The Hacks</h2>
+<p>Now on StackBlitz, I&rsquo;m using the <a href="https://stackblitz.com/edit/dialog-dark-patterns" target="_blank">same demo as before</a>
+ with some
+updates. The example does the following:</p>
+<ul>
+<li>Adds a listener over the close button which, when the user hovers over it disables the button and moves the modal.</li>
+<li>Adds a second close button that when pressed closes the modal but also triggers an undesirable path (such as
+installing malware because we have
+a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted" target="_blank">trusted user-triggered Event</a>
+ that allows Web
+APIs)</li>
+<li>2 Buttons that send you into a loop of death in infinitely creating modals that can&rsquo;t be escaped, and always steals
+focus.</li>
+<li>Hijacking the users keyboard, so users cannot use <code>Esc</code>, not can they <code>Tab</code> away from the dialog or use <code>Space</code> to
+click any buttons.</li>
+</ul>
+<h2 id="overriding-the-dom-for-fun">Overriding the DOM for fun</h2>
+<p>One issue is that you pretty much have full control over the DOM of the dialog. This is good in many ways, but with
+great power&hellip;</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createModal</span>() {
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">button</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#34;button&#34;</span>);
+  <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Close Me&#34;</span>;
+
+  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">moveModal</span>() {
+    <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#34;disabled&#34;</span>, <span style="color:#66d9ef">true</span>);
+    <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;LOL&#39;</span>;
+    <span style="color:#a6e22e">lastX</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newModal</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#a6e22e">lastY</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newModal</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#a6e22e">newModal</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">transform</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`translate(</span><span style="color:#e6db74">${</span>(<span style="color:#a6e22e">lastX</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.5</span>
+      <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+      <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
+    Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">250</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px, </span><span style="color:#e6db74">${</span>(<span style="color:#a6e22e">lastY</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
+    Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">250</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px)`</span>;
+    <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">removeAttribute</span>(<span style="color:#e6db74">&#34;disabled&#34;</span>);
+  }
+
+  <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mouseenter&#39;</span>, <span style="color:#a6e22e">moveModal</span>);
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></td></tr></table>
+</div>
+</div><p>With our annoying button, we use this to control the <code>transform</code> style of the modal itself and move it beyond the reach
+of the user. We add a second button that does close the modal using a call to <code>modal.close()</code> but after that we can
+trigger any JavaScript we want, such as loading new tabs, running bitcoin miners, searching for aliens, etc.</p>
+<blockquote>
+<p>My argument here is that outside of styling some parts of the look and feel, it should not be possible to mess with
+the dialog after it has been presented.</p>
+</blockquote>
+<h2 id="blocking-the-escape-route">Blocking the Escape Route</h2>
+<p>Of course most users might try press the Escape key in hopes that whatever is on the screen will disappear, but we have
+that particular route covered.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keyEvents</span> <span style="color:#f92672">=</span> [
+  <span style="color:#e6db74">&#34;Backspace&#34;</span>,
+  <span style="color:#e6db74">&#34;Tab&#34;</span>,
+  <span style="color:#e6db74">&#34;Enter&#34;</span>,
+  <span style="color:#e6db74">&#34;Escape&#34;</span>,
+  <span style="color:#e6db74">&#34;Space&#34;</span>,
+  <span style="color:#e6db74">&#34;ArrowLeft&#34;</span>,
+  <span style="color:#e6db74">&#34;ArrowUp&#34;</span>,
+  <span style="color:#e6db74">&#34;ArrowRight&#34;</span>,
+  <span style="color:#e6db74">&#34;ArrowDown&#34;</span>
+];
+document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;keyup&#34;</span>, <span style="color:#a6e22e">event</span> =&gt; {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">keyEvents</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">code</span>)) {
+    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
+    <span style="color:#a6e22e">createModal</span>();
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+  }
+});
+</code></pre></td></tr></table>
+</div>
+</div><p>In this case we hijack when we detect the code for the <code>Escape</code> key, as well as any other buttons the user might try to
+use to escape - and we use it to just keep clicking the open button for creating more modals.</p>
+<blockquote>
+<p>My argument here is when a dialog is displayed, don&rsquo;t allow JavaScript to hijack the keyboard and stop the user from
+closing the dialog - this is also bad for accessibility.</p>
+</blockquote>
+<h2 id="killing-the-browser">Killing the Browser</h2>
+<p><!-- raw HTML omitted -->It’s quite easy to create a stack overflow<!-- raw HTML omitted --> In 2021 it&rsquo;s less easy to create a Stack Overflow with the
+dialog, but it is still possible to slow down the users browser and spike CPU by just calling a setInterval on it:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleKill1</span>() {
+  <span style="color:#a6e22e">setInterval</span>(<span style="color:#a6e22e">createModal</span>, <span style="color:#ae81ff">1000</span>);  <span style="color:#75715e">// 1 second here is generous - but we could do it every 1ms
+</span><span style="color:#75715e"></span>}
+</code></pre></td></tr></table>
+</div>
+</div><p>Here we can see that we get a lot of spikes in CPU usage and memory garbage collection is constantly triggered:</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<blockquote>
+<p>My argument here is limit the number of dialogs that can be shown on screen at once - modern browsers already do this for
+<code>alert</code> - allowing the user to set <code>Don't show popus anymore for this website</code> when it&rsquo;s abused by developers.</p>
+</blockquote>
+<h2 id="component-solution">Component Solution</h2>
+<p>One way around this in your own code is to use the <code>&lt;dialog&gt;</code> tag within your own component - I’ve
+created <a href="https://stackblitz.com/edit/dialog-dark-patterns-shadowroot" target="_blank">another example with a web component</a>
+ that embeds
+the dialog in to a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot" target="_blank">ShadowRoot</a>
+ and provides the global a
+state, so you cannot open more than one at a time.</p>
+<p>Hopefully you enjoy the demo and this post, and this gives some pause for thought too in how we sometimes implement and
+use browser features.</p>
+<p>I&rsquo;m not against the use of dialogs themselves - but I think providing some way to limit the number of modals that can be
+shown, and limit what can and cannot be changed within it would provide a deeper layer of secure use across the web
+platform.</p>
+</div>
+</div>
+
     
     <div class="post">
   <div class="post-heading">
