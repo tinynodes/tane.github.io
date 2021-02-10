@@ -156,7 +156,7 @@
   </div>
   <div class="flex-item meta">
     <div><i class="fas fa-hammer"></i>&nbsp;Site built with <a href="http://gohugo.io">Hugo</a> 0.80.0 <a href="https://tane.dev/about" title="Click on this link to go to the about page"><sup>[about]</sup></a></div>
-    <div><i class="far fa-business-time"></i> Last modified 2021-02-10 00:17</div>
+    <div><i class="far fa-business-time"></i> Last modified 2021-02-10 07:44</div>
   </div>
 </footer>
 
@@ -238,25 +238,23 @@ HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" 
 an <a href="https://tinynodes.medium.com/dark-patterns-with-the-html-5-2-dialog-tag-and-chrome-for-fun-and-profit-249ce092d200" target="_blank">old Medium post</a>
 
 I made a few years ago about its use.</p>
-<blockquote>
-<p>After publishing this, a Firefox user pointed out it wasn&rsquo;t working - turns out <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=840640" target="_blank">dialog.showModal is behind a flag</a>
-
-so it sounds like <em>some</em> of the browser vendors are listening!</p>
-</blockquote>
-<blockquote>
-<p>The <em>preferred</em> way to use this tag in 2021 is to use the <code>open</code> attribute - which is a much more sensible way of using the tag.
-Its <a href="https://stackblitz.com/edit/dialog-dark-patterns-property" target="_blank">still possible</a>
- to do some of the things mentioned and <a href="https://tane.dev/images/firefox-dialog-performance.png">kill browser performance</a>
- here but
-it looks like the focus stealing is gone!</p>
-</blockquote>
+<p>The <strong>good</strong> news is in 2021 it&rsquo;s much harder to use it to crash a user&rsquo;s browser - in
+Firefox <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=840640" target="_blank">dialog.showModal is behind a flag</a>
+ so it has to be
+specifically enabled by users. In all browsers <strong>preferred</strong> way to use this tag in 2021 is to use the <code>open</code> attribute
+which is a much more sensible way of using the tag. However, it
+is <a href="https://stackblitz.com/edit/dialog-dark-patterns-property" target="_blank">still possible</a>
+ to do some things mentioned below
+and <a href="https://tane.dev/images/firefox-dialog-performance.png">kill browser performance</a>
+ (and it&rsquo;s still possible to steal focus in
+Chrome).</p>
 <p>I thought it would be a good opportunity to revisit it as I feel it still has issues that makes it a <em>potentially</em>
 dangerous tag to use on the web <em>without thinking about the implementation</em>. One thing that blogpost (and me pointing it
 out) does is bring out people to say it&rsquo;s nothing to do with the platform&hellip;</p>
 <p><img src="https://tane.dev/images/do-shit-with-browsers.png" alt="So you discovered you can do shit in the browser an mess with the user">
 <!-- raw HTML omitted -->
 <img src="https://tane.dev/images/haters-gonna-hate.png" alt="Except that nothing of this is related to the dialog tag, nor is the fact that it&rsquo;s &ldquo;built-in&rdquo;. If the argument is &ldquo;the built-in dialog should be restricted so that people can&rsquo;t abuse it&rdquo;, all you&rsquo;re doing is making sure abusers use a div (or different elem) as dialog instead."></p>
-<p>Certainly, some people didn&rsquo;t agree - and it would be a valid suggestiont to say this is achievable in other ways.
+<p>Certainly, some people didn&rsquo;t agree - and it would be a valid suggestions to say this is achievable in other ways.
 However, several years later I still stand by my original points:</p>
 <ul>
 <li>By
@@ -268,10 +266,10 @@ made to!)</li>
  very easily, very quickly
 because there is no limit to the number of dialogs that can be created</li>
 <li>The <code>&lt;dialog&gt;</code> tag is built into the platform, so there&rsquo;s no way to stop its use by blocking any offending library
-code - bad actors have the tools to do this available in the DOM.</li>
+code - bad actors have all the tools to do this available in the DOM with a single HTML file.</li>
 <li>A single API is also a single attack surface - any script injection attacks don&rsquo;t have to worry about library-specific
 implementations - they can
-<strong>always</strong> rely on <code>document.getElementsByTagName('dialog')</code> to access dialogs on the page.</li>
+<strong>always</strong> rely on <code>document.getElementsByTagName('dialog')</code> to access <code>&lt;dialog&gt;</code> elements on the page.</li>
 </ul>
 <p>Over the last few years, users have also been taught bad habits to click any popup in operating systems, or in the
 browser through the use of Cookie popups, newsletter popups and other generally badly implemented ideas.</p>
@@ -418,21 +416,19 @@ dialog, but it is still possible to slow down the users browser and spike CPU by
 </div><p>Here we can see that we get a lot of spikes in CPU usage and memory garbage collection is constantly triggered:</p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <blockquote>
-<p>My argument here is limit the number of dialogs that can be shown on screen at once - modern browsers already do this for
+<p>My argument here is to limit the number of dialogs that can be shown on screen at once - modern browsers already do this for
 <code>alert</code> - allowing the user to set <code>Don't show popus anymore for this website</code> when it&rsquo;s abused by developers.</p>
 </blockquote>
 <h2 id="component-solution">Component Solution</h2>
-<p>One way around this in your own code is to use the <code>&lt;dialog&gt;</code> tag within your own component - I’ve
+<p>One way around this in your own code is to use the <code>&lt;dialog&gt;</code> tag only within your own components - I’ve
 created <a href="https://stackblitz.com/edit/dialog-dark-patterns-shadowroot" target="_blank">another example with a web component</a>
  that embeds
 the dialog in to a <a href="https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot" target="_blank">ShadowRoot</a>
  and provides the global a
-state, so you cannot open more than one at a time.</p>
-<p>Hopefully you enjoy the demo and this post, and this gives some pause for thought too in how we sometimes implement and
-use browser features.</p>
-<p>I&rsquo;m not against the use of dialogs themselves - but I think providing some way to limit the number of modals that can be
-shown, and limit what can and cannot be changed within it would provide a deeper layer of secure use across the web
-platform.</p>
+state, so you cannot open more than one at a time and third-party scripts cannot access the internal <code>&lt;dialog&gt;</code>.</p>
+<p>Hopefully you enjoy the demo and this post. I&rsquo;m not against the use of dialogs themselves - but I think providing some
+way to limit the number of modals that can be shown, and limit what can and cannot be changed within it would provide a
+deeper layer of secure use across the web platform.</p>
 </div>
 </div>
 
